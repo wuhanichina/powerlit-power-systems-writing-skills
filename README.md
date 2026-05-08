@@ -11,12 +11,14 @@ Use for full research papers targeting:
 - 中国电机工程学报
 - 电力系统自动化
 - IEEE Transactions on Power Systems full papers
+- IEEE Transactions on Smart Grid full papers
 
 The skill uses one shared power-system writing workflow and routes venue-specific style through reference files:
 
 - `references/csee.md`
 - `references/aeps.md`
 - `references/tpwrs.md`
+- `references/tsg.md`
 - `references/introduction-scalpel.md`
 - `references/method-model.md`
 - `references/case-conclusion.md`
@@ -65,6 +67,10 @@ Restart Codex after installation.
 
 ```text
 请按 IEEE TPWRS full paper 的写法重写方法部分，重点检查 formulation、assumptions、constraints 和 algorithm 的顺序。
+```
+
+```text
+请用 powerlit-power-systems-paper-writing，把这篇稿件改成 IEEE TSG 风格，注意 data-driven/distributed control 的 grid-operational meaning。
 ```
 
 ```text

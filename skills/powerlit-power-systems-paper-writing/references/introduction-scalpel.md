@@ -9,13 +9,14 @@ PowerLit introduction mining used:
 - 中国电机工程学报: 800 introductions.
 - 电力系统自动化: 538 introductions.
 - IEEE TPWRS: 564 introductions.
+- IEEE TSG: 209 full-paper introductions in the comparison corpus.
 
 Median rhythm:
 
 - Chinese venues: about 7 paragraphs, 3 sentences per paragraph.
-- TPWRS: about 12 paragraphs, 3 sentences per paragraph.
+- IEEE Transactions papers: about 12 paragraphs, 3 sentences per paragraph.
 
-Almost all introductions contain a gap. In Chinese venues, explicit "创新点/主要贡献" language is rare: about 8.0% in 中国电机工程学报 and 11.5% in 电力系统自动化. In TPWRS, explicit contribution paragraphs are common: about 70.4%.
+Almost all introductions contain a gap. In Chinese venues, explicit "创新点/主要贡献" language is rare: about 8.0% in 中国电机工程学报 and 11.5% in 电力系统自动化. In IEEE Transactions papers, explicit contribution paragraphs are common: about 70.4% in TPWRS and about 73.2% in TSG.
 
 ## Principle
 
@@ -71,6 +72,21 @@ Contribution bullets should each contain deliverable plus technical gain:
 - reformulation/algorithm + why it is tractable, scalable, or less conservative;
 - theory/guarantee + under what assumptions it holds;
 - case study + what systems and metrics validate it.
+
+## TSG: Smart-Grid Cut
+
+TSG uses a similar long IEEE Transactions introduction, but the method landscape often includes data-driven operation, distributed coordination, DER/distribution systems, cyber-physical security, communication/privacy constraints, learning-enabled control, and grid-edge devices.
+
+Recommended paragraph flow:
+
+1. Smart-grid object and operational challenge.
+2. Existing power-system operation/control methods and limitation.
+3. Existing data/learning/distributed/cyber-physical methods and limitation.
+4. Remaining gap in physical feasibility, information structure, communication/privacy, robustness, or generalization.
+5. Proposed smart-grid mechanism.
+6. Contributions and validation scope.
+
+Every data, learning, privacy, or distributed-control claim should be tied to a grid-operational consequence. Do not let the introduction become a generic AI-method literature review.
 
 ## Gap Categories
 
@@ -131,4 +147,5 @@ Avoid:
 - gap sentences without a cause;
 - contributions that are only adjectives, such as "novel", "efficient", "accurate", or "comprehensive";
 - Chinese introductions with a long contribution list that does not match the venue's natural style;
-- TPWRS introductions that hide contributions or state them without deliverables.
+- IEEE Transactions introductions that hide contributions or state them without deliverables.
+- TSG introductions where the data/learning/cyber layer is detached from grid physics or operation.

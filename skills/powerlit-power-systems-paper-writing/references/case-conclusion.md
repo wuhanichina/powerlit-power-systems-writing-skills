@@ -1,6 +1,6 @@
 # Case-Study and Conclusion Reference
 
-Use this reference when drafting or revising case-study, numerical-results, experiment, simulation, conclusion, or closing sections for 中国电机工程学报, 电力系统自动化, and IEEE TPWRS.
+Use this reference when drafting or revising case-study, numerical-results, experiment, simulation, conclusion, or closing sections for 中国电机工程学报, 电力系统自动化, IEEE TPWRS, and IEEE TSG.
 
 ## Corpus Signal
 
@@ -9,18 +9,21 @@ PowerLit mining found that case/result and conclusion sections are near-universa
 - 中国电机工程学报: case/result sections in 96.3% of papers, conclusion sections in 99.0%.
 - 电力系统自动化: case/result sections in 97.4%, conclusion sections in 99.8%.
 - IEEE TPWRS full papers: case/result sections in 97.8%, conclusion sections in 99.5%.
+- IEEE TSG full papers: case/result sections in 99.5%, conclusion sections in 99.0%.
 
 Median case/result paragraph counts:
 
 - 中国电机工程学报: about 22.
 - 电力系统自动化: about 22.
 - IEEE TPWRS: about 10.
+- IEEE TSG: about 15.
 
 Median conclusion paragraph counts:
 
 - 中国电机工程学报: about 3.
 - 电力系统自动化: about 4.
 - IEEE TPWRS: about 2.
+- IEEE TSG: about 2.
 
 ## 中国电机工程学报
 
@@ -108,6 +111,27 @@ Use a short conclusion, usually 1-3 paragraphs:
 3. Optional short future extension.
 
 Do not repeat the abstract, re-open the literature review, or introduce unsupported implications.
+
+## IEEE TSG
+
+### Case Study / Numerical Results
+
+Use `CASE STUDY`, `CASE STUDIES`, `NUMERICAL RESULTS`, or `SIMULATION RESULTS`.
+
+A TSG case section should make the smart-grid mechanism visible:
+
+1. Distribution feeder, microgrid, DER/EV/storage system, sensor network, market/DR setting, or cyber-physical test system.
+2. Data, communication, privacy, attack, uncertainty, or distributed implementation assumptions when claimed.
+3. Power-system baselines and relevant data/control baselines.
+4. Grid metrics and method metrics with units.
+5. Generalization, robustness, communication burden, privacy leakage, or scalability if these are claimed.
+6. Operational interpretation of the result.
+
+Avoid reporting ML/control performance without grid-side meaning. A TSG result paragraph should explain what improves in the grid, not only what improves in the algorithm.
+
+### Conclusion
+
+Use a short conclusion, usually 1-3 paragraphs. State what the method established in smart-grid terms and keep any deployment or real-time claim inside the tested boundary.
 
 ## Cross-Venue Rules
 

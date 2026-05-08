@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-paper-writing
-description: Draft, rewrite, or review power-system research papers for 中国电机工程学报, 电力系统自动化, and IEEE Transactions on Power Systems. Use for abstracts, introductions, methods, experiments, conclusions, terminology polishing, and anti-AI-style cleanup in power-system manuscripts.
+description: Draft, rewrite, or review power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, methods, experiments, conclusions, terminology polishing, and anti-AI-style cleanup in power-system manuscripts.
 ---
 # PowerLit Power-Systems Paper Writing
 
@@ -10,12 +10,13 @@ Use this skill to write power-system papers in the target journal's own register
 
 ## Core Workflow
 
-1. Identify target venue: 中国电机工程学报, 电力系统自动化, or IEEE TPWRS.
+1. Identify target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
 2. Lock the paper object before drafting: system setting, technical problem, model/formulation, method, evidence, and claim boundary.
 3. Load only the venue reference needed:
    - 中国电机工程学报: `references/csee.md`
    - 电力系统自动化: `references/aeps.md`
    - IEEE TPWRS: `references/tpwrs.md`
+   - IEEE TSG: `references/tsg.md`
 4. For introduction writing, load `references/introduction-scalpel.md`.
 5. For readability and sentence rhythm, load `references/rhythm.md`.
 6. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
@@ -45,11 +46,11 @@ Prefer this order over generic ML/CV paper templates:
 
 ## Rhythm Rule
 
-Readable power-system prose does not mean many short generic sentences. For Chinese venues, use long technical sentences only when their internal beats are clear: problem -> method object -> modeling step -> evidence. For TPWRS, keep most sentences in the 18-30 word range and make the formulation, constraint, algorithm, or result the grammatical subject. See `references/rhythm.md`.
+Readable power-system prose does not mean many short generic sentences. For Chinese venues, use long technical sentences only when their internal beats are clear: problem -> method object -> modeling step -> evidence. For IEEE Transactions papers, keep most sentences in the 18-30 word range and make the formulation, constraint, algorithm, controller, estimator, data mechanism, or result the grammatical subject. See `references/rhythm.md`.
 
 ## Introduction Rule
 
-Write the introduction like a technical dissection: object -> consequence -> method families -> limitation -> technical reason -> core contradiction -> contribution. Chinese venues usually keep gap and proposal close; TPWRS usually spends more paragraphs separating method families before explicit contributions. Use `references/introduction-scalpel.md`.
+Write the introduction like a technical dissection: object -> consequence -> method families -> limitation -> technical reason -> core contradiction -> contribution. Chinese venues usually keep gap and proposal close; IEEE Transactions papers usually spend more paragraphs separating method families before explicit contributions. For TSG, keep every data, learning, communication, privacy, or distributed-control claim tied to a grid-operational mechanism. Use `references/introduction-scalpel.md`.
 
 ## Anti-Meta Rule
 

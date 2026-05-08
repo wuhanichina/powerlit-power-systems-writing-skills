@@ -5,6 +5,7 @@ This reference is based on deeper rhythm mining of PowerLit JSON papers:
 - 中国电机工程学报: 802 papers.
 - 电力系统自动化: 538 papers.
 - IEEE TPWRS: 661 papers, 621 extracted abstracts.
+- IEEE TSG: 209 full papers in the TPWRS comparison corpus.
 
 ## Main Finding
 
@@ -12,7 +13,7 @@ Formal power-system papers do not read well because every sentence is short. The
 
 For Chinese journals, rhythm is built by long technical sentences with visible internal beats. A Chinese abstract often has only 4-5 full sentences by period punctuation, but about 6 information clauses when semicolons are counted. The sentence is long, but the reader can follow it because "首先/其次/然后/最后", "针对", "为此", "然而", and "结果表明" mark the turns.
 
-For TPWRS, rhythm is built by short-to-medium sentences. The median abstract sentence is about 23 words. Most sentences carry one technical action: formulate, reformulate, derive, enforce, solve, or validate.
+For IEEE Transactions papers, rhythm is built by short-to-medium sentences. The median abstract sentence is about 23 words. Most sentences carry one technical action: formulate, reformulate, derive, enforce, solve, learn, estimate, coordinate, or validate.
 
 ## Abstract Rhythm
 
@@ -58,15 +59,23 @@ Writing rule:
 - This venue accepts explicit procedural rhythm, but prefers tighter sentences than 中国电机工程学报.
 - Keep "首先/然后/最后" for real model-solution-evidence progression, not for generic writing actions.
 
-### IEEE TPWRS
+### IEEE TPWRS / TSG
 
-Typical beat:
+Typical TPWRS beat:
 
 1. System setting and operational issue.
 2. Technical object of the paper.
 3. Formulation/model.
 4. Reformulation/algorithm/guarantee.
 5. Case-study evidence.
+
+Typical TSG beat:
+
+1. Smart-grid setting and operational issue.
+2. Technical object: data-driven model, distributed controller, estimator, cyber-physical detector, or DER coordination mechanism.
+3. Physical/information structure.
+4. Learning/control/optimization mechanism.
+5. Grid-side evidence.
 
 Length tendency:
 
@@ -77,6 +86,7 @@ Writing rule:
 
 - Use one sentence for one technical action.
 - Prefer subject-led sentences: "The reformulation...", "The affine policy...", "Numerical tests...".
+- For TSG, prefer subjects such as "The distributed controller...", "The data-driven estimator...", "The communication constraint...", and "The DER coordination scheme...".
 - Use "This paper" once if useful, then shift subjects to the model, constraints, algorithm, and results.
 
 ## Introduction Rhythm
@@ -92,7 +102,7 @@ Good introductions move in waves:
 
 For Chinese venues, introduction paragraphs in the corpus often have about 3 sentences. The first sentence sets the object; the middle sentence carries literature or limitation; the last sentence points to the gap or transition. The rhythm is less "short-short-short" and more "known -> contrast -> narrowing".
 
-For TPWRS, introduction paragraphs also cluster around 3 sentences, but each sentence is shorter. "However" is the dominant contrast marker; "to address" marks the transition to the proposed work.
+For IEEE Transactions papers, introduction paragraphs also cluster around 3 sentences, but each sentence is shorter. "However" is the dominant contrast marker; "to address" marks the transition to the proposed work. For TSG, keep data/learning/distributed/cyber clauses attached to grid operation rather than letting them become standalone algorithm claims.
 
 ## Method Rhythm
 
@@ -143,7 +153,7 @@ Avoid:
 - repeated "本文首先/本文其次/本文最后" at paragraph starts,
 - multiple abstract sentences that all start with "提出/构建/设计",
 - long Chinese sentences without semicolon-level internal beats,
-- TPWRS sentences over 35 words with three or more clauses,
+- IEEE Transactions sentences over 35 words with three or more clauses,
 - result paragraphs that say "有效性和优越性" without naming the metric,
 - meta transitions such as "下面将详细介绍".
 

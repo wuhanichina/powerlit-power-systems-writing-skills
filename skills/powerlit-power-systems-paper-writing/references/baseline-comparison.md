@@ -30,6 +30,7 @@ The new skill is venue-routed. It uses empirical style signals from PowerLit JSO
 - 中国电机工程学报: broader engineering exposition, bilingual/article-format tendency, model/control/topology plus experiment/simulation evidence.
 - 电力系统自动化: compact operation/control/optimization style, explicit objective/constraint/algorithm/case structure.
 - IEEE TPWRS: formulation-first English, short abstract sentences, clear assumptions, tractability, case studies, and precise contribution lists.
+- IEEE TSG: IEEE Transactions structure with smart-grid mechanisms: data, DER/distribution operation, distributed control, communication/cyber/privacy, and grid-edge evidence.
 
 ## Failure Modes Prevented
 

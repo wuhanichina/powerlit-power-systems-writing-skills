@@ -9,6 +9,7 @@ PowerLit mining found method-like sections in almost all target papers:
 - 中国电机工程学报: 802 papers, 97.4% with method sections, median 6 method sections, 30 method paragraphs, 29 display-equation markers.
 - 电力系统自动化: 538 papers, 99.3% with method sections, median 9 method sections, 40 method paragraphs, 41.5 display-equation markers.
 - IEEE TPWRS full papers: 553 full papers, 99.5% with method sections, median 7 method sections, 68 method paragraphs, 64 display-equation markers.
+- IEEE TSG full papers: 209 full papers, 99.5% with method sections, median 62 method paragraphs.
 
 The exact counts are heuristic, but the signal is stable: the method section must be explicit, technical, and venue-specific.
 
@@ -100,6 +101,18 @@ Preferred English subjects:
 - `The uncertainty model...`
 
 Avoid "we explore", "we comprehensively investigate", and "a novel framework" unless followed by a precise formulation, assumption, or guarantee.
+
+## IEEE TSG
+
+Write the method section as a smart-grid mechanism, not as a generic algorithm description:
+
+- State the grid object first: feeder, DER fleet, microgrid, EV/storage system, sensors, market participants, communication graph, or cyber-physical layer.
+- Make the information structure explicit: centralized/distributed, local measurements, delayed communication, privacy, online data, or attack model.
+- Keep physical constraints close to data/control machinery: power flow, voltage/current limits, inverter capability, storage dynamics, frequency, stability, or restoration constraints.
+- For learning/data-driven methods, state training/test split, noise, forecast horizon, domain shift, robustness, or generalization when relevant.
+- For distributed/cyber-physical methods, state communication assumptions, privacy mechanism, attack model, or implementation burden when relevant.
+
+Avoid letting the method read like an ML/control paper with a power-grid dataset attached. The algorithmic object must explain what grid-operational difficulty it resolves.
 
 ## Method-Section Quality Check
 
