@@ -1,0 +1,134 @@
+# Introduction Scalpel Reference
+
+Use this when writing or rewriting the introduction of a power-system paper. The goal is to cut from a broad system context to the exact technical nerve of the paper, then state actual innovations as technical deliverables.
+
+## Corpus Signal
+
+PowerLit introduction mining used:
+
+- 中国电机工程学报: 800 introductions.
+- 电力系统自动化: 538 introductions.
+- IEEE TPWRS: 564 introductions.
+
+Median rhythm:
+
+- Chinese venues: about 7 paragraphs, 3 sentences per paragraph.
+- TPWRS: about 12 paragraphs, 3 sentences per paragraph.
+
+Almost all introductions contain a gap. In Chinese venues, explicit "创新点/主要贡献" language is rare: about 8.0% in 中国电机工程学报 and 11.5% in 电力系统自动化. In TPWRS, explicit contribution paragraphs are common: about 70.4%.
+
+## Principle
+
+The introduction should not merely prove that the topic is important. It should prove that a specific power-system object has a specific unresolved contradiction under a specific operating, planning, control, market, or uncertainty condition.
+
+Use this cutting order:
+
+1. Object: which system, device, market, uncertainty source, or control layer?
+2. Consequence: what security, stability, economy, feasibility, or observability issue appears?
+3. Method families: which existing method classes address parts of it?
+4. Limitation: what exactly is missing?
+5. Technical reason: why does the limitation arise?
+6. Core contradiction: what requirement cannot be met jointly?
+7. Innovation: what model, constraint, strategy, algorithm, theorem, or validation answers it?
+
+## Chinese Venues: Short Cut
+
+中国电机工程学报 and 电力系统自动化 usually place the first gap and the first proposal close together, often in the same or adjacent paragraph.
+
+Recommended paragraph flow:
+
+1. Object and operating consequence.
+2. Existing method family 1 and limitation.
+3. Existing method family 2 and limitation.
+4. Existing method family 3 and limitation.
+5. Core contradiction.
+6. Proposed model/strategy/algorithm.
+7. Case verification boundary.
+
+Do not overuse a formal "创新点如下" list. It often reads less natural for these venues unless the manuscript template expects it. Instead, write innovations as technical actions:
+
+- "计及 X 与 Y 的耦合关系，构建 Z 模型。"
+- "将 A 约束转化为 B 形式，以降低 C。"
+- "引入 D 判据，使 E 可在 F 条件下校核。"
+
+## TPWRS: Long Cut
+
+TPWRS usually builds a longer method landscape before the proposal. The first gap often appears early, while the first proposal appears several paragraphs later. Explicit contribution lists are normal.
+
+Recommended paragraph flow:
+
+1. System context and operational challenge.
+2. Method family 1 and limitation.
+3. Method family 2 and limitation.
+4. Method family 3 and limitation.
+5. Remaining technical gap.
+6. Proposed formulation or method.
+7. Contributions and validation scope.
+
+Contribution bullets should each contain deliverable plus technical gain:
+
+- formulation + what physics, uncertainty, or constraint it captures;
+- reformulation/algorithm + why it is tractable, scalable, or less conservative;
+- theory/guarantee + under what assumptions it holds;
+- case study + what systems and metrics validate it.
+
+## Gap Categories
+
+A good gap is not "previous work is insufficient" by itself. It should land in one or more of these categories:
+
+- model/physics: physical relation, nonlinear flow, dynamic process, or mechanism is not represented.
+- security/stability: voltage, frequency, transient, reliability, or security constraint is not enforced.
+- computation/scalability: the model is hard to solve, not real-time, or does not scale.
+- uncertainty/risk: forecast error, random output, probability, scenario, or distribution is weakly handled.
+- operation/market: dispatch, reserve, cost, market rule, or demand response is detached from operation.
+- data/observability: measurement, estimation, identification, prediction, or information is insufficient.
+- coupling/coordination: multi-time-scale, source-grid-load-storage, multi-energy, or device coordination is missing.
+
+## Innovation Categories
+
+Actual innovations should be stated as objects:
+
+- model/formulation: new model, variables, constraints, uncertainty representation, or physical characterization.
+- control/strategy: coordination, dispatch, energy management, protection, or regulation strategy.
+- algorithm/solution: relaxation, decomposition, linearization, iteration, distributed solution, or rolling horizon.
+- theory/guarantee: criterion, proof, convergence, feasibility, stability, conservativeness, or bound.
+- data/case system: real data, benchmark system, engineering case, scenario design, or validation protocol.
+
+## Gap-to-Contribution Map
+
+Before writing the final introduction, make this map:
+
+| Gap | Technical reason | Contribution | Evidence |
+| --- | --- | --- | --- |
+| What is not solved? | Why not? | What object solves it? | Which result supports it? |
+
+Every contribution should point back to a gap. Every gap kept in the introduction should either motivate a contribution or be removed.
+
+## Sentence Patterns
+
+Use patterns as logic, not boilerplate.
+
+Chinese:
+
+- "现有...方法能够...，但在...条件下难以..."
+- "其主要原因在于..."
+- "为解决上述问题，本文..."
+- "不同于...，所提方法..."
+
+English:
+
+- "Existing ... methods capture ..., but they typically assume ..."
+- "This limitation becomes restrictive when ..."
+- "To address this gap, this paper formulates ..."
+- "The main contributions are as follows."
+
+## Anti-Patterns
+
+Avoid:
+
+- policy-only openings without a technical object;
+- listing papers one by one instead of grouping method families;
+- gap sentences without a cause;
+- contributions that are only adjectives, such as "novel", "efficient", "accurate", or "comprehensive";
+- Chinese introductions with a long contribution list that does not match the venue's natural style;
+- TPWRS introductions that hide contributions or state them without deliverables.

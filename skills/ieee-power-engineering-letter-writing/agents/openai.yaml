@@ -1,0 +1,6 @@
+interface:
+  display_name: "IEEE Power Letter Writing"
+  short_description: "Compact IEEE TPWRS/TSG Letter writing for one hard power-system claim."
+  default_prompt: "Use $ieee-power-engineering-letter-writing to rewrite this draft as a focused IEEE power-system Letter."
+policy:
+  allow_implicit_invocation: true
