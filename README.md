@@ -1,6 +1,6 @@
-# PowerLit Power-System Writing Skills
+# PowerLit Power-System Writing and Review Skills
 
-This repository contains Codex skills for power-system paper writing, distilled from a local PowerLit JSON corpus.
+This repository contains Codex skills for power-system paper writing and strict manuscript review, distilled from a local PowerLit JSON corpus.
 
 ## Skills
 
@@ -33,6 +33,18 @@ Use for IEEE power-system Letters and 3-4 page technical communications. It trea
 - minimal but decisive evidence;
 - short conclusion with a clear boundary.
 
+### `powerlit-power-systems-paper-review`
+
+Use for strict review of power-system manuscripts targeting:
+
+- 中国电机工程学报
+- 电力系统自动化
+- IEEE Transactions on Power Systems
+- IEEE Transactions on Smart Grid
+- IEEE power-system Letters
+
+The review skill checks acceptance risk, logic chain, innovation substance, model/math correctness, evidence sufficiency, conclusion support, venue fit, wording, formatting, and final reviewer-style decisions.
+
 ## Install
 
 After publishing this repository to GitHub, install the skills with the Codex skill installer:
@@ -40,7 +52,7 @@ After publishing this repository to GitHub, install the skills with the Codex sk
 ```powershell
 python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
   --repo <owner>/powerlit-power-systems-writing-skills `
-  --path skills/powerlit-power-systems-paper-writing skills/ieee-power-engineering-letter-writing
+  --path skills/powerlit-power-systems-paper-writing skills/ieee-power-engineering-letter-writing skills/powerlit-power-systems-paper-review
 ```
 
 Restart Codex after installation.
@@ -59,7 +71,10 @@ Restart Codex after installation.
 请用 ieee-power-engineering-letter-writing，把这个 full paper idea 压缩成 IEEE Letter 的 introduction 和 technical core。
 ```
 
+```text
+请用 powerlit-power-systems-paper-review，从 TPWRS 审稿人的角度严格判断这篇论文是否够录用。
+```
+
 ## Corpus Boundary
 
 The skills include distilled style rules and corpus statistics. They do not include raw papers, paper PDFs, or the source JSON corpus.
-

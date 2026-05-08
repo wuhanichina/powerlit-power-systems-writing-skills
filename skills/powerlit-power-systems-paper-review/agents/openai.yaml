@@ -1,0 +1,6 @@
+interface:
+  display_name: "PowerLit Paper Review"
+  short_description: "Strict acceptance-risk review for power-system manuscripts and target venues."
+  default_prompt: "Use $powerlit-power-systems-paper-review to strictly review this power-system manuscript for the target journal."
+policy:
+  allow_implicit_invocation: true
