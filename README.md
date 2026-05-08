@@ -4,6 +4,19 @@ This repository contains Codex skills for power-system paper writing and strict 
 
 ## Skills
 
+### `powerlit-power-systems-prewriting-review`
+
+Use before formal writing. It gates whether an idea, outline, model, experiment package, or rough draft is ready for target-journal manuscript writing.
+
+It returns:
+
+- `GO`
+- `CONDITIONAL GO`
+- `NO-GO`
+- `RETARGET`
+
+The gate checks innovation chain, model correctness, evidence readiness, claim boundary, and venue fit.
+
 ### `powerlit-power-systems-paper-writing`
 
 Use for full research papers targeting:
@@ -16,6 +29,7 @@ Use for full research papers targeting:
 The skill uses one shared power-system writing workflow and routes venue-specific style through reference files:
 
 - `references/csee.md`
+- `references/csee-precision.md`
 - `references/aeps.md`
 - `references/tpwrs.md`
 - `references/tsg.md`
@@ -54,12 +68,16 @@ After publishing this repository to GitHub, install the skills with the Codex sk
 ```powershell
 python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
   --repo <owner>/powerlit-power-systems-writing-skills `
-  --path skills/powerlit-power-systems-paper-writing skills/ieee-power-engineering-letter-writing skills/powerlit-power-systems-paper-review
+  --path skills/powerlit-power-systems-prewriting-review skills/powerlit-power-systems-paper-writing skills/ieee-power-engineering-letter-writing skills/powerlit-power-systems-paper-review
 ```
 
 Restart Codex after installation.
 
 ## Usage Examples
+
+```text
+请用 powerlit-power-systems-prewriting-review，判断这个 idea 是否已经可以进入中国电机工程学报写作阶段。
+```
 
 ```text
 请用 powerlit-power-systems-paper-writing，把这段引言改成中国电机工程学报风格。
@@ -84,3 +102,9 @@ Restart Codex after installation.
 ## Corpus Boundary
 
 The skills include distilled style rules and corpus statistics. They do not include raw papers, paper PDFs, or the source JSON corpus.
+
+## Recommended Workflow
+
+1. `powerlit-power-systems-prewriting-review`: decide whether the work is ready to write.
+2. `powerlit-power-systems-paper-writing` or `ieee-power-engineering-letter-writing`: draft or rewrite within the approved claim boundary.
+3. `powerlit-power-systems-paper-review`: stress-test the written manuscript before submission.

@@ -35,6 +35,8 @@ Let the model, constraint, method, or result act as the subject.
 - "机会约束将节点电压越限风险限制在给定置信水平内。"
 - "The affine reserve policy maps renewable forecast errors to generator recourse actions."
 
+For 中国电机工程学报, technical subject is not optional. Avoid sentences whose subject is only "本文", "该方法", "该问题", or "研究结果" unless the predicate names a concrete model relation, constraint, metric, or mechanism.
+
 ## Avoid Meta-Claim Piles
 
 Do not stack contribution claims before showing the object:
@@ -51,3 +53,5 @@ Before finalizing, scan for:
 - "有效性/优越性" without a metric,
 - "novel" without a precise difference from prior work,
 - result sentences that do not name the case system.
+
+For Chinese journal prose, also remove soft filler such as "较好地", "一定程度上", "进一步说明", "具有一定参考价值", and "为...提供思路" unless the sentence names the exact technical condition or evidence.

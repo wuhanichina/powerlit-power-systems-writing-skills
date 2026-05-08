@@ -10,20 +10,22 @@ Use this skill to write power-system papers in the target journal's own register
 
 ## Core Workflow
 
-1. Identify target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
-2. Lock the paper object before drafting: system setting, technical problem, model/formulation, method, evidence, and claim boundary.
-3. Load only the venue reference needed:
+1. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not polish unsupported claims into manuscript prose.
+2. Identify target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
+3. Lock the paper object before drafting: system setting, technical problem, model/formulation, method, evidence, and claim boundary.
+4. Load only the venue reference needed:
    - 中国电机工程学报: `references/csee.md`
    - 电力系统自动化: `references/aeps.md`
    - IEEE TPWRS: `references/tpwrs.md`
    - IEEE TSG: `references/tsg.md`
-4. For introduction writing, load `references/introduction-scalpel.md`.
-5. For readability and sentence rhythm, load `references/rhythm.md`.
-6. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
-7. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
-8. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
-9. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
-10. Before finalizing, check claim-evidence alignment: every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, or explicitly stated assumption.
+5. For 中国电机工程学报 precision writing, also load `references/csee-precision.md`.
+6. For introduction writing, load `references/introduction-scalpel.md`.
+7. For readability and sentence rhythm, load `references/rhythm.md`.
+8. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
+9. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
+10. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
+11. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
+12. Before finalizing, check claim-evidence alignment: every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, or explicitly stated assumption.
 
 ## Power-System Story Order
 
@@ -43,6 +45,7 @@ Prefer this order over generic ML/CV paper templates:
 - Method/model: load `references/method-model.md`; make the technical object explicit before implementation details. Define variables, sets, constraints, assumptions, physical meaning, and algorithmic steps in the venue's expected order.
 - Experiments/case studies: use power-system evidence objects, not generic "SOTA" language. State system, operating scenario, baselines, metrics, and solver/protocol when relevant.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
+- 中国电机工程学报: load `references/csee-precision.md`; every sentence must define, constrain, derive, verify, or delimit something. Delete decorative and meta sentences.
 
 ## Rhythm Rule
 
@@ -59,6 +62,20 @@ Do not write prose that announces writing actions:
 - Avoid: "This section introduces...", "The remainder of this paper is organized as follows" unless the venue explicitly needs it.
 - Avoid: "we comprehensively explore", "a novel paradigm", "seamlessly integrates", "significant improvement" without numbers.
 - Prefer subject-led sentences: "The chance constraint is reformulated as...", "The rolling horizon model coordinates...", "Simulation on the IEEE 118-bus system shows...".
+
+## Prewriting Gate
+
+When the available material has not been pre-reviewed, do not begin with manuscript text. First establish:
+
+- real problem,
+- exact gap,
+- technical object,
+- model correctness,
+- evidence support,
+- claim boundary,
+- target-venue fit.
+
+If any of these are missing, state the blocker and recommend `GO`, `CONDITIONAL GO`, `NO-GO`, or `RETARGET` rather than writing polished prose.
 
 ## Relationship to `research-paper-writing`
 

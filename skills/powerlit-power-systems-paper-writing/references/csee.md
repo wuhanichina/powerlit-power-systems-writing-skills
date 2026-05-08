@@ -11,9 +11,13 @@ PowerLit mining used 802 JSON papers from the 中国电机工程学报 subset of
 
 Use these as style tendencies, not templates to copy mechanically.
 
+For high-stakes CSEE rewriting, also load `references/csee-precision.md`.
+
 ## Register
 
 中国电机工程学报 tolerates a slightly broader engineering background than 电力系统自动化, but the paper still needs a concrete technical object. The best tone is formal engineering exposition: define the operating object, state the mechanism or constraint, then show the proposed model/control/optimization method.
+
+The prose should be economical. Do not spend a sentence unless it closes a logical link. Prefer one precise technical action over two evaluative adjectives.
 
 Prefer:
 
@@ -41,6 +45,8 @@ Recommended shape:
 5. Optional final sentence for engineering implication, only when supported.
 
 Keep "首先/其次/最后" if the abstract needs a procedural chain, but do not let it become a list of actions without a technical claim. If using "结果表明", pair it with the actual metric or effect.
+
+For CSEE, compactness matters more than visible completeness. A sentence that only says the paper "studies", "analyzes", or "explores" should be replaced by the object it constructs, derives, constrains, or verifies.
 
 ## Introduction
 

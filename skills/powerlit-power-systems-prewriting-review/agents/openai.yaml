@@ -1,0 +1,6 @@
+interface:
+  display_name: "PowerLit Prewriting Review"
+  short_description: "Preflight gate before writing power-system papers for target journals."
+  default_prompt: "Use $powerlit-power-systems-prewriting-review to decide whether this idea or draft is ready for target-journal writing."
+policy:
+  allow_implicit_invocation: true
