@@ -19,13 +19,14 @@ Use this skill to write power-system papers in the target journal's own register
    - IEEE TPWRS: `references/tpwrs.md`
    - IEEE TSG: `references/tsg.md`
 5. For 中国电机工程学报 precision writing, also load `references/csee-precision.md`.
-6. For introduction writing, load `references/introduction-scalpel.md`.
-7. For readability and sentence rhythm, load `references/rhythm.md`.
-8. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
-9. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
-10. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
-11. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
-12. Before finalizing, check claim-evidence alignment: every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, or explicitly stated assumption.
+6. For all venues, load `references/publishable-prose.md` before final manuscript writing.
+7. For introduction writing, load `references/introduction-scalpel.md`.
+8. For readability and sentence rhythm, load `references/rhythm.md`.
+9. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
+10. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
+11. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
+12. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
+13. Before finalizing, run the `publishable-prose.md` claim pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, or explicitly stated assumption.
 
 ## Power-System Story Order
 
@@ -45,6 +46,7 @@ Prefer this order over generic ML/CV paper templates:
 - Method/model: load `references/method-model.md`; make the technical object explicit before implementation details. Define variables, sets, constraints, assumptions, physical meaning, and algorithmic steps in the venue's expected order.
 - Experiments/case studies: use power-system evidence objects, not generic "SOTA" language. State system, operating scenario, baselines, metrics, and solver/protocol when relevant.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
+- All venues: load `references/publishable-prose.md`; every paragraph must close a technical logic chain. Do not produce流水账, defensive prose, or readable-but-empty paragraphs.
 - 中国电机工程学报: load `references/csee-precision.md`; every sentence must define, constrain, derive, verify, or delimit something. Delete decorative and meta sentences.
 
 ## Rhythm Rule
@@ -76,6 +78,10 @@ When the available material has not been pre-reviewed, do not begin with manuscr
 - target-venue fit.
 
 If any of these are missing, state the blocker and recommend `GO`, `CONDITIONAL GO`, `NO-GO`, or `RETARGET` rather than writing polished prose.
+
+## Iteration Rule
+
+You may spend extra internal passes on reflection before returning manuscript text. Prefer a slower final answer that survives review over a quick, fluent draft. Do not show intermediate self-review unless requested; use it to remove unsupported claims, tighten logic, and improve rhythm.
 
 ## Relationship to `research-paper-writing`
 

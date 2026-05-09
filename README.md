@@ -33,6 +33,7 @@ The skill uses one shared power-system writing workflow and routes venue-specifi
 - `references/aeps.md`
 - `references/tpwrs.md`
 - `references/tsg.md`
+- `references/publishable-prose.md`
 - `references/introduction-scalpel.md`
 - `references/method-model.md`
 - `references/case-conclusion.md`
@@ -60,6 +61,8 @@ Use for strict review of power-system manuscripts targeting:
 - IEEE power-system Letters
 
 The review skill checks acceptance risk, logic chain, innovation substance, model/math correctness, evidence sufficiency, conclusion support, venue fit, wording, formatting, and final reviewer-style decisions.
+
+All writing skills apply a publishable-prose standard: each sentence must carry a technical or evidential function, and final prose should avoid流水账, defensive writing, unsupported claims, and polished vagueness.
 
 ## Install
 

@@ -23,9 +23,10 @@ Use this skill when the target is an IEEE power-system Letter. A Letter is not a
 4. Load `references/introduction.md` for the surgical introduction and contribution style.
 5. Load `references/technical-core.md` for problem statement, compact formulation, derivation, counterexample, or solution-method sections.
 6. Load `references/evidence-conclusion.md` for case-study, numerical-results, and conclusion sections.
-7. Load `references/compression.md` when cutting a full-paper draft into Letter form.
-8. Draft with "this letter" as the natural self-reference when appropriate.
-9. Remove anything that does not support the single claim.
+7. Load `references/precision.md` before final prose.
+8. Load `references/compression.md` when cutting a full-paper draft into Letter form.
+9. Draft with "this letter" as the natural self-reference when appropriate.
+10. Remove anything that does not support the single claim.
 
 ## Corpus-Based Defaults
 
@@ -59,6 +60,7 @@ The Letter should usually fit this movement:
 - Do not promise comprehensive validation.
 - Do not use a full contribution list unless each item is a concrete deliverable.
 - Prefer a narrow title that names the exact object.
+- Run `references/precision.md` before final output. Every sentence must expose, derive, verify, or delimit the Letter claim.
 
 ## Output Contract
 

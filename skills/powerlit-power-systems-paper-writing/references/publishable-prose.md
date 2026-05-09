@@ -1,0 +1,73 @@
+# Publishable Prose and Logic Closure
+
+Use this reference for every target venue. The goal is not a fluent draft; the goal is publishable prose in which each sentence closes a technical or evidential link.
+
+## Core Standard
+
+Every sentence must do at least one job:
+
+- define a system object, variable, condition, or boundary;
+- expose a technical contradiction;
+- state a model, constraint, transformation, or algorithmic action;
+- explain why a relation holds;
+- connect a result to one claim;
+- delimit what the paper does not prove.
+
+Delete sentences that only decorate, defend, announce, or repeat.
+
+## Logic Closure
+
+A publishable paragraph has a closed chain:
+
+`object -> issue -> technical action -> consequence -> evidence/boundary`
+
+Do not leave the reader to infer the missing link. If the method solves a different issue from the paragraph's opening sentence, rewrite the paragraph before polishing.
+
+## Anti-流水账 Rule
+
+Avoid chronological narration:
+
+- "首先介绍背景，然后建立模型，最后进行验证。"
+- "This section first presents the model and then introduces the algorithm."
+
+Replace with causal writing:
+
+- state the modeling difficulty;
+- introduce the exact object that resolves it;
+- explain the constraint, transformation, or control action;
+- show how the case result verifies it.
+
+## Anti-Defensive Rule
+
+Do not write as if apologizing to reviewers:
+
+- "Although the method still has some limitations..."
+- "To some extent, the result demonstrates..."
+- "This may provide a reference for..."
+- "The proposed method has certain practical value..."
+
+State the boundary directly:
+
+- "The validation is limited to radial feeders; meshed distribution networks require an additional topology model."
+- "The result supports the voltage-security claim, but not real-time deployability."
+
+## Precision Pass
+
+Before final output, run three passes internally:
+
+1. Claim pass: every claim maps to a formula, assumption, theorem, case result, or stated boundary.
+2. Cut pass: remove meta narration, repeated motivation, generic adjectives, and sentences without technical load.
+3. Rhythm pass: make the paragraph readable without reducing technical density.
+
+Only return the final manuscript prose unless the user asks to see the reasoning.
+
+## Venue Translation
+
+The same standard appears differently by venue:
+
+- 中国电机工程学报: dense Chinese engineering prose; see `csee-precision.md`.
+- 电力系统自动化: compact operational logic; short path from scenario to variables, constraints, algorithm, and metric.
+- IEEE TPWRS: formulation-led English; assumptions, constraints, reformulations, and evidence must be explicit.
+- IEEE TSG: smart-grid mechanism must remain tied to grid operation, physical constraints, data assumptions, and implementation conditions.
+
+No venue accepts polished vagueness.
