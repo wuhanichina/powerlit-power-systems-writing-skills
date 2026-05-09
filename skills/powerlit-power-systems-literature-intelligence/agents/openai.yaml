@@ -1,0 +1,6 @@
+interface:
+  display_name: "PowerLit Literature Intelligence"
+  short_description: "Optional PowerLit corpus retrieval for novelty checks, closest competitors, and citation packs."
+  default_prompt: "Use $powerlit-power-systems-literature-intelligence to search my PowerLit JSON corpus and build a novelty or citation evidence pack."
+policy:
+  allow_implicit_invocation: true

@@ -24,11 +24,15 @@ Do not polish prose first. A polished but unsupported paper should be stopped be
    - model/formulation,
    - experiment/case results,
    - full rough draft.
-3. Load `references/preflight-gates.md`.
-4. Load `references/innovation-chain.md` to test problem -> gap -> technical object -> mechanism -> evidence -> boundary.
-5. Load `references/model-evidence-readiness.md` to check formulation correctness and case support.
-6. Load `references/venue-fit.md` to decide whether the target journal is realistic.
-7. Give one of four decisions:
+3. Try to use `powerlit-power-systems-literature-intelligence` for a corpus-backed novelty check:
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - if accessible, retrieve closest competitors and build a novelty-threat matrix;
+   - if inaccessible, state fallback mode once and continue with the non-corpus prewriting review.
+4. Load `references/preflight-gates.md`.
+5. Load `references/innovation-chain.md` to test problem -> gap -> technical object -> mechanism -> evidence -> boundary.
+6. Load `references/model-evidence-readiness.md` to check formulation correctness and case support.
+7. Load `references/venue-fit.md` to decide whether the target journal is realistic.
+8. Give one of four decisions:
    - `GO`: enter writing.
    - `CONDITIONAL GO`: enter writing only with narrowed claims or specified missing checks.
    - `NO-GO`: do not write yet; repair model, evidence, or positioning first.
@@ -37,6 +41,8 @@ Do not polish prose first. A polished but unsupported paper should be stopped be
 ## Output Contract
 
 Use this structure:
+
+Include a `PowerLit evidence` item that states access status, closest competitors, novelty threat, or fallback limitation.
 
 1. `预审结论`: GO / CONDITIONAL GO / NO-GO / RETARGET.
 2. `一句话判断`: concise reason.
@@ -50,3 +56,5 @@ Use this structure:
 ## Hard Rule
 
 If the innovation chain, model correctness, or evidence support is not ready, say so directly. Do not offer a writing plan that would hide the weakness in better prose.
+
+If PowerLit retrieval finds a closest competitor that already covers the same problem, mechanism, and evidence object, do not let prose polishing proceed until the claim is narrowed or the technical difference is made explicit.

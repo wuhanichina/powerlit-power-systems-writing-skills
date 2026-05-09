@@ -24,15 +24,19 @@ Use this skill to review power-system papers against the standards implied by al
    - case/results only,
    - conclusion only,
    - reviewer response or revision plan.
-3. Load `references/review-gates.md` for corpus-based acceptance signals.
-4. Load `references/venue-standards.md` for venue-specific review expectations.
-5. Load section references as needed:
+3. Try to use `powerlit-power-systems-literature-intelligence` for literature coverage and novelty risk:
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - if accessible, retrieve closest competitors and missing-citation risks;
+   - if inaccessible, state fallback mode once and keep the review limited to manuscript evidence and general field knowledge.
+4. Load `references/review-gates.md` for corpus-based acceptance signals.
+5. Load `references/venue-standards.md` for venue-specific review expectations.
+6. Load section references as needed:
    - innovation, introduction, and claim logic: `references/innovation-logic.md`
    - method, model, variables, equations, physical correctness: `references/model-math.md`
    - case studies, numerical results, conclusion: `references/evidence-case-conclusion.md`
    - title, abstract, wording, format, references: `references/language-format.md`
-6. Load `references/decision-rubric.md` before giving scores or an accept/reject recommendation.
-7. If the manuscript is partial, state that the verdict is section-level unless the user explicitly asks for a full-paper risk estimate.
+7. Load `references/decision-rubric.md` before giving scores or an accept/reject recommendation.
+8. If the manuscript is partial, state that the verdict is section-level unless the user explicitly asks for a full-paper risk estimate.
 
 ## Review Priority
 
@@ -65,6 +69,8 @@ Recommend rejection when any of these are central and unrepaired:
 ## Output Contract
 
 For a full manuscript review, use this structure:
+
+Include a `PowerLit literature coverage` item when corpus retrieval is available, or a fallback limitation when it is not.
 
 1. `审稿结论`: one of `直接录用`, `小修后录用`, `大修后录用`, `拒绝录用`.
 2. `总体判断`: 3-6 sentences explaining the main reason.

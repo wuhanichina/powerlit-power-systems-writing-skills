@@ -4,6 +4,19 @@ This repository contains Codex skills for power-system paper writing and strict 
 
 ## Skills
 
+### `powerlit-power-systems-literature-intelligence`
+
+Use when PowerLit access is available and a task needs corpus-backed novelty checking, closest-competitor analysis, citation packs, or literature coverage audits.
+
+PowerLit JSON root is configurable. Resolution order:
+
+1. User-supplied path or script parameter.
+2. `POWERLIT_JSON_ROOT`.
+3. `POWERLIT_LITERATURE_JSON`.
+4. Default LAN path: `\\WHome\PowerLit\literature\json`.
+
+If PowerLit is unavailable, the other skills continue in fallback mode without fabricating citations.
+
 ### `powerlit-power-systems-prewriting-review`
 
 Use before formal writing. It gates whether an idea, outline, model, experiment package, or rough draft is ready for target-journal manuscript writing.
@@ -71,7 +84,7 @@ After publishing this repository to GitHub, install the skills with the Codex sk
 ```powershell
 python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
   --repo <owner>/powerlit-power-systems-writing-skills `
-  --path skills/powerlit-power-systems-prewriting-review skills/powerlit-power-systems-paper-writing skills/ieee-power-engineering-letter-writing skills/powerlit-power-systems-paper-review
+  --path skills/powerlit-power-systems-literature-intelligence skills/powerlit-power-systems-prewriting-review skills/powerlit-power-systems-paper-writing skills/ieee-power-engineering-letter-writing skills/powerlit-power-systems-paper-review
 ```
 
 Restart Codex after installation.
@@ -109,5 +122,6 @@ The skills include distilled style rules and corpus statistics. They do not incl
 ## Recommended Workflow
 
 1. `powerlit-power-systems-prewriting-review`: decide whether the work is ready to write.
-2. `powerlit-power-systems-paper-writing` or `ieee-power-engineering-letter-writing`: draft or rewrite within the approved claim boundary.
-3. `powerlit-power-systems-paper-review`: stress-test the written manuscript before submission.
+2. `powerlit-power-systems-literature-intelligence`: when PowerLit is accessible, retrieve closest competitors and citation evidence.
+3. `powerlit-power-systems-paper-writing` or `ieee-power-engineering-letter-writing`: draft or rewrite within the approved claim boundary.
+4. `powerlit-power-systems-paper-review`: stress-test the written manuscript before submission.

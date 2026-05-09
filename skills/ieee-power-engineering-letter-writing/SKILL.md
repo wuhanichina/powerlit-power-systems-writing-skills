@@ -19,14 +19,18 @@ Use this skill when the target is an IEEE power-system Letter. A Letter is not a
    - focused metric/index,
    - small but decisive empirical observation.
 2. Write the one-sentence claim before drafting.
-3. Load `references/letter-structure.md` for section and page-budget guidance.
-4. Load `references/introduction.md` for the surgical introduction and contribution style.
-5. Load `references/technical-core.md` for problem statement, compact formulation, derivation, counterexample, or solution-method sections.
-6. Load `references/evidence-conclusion.md` for case-study, numerical-results, and conclusion sections.
-7. Load `references/precision.md` before final prose.
-8. Load `references/compression.md` when cutting a full-paper draft into Letter form.
-9. Draft with "this letter" as the natural self-reference when appropriate.
-10. Remove anything that does not support the single claim.
+3. If the Letter claim depends on novelty or prior-work contrast, try `powerlit-power-systems-literature-intelligence`:
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - if accessible, identify the nearest Letters/full papers and the one contrast the Letter must win;
+   - if inaccessible, state fallback mode once and keep the Letter narrow without inventing citations.
+4. Load `references/letter-structure.md` for section and page-budget guidance.
+5. Load `references/introduction.md` for the surgical introduction and contribution style.
+6. Load `references/technical-core.md` for problem statement, compact formulation, derivation, counterexample, or solution-method sections.
+7. Load `references/evidence-conclusion.md` for case-study, numerical-results, and conclusion sections.
+8. Load `references/precision.md` before final prose.
+9. Load `references/compression.md` when cutting a full-paper draft into Letter form.
+10. Draft with "this letter" as the natural self-reference when appropriate.
+11. Remove anything that does not support the single claim.
 
 ## Corpus-Based Defaults
 
@@ -61,6 +65,7 @@ The Letter should usually fit this movement:
 - Do not use a full contribution list unless each item is a concrete deliverable.
 - Prefer a narrow title that names the exact object.
 - Run `references/precision.md` before final output. Every sentence must expose, derive, verify, or delimit the Letter claim.
+- If PowerLit finds a close prior Letter with the same claim, do not proceed by rephrasing. Narrow the claim, change the technical object, or recommend against Letter submission.
 
 ## Output Contract
 

@@ -13,20 +13,24 @@ Use this skill to write power-system papers in the target journal's own register
 1. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not polish unsupported claims into manuscript prose.
 2. Identify target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
 3. Lock the paper object before drafting: system setting, technical problem, model/formulation, method, evidence, and claim boundary.
-4. Load only the venue reference needed:
+4. For introduction, related-work, novelty, or citation-sensitive writing, try `powerlit-power-systems-literature-intelligence` first:
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - if accessible, use the citation pack and closest-competitor matrix as evidence;
+   - if inaccessible, state fallback mode once and continue without inventing citations.
+5. Load only the venue reference needed:
    - 中国电机工程学报: `references/csee.md`
    - 电力系统自动化: `references/aeps.md`
    - IEEE TPWRS: `references/tpwrs.md`
    - IEEE TSG: `references/tsg.md`
-5. For 中国电机工程学报 precision writing, also load `references/csee-precision.md`.
-6. For all venues, load `references/publishable-prose.md` before final manuscript writing.
-7. For introduction writing, load `references/introduction-scalpel.md`.
-8. For readability and sentence rhythm, load `references/rhythm.md`.
-9. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
-10. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
-11. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
-12. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
-13. Before finalizing, run the `publishable-prose.md` claim pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, or explicitly stated assumption.
+6. For 中国电机工程学报 precision writing, also load `references/csee-precision.md`.
+7. For all venues, load `references/publishable-prose.md` before final manuscript writing.
+8. For introduction writing, load `references/introduction-scalpel.md`.
+9. For readability and sentence rhythm, load `references/rhythm.md`.
+10. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
+11. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
+12. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
+13. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
+14. Before finalizing, run the `publishable-prose.md` claim pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, citation pack, or explicitly stated assumption.
 
 ## Power-System Story Order
 
@@ -56,6 +60,8 @@ Readable power-system prose does not mean many short generic sentences. For Chin
 ## Introduction Rule
 
 Write the introduction like a technical dissection: object -> consequence -> method families -> limitation -> technical reason -> core contradiction -> contribution. Chinese venues usually keep gap and proposal close; IEEE Transactions papers usually spend more paragraphs separating method families before explicit contributions. For TSG, keep every data, learning, communication, privacy, or distributed-control claim tied to a grid-operational mechanism. Use `references/introduction-scalpel.md`.
+
+When PowerLit is accessible, do not draft the introduction from memory alone. First build or consume a citation pack: background citations, method-family citations, gap citations, closest-competitor citations, and a citation-to-sentence plan. When PowerLit is unavailable, keep citations generic only if supplied by the user; otherwise leave citation slots or state the literature limitation.
 
 ## Anti-Meta Rule
 
