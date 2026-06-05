@@ -28,9 +28,11 @@ Use this skill to write power-system papers in the target journal's own register
 9. For readability and sentence rhythm, load `references/rhythm.md`.
 10. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
 11. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
-12. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`.
-13. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
-14. Before finalizing, run the `publishable-prose.md` claim pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, citation pack, or explicitly stated assumption.
+12. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`. For English/IEEE drafts, additionally apply the English AI Tells section in `references/anti-ai-style.md`.
+13. Before drafting, sketch the section plan with rough length shares. If a standard-step section would take more space than the contribution section, tighten it so the visibility of the novel content is not suppressed. This is a quick sanity check, not a gate: do not pause for confirmation.
+14. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
+15. Before finalizing, run the `publishable-prose.md` claim pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, citation pack, or explicitly stated assumption.
+16. As the last finalizing step, run the working-language term scan from `references/anti-ai-style.md` (Working-Language Firewall) on the manuscript prose; any blacklisted term means the draft is not clean and must be rewritten. For English/IEEE drafts, also run the English AI Tells scan.
 
 ## Power-System Story Order
 
@@ -70,6 +72,8 @@ Do not write prose that announces writing actions:
 - Avoid: "This section introduces...", "The remainder of this paper is organized as follows" unless the venue explicitly needs it.
 - Avoid: "we comprehensively explore", "a novel paradigm", "seamlessly integrates", "significant improvement" without numbers.
 - Prefer subject-led sentences: "The chance constraint is reformulated as...", "The rolling horizon model coordinates...", "Simulation on the IEEE 118-bus system shows...".
+
+Working-language terms (范式, 缺口, closest competitor, claim, 论证链, 证据包, 轨道, and similar internal review/organizing terms) must never appear in manuscript prose. See the Working-Language Firewall in `references/anti-ai-style.md` for the full blacklist, the rewrite map, and the post-generation term scan.
 
 ## Prewriting Gate
 

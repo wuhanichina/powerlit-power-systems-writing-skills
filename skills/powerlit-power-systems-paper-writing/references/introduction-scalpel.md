@@ -120,6 +120,22 @@ Before writing the final introduction, make this map:
 
 Every contribution should point back to a gap. Every gap kept in the introduction should either motivate a contribution or be removed.
 
+## Numeric Whitelist
+
+High-level numbers may enter the introduction when they establish necessity or delimit the contribution boundary:
+
+- renewable/load penetration or share;
+- the order of magnitude of an error or deviation (for example, "about one percentage point", "one order lower");
+- time scale or horizon (minute level, day-ahead, annual planning);
+- system-scale magnitude (thousands of buses, millions of state variables);
+- engineering thresholds (voltage-violation ratio, N-1 count magnitude).
+
+Fine-grained case numbers must stay in the case-study section, not the introduction:
+
+- single-run records, multi-digit error values, specific runtimes, sentences such as "the maximum relative deviation is 0.83% under a given parameter".
+
+Test: if the number argues why the work is worth doing or bounds where the contribution applies, it may stay; if it reports how much this experiment produced, move it to the case study.
+
 ## Sentence Patterns
 
 Use patterns as logic, not boilerplate.

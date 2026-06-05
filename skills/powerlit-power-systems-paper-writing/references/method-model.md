@@ -26,6 +26,27 @@ The method section is where the paper's claim becomes a technical object. Write 
 
 Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
 
+## Model-Algorithm Consistency
+
+Whenever the method uses a relaxation, convexification, penalty, discretization, decomposition, or surrogate model, the manuscript must state the relationship between the original problem and what is actually solved.
+
+- State the relationship explicitly in prose: equivalence, upper bound, lower bound, or gap, together with the condition under which it holds.
+- A simple relationship (for example, an exact relaxation) needs one sentence. A complex relationship (penalty limiting behavior, the equivalence chain of a multi-step decomposition, surrogate approximation quality) may take a short paragraph, but it must still land on two points: the relationship, and the condition.
+- If the relationship cannot be established, do not default to claiming equivalence. Keep it as an explicit conditional statement in the text rather than hiding it.
+
+Examples:
+
+- "The second-order cone relaxation is exact when the network is radial and load over-satisfaction does not occur, so the relaxed optimum recovers the original AC solution."
+- "The penalty reformulation approaches the original feasible region as the penalty weight grows; for finite weights the solution is a feasible upper bound on the original cost."
+
+## Standard Parts vs Claimed Novelty
+
+Many power-system methods reuse high-frequency standard parts. By default these are not the paper's contribution.
+
+- Treat SOCP relaxation, ADMM, chance-constrained reformulation, DRO ambiguity sets, scenario reduction, PINN, and similar well-established techniques as standard machinery, not as the novelty, unless the paper changes the technique itself.
+- Map every claimed contribution to a specific equation, algorithm step, or proposition. If a claimed novelty cannot be mapped to a concrete object, soften the statement or flag it for the author rather than asserting it.
+- This complements the Prewriting Gate in `SKILL.md`: this rule constrains how novelty is worded during drafting; it does not repeat the prewriting novelty judgment.
+
 ## 中国电机工程学报
 
 Write the method section as an engineering-mechanism expansion:
@@ -123,5 +144,6 @@ Before finalizing, verify:
 - The physical meaning of key constraints is stated.
 - Algorithm steps correspond to specific model difficulties.
 - Approximation, relaxation, or linearization has a stated validity condition or boundary.
+- Every relaxation, reformulation, decomposition, or surrogate states its relationship to the original problem (equivalence, bound, or gap) and the condition under which it holds.
 - Solver and platform details are placed in the method only when method-level claims depend on them.
 - The venue's expected granularity is respected: broader mechanism for 中国电机工程学报, leaner operational formulation for 电力系统自动化, assumption-explicit formulation for TPWRS.
