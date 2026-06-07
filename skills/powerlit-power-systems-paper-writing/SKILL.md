@@ -31,7 +31,7 @@ Use this skill to write power-system papers in the target journal's own register
 12. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`. For English/IEEE drafts, additionally apply the English AI Tells section in `references/anti-ai-style.md`.
 13. Before drafting, sketch the section plan with rough length shares. If a standard-step section would take more space than the contribution section, tighten it so the visibility of the novel content is not suppressed. This is a quick sanity check, not a gate: do not pause for confirmation.
 14. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
-15. Before finalizing, run the `publishable-prose.md` claim pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, citation pack, or explicitly stated assumption.
+15. Before finalizing, run the `publishable-prose.md` claim pass, reader-burden pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, citation pack, or explicitly stated assumption.
 16. As the last finalizing step, run the working-language term scan from `references/anti-ai-style.md` (Working-Language Firewall) on the manuscript prose; any blacklisted term means the draft is not clean and must be rewritten. For English/IEEE drafts, also run the English AI Tells scan.
 
 ## Power-System Story Order
@@ -52,6 +52,7 @@ Prefer this order over generic ML/CV paper templates:
 - Method/model: load `references/method-model.md`; make the technical object explicit before implementation details. Define variables, sets, constraints, assumptions, physical meaning, and algorithmic steps in the venue's expected order.
 - Experiments/case studies: use power-system evidence objects, not generic "SOTA" language. State system, operating scenario, baselines, metrics, and solver/protocol when relevant.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
+- Paragraphs: apply the reader-burden rule in `references/publishable-prose.md`: state the local judgment first, give reasons after it, keep one idea per paragraph, and make every sentence support the same point.
 - All venues: load `references/publishable-prose.md`; every paragraph must close a technical logic chain. Do not produce流水账, defensive prose, or readable-but-empty paragraphs.
 - 中国电机工程学报: load `references/csee-precision.md`; every sentence must define, constrain, derive, verify, or delimit something. Delete decorative and meta sentences.
 

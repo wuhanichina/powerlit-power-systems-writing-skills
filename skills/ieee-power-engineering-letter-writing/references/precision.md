@@ -34,6 +34,15 @@ Prefer:
 - "The formulation reduces to..."
 - "The numerical check verifies..."
 
+## Reader-Burden Rule
+
+Use this paragraph discipline for Letter prose: 先亮观点，再给理由；一段一意，五句为限；句句支撑，不跑不散。
+
+- Put the paragraph's judgment in the first or second sentence.
+- Use the remaining sentences only for the reason, equation, comparison, evidence, or boundary that supports that judgment.
+- Split or delete any sentence that opens a second point.
+- Deliver the claim clearly, credibly, and with low processing burden.
+
 ## Final Cut Pass
 
 Before final output:

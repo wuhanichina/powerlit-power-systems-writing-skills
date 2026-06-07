@@ -30,7 +30,7 @@ Use this skill when the target is an IEEE power-system Letter. A Letter is not a
 8. Load `references/precision.md` before final prose.
 9. Load `references/compression.md` when cutting a full-paper draft into Letter form.
 10. Draft with "this letter" as the natural self-reference when appropriate.
-11. Remove anything that does not support the single claim.
+11. Apply the reader-burden rule in `references/precision.md`: state the local judgment first, keep one idea per paragraph, and remove anything that does not support the single claim.
 
 ## Corpus-Based Defaults
 
@@ -65,6 +65,7 @@ The Letter should usually fit this movement:
 - Do not use a full contribution list unless each item is a concrete deliverable.
 - Prefer a narrow title that names the exact object.
 - Run `references/precision.md` before final output. Every sentence must expose, derive, verify, or delimit the Letter claim.
+- Keep each paragraph centered on one judgment; five sentences is the upper bound, and most Letter paragraphs should be shorter.
 - If PowerLit finds a close prior Letter with the same claim, do not proceed by rephrasing. Narrow the claim, change the technical object, or recommend against Letter submission.
 
 ## Output Contract

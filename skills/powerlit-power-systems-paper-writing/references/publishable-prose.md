@@ -23,6 +23,15 @@ A publishable paragraph has a closed chain:
 
 Do not leave the reader to infer the missing link. If the method solves a different issue from the paragraph's opening sentence, rewrite the paragraph before polishing.
 
+## Reader-Burden Rule
+
+Use this paragraph discipline when drafting or rewriting: 先亮观点，再给理由；一段一意，五句为限；句句支撑，不跑不散。
+
+- Put the judgment first, then give the reason. Do not make the reader assemble the point from background sentences.
+- Keep one paragraph to one idea. Five sentences is the upper bound for ordinary manuscript paragraphs; split when a second idea or evidence chain appears.
+- Make every sentence support the local judgment. Delete digressions, bridge sentences, and repeated motivation that do not define, constrain, derive, verify, or delimit the point.
+- The result should hand the reader the author's judgment clearly, credibly, and with low processing burden.
+
 ## Anti-流水账 Rule
 
 Avoid chronological narration:
