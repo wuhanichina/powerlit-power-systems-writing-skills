@@ -31,12 +31,27 @@ For each formula block, verify:
 - dimensions and units are compatible;
 - signs follow the stated convention;
 - constraints have clear domains and bounds;
+- the manuscript explains the physical intuition of the formula: represented grid object, cause-effect direction, coupling mechanism, limiting case, or operational diagnosis;
 - equation numbering is continuous and referenced correctly;
 - no unused variables or decorative formulas remain.
 
 For Chinese manuscripts, variable explanation after formulas should be concise and aligned with journal formatting. "式中：" explanations normally should not become long prose paragraphs.
 
 For IEEE manuscripts, notation should be either in `NOMENCLATURE` or defined near first use. Do not scatter key assumptions across footnotes, captions, and case-study settings.
+
+## Physical-Intuition Review
+
+Do not pass a method section only because the algebra is syntactically defined. A publishable power-system formula should tell the reader why the mathematical relation has the stated physical form.
+
+Flag a major method-writing issue when:
+
+- variables are defined, but the voltage/current/power/reserve/risk object represented by the equation is not stated;
+- a covariance, uncertainty, or probability expression is presented as generic statistics with no link to grid physics or operating state;
+- a relaxation, certificate, or feasibility condition is given without saying what physical infeasibility or operating boundary it detects;
+- signs, units, or per-unit conventions are plausible but not connected to injection/flow/voltage direction;
+- the equation's limiting case would reveal the mechanism, but the manuscript never uses it.
+
+For voltage-domain inverse PLF, the review should expect the paper to explain that the quadratic power-flow moment kernel maps voltage means and covariances to power moments, that identifiability concerns observable voltage co-fluctuation directions, and that SDP feasibility separates numerical nonconvergence from physically impossible power-moment targets.
 
 ## Complexity and Simplification
 

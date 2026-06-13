@@ -2,6 +2,12 @@
 
 This reference summarizes acceptance signals inferred from already published PowerLit papers. These are necessary signals, not mechanical acceptance rules.
 
+## Reconstruction Calibration
+
+Accepted PowerLit papers can calibrate the review skill through masked reconstruction: hide source prose, provide only the technical object and evidence packet, let the writing skill reconstruct the argument, and then review the reconstruction against venue standards.
+
+Use this calibration to find review-gate errors, not to reward textual similarity. A reconstruction fails at full-paper level when the supplied packet lacks method facts, baseline protocols, metric definitions, or claim boundaries, even if the numerical case data look strong. In that situation, review only the case-study section and mark the missing facts as blockers for a full-paper verdict.
+
 ## Published-Corpus Surface
 
 | Venue / Type | Papers | Median pages | Median intro paragraphs | Gap marker | Median method paragraphs | Median case paragraphs | Median references |
@@ -49,6 +55,8 @@ Packaging several known modules is not enough unless the coupling itself is new 
 
 The physical system, assumptions, variables, equations, and algorithms must be mutually consistent. A paper can be rejected for a correct-looking formula chain if the chain solves a different engineering problem from the one claimed.
 
+Correctness also includes physical readability. Equations that define symbols but never explain the represented grid object, coupling direction, feasibility condition, or operational meaning remain review-risky even when the algebra is internally consistent.
+
 ### Gate 4: Evidence
 
 The case study must test the claimed innovation, not just the ability to run the method. Strong evidence normally includes:
@@ -63,3 +71,5 @@ The case study must test the claimed innovation, not just the ability to run the
 ### Gate 5: Claim Boundary
 
 The conclusion must stay within what the paper proves or demonstrates. Strong papers state the boundary without weakening the contribution.
+
+Flag defensive boundary posture when a manuscript leads with "not a replacement", "does not claim", or "本文不..." instead of stating the positive technical object and the scoped comparison condition. The problem is not honesty; the problem is that the paper has failed to translate an internal gate into a publishable claim.

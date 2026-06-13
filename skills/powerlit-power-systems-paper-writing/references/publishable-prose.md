@@ -54,19 +54,33 @@ Do not write as if apologizing to reviewers:
 - "To some extent, the result demonstrates..."
 - "This may provide a reference for..."
 - "The proposed method has certain practical value..."
+- "The method is not intended to replace..."
+- "需要强调的是，本文不..."
 
 State the boundary directly:
 
 - "The validation is limited to radial feeders; meshed distribution networks require an additional topology model."
 - "The result supports the voltage-security claim, but not real-time deployability."
 
+Use the boundary-posture pass for every claim boundary:
+
+- If the sentence begins with what the paper does not claim, move the positive technical object to the front.
+- If the boundary is comparative, name the condition under which the baseline remains strong, then state what the proposed object adds.
+- If the paragraph needs a limitation, attach it to evidence scope, case system, assumptions, or metric coverage; do not make the author sound as if retreating from the contribution.
+
+Example:
+
+- Defensive: "This paper does not claim to replace linearized GMM-PLF."
+- Publishable: "Linearized GMM-PLF remains the direct accuracy baseline under locally valid linearization; the proposed inverse formulation adds identifiability diagnosis and physical-realizability certification for voltage-domain distribution recovery."
+
 ## Precision Pass
 
 Before final output, run three passes internally:
 
 1. Claim pass: every claim maps to a formula, assumption, theorem, case result, or stated boundary.
-2. Cut pass: remove meta narration, repeated motivation, generic adjectives, and sentences without technical load.
-3. Rhythm pass: make the paragraph readable without reducing technical density.
+2. Boundary-posture pass: no manuscript paragraph leads with defensive "not a replacement" language when a positive technical subject is available.
+3. Cut pass: remove meta narration, repeated motivation, generic adjectives, and sentences without technical load.
+4. Rhythm pass: make the paragraph readable without reducing technical density.
 
 Only return the final manuscript prose unless the user asks to see the reasoning.
 

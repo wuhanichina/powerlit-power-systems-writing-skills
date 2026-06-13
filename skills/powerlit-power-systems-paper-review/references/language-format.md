@@ -9,12 +9,15 @@ Flag language that weakens professionalism:
 - absolute claims: 精准, 根本上, 彻底, 真正意义上, 显著提升 without numbers, fundamentally, completely, dramatically;
 - vague contribution verbs: explore, study, analyze, comprehensively investigate, empower, enable a new paradigm;
 - repeated meta narration: "本文首先介绍...", "This section introduces...";
+- defensive claim posture: "需要强调的是，本文不...", "本文不主张...", "not intended to replace...", or comparison paragraphs that make retreat the main subject;
 - casual expressions or policy slogans without technical content.
 
 Prefer technical subjects:
 
 - the constraint, formulation, algorithm, controller, estimator, uncertainty model, or case result;
 - not "the paper" as the subject in every sentence.
+
+When the evidence boundary is valid, require direct scoped wording rather than defensive self-limitation. The baseline's valid condition and the proposed paper's positive technical object should both be visible.
 
 ## Section and Heading Review
 

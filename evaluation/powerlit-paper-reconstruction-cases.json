@@ -1,0 +1,71 @@
+[
+  {
+    "id": "tpwrs-full-paper-evidence-reconstruction",
+    "venue_folder": "ieee_tpwrs",
+    "paper_type": "full paper",
+    "selection_query": "AC OPF uncertainty formulation baseline metrics case study",
+    "required_evidence_packet": [
+      "technical problem and operating object",
+      "formulation or algorithm object",
+      "assumptions, variables, constraints, and solution flow",
+      "test systems, scenarios, baselines, metrics with units, and boundary tests",
+      "figure/table facts and conclusion boundary"
+    ],
+    "masked_source": [
+      "abstract prose",
+      "introduction prose",
+      "contribution wording",
+      "result paragraphs",
+      "conclusion prose"
+    ],
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with references/published-paper-reconstruction.md to reconstruct a TPWRS-style manuscript argument from the evidence packet only.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to judge whether the reconstructed argument would meet TPWRS review strength without access to the source prose.",
+    "pass_criteria": "The draft has a reviewable formulation object, coherent assumptions and variables, relevant baselines, metric-supported conclusions, and no copied or source-like wording.",
+    "section_level_only_when": "Only case-analysis data, tables, or figures are available without enough model and method facts."
+  },
+  {
+    "id": "tsg-case-study-section-reconstruction",
+    "venue_folder": "ieee_tsg",
+    "paper_type": "case-study section",
+    "selection_query": "distributed voltage control communication delay baseline voltage violation",
+    "required_evidence_packet": [
+      "grid-side operating condition",
+      "smart-grid layer being tested",
+      "test feeder or system",
+      "baseline and scenario definitions",
+      "metrics with units and result direction",
+      "claim boundary for communication, privacy, data, or scalability"
+    ],
+    "masked_source": [
+      "original case-study prose",
+      "caption wording",
+      "conclusion wording"
+    ],
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with references/published-paper-reconstruction.md to reconstruct an IEEE TSG case-study section from the evidence packet only.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review whether the section ties smart-grid evidence to grid operation and avoids unsupported data, communication, privacy, or scalability claims.",
+    "pass_criteria": "The section states system, scenario, baseline, metric direction, grid-operational interpretation, and bounded conclusion.",
+    "section_level_only_when": "The evidence packet lacks the full formulation, algorithm, or literature gap needed for a full paper."
+  },
+  {
+    "id": "csee-engineering-mechanism-reconstruction",
+    "venue_folder": "csee",
+    "paper_type": "full paper or method-plus-case sections",
+    "selection_query": "engineering mechanism model validation power system case study",
+    "required_evidence_packet": [
+      "engineering object",
+      "mechanism or model construction",
+      "equations, assumptions, and physical meaning",
+      "simulation or experiment protocol",
+      "comparative evidence and boundary"
+    ],
+    "masked_source": [
+      "Chinese manuscript prose",
+      "contribution sentences",
+      "result interpretation sentences"
+    ],
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with references/published-paper-reconstruction.md to reconstruct a CSEE-style technical argument from the evidence packet only.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to check whether the output has a mechanism-model-evidence chain rather than policy background or broad engineering value.",
+    "pass_criteria": "The output defines the engineering mechanism, keeps equations close to physical meaning, and uses case evidence to verify the stated mechanism.",
+    "section_level_only_when": "Only numerical case data are available without model construction details."
+  }
+]

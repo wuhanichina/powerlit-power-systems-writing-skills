@@ -23,14 +23,19 @@ Use this skill when the target is an IEEE power-system Letter. A Letter is not a
    - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
    - if accessible, identify the nearest Letters/full papers and the one contrast the Letter must win;
    - if inaccessible, state fallback mode once and keep the Letter narrow without inventing citations.
-4. Load `references/letter-structure.md` for section and page-budget guidance.
-5. Load `references/introduction.md` for the surgical introduction and contribution style.
-6. Load `references/technical-core.md` for problem statement, compact formulation, derivation, counterexample, or solution-method sections.
-7. Load `references/evidence-conclusion.md` for case-study, numerical-results, and conclusion sections.
-8. Load `references/precision.md` before final prose.
-9. Load `references/compression.md` when cutting a full-paper draft into Letter form.
-10. Draft with "this letter" as the natural self-reference when appropriate.
-11. Apply the reader-burden rule in `references/precision.md`: state the local judgment first, keep one idea per paragraph, and remove anything that does not support the single claim.
+4. Apply the near-neighbor gate:
+   - if PowerLit finds a close Letter or full paper with the same problem, mechanism, and evidence object, do not proceed by rephrasing;
+   - narrow the claim, change the technical object, retarget as a full paper, or recommend against submission;
+   - if the nearest papers are broad background only, keep novelty language narrow.
+5. Load `references/letter-structure.md` for section and page-budget guidance.
+6. Load `references/introduction.md` for the surgical introduction and contribution style.
+7. Load `references/technical-core.md` for problem statement, compact formulation, derivation, counterexample, or solution-method sections.
+8. Load `references/evidence-conclusion.md` for case-study, numerical-results, and conclusion sections.
+9. Load `references/precision.md` before final prose.
+10. Load `references/compression.md` when cutting a full-paper draft into Letter form.
+11. Draft with "this letter" as the natural self-reference when appropriate.
+12. Apply the reader-burden rule in `references/precision.md`: state the local judgment first, keep one idea per paragraph, and remove anything that does not support the single claim.
+13. Before returning a submission-ready Letter, apply `powerlit-power-systems-paper-review` standards for IEEE power-system Letters. If the review would find a fatal novelty, logic, model, or evidence issue, narrow the claim, repair the technical core, or return a blocker instead of polished Letter prose.
 
 ## Corpus-Based Defaults
 
@@ -67,6 +72,10 @@ The Letter should usually fit this movement:
 - Run `references/precision.md` before final output. Every sentence must expose, derive, verify, or delimit the Letter claim.
 - Keep each paragraph centered on one judgment; five sentences is the upper bound, and most Letter paragraphs should be shorter.
 - If PowerLit finds a close prior Letter with the same claim, do not proceed by rephrasing. Narrow the claim, change the technical object, or recommend against Letter submission.
+- Do not turn a weak full-paper idea into a Letter merely by cutting length. The Letter must have a sharper claim than the full paper, not just fewer paragraphs.
+- Do not invent DOI, title, venue, year, or author details when PowerLit is unavailable or sparse.
+- Do not expose internal labels such as `near-neighbor gate`, `claim boundary`, or `closest competitor` in final Letter prose.
+- Do not call a Letter submission-ready if the local review skill would reject it for weak novelty, unsupported claim, missing technical core, or insufficient evidence.
 
 ## Output Contract
 

@@ -85,7 +85,9 @@ Controlled hedging is allowed: a single, evidence-based limitation on claim stre
 Defensive writing is forbidden: a pervasive posture of retreat and self-justification that runs through the text.
 
 - Chinese defensive markers to remove: "尝试", "试图", "以期", "在一定程度上", "具有一定的", "由于篇幅所限".
+- Claim-retreat markers to rewrite: "需要强调的是", "本文不把", "本文不主张", "并非全面替代", "不声称全面优于", "not intended to replace", "does not claim to supersede".
 - Replace defensive prose with an active statement plus, if needed, one controlled boundary.
+- A boundary sentence is acceptable only when the previous or same sentence has already stated the positive technical object.
 
 The difference: controlled hedging limits one conclusion with a stated basis; defensive writing keeps apologizing instead of stating what the paper does. For the boundary-statement examples and the anti-流水账 rule, see `publishable-prose.md` (Anti-Defensive Rule); do not duplicate them here.
 

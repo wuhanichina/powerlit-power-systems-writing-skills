@@ -1,0 +1,17 @@
+[
+  {
+    "id": "tsg-citation-pack",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence to search PowerLit for IEEE TSG papers on distributed voltage control with communication constraints and produce a citation-to-sentence plan.",
+    "expected": "The result states PowerLit access, uses the target venue folder first, and returns traceable candidate papers without inventing citations."
+  },
+  {
+    "id": "fallback-boundary",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence when the configured PowerLit root is unavailable and explain how writing should proceed.",
+    "expected": "The result states fallback mode once, marks novelty and citation judgments as literature-limited, and does not fabricate titles, DOIs, years, or venues."
+  },
+  {
+    "id": "venue-style-exemplar-pack",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence to retrieve TPWRS papers near distributionally robust OPF and produce a corpus style exemplar pack for writing the introduction and method transition.",
+    "expected": "The result identifies venue exemplars, section-shape signals, paragraph-function signals, rhythm/register signals, and a do-not-copy boundary."
+  }
+]

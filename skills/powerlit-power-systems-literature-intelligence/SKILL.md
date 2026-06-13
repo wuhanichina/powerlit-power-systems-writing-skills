@@ -23,6 +23,17 @@ The resolved root must be a readable directory containing venue folders and `.js
 
 Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell access is available. Use `scripts/Search-PowerLitJson.ps1` for lightweight local retrieval.
 
+The search script interface is:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.ps1 `
+  -Query "<technical query>" `
+  -VenueFolder ieee_tsg `
+  -Top 10
+```
+
+`-VenueFolder` is optional but should be used when a target venue is known. `-Top` controls the number of returned records. The script returns JSON with access status, root path, query terms, match count, and ranked results containing title, source title, DOI, file path, matched terms, and a snippet.
+
 ## Access Policy
 
 - If PowerLit is accessible, base novelty and citation judgments on retrieved papers.
@@ -30,6 +41,7 @@ Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell acce
 - Never invent citations, DOIs, years, venues, or paper titles.
 - Treat retrieval as evidence, not authority. A close paper still needs technical comparison.
 - Prefer recent, venue-relevant, and technically adjacent papers over broad background papers.
+- Never copy long passages from retrieved JSON into a response. Summarize the paper's role, overlap, and citation function.
 
 ## Core Workflow
 
@@ -49,8 +61,20 @@ Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell acce
 5. Produce the requested artifact:
    - novelty pack for prewriting review,
    - citation pack for introduction writing,
+   - corpus style exemplar pack for venue-specific writing,
    - literature coverage audit for manuscript review,
    - focused reading synthesis for a specific method or venue.
+
+## Venue Folder Hints
+
+When the target venue is known, search that venue first:
+
+- IEEE TSG: `ieee_tsg`
+- IEEE TPWRS: `ieee_tpwrs`
+- 中国电机工程学报: `中国电机工程学报`
+- 电力系统自动化: `电力系统自动化`
+
+Widen to MPCE, IJEPES, Applied Energy, Energy, IEEE TPWRD, Power Grid Technology, or other available folders only after the target-venue search is sparse or the technical object is cross-venue.
 
 ## Output Artifacts
 
@@ -69,6 +93,14 @@ For introduction writing, produce:
 - `Gap citations`: papers that expose the limitation the manuscript must resolve.
 - `Closest-competitor citations`: papers that must be contrasted directly.
 - `Citation-to-sentence plan`: which claim each citation supports.
+
+For writing-style reference, produce:
+
+- `Venue exemplars`: 3 to 5 retrieved papers, with path or DOI.
+- `Section-shape signals`: how the target venue organizes introduction, method, case study, and conclusion.
+- `Paragraph-function signals`: how paragraphs move from object to limitation to contribution to evidence.
+- `Rhythm and register signals`: sentence subjects, contrast markers, contribution placement, and evidence wording.
+- `Do-not-copy boundary`: a reminder to use corpus patterns only, not source wording.
 
 For review, produce:
 

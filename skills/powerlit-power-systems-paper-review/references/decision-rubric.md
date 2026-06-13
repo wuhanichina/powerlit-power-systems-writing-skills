@@ -23,6 +23,27 @@ Use strict scoring:
 - 3-4: likely rejection; core logic, model, or validation is weak.
 - 1-2: fatal flaw, wrong problem, wrong model, unsupported claim, or plagiarism risk.
 
+## 8-9 Target Gate
+
+Use this gate when a draft is being debugged toward an 8-9 score.
+
+An 8-score full-paper verdict requires:
+
+- no fatal flaw and no major venue mismatch;
+- average score at least 8 across the eight categories;
+- no core category below 8 for problem relevance, innovation substance, logic-chain closure, model correctness, evidence sufficiency, or claim boundary;
+- writing/structure score at least 7.5 after technical repair;
+- actual case evidence with baselines, metrics, systems, scenarios, and boundaries.
+
+A 9-score full-paper verdict requires:
+
+- average score at least 9;
+- no category below 8.5;
+- model correctness, evidence sufficiency, and claim boundary at least 9;
+- only minor refinements remain.
+
+Do not give a full-paper score above 7.5 when only case-analysis data are supplied without enough method, novelty, baseline, and claim-boundary facts. Score the available section instead.
+
 ## Verdict Mapping
 
 `直接录用`:
@@ -67,3 +88,25 @@ For each finding, state:
 - what would be required to repair it.
 
 Do not bury a rejection reason inside a long proofreading list.
+
+## Score-Target Output
+
+When the user asks whether a draft reaches 8-9, return a compact score table with exactly these categories:
+
+- Problem importance and venue relevance.
+- Innovation substance.
+- Logic-chain closure.
+- Model and mathematical correctness.
+- Method clarity and reproducibility.
+- Case-study and evidence sufficiency.
+- Conclusion support and claim boundary.
+- Writing, structure, and format.
+
+Then state:
+
+- average score;
+- gate status: `passes 8-9 gate`, `repairable below 8-9`, or `blocked below 8-9`;
+- lowest-scoring category;
+- first repair action.
+
+If the manuscript is section-only, label the score as section-level and do not use it as a full-paper score.

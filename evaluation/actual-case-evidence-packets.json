@@ -1,0 +1,153 @@
+[
+  {
+    "id": "csee-pali-em-sca-pv8f8",
+    "project": "D:/Research/19PALI_EM_SCA",
+    "target_venue": "CSEE",
+    "target_score_band": "8-9",
+    "paper_type": "full paper",
+    "evidence_sources": [
+      "D:/Research/19PALI_EM_SCA/01_IDEA/claims.md",
+      "D:/Research/19PALI_EM_SCA/PALI_EM_SCA_note.md",
+      "D:/Research/19PALI_EM_SCA/result/case33bw/reports/sota/case33bw_sota_comparison.md",
+      "D:/Research/19PALI_EM_SCA/result/case141/reports/sota/case141_sota_comparison.md",
+      "D:/Research/19PALI_EM_SCA/result/case33bw/reports/identifiability/identifiability_case33_summary.csv",
+      "D:/Research/19PALI_EM_SCA/result/case141/reports/identifiability/identifiability_case141_summary.csv",
+      "D:/Research/19PALI_EM_SCA/result/case33bw/reports/feasibility/feasibility_case33_summary.csv"
+    ],
+    "evidence_packet": {
+      "technical_object": "single-step voltage-domain GMM inversion from power-sample moments for probabilistic load flow",
+      "case_evidence": [
+        "PV8f8 scenario with 8760 PV samples on case33bw and case141",
+        "case33 PALI K12 max mean error 1.24099%, max variance error 16.5252%, mean KS 0.19702, mean W1 0.00847423",
+        "case141 PALI K6 sparse max mean error 0.242136%, max variance error 9.78907%, mean KS 0.101975, mean W1 0.00268991",
+        "case33 identifiability condJ 1.84e3 and blkLRMaxRelVar 2.20e-6 versus freeMaxRelVar 1.10e56",
+        "case141 rank-deficient boundary condJ 3.37e4 and blkLRMaxRelVar 2.79e-8 versus freeMaxRelVar 4.80e55",
+        "Phi feasibility witness residual 1.60e-7 for realizable target and separating certificate for 4x infeasible target"
+      ],
+      "claim_boundary": "Report GMM-PLF as the closest accuracy baseline where the evidence supports it; state the paper's positive claim as inverse voltage-domain formulation, identifiability boundary, blkLR stabilization, and SDP feasibility certification rather than as a defensive non-dominance disclaimer."
+    },
+    "score_gate": {
+      "minimum_average": 8,
+      "minimum_core_category": 8,
+      "must_not_fail": [
+        "accuracy dominance over GMM-PLF",
+        "hiding the case141 identifiability boundary",
+        "presenting PV8f8 as general deployment validation"
+      ]
+    },
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft a CSEE mechanism-model-case argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; repair until the CSEE full-paper score target is 8-9 or report the blocking category."
+  },
+  {
+    "id": "tpwrs-rtgmm-risk-screening",
+    "project": "D:/Research/25Typhoon_resilience_RT-GMM",
+    "target_venue": "IEEE TPWRS",
+    "target_score_band": "8-9",
+    "paper_type": "full paper",
+    "evidence_sources": [
+      "D:/Research/25Typhoon_resilience_RT-GMM/01_IDEA/claims.md",
+      "D:/Research/25Typhoon_resilience_RT-GMM/result/rtgmm_multi_event_summary_20260601_143328.csv",
+      "D:/Research/25Typhoon_resilience_RT-GMM/result/sota_source_load_ablation_full_check/source_load_ablation_evidence.md",
+      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_base_9events_20260612_233630/historical_replay_ac_base_summary.csv",
+      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_summary.csv",
+      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_meta.csv",
+      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_manifest.csv"
+    ],
+    "evidence_packet": {
+      "technical_object": "closed-form candidate-line risk screening under typhoon-conditioned multimodal source-load tails and connected N-1 topology states",
+      "case_evidence": [
+        "nine typhoon events with per-event top-risk branch, time, truncation diagnostics, retained scenario mass, and source-load/topology/mode attribution",
+        "Bebinca max violation probability 2.943e-3 at branch 202 with mean retained scenario mass 0.99145",
+        "Muifa max violation probability 9.926e-4 at branch 202 with mean retained scenario mass 0.99854",
+        "non-typhoon PCA-GMM changes top branch in 6/9 events, median top-10 overlap 0.000, median branch Spearman -0.873, median log10 risk shift 5.357",
+        "non-typhoon single Gaussian changes top branch in 6/9 events, median top-10 overlap 0.000, median branch Spearman -0.971",
+        "historical connected N-1 AC replay checks 30344 one-minute topK cases with 100% AC success over 9 replayed events",
+        "AC replay identifies outage branch 285 and monitored branch 286 as the worst connected N-1 pair in all replayed events, with maximum AC loading 149.37%",
+        "base replay has almost no overload minutes, while connected N-1 replay produces 24333 rows with an AC-confirmed over-100% branch and raises maximum loading by an average 44.20 percentage points"
+      ],
+      "claim_boundary": "Use the evidence for two-stage screening and boundary diagnosis: RT-GMM screens typhoon source-load/topology tail candidates, while AC replay exposes structural connected N-1 weak pairs. Do not claim calibrated event-level overload prediction, direct RT-GMM-vs-replay top-branch equivalence, AC-MC equivalence, or complete N-k topology risk."
+    },
+    "score_gate": {
+      "minimum_average": 8,
+      "minimum_core_category": 8,
+      "required_repair_evidence": "Independent replay evidence has been generated. The 8-9 gate is valid only if the manuscript is rewritten as a bounded two-stage screening workflow and does not claim direct top-branch equivalence between RT-GMM and AC replay.",
+      "must_not_fail": [
+        "calibrated event-level prediction claim",
+        "AC-MC equivalence claim",
+        "complete N-k topology coverage claim",
+        "direct RT-GMM-vs-replay ranking equivalence claim"
+      ]
+    },
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft a TPWRS formulation-evidence argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; repair screening, formulation, evidence, and claim-boundary weaknesses until the target band is 8-9 or report blockers."
+  },
+  {
+    "id": "tsg-bayesaqppf-edge-update",
+    "project": "D:/Research/17BayesAQPPF_3ph",
+    "target_venue": "IEEE TSG",
+    "target_score_band": "8-9",
+    "paper_type": "full paper",
+    "evidence_sources": [
+      "D:/Research/17BayesAQPPF_3ph/01_IDEA/claims.md",
+      "D:/Research/17BayesAQPPF_3ph/result/IEEE 13/edge_small_sample/edge_small_sample_acceptance_report.md",
+      "D:/Research/17BayesAQPPF_3ph/result/IEEE 123/edge_scaling/edge_ieee123_scaling_acceptance_report.md",
+      "D:/Research/17BayesAQPPF_3ph/result/IEEE 123 full refit/edge_full_refit_months2_12/edge_small_sample_acceptance_report.md"
+    ],
+    "evidence_packet": {
+      "technical_object": "edge-side Bayesian Dirichlet-NIW update for three-phase AQPPF voltage-distribution and risk updates",
+      "case_evidence": [
+        "IEEE 13 small-sample posterior-only update with N_new 12, 24, 48, 96, 168",
+        "IEEE 13 Bayes mean KS 0.16226 versus small-sample PALI refit 0.1881 and static PALI 0.2154",
+        "IEEE 13 risk ranking topK overlap 0.85455 and rank correlation above 0.956 across N_new values",
+        "IEEE 123 scaling Bayes mean KS 0.13588 versus small-sample PALI refit 0.23151 and static PALI 0.14259",
+        "IEEE 123 Bayes update time mean 0.98317 s with 610.A/B/C excluded consistently by scope check"
+      ],
+      "claim_boundary": "Do not claim global dominance over full refit; IEEE123 full-refit evidence is a boundary case showing where larger-sample refit can be strong."
+    },
+    "score_gate": {
+      "minimum_average": 8,
+      "minimum_core_category": 8,
+      "required_boundary_evidence": "Separate IEEE 13 risk-ranking claims from IEEE 123 voltage-scaling and scope-check claims; do not generalize moderate IEEE123 topK-overlap evidence into a strong large-feeder risk-preservation claim.",
+      "must_not_fail": [
+        "uniform dominance over full refit",
+        "hiding IEEE 123 voltage-scope exclusions",
+        "smart-grid edge claim without grid-side risk or voltage metric"
+      ]
+    },
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft an IEEE TSG edge-update argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; repair smart-grid mechanism, evidence, and boundary issues until the target band is 8-9 or report blockers."
+  },
+  {
+    "id": "aeps-tsvarx-mechanism-generation",
+    "project": "D:/Research/25Typhoon_resilience_TS_VARX",
+    "target_venue": "AEPS",
+    "target_score_band": "8-9",
+    "paper_type": "conditional full paper",
+    "evidence_sources": [
+      "D:/Research/25Typhoon_resilience_TS_VARX/01_IDEA/claims.md",
+      "D:/Research/25Typhoon_resilience_TS_VARX/result/varx_multi_event_mechanisms_20260601_212726.csv"
+    ],
+    "evidence_packet": {
+      "technical_object": "weather-conditioned city-level TS-VARX source-load mechanism reproducer and dynamic injection-scenario generator",
+      "case_evidence": [
+        "leave-one-event validation over typhoon city-event samples",
+        "train-only mechanism variants cover peak advance, correlation flip, wind rush, and wind loss checks",
+        "current claim file reports all-pass status for applicable samples: peak advance 39, correlation flip 75, wind rush 80, wind loss 14",
+        "evidence is city-level mechanism reproduction, not node-level risk propagation"
+      ],
+      "claim_boundary": "Target AEPS only as a mechanism/scenario-generation paper. Do not claim point forecasting superiority, node-level VARX propagation, N-1 risk improvement, or probabilistic power-flow closure."
+    },
+    "score_gate": {
+      "minimum_average": 8,
+      "minimum_core_category": 8,
+      "required_boundary_evidence": "Pass the 8-9 gate only under a mechanism/scenario-generation framing; block if the title, abstract, or conclusion claims node-level propagation, N-1 risk reduction, dispatch improvement, or probabilistic power-flow closure.",
+      "must_not_fail": [
+        "forecasting-superiority framing",
+        "completed node-level propagation claim",
+        "N-1 risk-reduction claim"
+      ]
+    },
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft an AEPS operational mechanism/scenario-generation argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; if node-level risk evidence is required for the chosen framing, block instead of forcing an 8-9 full-paper claim."
+  }
+]

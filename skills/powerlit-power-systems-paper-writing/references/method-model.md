@@ -26,6 +26,25 @@ The method section is where the paper's claim becomes a technical object. Write 
 
 Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
 
+## Formula Physical Intuition
+
+Symbol definition is not enough. For every key equation or equation group, give the reader one short physical-intuition sentence or paragraph that answers the following questions when relevant:
+
+- What grid object does the equation represent: voltage phasor, branch flow, injection, reserve, covariance, uncertainty set, certificate, or operating limit?
+- What is the cause-effect direction: which disturbance, decision, or network parameter changes which electrical quantity?
+- Why are the terms added, multiplied, relaxed, decomposed, or bounded in this form?
+- Do the sign convention, units, dimensions, and per-unit scaling match the stated physical direction?
+- What happens in a limiting case: zero uncertainty, radial feeder without reverse flow, independent injections, perfect observability, no communication delay, or a single mixture component?
+- What does the equation let an operator or reviewer diagnose that a black-box numerical result would not show?
+
+Do not turn "式中:" or notation paragraphs into long textbook exposition. Keep notation close to the formula, then add physical intuition as a separate technical sentence anchored to the manuscript's claim.
+
+For inverse probabilistic load flow, the physical intuition must be explicit:
+
+- The voltage-to-power moment equation is a quadratic power-flow kernel: voltage means and covariances create active/reactive power moments through network admittance, rather than through a generic statistical fit.
+- Voltage-covariance identifiability asks which co-fluctuation directions can be observed from the supplied power moments; null-space directions should not be interpreted as meaningful voltage variance.
+- An SDP feasibility certificate states whether a target power-moment set can be produced by any physically admissible voltage distribution under the stated voltage and PSD constraints.
+
 ## Model-Algorithm Consistency
 
 Whenever the method uses a relaxation, convexification, penalty, discretization, decomposition, or surrogate model, the manuscript must state the relationship between the original problem and what is actually solved.
@@ -141,7 +160,7 @@ Before finalizing, verify:
 
 - Every variable in an equation is defined close to first use.
 - Objective and constraints are not buried inside prose.
-- The physical meaning of key constraints is stated.
+- The physical meaning of key equations and constraints is stated through grid objects, cause-effect direction, units/signs, limiting cases, or operational diagnosis.
 - Algorithm steps correspond to specific model difficulties.
 - Approximation, relaxation, or linearization has a stated validity condition or boundary.
 - Every relaxation, reformulation, decomposition, or surrogate states its relationship to the original problem (equivalence, bound, or gap) and the condition under which it holds.

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "letter-full-paper-compression",
+    "prompt": "Use $ieee-power-engineering-letter-writing to compress a full-paper idea about a convex relaxation counterexample into an IEEE power-system Letter introduction and technical core.",
+    "expected": "The output identifies one hard claim, applies the near-neighbor literature gate when PowerLit is available, checks the result against Letter review standards, and returns compact Letter prose rather than a shortened full paper."
+  },
+  {
+    "id": "letter-prior-work-threat",
+    "prompt": "Use $ieee-power-engineering-letter-writing to assess whether a proposed Letter on a sensitivity index is still publishable if PowerLit finds a prior Letter with the same problem, mechanism, and evidence object.",
+    "expected": "The response refuses simple rephrasing and recommends narrowing the claim, changing the technical object, retargeting, or not submitting; it must not present the Letter as review-ready."
+  }
+]

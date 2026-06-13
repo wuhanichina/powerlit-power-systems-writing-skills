@@ -90,6 +90,8 @@ State:
 
 Use "Numerical tests" or "Case studies" rather than "Experiments" unless physical experiments are involved.
 
+For screening papers, include a reference check that tests screening quality, not only internal score movement. Examples include AC-MC validation for selected high-risk events, replay validation, operator event labels, or a stronger offline calculation. If this reference check is absent, write the result as candidate prioritization and do not target an 8-9 TPWRS full-paper score.
+
 ## Conclusion
 
 Use a short paragraph. State the demonstrated result and one realistic limitation or future extension when appropriate. Avoid expansive social-impact closing sentences.

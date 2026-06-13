@@ -36,7 +36,8 @@ Use this skill to review power-system papers against the standards implied by al
    - case studies, numerical results, conclusion: `references/evidence-case-conclusion.md`
    - title, abstract, wording, format, references: `references/language-format.md`
 7. Load `references/decision-rubric.md` before giving scores or an accept/reject recommendation.
-8. If the manuscript is partial, state that the verdict is section-level unless the user explicitly asks for a full-paper risk estimate.
+8. For score-targeted reviews, especially 8-9 targets, apply the `8-9 Target Gate` in `references/decision-rubric.md` and report category scores, the lowest-scoring category, gate status, and required repair before any prose polish.
+9. If the manuscript is partial, state that the verdict is section-level unless the user explicitly asks for a full-paper risk estimate.
 
 ## Review Priority
 
@@ -47,7 +48,7 @@ Check in this order:
 1. Technical problem: whether the paper targets a real, current, and nontrivial power-system difficulty.
 2. Innovation: whether the contribution is a technical object or only a recombination, application, parameter tweak, or packaging change.
 3. Logic chain: whether problem -> method -> validation -> conclusion is closed.
-4. Correctness: whether physical concepts, assumptions, mathematical formulation, units, variables, and algorithms are coherent.
+4. Correctness: whether physical concepts, assumptions, mathematical formulation, units, variables, formula-level physical intuition, and algorithms are coherent.
 5. Evidence: whether cases, baselines, metrics, sensitivity, and boundary tests actually verify the innovation.
 6. Venue fit: whether the paper matches the expected depth and rhythm of the target journal.
 7. Language and format: only after the technical review unless the user asks for proofreading.
@@ -60,6 +61,7 @@ Recommend rejection when any of these are central and unrepaired:
 - The innovation is only an engineering combination, dataset substitution, parameter tuning, or incremental application with no new model, mechanism, algorithm, control law, estimator, certificate, or evidence insight.
 - The paper changes the problem during the argument: the introduction claims one difficulty, the method solves another, and the case verifies a third.
 - Mathematical formulation cannot represent the stated engineering need, violates physical constraints, or uses undefined/inconsistent variables.
+- Key equations are only symbolically defined and do not explain the grid quantity, coupling, feasibility condition, or operating mechanism they represent.
 - Key assumptions are hidden and would invalidate the claimed improvement.
 - Case studies do not test the proposed innovation against relevant baselines or scenarios.
 - Conclusions make claims not supported by formulas, proofs, or numerical results.
@@ -78,9 +80,11 @@ Include a `PowerLit literature coverage` item when corpus retrieval is available
 4. `逻辑链与创新性`: problem -> gap -> method -> validation -> conclusion, with weak links identified.
 5. `模型与方法审查`: equations, variables, assumptions, physical meaning, algorithm, complexity, simplification opportunities.
 6. `算例与结论审查`: scenarios, baselines, metrics, sensitivity, boundary, conclusion support.
-7. `文字与格式问题`: only material issues, not minor copyediting unless requested.
+7. `文字与格式问题`: only material issues, including defensive claim posture, not minor copyediting unless requested.
 8. `评分`: use the rubric in `references/decision-rubric.md`.
 9. `修改建议`: concrete actions, grouped by must-fix and should-fix.
+
+For an 8-9 target review, the `评分` item must include eight category scores, average score, target-gate status, the lowest-scoring category, and the first repair action needed to move that category into the target band.
 
 For a section-only review, keep the same severity discipline but do not pretend to know missing sections. Use `本节录用风险` instead of a full-paper verdict when appropriate.
 

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "tsg-distributed-control-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing to produce an IEEE TSG introduction for distributed voltage control with local inverter measurements, delayed communication, and feeder voltage-violation metrics.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced introduction as an IEEE TSG section. Check whether data, distributed-control, communication-delay, and voltage-violation claims remain tied to grid operation and evidence.",
+    "pass_criteria": "No fatal flaw, no section-level venue mismatch, no unsupported privacy/distributed/scalability claim, and no generic AI framing detached from voltage-control operation.",
+    "repair_required_when": "The review finds that the introduction motivates a data or communication problem but the proposed method does not define the grid-operational mechanism or validation metric."
+  },
+  {
+    "id": "tpwrs-formulation-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing to draft a TPWRS method section for distributionally robust AC OPF with uncertainty sets, reformulation, and tractability claims.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced method section as TPWRS. Check assumptions, variables, uncertainty sets, physical constraints, reformulation validity, algorithm clarity, and evidence boundary.",
+    "pass_criteria": "No major model-correctness issue, no undefined core variable, no unbounded tractability or robustness claim, and no mismatch between formulation and claimed operating problem.",
+    "repair_required_when": "The review finds hidden assumptions, missing uncertainty-set definition, unsupported tractability, or claims that require case evidence not supplied."
+  },
+  {
+    "id": "csee-engineering-loop",
+    "write_prompt": "请用 $powerlit-power-systems-paper-writing 生成中国电机工程学报风格的引言或摘要，主题为台风灾害下配电网风险评估，突出工程对象、机理模型、算例支撑和结论边界。",
+    "review_prompt": "请用 $powerlit-power-systems-paper-review 按中国电机工程学报标准审查生成内容，检查是否存在政策背景过长、机理不清、算例支撑不足、结论越界或中文工程表述空泛的问题。",
+    "pass_criteria": "无致命问题，无机理-模型-证据链断裂，无把工程价值替代技术贡献的问题，缺失算例时必须明确边界而不能声称可投稿。",
+    "repair_required_when": "审稿结论会指出该段只是在描述背景或工程意义，而没有形成可验证的技术对象和证据边界。"
+  },
+  {
+    "id": "letter-near-neighbor-loop",
+    "write_prompt": "Use $ieee-power-engineering-letter-writing to compress a full-paper idea into an IEEE power-system Letter around one analytical correction or counterexample.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced Letter as an IEEE power-system Letter. Check whether it has one hard claim, a compact technical core, and decisive evidence.",
+    "pass_criteria": "No same-claim near-neighbor threat, no missing technical core, no broad related-work drift, and no unsupported comprehensive-validation claim.",
+    "repair_required_when": "The review finds that the output is merely a shortened full paper or that a retrieved near-neighbor already covers the same claim."
+  },
+  {
+    "id": "corpus-style-no-copy-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing to rewrite a TPWRS introduction using retrieved TPWRS papers as writing references for rhythm, contribution placement, and evidence wording.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced introduction as a TPWRS section. Check whether it has target-venue rhythm while avoiding copied corpus wording, unsupported literature claims, and exposed internal labels.",
+    "pass_criteria": "No copied source wording, no internal labels such as corpus style exemplar or PowerLit evidence in manuscript prose, no unsupported closest-paper claim, and no TPWRS venue mismatch.",
+    "repair_required_when": "The review finds source-like phrasing, exposed corpus-audit labels, or style imitation that weakens the technical logic chain."
+  },
+  {
+    "id": "actual-project-claim-translation-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing on one actual-project claim fixture from evaluation/actual-project-claim-regressions.json. Translate the project claim into a venue-fit paper claim before drafting.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to check whether the produced claim still has the original fixture's expected review failure. The review result must drive a second-round repair or blocker.",
+    "pass_criteria": "The second-round claim removes the fixture's known review failure while preserving the real evidence boundary.",
+    "repair_required_when": "The draft preserves a rigid project claim verbatim, overclaims beyond the fixture evidence, or presents a defensive gate statement as the paper's headline contribution."
+  },
+  {
+    "id": "formula-physical-intuition-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing to draft a method paragraph for an inverse probabilistic load flow equation group that maps voltage GMM means and covariances to power moments, then adds an SDP feasibility certificate.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to check whether the method paragraph explains formula physical intuition, including the represented grid quantity, cause-effect direction, covariance identifiability, and physical meaning of the SDP certificate.",
+    "pass_criteria": "The paragraph defines symbols and explains why the quadratic moment kernel, covariance structure, and feasibility certificate matter physically; it does not stop at notation.",
+    "repair_required_when": "The draft only lists variables after equations, treats moment matching as generic statistics, or fails to explain what physical infeasibility the SDP certificate detects."
+  },
+  {
+    "id": "figure-table-result-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing to produce an IEEE TSG figure caption and result paragraph for a voltage-violation probability plot with a stated feeder, baseline, metric unit, and delayed-communication scenario.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced caption and result paragraph. Check whether the caption is self-contained, the result paragraph interprets the metric in grid-operational terms, and the conclusion boundary matches the supplied evidence.",
+    "pass_criteria": "No unsupported robustness, privacy, scalability, or real-time claim; metric direction and baseline are clear; the figure/table is interpreted in text; and the result maps to a bounded manuscript claim.",
+    "repair_required_when": "The output uses generic performance language, hides the baseline or metric direction, claims broader deployment value than the plot supports, or describes local script/log details instead of manuscript-facing evidence."
+  }
+]

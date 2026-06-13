@@ -1,117 +1,125 @@
 ---
 name: powerlit-power-systems-paper-writing
-description: Draft, rewrite, or review power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, methods, experiments, conclusions, terminology polishing, and anti-AI-style cleanup in power-system manuscripts.
+description: Draft, rewrite, or review full-length power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, method/model sections, case studies, figure/table captions, result paragraphs, conclusions, terminology cleanup, venue adaptation, and PowerLit-grounded citation planning.
 ---
 # PowerLit Power-Systems Paper Writing
 
 ## Purpose
 
-Use this skill to write power-system papers in the target journal's own register. The default style is concise, technically explicit, evidence-bound, and free of visible meta narration.
+Use this skill to produce full-paper manuscript prose that is ready for serious venue review. The skill is a shared writing entry point plus venue profiles, not four independent skills. Shared rules handle evidence, PowerLit retrieval, logic closure, paragraph discipline, and anti-AI cleanup. Venue profiles handle the journal-specific register, structure, evidence expectation, and rejection risks.
+
+Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writing` when the target is a 3-4 page Letter or compact technical communication.
 
 ## Core Workflow
 
-1. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not polish unsupported claims into manuscript prose.
-2. Identify target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
-3. Lock the paper object before drafting: system setting, technical problem, model/formulation, method, evidence, and claim boundary.
-4. For introduction, related-work, novelty, or citation-sensitive writing, try `powerlit-power-systems-literature-intelligence` first:
-   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
-   - if accessible, use the citation pack and closest-competitor matrix as evidence;
-   - if inaccessible, state fallback mode once and continue without inventing citations.
-5. Load only the venue reference needed:
-   - 中国电机工程学报: `references/csee.md`
-   - 电力系统自动化: `references/aeps.md`
-   - IEEE TPWRS: `references/tpwrs.md`
-   - IEEE TSG: `references/tsg.md`
-6. For 中国电机工程学报 precision writing, also load `references/csee-precision.md`.
-7. For all venues, load `references/publishable-prose.md` before final manuscript writing.
-8. For introduction writing, load `references/introduction-scalpel.md`.
-9. For readability and sentence rhythm, load `references/rhythm.md`.
-10. For method, model, formulation, algorithm, solution, control, or optimization sections, load `references/method-model.md`.
-11. For case-study, numerical-results, experiment, simulation, conclusion, or closing sections, load `references/case-conclusion.md`.
-12. For wording cleanup, also load `references/lexicon.md` and `references/anti-ai-style.md`. For English/IEEE drafts, additionally apply the English AI Tells section in `references/anti-ai-style.md`.
-13. Before drafting, sketch the section plan with rough length shares. If a standard-step section would take more space than the contribution section, tighten it so the visibility of the novel content is not suppressed. This is a quick sanity check, not a gate: do not pause for confirmation.
-14. Draft by section using the venue reference. Do not expose planning labels, paragraph roles, or self-review scaffolds in the final prose unless the user asks for them.
-15. Before finalizing, run the `publishable-prose.md` claim pass, reader-burden pass, cut pass, and rhythm pass. Every performance, novelty, accuracy, feasibility, scalability, or superiority claim must map to a result, derivation, citation pack, or explicitly stated assumption.
-16. As the last finalizing step, run the working-language term scan from `references/anti-ai-style.md` (Working-Language Firewall) on the manuscript prose; any blacklisted term means the draft is not clean and must be rewritten. For English/IEEE drafts, also run the English AI Tells scan.
+1. Identify the target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
+2. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not turn an unsupported paper into fluent manuscript prose.
+3. Lock the paper object before drafting:
+   - grid or market object;
+   - technical problem;
+   - model, formulation, control law, estimator, algorithm, or mechanism;
+   - evidence package;
+   - claim boundary.
+4. Load `references/project-claim-translation.md`. Treat project `claims.md`, research notes, evidence maps, and gate files as evidence boundaries, not as final manuscript claims.
+5. Load `references/corpus-grounded-drafting.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, or style/rhythm calibration is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
+   - For skill maintenance or known-paper reconstruction tasks, also load `references/published-paper-reconstruction.md`. Treat accepted papers as masked evidence benchmarks, not text sources to imitate.
+6. Load `references/venue-profiles.md`, then load exactly one venue reference:
+   - 中国电机工程学报: `references/csee.md`; also load `references/csee-precision.md`.
+   - 电力系统自动化: `references/aeps.md`.
+   - IEEE TPWRS: `references/tpwrs.md`.
+   - IEEE TSG: `references/tsg.md`.
+7. Load the section references needed for the requested manuscript part:
+   - introduction or related work: `references/introduction-scalpel.md`;
+   - method, model, formulation, algorithm, control, optimization, or derivation: `references/method-model.md`;
+   - case study, numerical results, experiment, simulation, conclusion, or closing section: `references/case-conclusion.md`;
+   - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
+   - target review score, 8-9 score debugging, or score-bearing evaluation: `references/score-targeted-writing.md`;
+   - light editing, translation, compression, expansion, logic checking, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
+   - final prose pass: `references/publishable-prose.md` and `references/rhythm.md`;
+   - review closure before delivery: `references/review-closed-loop.md`;
+   - wording cleanup: `references/lexicon.md` and `references/anti-ai-style.md`.
+8. Build the internal drafting map before writing:
+   - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
+   - venue profile;
+   - closest competitors or fallback status;
+   - corpus style exemplars when the task needs venue rhythm or section shaping;
+   - citation-to-sentence plan when literature evidence is needed;
+   - gap-to-contribution-to-evidence map;
+   - section budget so standard material does not hide the contribution.
+9. Draft manuscript prose by section. Do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
+10. Before finalizing, run the claim pass, reader-burden pass, boundary-posture pass, formula physical-intuition pass, cut pass, rhythm pass, and working-language firewall from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`. For English/IEEE drafts, also run the English AI Tells scan in `references/anti-ai-style.md`.
+11. If a target review score is requested, apply `references/score-targeted-writing.md` before review closure. Do not claim an 8-9 full-paper target when the evidence packet only supports a section-level result.
+12. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
 ## Power-System Story Order
 
-Prefer this order over generic ML/CV paper templates:
+Prefer this order over generic AI, ML, or optimization paper templates:
 
-1. Operating or planning object: grid, device, market, uncertainty source, control layer, or protection/resilience setting.
+1. Operating or planning object: grid, device, market, uncertainty source, control layer, protection, or resilience setting.
 2. Practical conflict: security, economy, voltage/frequency, uncertainty, computation, coordination, observability, or engineering feasibility.
 3. Existing method classes and their precise limitation.
 4. Proposed technical object: model, formulation, control strategy, algorithm, estimator, certificate, or dispatch mechanism.
 5. Why it works: physical mechanism, convexity/relaxation, decomposition, uncertainty calibration, stability condition, or computational property.
 6. Evidence: benchmark system, field/system data, comparative method, sensitivity, ablation where meaningful, and boundary cases.
 
+## Venue Routing
+
+Use the venue as a design constraint, not a late style filter.
+
+- 中国电机工程学报: engineering mechanism and dense Chinese exposition. Keep policy background short and make every sentence define, constrain, derive, verify, or delimit.
+- 电力系统自动化: compact operational logic. Move quickly from operating scenario to variables, constraints, algorithm, and metric.
+- IEEE TPWRS: formulation-led English. Assumptions, constraints, reformulations, guarantees, and case evidence must be explicit.
+- IEEE TSG: smart-grid mechanism. Data, learning, DER, privacy, communication, distributed-control, and cyber claims must remain tied to grid operation and physical constraints.
+
+See `references/venue-profiles.md` for the full profile contract.
+
+## Corpus-Grounded Drafting Rule
+
+When PowerLit is accessible, do not draft citation-sensitive or venue-sensitive sections from memory alone. Use the corpus in two ways:
+
+1. Evidence use: retrieve nearby papers for novelty, citation function, and closest-competitor boundaries.
+2. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, and conclusion boundary.
+
+First build or consume:
+
+- background citations;
+- method-family citations;
+- gap citations;
+- closest-competitor citations;
+- corpus style exemplars;
+- citation-to-sentence plan;
+- claim boundary after comparison.
+
+If PowerLit is unavailable, state fallback mode once and continue only with supplied references, citation slots, or the static venue profiles. Never invent titles, DOIs, years, venues, paper-specific claims, or corpus-derived style statistics.
+
+For skill maintenance, use `references/published-paper-reconstruction.md` to run masked reconstruction benchmarks from accepted PowerLit papers. If only case-analysis data are available, evaluate only the result/case-study writing ability; do not claim the skill can reconstruct a full publishable paper without method, model, baseline, metric, and claim-boundary facts.
+
 ## Section Rules
 
 - Abstract: one compact problem sentence, one contribution sentence, one to three technical-action sentences, one evidence sentence, optional boundary sentence.
-- Introduction: do not spend multiple paragraphs on policy slogans. Move from power-system context to a concrete unsolved technical reason.
-- Method/model: load `references/method-model.md`; make the technical object explicit before implementation details. Define variables, sets, constraints, assumptions, physical meaning, and algorithmic steps in the venue's expected order.
-- Experiments/case studies: use power-system evidence objects, not generic "SOTA" language. State system, operating scenario, baselines, metrics, and solver/protocol when relevant.
+- Introduction: use `references/introduction-scalpel.md`; move from a concrete power-system object to a precise unresolved technical reason.
+- Method/model: use `references/method-model.md`; define variables, sets, assumptions, physical meaning, constraints, transformations, and algorithmic steps in the venue's expected order. Key equations need physical intuition, not only symbol definitions.
+- Case study/results: use power-system evidence objects, not generic SOTA language. State system, operating scenario, baselines, metrics, solver/protocol, sensitivity, and boundary where relevant.
+- Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
-- Paragraphs: apply the reader-burden rule in `references/publishable-prose.md`: state the local judgment first, give reasons after it, keep one idea per paragraph, and make every sentence support the same point.
-- All venues: load `references/publishable-prose.md`; every paragraph must close a technical logic chain. Do not produce流水账, defensive prose, or readable-but-empty paragraphs.
-- 中国电机工程学报: load `references/csee-precision.md`; every sentence must define, constrain, derive, verify, or delimit something. Delete decorative and meta sentences.
+- Paragraphs: apply the reader-burden rule in `references/publishable-prose.md`: judgment first, reason after it, one idea per paragraph, and every sentence supporting the same point.
 
-## Rhythm Rule
+## Hard Rules
 
-Readable power-system prose does not mean many short generic sentences. For Chinese venues, use long technical sentences only when their internal beats are clear: problem -> method object -> modeling step -> evidence. For IEEE Transactions papers, keep most sentences in the 18-30 word range and make the formulation, constraint, algorithm, controller, estimator, data mechanism, or result the grammatical subject. See `references/rhythm.md`.
-
-## Introduction Rule
-
-Write the introduction like a technical dissection: object -> consequence -> method families -> limitation -> technical reason -> core contradiction -> contribution. Chinese venues usually keep gap and proposal close; IEEE Transactions papers usually spend more paragraphs separating method families before explicit contributions. For TSG, keep every data, learning, communication, privacy, or distributed-control claim tied to a grid-operational mechanism. Use `references/introduction-scalpel.md`.
-
-When PowerLit is accessible, do not draft the introduction from memory alone. First build or consume a citation pack: background citations, method-family citations, gap citations, closest-competitor citations, and a citation-to-sentence plan. When PowerLit is unavailable, keep citations generic only if supplied by the user; otherwise leave citation slots or state the literature limitation.
-
-## Anti-Meta Rule
-
-Do not write prose that announces writing actions:
-
-- Avoid: "This section introduces...", "The remainder of this paper is organized as follows" unless the venue explicitly needs it.
-- Avoid: "we comprehensively explore", "a novel paradigm", "seamlessly integrates", "significant improvement" without numbers.
-- Prefer subject-led sentences: "The chance constraint is reformulated as...", "The rolling horizon model coordinates...", "Simulation on the IEEE 118-bus system shows...".
-
-Working-language terms (范式, 缺口, closest competitor, claim, 论证链, 证据包, 轨道, and similar internal review/organizing terms) must never appear in manuscript prose. See the Working-Language Firewall in `references/anti-ai-style.md` for the full blacklist, the rewrite map, and the post-generation term scan.
-
-## Prewriting Gate
-
-When the available material has not been pre-reviewed, do not begin with manuscript text. First establish:
-
-- real problem,
-- exact gap,
-- technical object,
-- model correctness,
-- evidence support,
-- claim boundary,
-- target-venue fit.
-
-If any of these are missing, state the blocker and recommend `GO`, `CONDITIONAL GO`, `NO-GO`, or `RETARGET` rather than writing polished prose.
-
-## Iteration Rule
-
-You may spend extra internal passes on reflection before returning manuscript text. Prefer a slower final answer that survives review over a quick, fluent draft. Do not show intermediate self-review unless requested; use it to remove unsupported claims, tighten logic, and improve rhythm.
-
-## Relationship to `research-paper-writing`
-
-Keep from the existing skill:
-
-- story before sentence edits,
-- paragraph-level reverse outline,
-- evidence-bound claims,
-- reviewer-facing self-checks,
-- clean tables and figures.
-
-Replace for power-system venues:
-
-- generic "task/SOTA/pipeline" framing with "system object/model/constraint/solution/case" framing,
-- ML-style teaser and module-ablation defaults with benchmark, operating scenario, solver, sensitivity, and engineering-boundary evidence,
-- visible output scaffolds with clean manuscript prose.
-
-For details, use `references/baseline-comparison.md`.
+- Do not polish a NO-GO idea into manuscript prose.
+- Do not copy project `claims.md` wording into the paper as the headline contribution. Project claims are often rigid evidence controls; translate them into a venue-fit paper claim before drafting.
+- Do not lead manuscript paragraphs with defensive boundary language such as "需要强调的是", "本文不把...", "本文不主张...", or "not intended to replace..." unless the target text is explicitly a limitations paragraph. Translate the boundary into a positive technical subject plus a stated scope.
+- Do not cite or summarize papers that were not supplied or retrieved.
+- Do not copy venue corpus sentences into manuscript prose. Use corpus papers for structure, rhythm, citation function, and evidence presentation; write the final text from the current manuscript's own technical object.
+- Do not let internal planning terms appear in final manuscript prose. Terms such as `closest competitor`, `claim boundary`, `citation pack`, `gap-to-contribution map`, and similar working-language labels are for internal drafting only.
+- Do not use generic ML claims such as state-of-the-art accuracy unless the venue profile, baselines, and metrics justify them.
+- Do not claim scalability, real-time use, robustness, privacy, distributed implementation, or engineering deployability unless the evidence tests the corresponding condition.
+- Do not call a draft submission-ready unless it can pass the internal review-closure gate without fatal flaws or major review issues.
 
 ## Output Contract
 
-When rewriting paper prose, return the revised manuscript text first. Add a short note only when it clarifies unsupported claims, missing results, or terminology choices. Do not include a long self-review checklist in the manuscript-facing answer unless requested.
+When rewriting paper prose, return the revised manuscript text first. Add a short note only when it clarifies unsupported claims, missing results, missing references, or terminology choices. Do not include a long self-review checklist in the manuscript-facing answer unless requested.
+
+For planning or pre-drafting tasks, return the venue-grounded writing plan and explicitly mark which parts require PowerLit evidence, supplied references, or additional experiments.
+
+For light editing, translation, compression, figure/table captions, and result-paragraph tasks, apply only the references needed for that small task. Preserve the supplied technical meaning and return the revised text first; name unsupported or missing evidence only in a short note.
