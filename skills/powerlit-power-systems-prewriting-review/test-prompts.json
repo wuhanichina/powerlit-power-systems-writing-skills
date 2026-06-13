@@ -1,0 +1,7 @@
+[
+  {
+    "id": "insight-discovery-before-gate",
+    "prompt": "请用 $powerlit-power-systems-prewriting-review 帮我从一个普通 idea 中发掘创新点：台风条件下配电网源荷波动会改变风险评估结果。先做问题重构、理论迁移、反直觉线索和候选技术对象，再判断是否能进入论文写作。",
+    "expected": "The response must use insight-discovery.md before the prewriting gate, label ideas as known theory, structural analogy, or research hypothesis, propose candidate technical objects and evidence paths, then return to innovation-chain.md before giving GO / CONDITIONAL GO / NO-GO / RETARGET."
+  }
+]

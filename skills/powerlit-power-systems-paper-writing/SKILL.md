@@ -35,7 +35,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
    - target review score, 8-9 score debugging, or score-bearing evaluation: `references/score-targeted-writing.md`;
    - light editing, translation, compression, expansion, logic checking, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
-   - final prose pass: `references/publishable-prose.md` and `references/rhythm.md`;
+   - final prose pass: `references/publishable-prose.md`, `references/rhythm.md`, and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
    - wording cleanup: `references/lexicon.md` and `references/anti-ai-style.md`.
 8. Build the internal drafting map before writing:
@@ -47,7 +47,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - gap-to-contribution-to-evidence map;
    - section budget so standard material does not hide the contribution.
 9. Draft manuscript prose by section. Do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
-10. Before finalizing, run the claim pass, reader-burden pass, boundary-posture pass, formula physical-intuition pass, cut pass, rhythm pass, and working-language firewall from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`. For English/IEEE drafts, also run the English AI Tells scan in `references/anti-ai-style.md`.
+10. Before finalizing, run the claim pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, cut pass, rhythm pass, and working-language firewall from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`. For English/IEEE drafts, also run the English AI Tells scan in `references/anti-ai-style.md`.
 11. If a target review score is requested, apply `references/score-targeted-writing.md` before review closure. Do not claim an 8-9 full-paper target when the evidence packet only supports a section-level result.
 12. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
@@ -103,6 +103,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
 - Paragraphs: apply the reader-burden rule in `references/publishable-prose.md`: judgment first, reason after it, one idea per paragraph, and every sentence supporting the same point.
+- Reader experience: apply `references/reader-experience-pass.md` before delivery. Repair high-impact `[writing]` burdens; keep `[topic-hard]` density only when definitions, transitions, physical intuition, or boundary language make the passage linearly followable.
 
 ## Hard Rules
 
@@ -114,6 +115,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not let internal planning terms appear in final manuscript prose. Terms such as `closest competitor`, `claim boundary`, `citation pack`, `gap-to-contribution map`, and similar working-language labels are for internal drafting only.
 - Do not use generic ML claims such as state-of-the-art accuracy unless the venue profile, baselines, and metrics justify them.
 - Do not claim scalability, real-time use, robustness, privacy, distributed implementation, or engineering deployability unless the evidence tests the corresponding condition.
+- Do not call a draft submission-ready if the mandatory reader-experience pass fails or if the review skill would mark `专家级阅读体验` as `FAIL`.
 - Do not call a draft submission-ready unless it can pass the internal review-closure gate without fatal flaws or major review issues.
 
 ## Output Contract

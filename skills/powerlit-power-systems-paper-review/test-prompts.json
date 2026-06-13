@@ -1,0 +1,12 @@
+[
+  {
+    "id": "expert-reader-experience-fail",
+    "prompt": "请用 $powerlit-power-systems-paper-review 审查一篇技术链条大体存在但读感很差的电力系统论文草稿。稿件存在目标、方法和算例对象在阅读过程中接不上，核心符号首次出现未定义，连续公式只列符号不解释电网物理含义，且多处使用'显著提升'但没有局部指标支撑。",
+    "expected": "The review must include `专家级阅读体验` with PASS / CONDITIONAL PASS / FAIL. It should mark the reading experience as FAIL or CONDITIONAL PASS based on anchored text-internal reasons, separate external-check-needed concerns, and avoid calling the draft submission-ready when expert-reader experience is FAIL."
+  },
+  {
+    "id": "topic-hard-not-auto-fail",
+    "prompt": "请用 $powerlit-power-systems-paper-review 审查一段公式密度较高但定义、单位、物理含义和边界都交代清楚的 TPWRS 方法章节。",
+    "expected": "The review should not fail expert-reader experience only because the topic is hard. It should distinguish topic-hard density from writing burden and give PASS or CONDITIONAL PASS when a small-field expert can follow the section linearly."
+  }
+]

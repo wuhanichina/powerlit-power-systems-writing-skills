@@ -81,6 +81,12 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "formula physical-intuition pass") {
         Add-Failure "paper-writing skill must require a formula physical-intuition pass"
     }
+    if ($paperSkillText -notmatch "references/reader-experience-pass\.md") {
+        Add-Failure "paper-writing skill must load references/reader-experience-pass.md"
+    }
+    if ($paperSkillText -notmatch "mandatory reader-experience pass") {
+        Add-Failure "paper-writing skill must require mandatory reader-experience pass"
+    }
 } else {
     Add-Failure "Missing paper-writing SKILL.md"
 }
@@ -190,6 +196,92 @@ if (Test-Path -LiteralPath $scoreTargetedReference) {
     }
 } else {
     Add-Failure "Missing score-targeted-writing.md"
+}
+
+$readerExperienceReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\reader-experience-pass.md"
+if (Test-Path -LiteralPath $readerExperienceReference) {
+    $readerExperienceText = Read-Utf8 -Path $readerExperienceReference
+    if ($readerExperienceText -notmatch "Reader-Experience Pass") {
+        Add-Failure "reader-experience-pass.md must define the reader-experience pass"
+    }
+    if ($readerExperienceText -notmatch "mandatory") {
+        Add-Failure "reader-experience-pass.md must make the pass mandatory"
+    }
+    if ($readerExperienceText -notmatch "\[writing\]") {
+        Add-Failure "reader-experience-pass.md must classify [writing] burdens"
+    }
+    if ($readerExperienceText -notmatch "\[topic-hard\]") {
+        Add-Failure "reader-experience-pass.md must classify [topic-hard] burdens"
+    }
+} else {
+    Add-Failure "Missing reader-experience-pass.md"
+}
+
+$reviewSkill = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\SKILL.md"
+if (Test-Path -LiteralPath $reviewSkill) {
+    $reviewSkillText = Read-Utf8 -Path $reviewSkill
+    if ($reviewSkillText -notmatch "references/expert-reader-experience\.md") {
+        Add-Failure "paper-review skill must load references/expert-reader-experience.md"
+    }
+    if ($reviewSkillText -notmatch "CONDITIONAL PASS") {
+        Add-Failure "paper-review skill must output the expert reader-experience PASS scale"
+    }
+} else {
+    Add-Failure "Missing paper-review SKILL.md"
+}
+
+$expertReaderExperience = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\references\expert-reader-experience.md"
+if (Test-Path -LiteralPath $expertReaderExperience) {
+    $expertReaderText = Read-Utf8 -Path $expertReaderExperience
+    if ($expertReaderText -notmatch "Expert Reader-Experience Review") {
+        Add-Failure "expert-reader-experience.md must define the expert reader-experience review"
+    }
+    if ($expertReaderText -notmatch "PASS.*CONDITIONAL PASS.*FAIL") {
+        Add-Failure "expert-reader-experience.md must define PASS / CONDITIONAL PASS / FAIL"
+    }
+    if ($expertReaderText -notmatch "text-internal") {
+        Add-Failure "expert-reader-experience.md must separate text-internal evidence"
+    }
+    if ($expertReaderText -notmatch "external-check-needed") {
+        Add-Failure "expert-reader-experience.md must separate external-check-needed evidence"
+    }
+} else {
+    Add-Failure "Missing expert-reader-experience.md"
+}
+
+$prewritingSkill = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\SKILL.md"
+if (Test-Path -LiteralPath $prewritingSkill) {
+    $prewritingSkillText = Read-Utf8 -Path $prewritingSkill
+    if ($prewritingSkillText -notmatch "references/insight-discovery\.md") {
+        Add-Failure "prewriting-review skill must load references/insight-discovery.md"
+    }
+    if ($prewritingSkillText -notmatch "return to the innovation-chain gate") {
+        Add-Failure "prewriting-review skill must route insight discovery back to the innovation-chain gate"
+    }
+} else {
+    Add-Failure "Missing prewriting-review SKILL.md"
+}
+
+$insightDiscovery = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\insight-discovery.md"
+if (Test-Path -LiteralPath $insightDiscovery) {
+    $insightText = Read-Utf8 -Path $insightDiscovery
+    if ($insightText -notmatch "Insight Discovery") {
+        Add-Failure "insight-discovery.md must define Insight Discovery"
+    }
+    if ($insightText -notmatch "known theory") {
+        Add-Failure "insight-discovery.md must label known theory"
+    }
+    if ($insightText -notmatch "structural analogy") {
+        Add-Failure "insight-discovery.md must label structural analogy"
+    }
+    if ($insightText -notmatch "research hypothesis") {
+        Add-Failure "insight-discovery.md must label research hypothesis"
+    }
+    if ($insightText -notmatch "innovation-chain\.md") {
+        Add-Failure "insight-discovery.md must route candidates back to innovation-chain.md"
+    }
+} else {
+    Add-Failure "Missing insight-discovery.md"
 }
 
 $reconstructionCases = Join-Path $repoRoot "evaluation\powerlit-paper-reconstruction-cases.json"
