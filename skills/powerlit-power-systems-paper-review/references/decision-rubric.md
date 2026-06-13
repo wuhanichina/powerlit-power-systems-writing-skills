@@ -33,7 +33,8 @@ An 8-score full-paper verdict requires:
 - average score at least 8 across the eight categories;
 - no core category below 8 for problem relevance, innovation substance, logic-chain closure, model correctness, evidence sufficiency, or claim boundary;
 - writing/structure score at least 7.5 after technical repair;
-- actual case evidence with baselines, metrics, systems, scenarios, and boundaries.
+- actual case evidence with baselines, metrics, systems, scenarios, and boundaries;
+- complete manuscript content: introduction, novelty positioning, method/model with equations and physical interpretation, algorithm or solution procedure, case-study protocol, result tables/figures, comparative analysis, discussion, and conclusion.
 
 A 9-score full-paper verdict requires:
 
@@ -43,6 +44,8 @@ A 9-score full-paper verdict requires:
 - only minor refinements remain.
 
 Do not give a full-paper score above 7.5 when only case-analysis data are supplied without enough method, novelty, baseline, and claim-boundary facts. Score the available section instead.
+
+Do not let compressed artifacts pass as full papers. A representative package, outline, abstract-with-results draft, or score-target run that lacks full equations, model derivation, complete case analysis, comparison tables, and discussion must be labeled `blocked below 8-9 full-paper completeness` even if its direction is promising.
 
 ## Verdict Mapping
 
@@ -105,7 +108,8 @@ When the user asks whether a draft reaches 8-9, return a compact score table wit
 Then state:
 
 - average score;
-- gate status: `passes 8-9 gate`, `repairable below 8-9`, or `blocked below 8-9`;
+- full-paper readiness: `complete manuscript`, `section-level only`, or `compressed evaluation package only`;
+- gate status: `passes 8-9 full-paper gate`, `repairable below 8-9`, `blocked below 8-9`, or `blocked below 8-9 full-paper completeness`;
 - lowest-scoring category;
 - first repair action.
 

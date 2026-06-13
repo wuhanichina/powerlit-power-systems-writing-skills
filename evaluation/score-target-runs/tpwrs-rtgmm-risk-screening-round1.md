@@ -4,6 +4,7 @@ Case id: `tpwrs-rtgmm-risk-screening`
 Target venue: `IEEE TPWRS`
 Target score band: `8-9`
 Run status: `repairable below 8-9; current evidence supports a strong screening paper direction but not an 8-9 TPWRS full-paper verdict`
+Full-paper readiness: `compressed evaluation package only; missing independent reference evidence in this round and missing complete manuscript structure`
 
 ## Evidence Packet
 
@@ -76,7 +77,7 @@ The nine-event study shows that replacing typhoon-conditioned source-load statis
 
 ## Review
 
-Verdict: `大修后录用` as a TPWRS full-paper package. The technical direction is publishable, but the current evidence does not pass the 8-9 gate because an independent screening-quality check is missing.
+Verdict: `blocked below 8-9 as a real TPWRS manuscript`. The technical direction may be publishable, but this round lacks independent screening-quality evidence and does not contain the full formulation, equations, protocol tables, results, discussion, and references required for a full-paper verdict.
 
 ### Scores
 
@@ -92,9 +93,10 @@ Verdict: `大修后录用` as a TPWRS full-paper package. The technical directio
 | Writing, structure, and format | 8.0 | TPWRS register is direct and formulation-led enough for a package draft. |
 
 Average score: `8.04`
-Gate status: `repairable below 8-9`
+Package diagnostic score: `8.04 for compressed artifact only`
+Gate status: `blocked below 8-9 full-paper completeness`
 Lowest-scoring category: `Case-study and evidence sufficiency`
-First repair action: add at least one independent high-risk event check, preferably AC-MC or replay validation for Bebinca or Muifa, and report whether RT-GMM-ranked branches remain high-priority under the reference check.
+First repair action: add independent high-risk event replay or AC-MC evidence, then write the complete formulation, screening protocol, result tables, comparison discussion, and full TPWRS manuscript structure before assigning any full-paper 8-9 score.
 
 ### Repair Needed Before 8-9
 

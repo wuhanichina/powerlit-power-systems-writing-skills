@@ -3,7 +3,8 @@
 Case id: `tsg-bayesaqppf-edge-update`
 Target venue: `IEEE TSG`
 Target score band: `8-9`
-Run status: `passes 8-9 gate as a compact full-paper package; final submission still needs complete equations, references, and figure/table formatting`
+Run status: `blocked below 8-9 full-paper completeness; compact edge-update package only`
+Full-paper readiness: `compressed evaluation package only; missing full Dirichlet-NIW equations, update algorithm, complete case tables, comparison discussion, references, and IEEE template`
 
 ## Evidence Packet
 
@@ -90,7 +91,7 @@ The IEEE 13 study shows improved voltage-distribution KS distance and strong ris
 
 ## Review
 
-Verdict: `minor revision before acceptance` for the compact TSG full-paper package. The artifact passes the 8-9 gate because the manuscript keeps the smart-grid edge mechanism attached to grid-side voltage/risk metrics and does not overstate the IEEE 123 or full-refit evidence.
+Verdict: `not ready for minor-revision acceptance as a real TSG manuscript`. The artifact keeps the edge-update claim bounded, but it is still a compact package without the full posterior-update derivation, algorithm, complete result tables, comparison discussion, references, and final IEEE manuscript structure.
 
 ### Scores
 
@@ -106,9 +107,10 @@ Verdict: `minor revision before acceptance` for the compact TSG full-paper packa
 | Writing, structure, and format | 8.2 | The package follows TSG's data-driven grid-operation rhythm and avoids generic AI framing. |
 
 Average score: `8.26`
-Gate status: `passes 8-9 gate`
+Package diagnostic score: `8.26 for compressed artifact only`
+Gate status: `blocked below 8-9 full-paper completeness`
 Lowest-scoring category: `Case-study and evidence sufficiency`
-First repair action: add a final case-study table that separates IEEE 13 risk-ranking preservation from IEEE 123 voltage-scaling evidence, and add full equations for the Dirichlet-NIW posterior update before submission use.
+First repair action: write the full Dirichlet-NIW posterior-update equations and algorithm, then add complete IEEE 13 and IEEE 123 case tables, risk-ranking versus voltage-scaling discussion, full-refit comparison, and references.
 
 ### Repair Applied in This Draft
 

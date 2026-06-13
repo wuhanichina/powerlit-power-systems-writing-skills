@@ -194,6 +194,12 @@ if (Test-Path -LiteralPath $scoreTargetedReference) {
     if ($scoreTargetedText -notmatch "Case-analysis evidence alone") {
         Add-Failure "score-targeted-writing.md must preserve the case-data boundary"
     }
+    if ($scoreTargetedText -notmatch "Full-Paper Completeness Gate") {
+        Add-Failure "score-targeted-writing.md must define the full-paper completeness gate"
+    }
+    if ($scoreTargetedText -notmatch "blocked below 8-9 full-paper completeness") {
+        Add-Failure "score-targeted-writing.md must define the compressed-package blocked status"
+    }
 } else {
     Add-Failure "Missing score-targeted-writing.md"
 }
@@ -416,11 +422,17 @@ if (Test-Path -LiteralPath $scoreTargetRunDir) {
         if ($runText -notmatch "Gate status:") {
             Add-Failure "$($runFile.FullName): score-target run must include gate status"
         }
+        if ($runText -notmatch "Full-paper readiness:") {
+            Add-Failure "$($runFile.FullName): score-target run must include full-paper readiness"
+        }
         if ($runText -notmatch "Lowest-scoring category:") {
             Add-Failure "$($runFile.FullName): score-target run must include lowest-scoring category"
         }
         if ($runText -notmatch "First repair action:") {
             Add-Failure "$($runFile.FullName): score-target run must include first repair action"
+        }
+        if ($runText -match "passes 8-9 gate" -and $runText -match "(compressed|compact|package)") {
+            Add-Failure "$($runFile.FullName): compressed or package-level artifacts must not pass the 8-9 full-paper gate"
         }
     }
 }

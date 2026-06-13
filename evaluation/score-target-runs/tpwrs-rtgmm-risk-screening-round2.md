@@ -3,7 +3,8 @@
 Case id: `tpwrs-rtgmm-risk-screening`
 Target venue: `IEEE TPWRS`
 Target score band: `8-9`
-Run status: `passes 8-9 gate as a bounded two-stage screening-and-reference package; does not support calibrated event-level prediction or single-score top-branch equivalence`
+Run status: `blocked below 8-9 full-paper completeness; compressed two-stage screening package only`
+Full-paper readiness: `compressed evaluation package only; missing complete formulation, equations, algorithm/protocol tables, full AC replay comparison tables, discussion, references, and IEEE template`
 
 ## Evidence Packet
 
@@ -92,7 +93,7 @@ The nine-event study shows that typhoon-conditioned source-load modeling materia
 
 ## Review
 
-Verdict: `minor revision before acceptance` for a bounded TPWRS screening-and-reference package. The round-2 draft passes the 8-9 gate because the missing independent reference check has been added and the manuscript no longer claims direct top-branch equivalence between RT-GMM and AC replay.
+Verdict: `not ready for minor-revision acceptance as a real TPWRS manuscript`. The round-2 artifact repairs the claim boundary with AC replay evidence, but it remains a compressed package rather than a complete paper with full formulation, equations, protocol details, comparison tables, and discussion.
 
 ### Scores
 
@@ -108,9 +109,10 @@ Verdict: `minor revision before acceptance` for a bounded TPWRS screening-and-re
 | Writing, structure, and format | 8.1 | The TPWRS framing is formulation-led and evidence-bound; final paper needs references, equations, and compact result tables. |
 
 Average score: `8.24`
-Gate status: `passes 8-9 gate`
+Package diagnostic score: `8.24 for compressed artifact only`
+Gate status: `blocked below 8-9 full-paper completeness`
 Lowest-scoring category: `Model and mathematical correctness`
-First repair action: add a notation table and equations for the RT-GMM score aggregation, retained-state truncation diagnostics, DC-LODF screening, and AC replay confirmation protocol.
+First repair action: write the complete TPWRS formulation with notation, RT-GMM score equations, retained-state truncation diagnostics, DC-LODF screening, AC replay confirmation protocol, full event-level tables, mismatch discussion, and references.
 
 ### Repair Applied in This Draft
 

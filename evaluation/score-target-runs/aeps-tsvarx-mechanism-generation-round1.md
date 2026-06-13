@@ -3,7 +3,8 @@
 Case id: `aeps-tsvarx-mechanism-generation`
 Target venue: `电力系统自动化`
 Target score band: `8-9`
-Run status: `passes 8-9 gate only under the mechanism/scenario-generation framing; blocked below 8-9 for node-level risk-propagation or N-1 risk-reduction framing`
+Run status: `blocked below 8-9 full-paper completeness; compressed mechanism/scenario-generation package only`
+Full-paper readiness: `compressed evaluation package only; missing complete model equations, applicability tables, full case-study comparison, discussion, references, and venue template`
 
 ## Evidence Packet
 
@@ -90,7 +91,7 @@ PowerLit coverage:
 
 ## Review
 
-Verdict: `小修后录用` for an AEPS mechanism/scenario-generation paper. The same evidence is `blocked below 8-9` if the manuscript is reframed as a node-level grid-risk or N-1 risk-reduction paper.
+Verdict: `cannot be called 小修后录用 as a real manuscript`. The artifact supports a mechanism/scenario-generation direction, but it is not a complete AEPS paper because it lacks full equations, applicability/tolerance tables, complete case comparison, discussion, references, and final manuscript structure.
 
 ### Scores
 
@@ -106,9 +107,10 @@ Verdict: `小修后录用` for an AEPS mechanism/scenario-generation paper. The 
 | Writing, structure, and format | 8.2 | The draft follows AEPS's concise problem-model-case-conclusion rhythm. |
 
 Average score: `8.26`
-Gate status: `passes 8-9 gate`
+Package diagnostic score: `8.26 for compressed artifact only`
+Gate status: `blocked below 8-9 full-paper completeness`
 Lowest-scoring category: `Method clarity and reproducibility`
-First repair action: add a compact table of applicability rules and tolerances for the four mechanism checks, and keep the title/abstract in the mechanism-generation framing.
+First repair action: write the complete TS-VARX model and mechanism-check equations, then add applicability/tolerance tables, event-city comparison tables, mechanism-wise discussion, and a clear boundary separating scenario generation from node-level risk propagation.
 
 ### Repair Applied in This Draft
 

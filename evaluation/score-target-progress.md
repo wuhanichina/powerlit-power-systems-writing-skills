@@ -41,24 +41,25 @@ Installed skill sync:
 
 ## Completion Audit
 
-The score-target objective is now proven at the representative full-paper-package level. For each typical venue packet, the repository contains:
+The previous score-target audit was too permissive. The recorded artifacts are compressed evaluation packages, not complete manuscripts. They do not contain the full method derivations, equations, algorithms, complete case-study tables, baseline discussion, references, or venue templates needed for real journal review.
 
-1. Generate a manuscript or representative full-paper package from the actual evidence packet.
-2. Review it with `powerlit-power-systems-paper-review`.
-3. Record the eight category scores, average score, gate status, lowest-scoring category, and repair action.
-4. Run at least one repair loop when any core category is below 8.
-5. Show that the repaired draft reaches the 8-9 gate, or mark the missing evidence that blocks the target.
+Corrected rule:
 
-Remaining work is manuscript-production work, not score-target skill debugging: final equation numbering, reference formatting, polished figures/tables, and final venue templates would still be needed before real submission.
+1. A compressed package may receive a package diagnostic score.
+2. A full-paper 8-9 gate may be passed only by a complete manuscript.
+3. Missing equations, model derivation, full case comparison, or discussion blocks the full-paper gate regardless of the package's diagnostic score.
+4. Existing score-target runs must be read as direction diagnostics and repair plans, not as evidence that a manuscript would pass real review.
+
+Remaining work is still score-target skill debugging and manuscript-production work: the skill must now generate complete manuscripts or explicitly report `blocked below 8-9 full-paper completeness`.
 
 ## Generated-and-Reviewed Runs
 
 | Evidence packet | Venue | Artifact | Current result | Next repair |
 | --- | --- | --- | --- | --- |
-| `csee-pali-em-sca-pv8f8` | CSEE | `evaluation/score-target-runs/csee-pali-em-sca-pv8f8-round1.md` | Average 8.33, passes 8-9 gate as a compressed full-paper package | Add final equation blocks and complete symbol definitions before submission use. |
-| `tpwrs-rtgmm-risk-screening` | IEEE TPWRS | `evaluation/score-target-runs/tpwrs-rtgmm-risk-screening-round2.md` | Average 8.24, passes 8-9 gate as a bounded two-stage screening-and-reference package | Add final notation/equation tables; preserve the RT-GMM vs AC replay mismatch as boundary evidence. |
-| `tsg-bayesaqppf-edge-update` | IEEE TSG | `evaluation/score-target-runs/tsg-bayesaqppf-edge-update-round1.md` | Average 8.26, passes 8-9 gate as a compact full-paper package | Add final Dirichlet-NIW equations and keep IEEE 13 risk evidence separate from IEEE 123 scaling evidence. |
-| `aeps-tsvarx-mechanism-generation` | AEPS | `evaluation/score-target-runs/aeps-tsvarx-mechanism-generation-round1.md` | Average 8.26, passes 8-9 gate only as a mechanism/scenario-generation paper; blocked for grid-risk framing | Add applicability/tolerance table and keep node-level propagation as future work. |
+| `csee-pali-em-sca-pv8f8` | CSEE | `evaluation/score-target-runs/csee-pali-em-sca-pv8f8-round1.md` | Package diagnostic score 8.33; blocked below 8-9 full-paper completeness | Write full equations, symbol definitions, physical intuition, baseline tables, sensitivity/boundary analysis, references, and final CSEE structure. |
+| `tpwrs-rtgmm-risk-screening` | IEEE TPWRS | `evaluation/score-target-runs/tpwrs-rtgmm-risk-screening-round2.md` | Package diagnostic score 8.24; blocked below 8-9 full-paper completeness | Write full formulation, RT-GMM score equations, replay protocol, event-level tables, mismatch discussion, and references. |
+| `tsg-bayesaqppf-edge-update` | IEEE TSG | `evaluation/score-target-runs/tsg-bayesaqppf-edge-update-round1.md` | Package diagnostic score 8.26; blocked below 8-9 full-paper completeness | Add full Dirichlet-NIW derivation, update algorithm, complete IEEE 13/123 tables, full-refit comparison, and references. |
+| `aeps-tsvarx-mechanism-generation` | AEPS | `evaluation/score-target-runs/aeps-tsvarx-mechanism-generation-round1.md` | Package diagnostic score 8.26; blocked below 8-9 full-paper completeness | Add TS-VARX equations, applicability/tolerance tables, event-city mechanism comparison, discussion, and references. |
 
 Remaining packets without generated-and-reviewed artifacts:
 
@@ -66,7 +67,7 @@ Remaining packets without generated-and-reviewed artifacts:
 
 Current blocker for the overall objective:
 
-- None at the score-target package level. The four typical venue packets now have generated-and-reviewed artifacts that either pass the 8-9 gate under their bounded paper object or explicitly block unsupported framings.
+- The repository does not yet contain complete generated manuscripts for the four venue packets. The existing runs are compressed diagnostic artifacts and must not be used as proof that the writing skill can pass real journal review.
 
 New TPWRS replay evidence:
 

@@ -24,12 +24,31 @@ A full-paper draft may target 8-9 only when all of these are true:
 
 - the problem is venue-relevant and specific;
 - the contribution is a reviewable model, formulation, mechanism, estimator, controller, certificate, or evidence insight;
-- method facts include variables, assumptions, equations or algorithms, and reproducibility details;
-- case evidence includes at least one main system, relevant baselines, metrics with units, and a boundary or sensitivity test when the claim depends on it;
+- the manuscript contains a complete method/model section with variables, assumptions, equations, algorithms, physical interpretation, and reproducibility details;
+- the manuscript contains a complete case-study section with system setup, scenario construction, parameter settings, baselines, metrics with units, comparison tables or figures, result analysis, sensitivity or ablation when the claim depends on it, and boundary discussion;
+- the manuscript contains a literature/novelty argument or a supplied PowerLit novelty boundary sufficient for the venue;
+- the results discussion interprets why the method behaves as observed, not only whether metrics are numerically higher or lower;
 - the conclusion is narrower than or equal to the demonstrated evidence;
 - PowerLit near-neighbor risk has been checked or the draft states fallback limitations.
 
 Case-analysis evidence alone can support an 8-9 case-study section only. It cannot support an 8-9 full-paper claim without the method object and novelty boundary.
+
+A compressed evaluation package, outline, abstract-plus-results draft, or representative full-paper package is not a full paper. It must be labeled as package-level or section-level, and its gate status must be `blocked below 8-9 full-paper completeness` unless the complete manuscript text and required tables/equations are present.
+
+## Full-Paper Completeness Gate
+
+Before assigning a full-paper 8-9 score, check that the draft includes all of these manuscript-facing parts:
+
+1. Title, abstract, and contribution statement.
+2. Introduction and related-work/near-neighbor positioning.
+3. Problem formulation or system model.
+4. Proposed method with equations, assumptions, variable definitions, physical intuition, and algorithm or solution procedure.
+5. Case-study design: system, data/scenario, baselines, metrics, parameter settings, and reproducibility details.
+6. Results: complete tables/figures or table-ready numeric results, not only prose summaries.
+7. Comparative analysis: baseline comparison, mechanism interpretation, sensitivity/ablation, and failure or boundary cases.
+8. Discussion and conclusion with scoped claims.
+
+If any item is missing, the result may still be useful as a drafting artifact, but it cannot pass the 8-9 full-paper gate. The correct status is `blocked below 8-9 full-paper completeness`, with the first repair action naming the missing manuscript part.
 
 ## Score Repair Discipline
 
@@ -78,3 +97,9 @@ For edge-update or data-refresh papers, separate the evidence dimensions before 
 ## Output Boundary
 
 Do not write "this reaches 8-9" inside manuscript prose. If reporting maintenance results, state the score-target status separately from the manuscript text and identify the category that would most likely prevent the score.
+
+For score-target run files, always separate:
+
+- `Package diagnostic score`: score for the compressed artifact or section, if useful.
+- `Full-paper readiness`: `complete manuscript`, `section-level only`, or `compressed evaluation package only`.
+- `Gate status`: use `passes 8-9 full-paper gate` only for complete manuscripts. Use `blocked below 8-9 full-paper completeness` for compressed artifacts.
