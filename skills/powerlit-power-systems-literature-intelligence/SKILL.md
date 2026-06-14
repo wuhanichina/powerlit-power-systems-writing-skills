@@ -22,7 +22,13 @@ Resolve the PowerLit JSON root in this order:
 
 The resolved root must be a readable directory containing venue folders and `.json` paper records. Do not hard-code any other machine-specific path.
 
-Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell access is available. Use `scripts/Search-PowerLitJson.ps1` for lightweight local retrieval. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
+Fast retrieval is mandatory for PowerLit-backed workflows. Prefer the local SQLite FTS index when it exists:
+
+1. `POWERLIT_INDEX_ROOT`.
+2. `POWERLIT_LOCAL_CACHE/powerlit-index`.
+3. Repository `.cache/powerlit-index`.
+
+Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `scripts/Search-PowerLitIndex.py` for direct cross-platform indexed retrieval. On Windows, `scripts/Search-PowerLitJson.ps1` is still the public search entry and automatically uses the local index first; it falls back to `rg` prefiltering and raw JSON parsing only when the index is missing or incomplete. Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check corpus availability when shell access is available. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
 
 When the task maps to a known direction or method family, consult `evaluation/method-canon/method-canon.json` before broad retrieval. The method canon is a quality anchor for method families and evidence bars; it is not a substitute for a final main-corpus novelty search.
 
@@ -35,7 +41,22 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.
   -Top 10
 ```
 
-`-VenueFolder` is optional but should be used when a target venue is known. `-Top` controls the number of returned records. The script returns JSON with access status, root path, query terms, candidate source, candidate count, parsed count, elapsed milliseconds, match count, and ranked results containing title, title source, source title, DOI, file path, matched terms, and a snippet.
+Cross-platform indexed interface:
+
+```bash
+python scripts/Search-PowerLitIndex.py \
+  --query "<technical query>" \
+  --venue-folder ieee_tsg \
+  --top 10
+```
+
+Index build interface:
+
+```bash
+python scripts/Build-PowerLitIndex.py --venue-folder ieee_tsg --venue-folder ieee_tpwrs
+```
+
+`-VenueFolder` or `--venue-folder` is optional but should be used when a target venue is known. `-Top` or `--top` controls the number of returned records. The script returns JSON with access status, root path, query terms, candidate source, candidate count, parsed count, elapsed milliseconds, match count, and ranked results containing title, title source, source title, DOI, file path, matched terms, and a snippet. `candidate_source=powerlit_index_sqlite` is the normal fast path. `candidate_source=rg` is a fallback path and should trigger index build/refresh when repeated workflows depend on PowerLit.
 
 ## Access Policy
 
@@ -63,6 +84,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.
    - likely venue.
 3. Read relevant verified method-canon entries when available, respecting `usage_policy`.
 4. Retrieve candidate papers from the main PowerLit corpus:
+   - use the local PowerLit index first; build or refresh it if repeated queries are expected,
    - start with target-venue folders when the target venue is known,
    - widen to TPWRS, TSG, CSEE, AEPS, MPCE, Applied Energy, Energy, IJEPES, and Power Grid Technology when needed,
    - keep the raw file paths for auditability.

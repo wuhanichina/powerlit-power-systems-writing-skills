@@ -528,11 +528,41 @@ if (Test-Path -LiteralPath $searchScript) {
             Add-Failure "Search-PowerLitJson.ps1 missing rg/telemetry token: $requiredSearchToken"
         }
     }
+    foreach ($requiredIndexToken in @("POWERLIT_INDEX_ROOT", "Search-PowerLitIndex.py", "Resolve-PowerLitIndexRoot", "DisableIndex")) {
+        if ($searchScriptText -notmatch [regex]::Escape($requiredIndexToken)) {
+            Add-Failure "Search-PowerLitJson.ps1 missing index-first token: $requiredIndexToken"
+        }
+    }
     if ($searchScriptText -match "POWERLIT_LOCAL_SUBSET") {
         Add-Failure "Search-PowerLitJson.ps1 must not use POWERLIT_LOCAL_SUBSET"
     }
 } else {
     Add-Failure "Missing PowerLit search script"
+}
+
+$indexCommonScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\powerlit_index_common.py"
+$indexBuildScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py"
+$indexSearchScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitIndex.py"
+foreach ($indexScript in @($indexCommonScript, $indexBuildScript, $indexSearchScript)) {
+    if (-not (Test-Path -LiteralPath $indexScript -PathType Leaf)) {
+        Add-Failure "Missing PowerLit index script: $indexScript"
+    }
+}
+if (Test-Path -LiteralPath $indexBuildScript) {
+    $indexBuildText = Read-Utf8 -Path $indexBuildScript
+    foreach ($requiredIndexBuildToken in @("manifest.json", "content_head_chars", "SQLite FTS", "CREATE VIRTUAL TABLE records_fts")) {
+        if ($indexBuildText -notmatch [regex]::Escape($requiredIndexBuildToken)) {
+            Add-Failure "Build-PowerLitIndex.py missing index-build token: $requiredIndexBuildToken"
+        }
+    }
+}
+if (Test-Path -LiteralPath $indexSearchScript) {
+    $indexSearchText = Read-Utf8 -Path $indexSearchScript
+    foreach ($requiredIndexSearchToken in @("powerlit_index_sqlite", "records_fts MATCH", "candidate_count", "parsed_count", "elapsed_ms")) {
+        if ($indexSearchText -notmatch [regex]::Escape($requiredIndexSearchToken)) {
+            Add-Failure "Search-PowerLitIndex.py missing index-search token: $requiredIndexSearchToken"
+        }
+    }
 }
 
 $evidenceAnalyzer = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Analyze-PowerLitEvidenceStrength.ps1"

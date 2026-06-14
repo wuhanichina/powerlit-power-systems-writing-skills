@@ -53,7 +53,24 @@ PowerLit JSON 根目录解析顺序：
 4. `POWERLIT_LITERATURE_JSON`
 5. 默认局域网路径：`\\WHome\PowerLit\literature\json`
 
-轻量检索接口：
+高频应用应先构建本地 SQLite FTS 索引。索引写入 `.cache/powerlit-index` 或 `POWERLIT_INDEX_ROOT`，不进入版本管理：
+
+```powershell
+python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `
+  --venue-folder ieee_tsg `
+  --venue-folder ieee_tpwrs
+```
+
+跨平台快速检索接口：
+
+```powershell
+python skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitIndex.py `
+  --query "distributed voltage control" `
+  --venue-folder ieee_tsg `
+  --top 10
+```
+
+Windows 兼容检索接口会优先使用本地索引，索引缺失时才回退到主库 `rg` 预筛：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `

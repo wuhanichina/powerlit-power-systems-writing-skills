@@ -6,11 +6,15 @@ param(
 
     [string]$PowerLitJsonRoot,
 
+    [string]$PowerLitIndexRoot,
+
     [string[]]$VenueFolder,
 
     [int]$Top = 20,
 
     [int]$CandidateFileLimit = 300,
+
+    [switch]$DisableIndex,
 
     [switch]$IncludeAnalysis
 )
@@ -34,6 +38,90 @@ function Resolve-PowerLitJsonRoot {
         if (Test-Path -LiteralPath $candidate -PathType Container) {
             return (Resolve-Path -LiteralPath $candidate).ProviderPath
         }
+    }
+    return $null
+}
+
+function Resolve-PowerLitIndexRoot {
+    param([string]$Root)
+
+    $candidates = New-Object System.Collections.Generic.List[string]
+    if ($Root) { $candidates.Add($Root) }
+    if ($env:POWERLIT_INDEX_ROOT) { $candidates.Add($env:POWERLIT_INDEX_ROOT) }
+    if ($env:POWERLIT_LOCAL_CACHE) { $candidates.Add((Join-Path $env:POWERLIT_LOCAL_CACHE "powerlit-index")) }
+    $repoRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
+    $candidates.Add((Join-Path $repoRoot ".cache\powerlit-index"))
+
+    $seen = @{}
+    foreach ($candidate in $candidates) {
+        if (-not $candidate) { continue }
+        $key = $candidate.ToLowerInvariant()
+        if ($seen.ContainsKey($key)) { continue }
+        $seen[$key] = $true
+        if ((Test-Path -LiteralPath $candidate -PathType Container) -and ((Test-Path -LiteralPath (Join-Path $candidate "manifest.json")) -or (Get-ChildItem -LiteralPath $candidate -Filter "*.sqlite" -File -ErrorAction SilentlyContinue | Select-Object -First 1) -or (Get-ChildItem -LiteralPath $candidate -Filter "*.jsonl" -File -ErrorAction SilentlyContinue | Select-Object -First 1))) {
+            return (Resolve-Path -LiteralPath $candidate).ProviderPath
+        }
+    }
+    return $null
+}
+
+function Get-PythonCommand {
+    foreach ($name in @("python", "python3")) {
+        $cmd = Get-Command $name -ErrorAction SilentlyContinue
+        if ($cmd) {
+            return [pscustomobject]@{
+                command = $cmd.Source
+                prefix_args = @()
+            }
+        }
+    }
+    $py = Get-Command py -ErrorAction SilentlyContinue
+    if ($py) {
+        return [pscustomobject]@{
+            command = $py.Source
+            prefix_args = @("-3")
+        }
+    }
+    return $null
+}
+
+function Invoke-PowerLitIndexSearch {
+    param(
+        [string]$IndexRoot,
+        [string]$QueryText,
+        [string[]]$SearchTerms,
+        [string[]]$Venues,
+        [int]$TopCount
+    )
+
+    $python = Get-PythonCommand
+    if (-not $python) { return $null }
+    $indexSearchScript = Join-Path $PSScriptRoot "Search-PowerLitIndex.py"
+    if (-not (Test-Path -LiteralPath $indexSearchScript -PathType Leaf)) { return $null }
+
+    $args = New-Object System.Collections.Generic.List[string]
+    foreach ($arg in @($python.prefix_args)) { $args.Add($arg) }
+    $args.Add($indexSearchScript)
+    $args.Add("--query")
+    $args.Add($QueryText)
+    $args.Add("--index-dir")
+    $args.Add($IndexRoot)
+    $args.Add("--top")
+    $args.Add([string]$TopCount)
+    foreach ($term in @($SearchTerms | Where-Object { $_ })) {
+        if (-not ($args -contains "--terms")) {
+            $args.Add("--terms")
+        }
+        $args.Add($term)
+    }
+    foreach ($venue in @($Venues | Where-Object { $_ })) {
+        $args.Add("--venue-folder")
+        $args.Add($venue)
+    }
+
+    $output = & $python.command @args
+    if ($LASTEXITCODE -eq 0 -and $output) {
+        return ($output -join [Environment]::NewLine)
     }
     return $null
 }
@@ -182,6 +270,18 @@ function Get-CandidateJsonFiles {
 }
 
 $timer = [System.Diagnostics.Stopwatch]::StartNew()
+
+if (-not $DisableIndex) {
+    $indexRoot = Resolve-PowerLitIndexRoot -Root $PowerLitIndexRoot
+    if ($indexRoot) {
+        $indexOutput = Invoke-PowerLitIndexSearch -IndexRoot $indexRoot -QueryText $Query -SearchTerms $Terms -Venues $VenueFolder -TopCount $Top
+        if ($indexOutput) {
+            Write-Output $indexOutput
+            exit 0
+        }
+    }
+}
+
 $root = Resolve-PowerLitJsonRoot -Root $PowerLitJsonRoot
 if (-not $root) {
     [pscustomobject]@{
