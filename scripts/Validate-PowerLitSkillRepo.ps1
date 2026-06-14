@@ -101,6 +101,12 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "references/prose-quality-gates\.md") {
         Add-Failure "paper-writing skill must load references/prose-quality-gates.md"
     }
+    if ($paperSkillText -match "Paragraphs:.*references/publishable-prose\.md") {
+        Add-Failure "paper-writing skill must route mandatory paragraph cleanup through prose-quality-gates.md, not publishable-prose.md"
+    }
+    if ($paperSkillText -notmatch "Paragraphs: apply.*references/prose-quality-gates\.md") {
+        Add-Failure "paper-writing skill must make prose-quality-gates.md the mandatory paragraph cleanup path"
+    }
     if ($paperSkillText -notmatch "mandatory reader-experience pass") {
         Add-Failure "paper-writing skill must require mandatory reader-experience pass"
     }
@@ -294,6 +300,20 @@ if (Test-Path -LiteralPath $proseQualityGates) {
     }
 } else {
     Add-Failure "Missing prose-quality-gates.md"
+}
+
+$taskPromptsReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\task-prompts.md"
+if (Test-Path -LiteralPath $taskPromptsReference) {
+    $taskPromptsText = Read-Utf8 -Path $taskPromptsReference
+    $legacyCleanupDefault = [regex]::Escape('apply `publishable-prose.md`, `rhythm.md`, `lexicon.md`, and `anti-ai-style.md`')
+    if ($taskPromptsText -match $legacyCleanupDefault) {
+        Add-Failure "task-prompts.md must not make the legacy prose/rhythm/lexicon files the default cleanup path"
+    }
+    if ($taskPromptsText -notmatch "prose-quality-gates\.md" -or $taskPromptsText -notmatch "reader-experience-pass\.md") {
+        Add-Failure "task-prompts.md must route light cleanup through prose-quality-gates.md and reader-experience-pass.md"
+    }
+} else {
+    Add-Failure "Missing task-prompts.md"
 }
 
 $reviewSkill = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\SKILL.md"
@@ -538,6 +558,14 @@ if (Test-Path -LiteralPath $methodCanon) {
         if (-not $methodCanonData.entries -or @($methodCanonData.entries).Count -lt 10) {
             Add-Failure "${methodCanon}: must contain a nontrivial verified method canon"
         }
+        $requiredDirectionIds = @($methodCanonData.required_direction_ids)
+        if ($requiredDirectionIds.Count -lt 13) {
+            Add-Failure "${methodCanon}: must declare the full required direction_id coverage set"
+        }
+        if (-not $methodCanonData.metadata_audit -or $methodCanonData.metadata_audit.source -ne "Crossref Works API" -or -not $methodCanonData.metadata_audit.reverified_at) {
+            Add-Failure "${methodCanon}: must include a Crossref metadata audit snapshot"
+        }
+        $coveredDirectionIds = New-Object System.Collections.Generic.HashSet[string]
         foreach ($entry in @($methodCanonData.entries)) {
             foreach ($field in @("direction_id", "method_id", "role", "title", "year", "venue", "doi", "source_url", "selection_reason", "powerlit_status", "usage_policy", "metadata_verification", "curation_status", "last_reviewed")) {
                 if (-not $entry.$field) {
@@ -550,6 +578,9 @@ if (Test-Path -LiteralPath $methodCanon) {
                 }
                 if ($entry.metadata_verification.status -ne "verified") {
                     Add-Failure "${methodCanon}: accepted entry must have verified metadata: $($entry.doi)"
+                }
+                if (-not $entry.metadata_verification.retrieved_at -or $entry.metadata_verification.retrieved_at -eq "2026-06-14T00:00:00Z") {
+                    Add-Failure "${methodCanon}: accepted entry must have a non-placeholder metadata retrieved_at: $($entry.doi)"
                 }
                 if (-not $entry.last_reviewed) {
                     Add-Failure "${methodCanon}: accepted entry missing last_reviewed: $($entry.doi)"
@@ -570,6 +601,9 @@ if (Test-Path -LiteralPath $methodCanon) {
                 if ($combinedCore -match "(?i)pending|candidate|verify title") {
                     Add-Failure "${methodCanon}: accepted entry contains pending/candidate language: $($entry.doi)"
                 }
+                if ($entry.metadata_verification.status -eq "verified") {
+                    [void]$coveredDirectionIds.Add([string]$entry.direction_id)
+                }
             }
             if ($entry.powerlit_status -eq "out_of_corpus" -and $entry.usage_policy -ne "citation_only") {
                 Add-Failure "${methodCanon}: out_of_corpus entry must be citation_only: $($entry.doi)"
@@ -581,6 +615,11 @@ if (Test-Path -LiteralPath $methodCanon) {
                 if (-not $entry.powerlit_relative_path) {
                     Add-Failure "${methodCanon}: in_corpus entry missing powerlit_relative_path: $($entry.doi)"
                 }
+            }
+        }
+        foreach ($directionId in $requiredDirectionIds) {
+            if (-not $coveredDirectionIds.Contains([string]$directionId)) {
+                Add-Failure "${methodCanon}: missing verified accepted canon coverage for direction_id=$directionId"
             }
         }
     } catch {
@@ -633,5 +672,7 @@ if ($failures.Count -gt 0) {
     reconstruction_cases = if (Test-Path -LiteralPath $reconstructionCases) { @($reconstructionCaseData).Count } else { 0 }
     actual_case_evidence_packets = if (Test-Path -LiteralPath $actualEvidencePackets) { @($actualEvidencePacketData).Count } else { 0 }
     method_canon_entries = if ($methodCanonData -and $methodCanonData.entries) { @($methodCanonData.entries).Count } else { 0 }
+    method_canon_directions = if ($methodCanonData -and $methodCanonData.entries) { @($methodCanonData.entries | Select-Object -ExpandProperty direction_id -Unique).Count } else { 0 }
+    method_canon_required_directions = if ($methodCanonData -and $methodCanonData.required_direction_ids) { @($methodCanonData.required_direction_ids).Count } else { 0 }
     powerlit_search = $(if ($SkipPowerLitSearch) { "skipped" } else { "checked" })
 } | ConvertTo-Json -Depth 5

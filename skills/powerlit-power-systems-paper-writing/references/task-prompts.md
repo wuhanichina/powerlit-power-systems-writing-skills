@@ -32,7 +32,7 @@ User prompt shape:
 请用 $powerlit-power-systems-paper-writing 轻量润色下面这段中文，目标期刊为[期刊]。保留原有公式、指标、引用和结论边界，不新增结果；只修复AI味、空泛句、术语和段落负担。
 ```
 
-Expected behavior: apply `publishable-prose.md`, `rhythm.md`, `lexicon.md`, and `anti-ai-style.md`; do not reroute into a full rewrite unless the paragraph has a logic break.
+Expected behavior: apply `prose-quality-gates.md` and the mandatory `reader-experience-pass.md`; consult the legacy prose/rhythm/lexicon examples only when the consolidated gate is insufficient. Do not reroute into a full rewrite unless the paragraph has a logic break.
 
 ### English IEEE Cleanup
 

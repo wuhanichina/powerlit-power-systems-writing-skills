@@ -91,10 +91,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `references/method-model.md`
 - `references/case-conclusion.md`
 - `references/figures-tables-results.md`
-- `references/publishable-prose.md`
-- `references/rhythm.md`
+- `references/prose-quality-gates.md`
+- `references/reader-experience-pass.md`
 - `references/task-prompts.md`
-- `references/anti-ai-style.md`
+- `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md`（可选深入例子）
 
 适用于摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。
 

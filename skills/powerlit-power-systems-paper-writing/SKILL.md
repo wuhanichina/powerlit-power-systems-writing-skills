@@ -37,7 +37,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - light editing, translation, compression, expansion, logic checking, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
    - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
-   - legacy wording cleanup only when deeper examples are needed: `references/lexicon.md` and `references/anti-ai-style.md`.
+   - optional deep wording examples only when the consolidated gate is insufficient: `references/publishable-prose.md`, `references/rhythm.md`, `references/lexicon.md`, and `references/anti-ai-style.md`.
 8. Build the internal drafting map before writing:
    - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
    - venue profile;
@@ -108,7 +108,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Case study/results: use power-system evidence objects, not generic SOTA language. State system, operating scenario, baselines, metrics, solver/protocol, sensitivity, and boundary where relevant.
 - Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
-- Paragraphs: apply the reader-burden rule in `references/publishable-prose.md`: judgment first, reason after it, one idea per paragraph, and every sentence supporting the same point.
+- Paragraphs: apply the reader-burden rule in `references/prose-quality-gates.md`: judgment first, reason after it, one idea per paragraph, and every sentence supporting the same point.
 - Reader experience: apply `references/reader-experience-pass.md` before delivery. Repair high-impact `[writing]` burdens; keep `[topic-hard]` density only when definitions, transitions, physical intuition, or boundary language make the passage linearly followable.
 
 ## Hard Rules
