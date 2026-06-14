@@ -14,9 +14,9 @@ Before writing a full paper or assigning an 8-9 target, build an evidence-streng
 - what boundary language is used when the proposed method is not uniformly best on all metrics;
 - what evidence would be missing if the current manuscript tried to make the same class of claim.
 
-## Common Direction Baselines
+## Method-Canon Baselines
 
-For the user's recurring research, do not start from project-specific PowerLit scans. First load `evaluation/common-research-directions.json` and, when available, `evaluation/common-research-direction-evidence-strength.md` or `.json`.
+For the user's recurring research, do not start from project-specific PowerLit scans alone. First load `evaluation/method-canon/method-canon.json` when it is available.
 
 Map the current paper to one or more broad directions:
 
@@ -34,9 +34,15 @@ Map the current paper to one or more broad directions:
 - pricing methods;
 - electricity market design.
 
-Use the broad direction's evidence bar as the minimum manuscript standard, then add stricter gates for the paper's claim class. For example, an inverse PALI paper inherits the probabilistic-power-flow evidence bar and also inherits the diagnostic/certificate gate when it claims identifiability, feasibility, or non-substitutable inverse value.
+Use the nearest verified and accepted method-canon entries as quality anchors: foundational papers define the method family, method exemplars show what a reviewable formulation and comparison look like, and evidence-bar exemplars show which manuscript-facing quantities survived review. Then add stricter gates for the paper's claim class. For example, an inverse PALI paper should be compared against probabilistic-power-flow and diagnostic/certificate anchors when it claims identifiability, feasibility, or non-substitutable inverse value.
 
-The direction profile is a fast working baseline. It can replace repeated full-corpus scans during prompt debugging and score-target repair, but it cannot replace a final full-corpus novelty check before submission.
+Apply canon consumption limits:
+
+- `powerlit_status=in_corpus`: may support citation, evidence-bar extraction, and style/structure pattern learning from the retrieved PowerLit record.
+- `powerlit_status=out_of_corpus`: may support bibliographic positioning only; do not infer manuscript-facing quantities, evidence depth, or result patterns from title/metadata alone.
+- `curation_status` below `accepted` or `metadata_verification.status` below `verified`: pending candidate only, not a manuscript citation or evidence exemplar.
+
+The method canon cannot replace a final full-corpus novelty check before submission. It prevents the skill from treating keyword-noisy neighbors as classics, but current nearest-neighbor coverage still comes from the main corpus.
 
 ## Evidence-Strength Profile
 

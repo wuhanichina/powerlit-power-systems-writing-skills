@@ -7,3 +7,9 @@ __pycache__/
 .venv/
 venv/
 
+# Local/generated evaluation artifacts
+evaluation/common-research-directions.json
+evaluation/common-research-direction-evidence-strength.json
+evaluation/common-research-direction-evidence-strength.md
+evaluation/score-target-runs/
+

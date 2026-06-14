@@ -8,15 +8,21 @@ Resolve PowerLit through `powerlit-power-systems-literature-intelligence`:
 
 1. User-supplied path.
 2. `POWERLIT_JSON_ROOT`.
-3. `POWERLIT_LOCAL_SUBSET` or `POWERLIT_LOCAL_CACHE` for prompt-debugging subsets.
+3. `POWERLIT_LOCAL_CACHE` for a local reusable cache or index.
 4. `POWERLIT_LITERATURE_JSON`.
 5. `\\WHome\PowerLit\literature\json`.
 
 If the corpus is accessible, use it before drafting citation-sensitive prose. If it is not accessible, state `PowerLit unavailable; using fallback non-corpus workflow` once and continue only with supplied references, citation slots, or literature-limited wording.
 
-When prompt debugging, benchmark reconstruction, or repeated score-target runs are slow on the LAN corpus, first build a local subset with `Build-PowerLitLocalSubset.ps1` for the needed venue and query, set `POWERLIT_LOCAL_SUBSET`, and run all retrieval, evidence-strength, writing, and review loops against that subset. Do not treat a narrow local subset as complete novelty coverage; use it as a fast debugging cache and widen to the full corpus before final novelty claims.
+For recurring research directions, first consult `evaluation/method-canon/method-canon.json`. Use verified accepted entries to identify foundational papers, method-family exemplars, and evidence-bar anchors. Then search the main PowerLit corpus for current nearest neighbors, target-venue papers, and project-specific novelty threats.
 
-For the user's recurring research directions under `D:\Research` numeric folders, first consult the prebuilt direction profiles in `evaluation/common-research-direction-evidence-strength.md` and `evaluation/common-research-direction-evidence-strength.json`. These profiles are produced from `evaluation/common-research-directions.json` by `scripts/Build-CommonPowerLitEvidenceProfiles.ps1`; they set the direction-level evidence bar before any project-specific retrieval.
+Do not treat the benchmark paper set as recall coverage. It is a curated quality anchor; final novelty and citation coverage still come from the main corpus or user-supplied references.
+
+Respect canon usage policy:
+
+- `powerlit_status=in_corpus` with `usage_policy=citation_and_pattern`: the entry may be cited and its retrieved PowerLit record may be used for evidence-bar, structure, and style-pattern extraction.
+- `powerlit_status=out_of_corpus` with `usage_policy=citation_only`: the entry may be used only for bibliographic positioning; do not summarize its content or extract prose/evidence patterns.
+- Entries without verified DOI metadata and accepted curation status are pending candidates only; do not cite them in manuscript prose.
 
 ## Search Contract
 
@@ -73,7 +79,7 @@ Before drafting a citation-sensitive section, build these internal artifacts:
 
 - `Venue profile`: target venue, expected paper object, introduction rhythm, method depth, evidence bar, and register.
 - `Closest competitors`: papers overlapping in problem, mechanism, model, data, or evidence. Do not select papers merely because they share a keyword.
-- `Evidence-strength profile`: direction-level baseline first, then venue-near accepted-paper evidence bar for the same claim class, including manuscript-facing quantities and missing-evidence blockers.
+- `Evidence-strength profile`: verified method-canon anchor first, then venue-near accepted-paper evidence bar for the same claim class, including manuscript-facing quantities and missing-evidence blockers.
 - `Corpus style exemplars`: venue-near papers used for section shape, paragraph function, rhythm, evidence presentation, and boundary language. Keep this as internal guidance unless the user asks for a style audit.
 - `Citation-to-sentence plan`: each citation supports one sentence-level function: background, method family, limitation, closest contrast, or evidence precedent.
 - `Claim boundary`: what the paper may claim after comparison, and what it must not claim.

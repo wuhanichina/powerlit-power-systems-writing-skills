@@ -49,8 +49,9 @@ PowerLit JSON 根目录解析顺序：
 
 1. 用户显式提供的路径或脚本参数
 2. `POWERLIT_JSON_ROOT`
-3. `POWERLIT_LITERATURE_JSON`
-4. 默认局域网路径：`\\WHome\PowerLit\literature\json`
+3. `POWERLIT_LOCAL_CACHE`
+4. `POWERLIT_LITERATURE_JSON`
+5. 默认局域网路径：`\\WHome\PowerLit\literature\json`
 
 轻量检索接口：
 

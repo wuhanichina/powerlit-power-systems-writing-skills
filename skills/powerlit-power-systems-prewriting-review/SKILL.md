@@ -26,7 +26,7 @@ Do not polish prose first. A polished but unsupported paper should be stopped be
    - experiment/case results,
    - full rough draft.
 3. Try to use `powerlit-power-systems-literature-intelligence` for a corpus-backed novelty check:
-   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LOCAL_CACHE`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
    - if accessible, retrieve closest competitors and build a novelty-threat matrix;
    - if inaccessible, state fallback mode once and continue with the non-corpus prewriting review.
 4. If the user is asking for early brainstorming, innovation discovery, idea reframing, theoretical migration, or insight generation, load `references/insight-discovery.md` first. Generate candidate structures, label them as `known theory`, `structural analogy`, or `research hypothesis`, then return to the innovation-chain gate before any writing decision.

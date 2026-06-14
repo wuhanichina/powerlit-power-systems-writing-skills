@@ -10,9 +10,6 @@ if ($PowerLitJsonRoot) {
 if ($env:POWERLIT_JSON_ROOT) {
     $candidates.Add($env:POWERLIT_JSON_ROOT)
 }
-if ($env:POWERLIT_LOCAL_SUBSET) {
-    $candidates.Add($env:POWERLIT_LOCAL_SUBSET)
-}
 if ($env:POWERLIT_LOCAL_CACHE) {
     $candidates.Add($env:POWERLIT_LOCAL_CACHE)
 }
@@ -35,7 +32,7 @@ foreach ($candidate in $candidates) {
         [pscustomobject]@{
             available = $true
             path = (Resolve-Path -LiteralPath $candidate).ProviderPath
-            source = if ($candidate -eq $PowerLitJsonRoot) { "parameter" } elseif ($candidate -eq $env:POWERLIT_JSON_ROOT) { "POWERLIT_JSON_ROOT" } elseif ($candidate -eq $env:POWERLIT_LOCAL_SUBSET) { "POWERLIT_LOCAL_SUBSET" } elseif ($candidate -eq $env:POWERLIT_LOCAL_CACHE) { "POWERLIT_LOCAL_CACHE" } elseif ($candidate -eq $env:POWERLIT_LITERATURE_JSON) { "POWERLIT_LITERATURE_JSON" } else { "default" }
+            source = if ($candidate -eq $PowerLitJsonRoot) { "parameter" } elseif ($candidate -eq $env:POWERLIT_JSON_ROOT) { "POWERLIT_JSON_ROOT" } elseif ($candidate -eq $env:POWERLIT_LOCAL_CACHE) { "POWERLIT_LOCAL_CACHE" } elseif ($candidate -eq $env:POWERLIT_LITERATURE_JSON) { "POWERLIT_LITERATURE_JSON" } else { "default" }
         } | ConvertTo-Json -Depth 4
         exit 0
     }

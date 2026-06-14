@@ -35,9 +35,9 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
    - target review score, 8-9 score debugging, or score-bearing evaluation: `references/score-targeted-writing.md`;
    - light editing, translation, compression, expansion, logic checking, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
-   - final prose pass: `references/publishable-prose.md`, `references/rhythm.md`, and mandatory `references/reader-experience-pass.md`;
+   - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
-   - wording cleanup: `references/lexicon.md` and `references/anti-ai-style.md`.
+   - legacy wording cleanup only when deeper examples are needed: `references/lexicon.md` and `references/anti-ai-style.md`.
 8. Build the internal drafting map before writing:
    - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
    - venue profile;
@@ -48,7 +48,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - gap-to-contribution-to-evidence map;
    - section budget so standard material does not hide the contribution.
 9. Draft manuscript prose by section. Do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
-10. Before finalizing, run the claim pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, cut pass, rhythm pass, and working-language firewall from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`. For English/IEEE drafts, also run the English AI Tells scan in `references/anti-ai-style.md`.
+10. Before finalizing, run the claim pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, cut pass, rhythm pass, working-language firewall, Chinese register gate, and English AI-tells gate from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`.
 11. If a target review score is requested, apply `references/score-targeted-writing.md` before review closure. Do not claim an 8-9 full-paper target when the evidence packet only supports a section-level result.
 12. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
@@ -76,11 +76,12 @@ See `references/venue-profiles.md` for the full profile contract.
 
 ## Corpus-Grounded Drafting Rule
 
-When PowerLit is accessible, do not draft citation-sensitive, venue-sensitive, or full-paper score-bearing sections from memory alone. Use the corpus in three ways:
+When PowerLit is accessible, do not draft citation-sensitive, venue-sensitive, or full-paper score-bearing sections from memory alone. Use the corpus and method canon in four ways:
 
-1. Evidence use: retrieve nearby papers for novelty, citation function, and closest-competitor boundaries.
-2. Evidence-strength use: inspect accepted venue-near papers to learn which systems, baselines, metrics, sensitivities, ablations, solver settings, and boundary cases are manuscript-facing for the same claim class.
-3. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, and conclusion boundary.
+1. Canon use: use verified and accepted method-canon entries to identify foundational papers, method-family anchors, and evidence-bar exemplars.
+2. Evidence use: retrieve nearby papers for novelty, citation function, and closest-competitor boundaries.
+3. Evidence-strength use: inspect accepted venue-near papers to learn which systems, baselines, metrics, sensitivities, ablations, solver settings, and boundary cases are manuscript-facing for the same claim class.
+4. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, and conclusion boundary.
 
 First build or consume:
 
@@ -94,6 +95,8 @@ First build or consume:
 - claim boundary after comparison.
 
 If PowerLit is unavailable, state fallback mode once and continue only with supplied references, citation slots, or the static venue profiles. Never invent titles, DOIs, years, venues, paper-specific claims, or corpus-derived style statistics.
+
+Legal citation sources are user-supplied references, PowerLit retrieval results, and method-canon entries whose `metadata_verification.status` is `verified` and whose `curation_status` is `accepted`. Out-of-corpus canon entries are citation-only anchors; do not summarize their method details, evidence, results, or prose style unless the full paper text is separately supplied or retrieved.
 
 For skill maintenance, use `references/published-paper-reconstruction.md` to run masked reconstruction benchmarks from accepted PowerLit papers. If only case-analysis data are available, evaluate only the result/case-study writing ability; do not claim the skill can reconstruct a full publishable paper without method, model, baseline, metric, and claim-boundary facts.
 
@@ -114,13 +117,19 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not copy project `claims.md` wording into the paper as the headline contribution. Project claims are often rigid evidence controls; translate them into a venue-fit paper claim before drafting.
 - Do not lead manuscript paragraphs with defensive boundary language such as "需要强调的是", "本文不把...", "本文不主张...", or "not intended to replace..." unless the target text is explicitly a limitations paragraph. Translate the boundary into a positive technical subject plus a stated scope.
 - For Chinese journal manuscripts, run the punctuation-register gate before delivery: remove `声称/宣称` from manuscript prose, remove quotation marks used only for emphasis or concept packaging, and replace em-dash explanation chains with commas, semicolons, parentheses, or direct enumeration. Quotation marks are allowed only for literal titles, survey items, direct quotations, or template-required text.
-- Do not cite or summarize papers that were not supplied or retrieved.
+- Do not cite papers unless they were supplied by the user, retrieved from PowerLit, or present as verified accepted entries in `evaluation/method-canon/method-canon.json`.
+- Do not summarize papers unless the source text was supplied or retrieved. An out-of-corpus method-canon entry can support bibliographic positioning only.
+- Do not invent or fill in missing DOI, citation, experimental number, baseline, formula result, case setting, solver detail, or table value.
 - Do not copy venue corpus sentences into manuscript prose. Use corpus papers for structure, rhythm, citation function, and evidence presentation; write the final text from the current manuscript's own technical object.
 - Do not let internal planning terms appear in final manuscript prose. Terms such as `closest competitor`, `claim boundary`, `citation pack`, `gap-to-contribution map`, and similar working-language labels are for internal drafting only.
 - Do not use generic ML claims such as state-of-the-art accuracy unless the venue profile, baselines, and metrics justify them.
 - Do not claim scalability, real-time use, robustness, privacy, distributed implementation, or engineering deployability unless the evidence tests the corresponding condition.
 - Do not call a draft submission-ready if the mandatory reader-experience pass fails or if the review skill would mark `专家级阅读体验` as `FAIL`.
 - Do not call a draft submission-ready unless it can pass the internal review-closure gate without fatal flaws or major review issues.
+
+## Complete-Draft Mode
+
+When the evidence is insufficient for an 8-9 full-paper gate but enough to make progress, return the strongest complete bounded draft the evidence supports plus a short gap list. The draft must mark missing references, experiments, baselines, formulas, or tables as gaps instead of fabricating them. A complete bounded draft is not submission-ready unless the review-closure gate passes.
 
 ## Output Contract
 

@@ -16,14 +16,15 @@ Resolve the PowerLit JSON root in this order:
 
 1. Explicit path supplied by the user or command parameter.
 2. Environment variable `POWERLIT_JSON_ROOT`.
-3. Environment variable `POWERLIT_LOCAL_SUBSET`, for prompt-debugging subsets copied from the full corpus.
-4. Environment variable `POWERLIT_LOCAL_CACHE`, for a local reusable cache.
-5. Environment variable `POWERLIT_LITERATURE_JSON`.
-6. Default LAN path: `\\WHome\PowerLit\literature\json`.
+3. Environment variable `POWERLIT_LOCAL_CACHE`, for a local reusable cache or index.
+4. Environment variable `POWERLIT_LITERATURE_JSON`.
+5. Default LAN path: `\\WHome\PowerLit\literature\json`.
 
 The resolved root must be a readable directory containing venue folders and `.json` paper records. Do not hard-code any other machine-specific path.
 
-Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell access is available. Use `scripts/Search-PowerLitJson.ps1` for lightweight local retrieval. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting. Use `scripts/Build-PowerLitLocalSubset.ps1` before repeated prompt debugging or benchmark runs when the LAN corpus is slow.
+Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell access is available. Use `scripts/Search-PowerLitJson.ps1` for lightweight local retrieval. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
+
+When the task maps to a known direction or method family, consult `evaluation/method-canon/method-canon.json` before broad retrieval. The method canon is a quality anchor for method families and evidence bars; it is not a substitute for a final main-corpus novelty search.
 
 The search script interface is:
 
@@ -34,23 +35,16 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.
   -Top 10
 ```
 
-`-VenueFolder` is optional but should be used when a target venue is known. `-Top` controls the number of returned records. The script returns JSON with access status, root path, query terms, match count, and ranked results containing title, source title, DOI, file path, matched terms, and a snippet.
-
-For repeated prompt debugging, first build a local subset:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Build-PowerLitLocalSubset.ps1 `
-  -Query "<technical query>" `
-  -VenueFolder ieee_tpwrs `
-  -Top 100
-```
-
-Then set the emitted `POWERLIT_LOCAL_SUBSET` path in the current shell and run search or evidence-strength analysis against the local subset. The subset preserves venue-relative paths and writes `powerlit_subset_manifest.json` for auditability.
+`-VenueFolder` is optional but should be used when a target venue is known. `-Top` controls the number of returned records. The script returns JSON with access status, root path, query terms, candidate source, candidate count, parsed count, elapsed milliseconds, match count, and ranked results containing title, title source, source title, DOI, file path, matched terms, and a snippet.
 
 ## Access Policy
 
 - If PowerLit is accessible, base novelty and citation judgments on retrieved papers.
-- For repeated prompt-debugging loops, prefer a local subset built from the needed venues and technical query over scanning the LAN corpus every run.
+- Use the method canon as a stable benchmark set, then use the main corpus for current nearest-neighbor retrieval.
+- Legal citation sources are user-supplied references, PowerLit retrieval results, and method-canon entries whose `metadata_verification.status` is `verified` and whose `curation_status` is `accepted`.
+- For `powerlit_status=in_corpus`, use the PowerLit record or `.cache/powerlit-method-canon/` copy for citation, evidence-bar pattern extraction, and corpus style/structure signals. Do not copy source wording.
+- For `powerlit_status=out_of_corpus`, use only bibliographic identity and method-family positioning. Do not summarize method details, evidence patterns, results, or prose style unless the paper text is separately supplied or retrieved.
+- Entries marked `pending`, `candidate`, or needing title/DOI verification must not be cited in manuscript prose and must not be used as evidence-bar exemplars.
 - If PowerLit is inaccessible, say `PowerLit unavailable; using fallback non-corpus workflow` once, then continue.
 - Never invent citations, DOIs, years, venues, or paper titles.
 - Treat retrieval as evidence, not authority. A close paper still needs technical comparison.
@@ -60,19 +54,20 @@ Then set the emitted `POWERLIT_LOCAL_SUBSET` path in the current shell and run s
 ## Core Workflow
 
 1. Resolve the PowerLit JSON root.
-2. Translate the manuscript idea into search objects:
+2. Translate the manuscript idea into method-canon and search objects:
    - grid object,
    - operational or planning problem,
    - uncertainty/control/optimization mechanism,
    - mathematical object,
    - benchmark or evidence object,
    - likely venue.
-3. Retrieve candidate papers:
+3. Read relevant verified method-canon entries when available, respecting `usage_policy`.
+4. Retrieve candidate papers from the main PowerLit corpus:
    - start with target-venue folders when the target venue is known,
    - widen to TPWRS, TSG, CSEE, AEPS, MPCE, Applied Energy, Energy, IJEPES, and Power Grid Technology when needed,
    - keep the raw file paths for auditability.
-4. Build a closest-competitor set. Do not select papers merely because they share one keyword; they must overlap in problem, mechanism, model, data, or evidence.
-5. Produce the requested artifact:
+5. Build a closest-competitor set. Do not select papers merely because they share one keyword; they must overlap in problem, mechanism, model, data, or evidence.
+6. Produce the requested artifact:
    - novelty pack for prewriting review,
    - citation pack for introduction writing,
    - corpus style exemplar pack for venue-specific writing,

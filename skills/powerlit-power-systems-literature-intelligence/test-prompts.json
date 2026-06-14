@@ -20,8 +20,8 @@
     "expected": "The result uses traceable PowerLit papers to summarize what evidence dimensions accepted papers put in the manuscript, separates evidence strength from prose style, and does not invent citations or copy source wording."
   },
   {
-    "id": "local-subset-for-prompt-debugging",
-    "prompt": "Use $powerlit-power-systems-literature-intelligence for repeated prompt debugging when the LAN PowerLit corpus is slow. Build a local subset for TPWRS probabilistic load-flow papers and explain how later searches should use it.",
-    "expected": "The response uses Build-PowerLitLocalSubset.ps1 or equivalent instructions to create a traceable local subset, sets or reports POWERLIT_LOCAL_SUBSET for later retrieval, preserves a manifest, and warns that the subset is a debugging cache rather than complete novelty coverage."
+    "id": "method-canon-before-main-corpus",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence for a probabilistic power-flow paper idea. First consult the benchmark paper set, then explain how the main PowerLit corpus should be searched for current nearest neighbors.",
+    "expected": "The response treats evaluation/method-canon as a quality anchor rather than recall coverage, then uses the main PowerLit corpus for traceable current retrieval and final novelty coverage."
   }
 ]

@@ -72,6 +72,10 @@ Before assigning a full-paper 8-9 score, check that the draft includes all of th
 
 If any item is missing, the result may still be useful as a drafting artifact, but it cannot pass the 8-9 full-paper gate. The correct status is `blocked below 8-9 full-paper completeness`, with the first repair action naming the missing manuscript part.
 
+## Complete Bounded Drafts
+
+When the user needs a working draft before the evidence reaches the 8-9 gate, write the most complete bounded draft supported by the current evidence and attach a short missing-evidence list. Do not fill missing references, experiments, baselines, equations, or table values with placeholders that look like facts. The draft remains below `submission-ready` until the review-closure gate and full-paper completeness gate pass.
+
 ## Score Repair Discipline
 
 Draft once, review once, then repair the lowest-scoring category before polishing.

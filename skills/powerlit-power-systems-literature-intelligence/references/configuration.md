@@ -4,8 +4,9 @@ PowerLit access is configurable. Resolve the JSON corpus root in this order:
 
 1. User-provided path or script parameter.
 2. `POWERLIT_JSON_ROOT`.
-3. `POWERLIT_LITERATURE_JSON`.
-4. `\\WHome\PowerLit\literature\json`.
+3. `POWERLIT_LOCAL_CACHE`.
+4. `POWERLIT_LITERATURE_JSON`.
+5. `\\WHome\PowerLit\literature\json`.
 
 Expected layout:
 

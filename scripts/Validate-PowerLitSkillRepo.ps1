@@ -16,6 +16,17 @@ function Read-Utf8 {
     return Get-Content -LiteralPath $Path -Raw -Encoding UTF8
 }
 
+function Normalize-Text {
+    param([string]$Text)
+    if ($null -eq $Text) { return "" }
+    return (($Text -replace "\s+", " ").Trim().ToLowerInvariant())
+}
+
+function Test-DoiFormat {
+    param([string]$Doi)
+    return ($Doi -match '^10\.\d{4,9}/\S+$')
+}
+
 $skillFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "skills") -Recurse -File -Filter "SKILL.md"
 foreach ($skillFile in $skillFiles) {
     $text = Read-Utf8 -Path $skillFile.FullName
@@ -87,8 +98,20 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "references/reader-experience-pass\.md") {
         Add-Failure "paper-writing skill must load references/reader-experience-pass.md"
     }
+    if ($paperSkillText -notmatch "references/prose-quality-gates\.md") {
+        Add-Failure "paper-writing skill must load references/prose-quality-gates.md"
+    }
     if ($paperSkillText -notmatch "mandatory reader-experience pass") {
         Add-Failure "paper-writing skill must require mandatory reader-experience pass"
+    }
+    if ($paperSkillText -notmatch "evaluation/method-canon/method-canon\.json") {
+        Add-Failure "paper-writing skill must recognize verified method-canon citation sources"
+    }
+    if ($paperSkillText -notmatch "Do not invent or fill in missing DOI") {
+        Add-Failure "paper-writing skill must preserve no-invention hard rules"
+    }
+    if ($paperSkillText -notmatch "Complete-Draft Mode") {
+        Add-Failure "paper-writing skill must define complete-draft mode"
     }
 } else {
     Add-Failure "Missing paper-writing SKILL.md"
@@ -135,8 +158,11 @@ if (Test-Path -LiteralPath $corpusDrafting) {
     if ($corpusDraftingText -notmatch "Evidence-Strength Learning Pass") {
         Add-Failure "corpus-grounded-drafting.md must include Evidence-Strength Learning Pass"
     }
-    if ($corpusDraftingText -notmatch "common-research-direction-evidence-strength") {
-        Add-Failure "corpus-grounded-drafting.md must route recurring topics through common direction evidence profiles"
+    if ($corpusDraftingText -notmatch "evaluation/method-canon/method-canon\.json") {
+        Add-Failure "corpus-grounded-drafting.md must route recurring topics through method-canon.json"
+    }
+    if ($corpusDraftingText -notmatch "citation_only" -or $corpusDraftingText -notmatch "citation_and_pattern") {
+        Add-Failure "corpus-grounded-drafting.md must define method-canon usage policies"
     }
 } else {
     Add-Failure "Missing corpus-grounded-drafting.md"
@@ -154,8 +180,11 @@ if (Test-Path -LiteralPath $powerlitEvidenceStrength) {
     if ($powerlitEvidenceStrengthText -notmatch "Diagnostic or inverse-method claim") {
         Add-Failure "powerlit-evidence-strength.md must define the diagnostic or inverse-method evidence bar"
     }
-    if ($powerlitEvidenceStrengthText -notmatch "Common Direction Baselines") {
-        Add-Failure "powerlit-evidence-strength.md must require common direction baselines"
+    if ($powerlitEvidenceStrengthText -notmatch "Method-Canon Baselines") {
+        Add-Failure "powerlit-evidence-strength.md must require method-canon baselines"
+    }
+    if ($powerlitEvidenceStrengthText -notmatch "out_of_corpus" -or $powerlitEvidenceStrengthText -notmatch "in_corpus") {
+        Add-Failure "powerlit-evidence-strength.md must define in-corpus and out-of-corpus canon limits"
     }
 } else {
     Add-Failure "Missing powerlit-evidence-strength.md"
@@ -249,6 +278,22 @@ if (Test-Path -LiteralPath $readerExperienceReference) {
     }
 } else {
     Add-Failure "Missing reader-experience-pass.md"
+}
+
+$proseQualityGates = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\prose-quality-gates.md"
+if (Test-Path -LiteralPath $proseQualityGates) {
+    $proseQualityText = Read-Utf8 -Path $proseQualityGates
+    if ($proseQualityText -notmatch "Working-language firewall") {
+        Add-Failure "prose-quality-gates.md must preserve the working-language firewall"
+    }
+    if ($proseQualityText -notmatch "Chinese Register Gate") {
+        Add-Failure "prose-quality-gates.md must preserve the Chinese register gate"
+    }
+    if ($proseQualityText -notmatch "No-Invention Boundary") {
+        Add-Failure "prose-quality-gates.md must preserve no-invention cleanup boundaries"
+    }
+} else {
+    Add-Failure "Missing prose-quality-gates.md"
 }
 
 $reviewSkill = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\SKILL.md"
@@ -435,41 +480,16 @@ if (Test-Path -LiteralPath $actualProjectFixtures) {
     Add-Failure "Missing evaluation\actual-project-claim-regressions.json"
 }
 
-$scoreTargetRunDir = Join-Path $repoRoot "evaluation\score-target-runs"
-$scoreTargetRunFiles = @()
-if (Test-Path -LiteralPath $scoreTargetRunDir) {
-    $scoreTargetRunFiles = @(Get-ChildItem -LiteralPath $scoreTargetRunDir -File -Filter "*.md")
-    foreach ($runFile in $scoreTargetRunFiles) {
-        $runText = Read-Utf8 -Path $runFile.FullName
-        if ($runText -notmatch "Target score band:.*8-9") {
-            Add-Failure "$($runFile.FullName): score-target run must state target score band 8-9"
-        }
-        if ($runText -notmatch "Average score:") {
-            Add-Failure "$($runFile.FullName): score-target run must include average score"
-        }
-        if ($runText -notmatch "Gate status:") {
-            Add-Failure "$($runFile.FullName): score-target run must include gate status"
-        }
-        if ($runText -notmatch "Full-paper readiness:") {
-            Add-Failure "$($runFile.FullName): score-target run must include full-paper readiness"
-        }
-        if ($runText -notmatch "Lowest-scoring category:") {
-            Add-Failure "$($runFile.FullName): score-target run must include lowest-scoring category"
-        }
-        if ($runText -notmatch "First repair action:") {
-            Add-Failure "$($runFile.FullName): score-target run must include first repair action"
-        }
-        if ($runText -match "passes 8-9 gate" -and $runText -match "(compressed|compact|package)") {
-            Add-Failure "$($runFile.FullName): compressed or package-level artifacts must not pass the 8-9 full-paper gate"
-        }
-    }
-}
-
 $resolver = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Resolve-PowerLitJsonRoot.ps1"
 if (Test-Path -LiteralPath $resolver) {
     $resolverText = Read-Utf8 -Path $resolver
-    if ($resolverText -notmatch "POWERLIT_LOCAL_SUBSET") {
-        Add-Failure "PowerLit resolver must support POWERLIT_LOCAL_SUBSET"
+    if ($resolverText -match "POWERLIT_LOCAL_SUBSET") {
+        Add-Failure "PowerLit resolver must not use POWERLIT_LOCAL_SUBSET in the formal root chain"
+    }
+    foreach ($requiredRootToken in @("POWERLIT_JSON_ROOT", "POWERLIT_LOCAL_CACHE", "POWERLIT_LITERATURE_JSON", "\\WHome\PowerLit\literature\json")) {
+        if ($resolverText -notmatch [regex]::Escape($requiredRootToken)) {
+            Add-Failure "PowerLit resolver missing root token: $requiredRootToken"
+        }
     }
     $resolveOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File $resolver
     $resolveJson = $resolveOutput | ConvertFrom-Json
@@ -480,22 +500,27 @@ if (Test-Path -LiteralPath $resolver) {
     Add-Failure "Missing PowerLit resolver script"
 }
 
-$subsetBuilder = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitLocalSubset.ps1"
-if (Test-Path -LiteralPath $subsetBuilder) {
-    $subsetBuilderText = Read-Utf8 -Path $subsetBuilder
-    if ($subsetBuilderText -notmatch "powerlit_subset_manifest\.json") {
-        Add-Failure "Build-PowerLitLocalSubset.ps1 must write a subset manifest"
+$searchScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitJson.ps1"
+if (Test-Path -LiteralPath $searchScript) {
+    $searchScriptText = Read-Utf8 -Path $searchScript
+    foreach ($requiredSearchToken in @("Get-CandidateJsonFiles", "Get-Command rg", "candidate_count", "parsed_count", "elapsed_ms", "candidate_source")) {
+        if ($searchScriptText -notmatch [regex]::Escape($requiredSearchToken)) {
+            Add-Failure "Search-PowerLitJson.ps1 missing rg/telemetry token: $requiredSearchToken"
+        }
     }
-    if ($subsetBuilderText -notmatch "POWERLIT_LOCAL_SUBSET") {
-        Add-Failure "Build-PowerLitLocalSubset.ps1 must emit POWERLIT_LOCAL_SUBSET guidance"
+    if ($searchScriptText -match "POWERLIT_LOCAL_SUBSET") {
+        Add-Failure "Search-PowerLitJson.ps1 must not use POWERLIT_LOCAL_SUBSET"
     }
 } else {
-    Add-Failure "Missing PowerLit local subset builder script"
+    Add-Failure "Missing PowerLit search script"
 }
 
 $evidenceAnalyzer = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Analyze-PowerLitEvidenceStrength.ps1"
 if (Test-Path -LiteralPath $evidenceAnalyzer) {
     $evidenceAnalyzerText = Read-Utf8 -Path $evidenceAnalyzer
+    if ($evidenceAnalyzerText -match "POWERLIT_LOCAL_SUBSET") {
+        Add-Failure "Analyze-PowerLitEvidenceStrength.ps1 must not use POWERLIT_LOCAL_SUBSET"
+    }
     if ($evidenceAnalyzerText -notmatch "Measure-EvidenceSignals") {
         Add-Failure "Analyze-PowerLitEvidenceStrength.ps1 must measure evidence signals"
     }
@@ -506,78 +531,68 @@ if (Test-Path -LiteralPath $evidenceAnalyzer) {
     Add-Failure "Missing PowerLit evidence-strength analyzer script"
 }
 
-$commonDirections = Join-Path $repoRoot "evaluation\common-research-directions.json"
-if (Test-Path -LiteralPath $commonDirections) {
+$methodCanon = Join-Path $repoRoot "evaluation\method-canon\method-canon.json"
+if (Test-Path -LiteralPath $methodCanon) {
     try {
-        $commonDirectionData = Read-Utf8 -Path $commonDirections | ConvertFrom-Json
-        if (-not $commonDirectionData.directions -or @($commonDirectionData.directions).Count -lt 13) {
-            Add-Failure "${commonDirections}: must define at least thirteen broad recurring research directions"
+        $methodCanonData = Read-Utf8 -Path $methodCanon | ConvertFrom-Json
+        if (-not $methodCanonData.entries -or @($methodCanonData.entries).Count -lt 10) {
+            Add-Failure "${methodCanon}: must contain a nontrivial verified method canon"
         }
-        if ($commonDirectionData.source_rule -notlike "*D:\Research*") {
-            Add-Failure "${commonDirections}: source_rule must document the D:\\Research numeric-folder grouping"
-        }
-        foreach ($direction in $commonDirectionData.directions) {
-            if (-not $direction.id -or -not $direction.label -or -not $direction.scope -or -not $direction.mapped_research_dirs -or -not $direction.queries -or -not $direction.evidence_bar) {
-                Add-Failure "${commonDirections}: each direction must define id, label, scope, mapped_research_dirs, queries, and evidence_bar"
+        foreach ($entry in @($methodCanonData.entries)) {
+            foreach ($field in @("direction_id", "method_id", "role", "title", "year", "venue", "doi", "source_url", "selection_reason", "powerlit_status", "usage_policy", "metadata_verification", "curation_status", "last_reviewed")) {
+                if (-not $entry.$field) {
+                    Add-Failure "${methodCanon}: entry missing field $field"
+                }
             }
-            if (-not $direction.evidence_bar.minimum_for_full_paper_8_9 -or -not $direction.evidence_bar.blockers) {
-                Add-Failure "${commonDirections} direction $($direction.id): evidence_bar must define minimum_for_full_paper_8_9 and blockers"
+            if ($entry.curation_status -eq "accepted") {
+                if (-not (Test-DoiFormat -Doi ([string]$entry.doi))) {
+                    Add-Failure "${methodCanon}: accepted entry has invalid DOI: $($entry.doi)"
+                }
+                if ($entry.metadata_verification.status -ne "verified") {
+                    Add-Failure "${methodCanon}: accepted entry must have verified metadata: $($entry.doi)"
+                }
+                if (-not $entry.last_reviewed) {
+                    Add-Failure "${methodCanon}: accepted entry missing last_reviewed: $($entry.doi)"
+                }
+                if ((Normalize-Text $entry.doi) -ne (Normalize-Text $entry.metadata_verification.doi)) {
+                    Add-Failure "${methodCanon}: DOI does not match verification snapshot: $($entry.doi)"
+                }
+                if ((Normalize-Text $entry.title) -ne (Normalize-Text $entry.metadata_verification.title)) {
+                    Add-Failure "${methodCanon}: title does not match verification snapshot: $($entry.doi)"
+                }
+                if ([int]$entry.year -ne [int]$entry.metadata_verification.year) {
+                    Add-Failure "${methodCanon}: year does not match verification snapshot: $($entry.doi)"
+                }
+                if ((Normalize-Text $entry.venue) -ne (Normalize-Text $entry.metadata_verification.venue)) {
+                    Add-Failure "${methodCanon}: venue does not match verification snapshot: $($entry.doi)"
+                }
+                $combinedCore = "$($entry.title) $($entry.doi) $($entry.selection_reason) $($entry.source_url)"
+                if ($combinedCore -match "(?i)pending|candidate|verify title") {
+                    Add-Failure "${methodCanon}: accepted entry contains pending/candidate language: $($entry.doi)"
+                }
             }
-            foreach ($query in $direction.queries) {
-                if (-not $query.id -or -not $query.query -or -not $query.terms -or -not $query.venue_folders) {
-                    Add-Failure "${commonDirections} direction $($direction.id): each query must define id, query, terms, and venue_folders"
+            if ($entry.powerlit_status -eq "out_of_corpus" -and $entry.usage_policy -ne "citation_only") {
+                Add-Failure "${methodCanon}: out_of_corpus entry must be citation_only: $($entry.doi)"
+            }
+            if ($entry.powerlit_status -eq "in_corpus") {
+                if ($entry.usage_policy -ne "citation_and_pattern") {
+                    Add-Failure "${methodCanon}: in_corpus entry must be citation_and_pattern: $($entry.doi)"
+                }
+                if (-not $entry.powerlit_relative_path) {
+                    Add-Failure "${methodCanon}: in_corpus entry missing powerlit_relative_path: $($entry.doi)"
                 }
             }
         }
     } catch {
-        Add-Failure "${commonDirections}: invalid JSON: $($_.Exception.Message)"
+        Add-Failure "${methodCanon}: invalid JSON or schema check failed: $($_.Exception.Message)"
     }
 } else {
-    Add-Failure "Missing evaluation\common-research-directions.json"
+    Add-Failure "Missing evaluation\method-canon\method-canon.json"
 }
 
-$commonProfileScript = Join-Path $repoRoot "scripts\Build-CommonPowerLitEvidenceProfiles.ps1"
-if (Test-Path -LiteralPath $commonProfileScript) {
-    $commonProfileScriptText = Read-Utf8 -Path $commonProfileScript
-    if ($commonProfileScriptText -notmatch "Build-PowerLitLocalSubset\.ps1" -or $commonProfileScriptText -notmatch "Analyze-PowerLitEvidenceStrength\.ps1") {
-        Add-Failure "Build-CommonPowerLitEvidenceProfiles.ps1 must call the local subset builder and evidence analyzer"
-    }
-    if ($commonProfileScriptText -notmatch "common-research-directions\.json") {
-        Add-Failure "Build-CommonPowerLitEvidenceProfiles.ps1 must use common-research-directions.json"
-    }
-    if ($commonProfileScriptText -notmatch "PapersPerDirection") {
-        Add-Failure "Build-CommonPowerLitEvidenceProfiles.ps1 must support a per-direction reference-paper target"
-    }
-} else {
-    Add-Failure "Missing scripts\Build-CommonPowerLitEvidenceProfiles.ps1"
-}
-
-$commonProfileJson = Join-Path $repoRoot "evaluation\common-research-direction-evidence-strength.json"
-$commonProfileMarkdown = Join-Path $repoRoot "evaluation\common-research-direction-evidence-strength.md"
-if (Test-Path -LiteralPath $commonProfileJson) {
-    try {
-        $commonProfileData = Read-Utf8 -Path $commonProfileJson | ConvertFrom-Json
-        if (-not $commonProfileData.directions -or @($commonProfileData.directions).Count -lt 13) {
-            Add-Failure "${commonProfileJson}: must contain generated profiles for the common research directions"
-        }
-        foreach ($directionProfile in $commonProfileData.directions) {
-            if ([int]$directionProfile.sampled_paper_count -lt 20) {
-                Add-Failure "${commonProfileJson} direction $($directionProfile.id): must sample at least 20 papers"
-            }
-        }
-    } catch {
-        Add-Failure "${commonProfileJson}: invalid JSON: $($_.Exception.Message)"
-    }
-} else {
-    Add-Failure "Missing evaluation\common-research-direction-evidence-strength.json"
-}
-if (Test-Path -LiteralPath $commonProfileMarkdown) {
-    $commonProfileMarkdownText = Read-Utf8 -Path $commonProfileMarkdown
-    if ($commonProfileMarkdownText -notmatch "Common Research Direction Evidence Strength") {
-        Add-Failure "common-research-direction-evidence-strength.md must contain the generated direction evidence report"
-    }
-} else {
-    Add-Failure "Missing evaluation\common-research-direction-evidence-strength.md"
+$methodCanonSeed = Join-Path $repoRoot "evaluation\method-canon\web-canon-seed.md"
+if (-not (Test-Path -LiteralPath $methodCanonSeed)) {
+    Add-Failure "Missing evaluation\method-canon\web-canon-seed.md"
 }
 
 if (-not $SkipPowerLitSearch) {
@@ -596,6 +611,11 @@ if (-not $SkipPowerLitSearch) {
     }
 }
 
+$trackedIgnored = @(git -C $repoRoot ls-files -ci --exclude-standard 2>$null)
+if ($trackedIgnored.Count -gt 0) {
+    Add-Failure "Tracked files match .gitignore: $($trackedIgnored -join ', ')"
+}
+
 if ($failures.Count -gt 0) {
     [pscustomobject]@{
         ok = $false
@@ -612,6 +632,6 @@ if ($failures.Count -gt 0) {
     actual_project_claim_cases = if (Test-Path -LiteralPath $actualProjectFixtures) { @($actualCases).Count } else { 0 }
     reconstruction_cases = if (Test-Path -LiteralPath $reconstructionCases) { @($reconstructionCaseData).Count } else { 0 }
     actual_case_evidence_packets = if (Test-Path -LiteralPath $actualEvidencePackets) { @($actualEvidencePacketData).Count } else { 0 }
-    score_target_run_files = @($scoreTargetRunFiles).Count
+    method_canon_entries = if ($methodCanonData -and $methodCanonData.entries) { @($methodCanonData.entries).Count } else { 0 }
     powerlit_search = $(if ($SkipPowerLitSearch) { "skipped" } else { "checked" })
 } | ConvertTo-Json -Depth 5
