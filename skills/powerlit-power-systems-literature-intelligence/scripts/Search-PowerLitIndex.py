@@ -7,10 +7,14 @@ import argparse
 import heapq
 import json
 import sqlite3
+import sys
 import time
 from pathlib import Path
 
 from powerlit_index_common import count_contains, get_snippet, normalize_terms, resolve_index_dir, safe_name
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 
 def parse_args() -> argparse.Namespace:

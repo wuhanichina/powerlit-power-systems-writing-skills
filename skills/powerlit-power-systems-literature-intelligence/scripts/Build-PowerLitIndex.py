@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import sqlite3
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,6 +19,9 @@ from powerlit_index_common import (
     resolve_json_root,
     safe_name,
 )
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 
 def parse_args() -> argparse.Namespace:
