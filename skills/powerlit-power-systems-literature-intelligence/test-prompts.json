@@ -13,5 +13,15 @@
     "id": "venue-style-exemplar-pack",
     "prompt": "Use $powerlit-power-systems-literature-intelligence to retrieve TPWRS papers near distributionally robust OPF and produce a corpus style exemplar pack for writing the introduction and method transition.",
     "expected": "The result identifies venue exemplars, section-shape signals, paragraph-function signals, rhythm/register signals, and a do-not-copy boundary."
+  },
+  {
+    "id": "evidence-strength-profile",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence to retrieve CSEE or TPWRS papers near probabilistic power flow or distribution state estimation and produce an evidence-strength profile: manuscript-facing systems, baselines, metrics, sensitivity, ablation, solver details, and claim-boundary patterns.",
+    "expected": "The result uses traceable PowerLit papers to summarize what evidence dimensions accepted papers put in the manuscript, separates evidence strength from prose style, and does not invent citations or copy source wording."
+  },
+  {
+    "id": "local-subset-for-prompt-debugging",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence for repeated prompt debugging when the LAN PowerLit corpus is slow. Build a local subset for TPWRS probabilistic load-flow papers and explain how later searches should use it.",
+    "expected": "The response uses Build-PowerLitLocalSubset.ps1 or equivalent instructions to create a traceable local subset, sets or reports POWERLIT_LOCAL_SUBSET for later retrieval, preserves a manifest, and warns that the subset is a debugging cache rather than complete novelty coverage."
   }
 ]

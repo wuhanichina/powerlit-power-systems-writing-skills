@@ -26,6 +26,17 @@ The method section is where the paper's claim becomes a technical object. Write 
 
 Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
 
+## Local Motivation Before Properties
+
+Do not let propositions, proofs, lemmas, algorithm blocks, or named properties appear without a local reason. Before a subsection such as `半正定性`, `可行性`, `收敛性`, `复杂度`, `等价性`, or `约束满足性`, add one short technical bridge that states:
+
+- which modeling or optimization difficulty from the previous subsection makes the property necessary;
+- what physical, probabilistic, feasibility, or computational condition the property protects;
+- what the consequence is for the next step, such as gradient refinement, relaxation, decomposition, or certificate construction.
+
+Weak: opening `2.2 半正定性` directly with a proposition.
+Strong: state that covariance must remain positive semidefinite during unconstrained gradient refinement; otherwise the recovered voltage distribution is nonphysical and residual reduction is meaningless. Then give the proposition.
+
 ## Formula Physical Intuition
 
 Symbol definition is not enough. For every key equation or equation group, give the reader one short physical-intuition sentence or paragraph that answers the following questions when relevant:

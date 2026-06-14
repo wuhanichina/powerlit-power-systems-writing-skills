@@ -8,10 +8,15 @@ Resolve PowerLit through `powerlit-power-systems-literature-intelligence`:
 
 1. User-supplied path.
 2. `POWERLIT_JSON_ROOT`.
-3. `POWERLIT_LITERATURE_JSON`.
-4. `\\WHome\PowerLit\literature\json`.
+3. `POWERLIT_LOCAL_SUBSET` or `POWERLIT_LOCAL_CACHE` for prompt-debugging subsets.
+4. `POWERLIT_LITERATURE_JSON`.
+5. `\\WHome\PowerLit\literature\json`.
 
 If the corpus is accessible, use it before drafting citation-sensitive prose. If it is not accessible, state `PowerLit unavailable; using fallback non-corpus workflow` once and continue only with supplied references, citation slots, or literature-limited wording.
+
+When prompt debugging, benchmark reconstruction, or repeated score-target runs are slow on the LAN corpus, first build a local subset with `Build-PowerLitLocalSubset.ps1` for the needed venue and query, set `POWERLIT_LOCAL_SUBSET`, and run all retrieval, evidence-strength, writing, and review loops against that subset. Do not treat a narrow local subset as complete novelty coverage; use it as a fast debugging cache and widen to the full corpus before final novelty claims.
+
+For the user's recurring research directions under `D:\Research` numeric folders, first consult the prebuilt direction profiles in `evaluation/common-research-direction-evidence-strength.md` and `evaluation/common-research-direction-evidence-strength.json`. These profiles are produced from `evaluation/common-research-directions.json` by `scripts/Build-CommonPowerLitEvidenceProfiles.ps1`; they set the direction-level evidence bar before any project-specific retrieval.
 
 ## Search Contract
 
@@ -42,6 +47,20 @@ Use 3 to 5 retrieved exemplars when possible. Prefer papers from the target venu
 
 Do not copy sentences, phrases, abstracts, or paragraph templates from the corpus. Extract functions and patterns, then write new prose around the current manuscript's own model, variables, results, and claim boundary.
 
+## Evidence-Strength Learning Pass
+
+Before drafting a full paper, score-targeted manuscript, review response, or major case-study section, use PowerLit to learn the evidence bar for the same venue and claim class. Load `powerlit-evidence-strength.md` and build an internal evidence-strength profile from accepted papers before writing.
+
+This pass is different from citation planning. It asks:
+
+- what quantities accepted papers actually put in the manuscript;
+- which baselines, metrics, systems, scenarios, sensitivity studies, ablations, certificates, runtime details, and reproducibility details are visible;
+- how result tables are interpreted rather than merely reported;
+- how the conclusion is bounded when a competing method wins on some metrics;
+- what the current manuscript must add, narrow, or relabel before it can claim a high review score.
+
+For diagnostic, inverse, certificate, screening, or boundary-characterization papers, this pass is mandatory when PowerLit is available. If a stronger baseline wins on primary metrics, the profile must identify accepted-paper precedents for treating diagnostic value as publishable evidence; otherwise the paper claim must be narrowed.
+
 ## Reconstruction Benchmark Use
 
 For skill maintenance, PowerLit papers may also be used as masked reconstruction benchmarks. In that mode, follow `published-paper-reconstruction.md`: extract an evidence packet from an accepted paper, hide the original prose, draft from evidence facts only, and let the review skill judge the review-strength delta.
@@ -54,6 +73,7 @@ Before drafting a citation-sensitive section, build these internal artifacts:
 
 - `Venue profile`: target venue, expected paper object, introduction rhythm, method depth, evidence bar, and register.
 - `Closest competitors`: papers overlapping in problem, mechanism, model, data, or evidence. Do not select papers merely because they share a keyword.
+- `Evidence-strength profile`: direction-level baseline first, then venue-near accepted-paper evidence bar for the same claim class, including manuscript-facing quantities and missing-evidence blockers.
 - `Corpus style exemplars`: venue-near papers used for section shape, paragraph function, rhythm, evidence presentation, and boundary language. Keep this as internal guidance unless the user asks for a style audit.
 - `Citation-to-sentence plan`: each citation supports one sentence-level function: background, method family, limitation, closest contrast, or evidence precedent.
 - `Claim boundary`: what the paper may claim after comparison, and what it must not claim.

@@ -21,7 +21,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - evidence package;
    - claim boundary.
 4. Load `references/project-claim-translation.md`. Treat project `claims.md`, research notes, evidence maps, and gate files as evidence boundaries, not as final manuscript claims.
-5. Load `references/corpus-grounded-drafting.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, or style/rhythm calibration is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
+5. Load `references/corpus-grounded-drafting.md` and `references/powerlit-evidence-strength.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, style/rhythm calibration, full-paper drafting, score-targeting, or evidence-strength judgment is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
    - For skill maintenance or known-paper reconstruction tasks, also load `references/published-paper-reconstruction.md`. Treat accepted papers as masked evidence benchmarks, not text sources to imitate.
 6. Load `references/venue-profiles.md`, then load exactly one venue reference:
    - 中国电机工程学报: `references/csee.md`; also load `references/csee-precision.md`.
@@ -42,6 +42,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
    - venue profile;
    - closest competitors or fallback status;
+   - PowerLit evidence-strength profile for the same venue, claim class, and technical object when PowerLit is available;
    - corpus style exemplars when the task needs venue rhythm or section shaping;
    - citation-to-sentence plan when literature evidence is needed;
    - gap-to-contribution-to-evidence map;
@@ -75,10 +76,11 @@ See `references/venue-profiles.md` for the full profile contract.
 
 ## Corpus-Grounded Drafting Rule
 
-When PowerLit is accessible, do not draft citation-sensitive or venue-sensitive sections from memory alone. Use the corpus in two ways:
+When PowerLit is accessible, do not draft citation-sensitive, venue-sensitive, or full-paper score-bearing sections from memory alone. Use the corpus in three ways:
 
 1. Evidence use: retrieve nearby papers for novelty, citation function, and closest-competitor boundaries.
-2. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, and conclusion boundary.
+2. Evidence-strength use: inspect accepted venue-near papers to learn which systems, baselines, metrics, sensitivities, ablations, solver settings, and boundary cases are manuscript-facing for the same claim class.
+3. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, and conclusion boundary.
 
 First build or consume:
 
@@ -86,6 +88,7 @@ First build or consume:
 - method-family citations;
 - gap citations;
 - closest-competitor citations;
+- PowerLit evidence-strength profile;
 - corpus style exemplars;
 - citation-to-sentence plan;
 - claim boundary after comparison.
@@ -110,6 +113,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not polish a NO-GO idea into manuscript prose.
 - Do not copy project `claims.md` wording into the paper as the headline contribution. Project claims are often rigid evidence controls; translate them into a venue-fit paper claim before drafting.
 - Do not lead manuscript paragraphs with defensive boundary language such as "需要强调的是", "本文不把...", "本文不主张...", or "not intended to replace..." unless the target text is explicitly a limitations paragraph. Translate the boundary into a positive technical subject plus a stated scope.
+- For Chinese journal manuscripts, run the punctuation-register gate before delivery: remove `声称/宣称` from manuscript prose, remove quotation marks used only for emphasis or concept packaging, and replace em-dash explanation chains with commas, semicolons, parentheses, or direct enumeration. Quotation marks are allowed only for literal titles, survey items, direct quotations, or template-required text.
 - Do not cite or summarize papers that were not supplied or retrieved.
 - Do not copy venue corpus sentences into manuscript prose. Use corpus papers for structure, rhythm, citation function, and evidence presentation; write the final text from the current manuscript's own technical object.
 - Do not let internal planning terms appear in final manuscript prose. Terms such as `closest competitor`, `claim boundary`, `citation pack`, `gap-to-contribution map`, and similar working-language labels are for internal drafting only.

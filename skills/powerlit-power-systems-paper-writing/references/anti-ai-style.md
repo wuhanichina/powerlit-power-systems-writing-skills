@@ -56,6 +56,13 @@ Before finalizing, scan for:
 
 For Chinese journal prose, also remove soft filler such as "较好地", "一定程度上", "进一步说明", "具有一定参考价值", and "为...提供思路" unless the sentence names the exact technical condition or evidence.
 
+For Chinese journal prose, also run a punctuation-register pass:
+
+- Delete `声称` and `宣称` from manuscript prose. They describe author posture rather than technical evidence. Replace with evidence verbs such as `表明`, `说明`, `支持`, `限定为`, or direct scoped wording.
+- Remove quotation marks used only to package concepts or emphasize terms, such as `"单步"` or `“从功率统计量反求电压分布”`. Write the technical object directly.
+- Replace em-dash explanation chains, such as `输入参数化—传播—输出重建` or `反方向——由功率样本反求电压分布——`, with commas, semicolons, parentheses, or a direct subject-predicate sentence.
+- Keep quotation marks only for literal titles, direct quotations, questionnaire items, or template-required strings. If no such source exists, the marks are a draft smell.
+
 ## Working-Language Firewall
 
 Applies to all venues, Chinese and English.

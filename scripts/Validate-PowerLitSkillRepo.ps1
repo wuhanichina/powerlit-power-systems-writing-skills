@@ -72,6 +72,9 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "references/published-paper-reconstruction\.md") {
         Add-Failure "paper-writing skill must load references/published-paper-reconstruction.md for reconstruction benchmarks"
     }
+    if ($paperSkillText -notmatch "references/powerlit-evidence-strength\.md") {
+        Add-Failure "paper-writing skill must load references/powerlit-evidence-strength.md for PowerLit evidence-strength learning"
+    }
     if ($paperSkillText -notmatch "references/score-targeted-writing\.md") {
         Add-Failure "paper-writing skill must load references/score-targeted-writing.md for score-targeted drafting"
     }
@@ -129,8 +132,33 @@ if (Test-Path -LiteralPath $corpusDrafting) {
     if ($corpusDraftingText -notmatch "Do not copy") {
         Add-Failure "corpus-grounded-drafting.md must include a do-not-copy boundary"
     }
+    if ($corpusDraftingText -notmatch "Evidence-Strength Learning Pass") {
+        Add-Failure "corpus-grounded-drafting.md must include Evidence-Strength Learning Pass"
+    }
+    if ($corpusDraftingText -notmatch "common-research-direction-evidence-strength") {
+        Add-Failure "corpus-grounded-drafting.md must route recurring topics through common direction evidence profiles"
+    }
 } else {
     Add-Failure "Missing corpus-grounded-drafting.md"
+}
+
+$powerlitEvidenceStrength = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\powerlit-evidence-strength.md"
+if (Test-Path -LiteralPath $powerlitEvidenceStrength) {
+    $powerlitEvidenceStrengthText = Read-Utf8 -Path $powerlitEvidenceStrength
+    if ($powerlitEvidenceStrengthText -notmatch "PowerLit Evidence-Strength Learning") {
+        Add-Failure "powerlit-evidence-strength.md must define PowerLit Evidence-Strength Learning"
+    }
+    if ($powerlitEvidenceStrengthText -notmatch "Manuscript-Facing Quantities") {
+        Add-Failure "powerlit-evidence-strength.md must define manuscript-facing quantities"
+    }
+    if ($powerlitEvidenceStrengthText -notmatch "Diagnostic or inverse-method claim") {
+        Add-Failure "powerlit-evidence-strength.md must define the diagnostic or inverse-method evidence bar"
+    }
+    if ($powerlitEvidenceStrengthText -notmatch "Common Direction Baselines") {
+        Add-Failure "powerlit-evidence-strength.md must require common direction baselines"
+    }
+} else {
+    Add-Failure "Missing powerlit-evidence-strength.md"
 }
 
 $decisionRubric = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\references\decision-rubric.md"
@@ -439,6 +467,10 @@ if (Test-Path -LiteralPath $scoreTargetRunDir) {
 
 $resolver = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Resolve-PowerLitJsonRoot.ps1"
 if (Test-Path -LiteralPath $resolver) {
+    $resolverText = Read-Utf8 -Path $resolver
+    if ($resolverText -notmatch "POWERLIT_LOCAL_SUBSET") {
+        Add-Failure "PowerLit resolver must support POWERLIT_LOCAL_SUBSET"
+    }
     $resolveOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File $resolver
     $resolveJson = $resolveOutput | ConvertFrom-Json
     if ($resolveJson.available -ne $true) {
@@ -446,6 +478,106 @@ if (Test-Path -LiteralPath $resolver) {
     }
 } else {
     Add-Failure "Missing PowerLit resolver script"
+}
+
+$subsetBuilder = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitLocalSubset.ps1"
+if (Test-Path -LiteralPath $subsetBuilder) {
+    $subsetBuilderText = Read-Utf8 -Path $subsetBuilder
+    if ($subsetBuilderText -notmatch "powerlit_subset_manifest\.json") {
+        Add-Failure "Build-PowerLitLocalSubset.ps1 must write a subset manifest"
+    }
+    if ($subsetBuilderText -notmatch "POWERLIT_LOCAL_SUBSET") {
+        Add-Failure "Build-PowerLitLocalSubset.ps1 must emit POWERLIT_LOCAL_SUBSET guidance"
+    }
+} else {
+    Add-Failure "Missing PowerLit local subset builder script"
+}
+
+$evidenceAnalyzer = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Analyze-PowerLitEvidenceStrength.ps1"
+if (Test-Path -LiteralPath $evidenceAnalyzer) {
+    $evidenceAnalyzerText = Read-Utf8 -Path $evidenceAnalyzer
+    if ($evidenceAnalyzerText -notmatch "Measure-EvidenceSignals") {
+        Add-Failure "Analyze-PowerLitEvidenceStrength.ps1 must measure evidence signals"
+    }
+    if ($evidenceAnalyzerText -notmatch "coverage_in_sample") {
+        Add-Failure "Analyze-PowerLitEvidenceStrength.ps1 must return sample coverage"
+    }
+} else {
+    Add-Failure "Missing PowerLit evidence-strength analyzer script"
+}
+
+$commonDirections = Join-Path $repoRoot "evaluation\common-research-directions.json"
+if (Test-Path -LiteralPath $commonDirections) {
+    try {
+        $commonDirectionData = Read-Utf8 -Path $commonDirections | ConvertFrom-Json
+        if (-not $commonDirectionData.directions -or @($commonDirectionData.directions).Count -lt 13) {
+            Add-Failure "${commonDirections}: must define at least thirteen broad recurring research directions"
+        }
+        if ($commonDirectionData.source_rule -notlike "*D:\Research*") {
+            Add-Failure "${commonDirections}: source_rule must document the D:\\Research numeric-folder grouping"
+        }
+        foreach ($direction in $commonDirectionData.directions) {
+            if (-not $direction.id -or -not $direction.label -or -not $direction.scope -or -not $direction.mapped_research_dirs -or -not $direction.queries -or -not $direction.evidence_bar) {
+                Add-Failure "${commonDirections}: each direction must define id, label, scope, mapped_research_dirs, queries, and evidence_bar"
+            }
+            if (-not $direction.evidence_bar.minimum_for_full_paper_8_9 -or -not $direction.evidence_bar.blockers) {
+                Add-Failure "${commonDirections} direction $($direction.id): evidence_bar must define minimum_for_full_paper_8_9 and blockers"
+            }
+            foreach ($query in $direction.queries) {
+                if (-not $query.id -or -not $query.query -or -not $query.terms -or -not $query.venue_folders) {
+                    Add-Failure "${commonDirections} direction $($direction.id): each query must define id, query, terms, and venue_folders"
+                }
+            }
+        }
+    } catch {
+        Add-Failure "${commonDirections}: invalid JSON: $($_.Exception.Message)"
+    }
+} else {
+    Add-Failure "Missing evaluation\common-research-directions.json"
+}
+
+$commonProfileScript = Join-Path $repoRoot "scripts\Build-CommonPowerLitEvidenceProfiles.ps1"
+if (Test-Path -LiteralPath $commonProfileScript) {
+    $commonProfileScriptText = Read-Utf8 -Path $commonProfileScript
+    if ($commonProfileScriptText -notmatch "Build-PowerLitLocalSubset\.ps1" -or $commonProfileScriptText -notmatch "Analyze-PowerLitEvidenceStrength\.ps1") {
+        Add-Failure "Build-CommonPowerLitEvidenceProfiles.ps1 must call the local subset builder and evidence analyzer"
+    }
+    if ($commonProfileScriptText -notmatch "common-research-directions\.json") {
+        Add-Failure "Build-CommonPowerLitEvidenceProfiles.ps1 must use common-research-directions.json"
+    }
+    if ($commonProfileScriptText -notmatch "PapersPerDirection") {
+        Add-Failure "Build-CommonPowerLitEvidenceProfiles.ps1 must support a per-direction reference-paper target"
+    }
+} else {
+    Add-Failure "Missing scripts\Build-CommonPowerLitEvidenceProfiles.ps1"
+}
+
+$commonProfileJson = Join-Path $repoRoot "evaluation\common-research-direction-evidence-strength.json"
+$commonProfileMarkdown = Join-Path $repoRoot "evaluation\common-research-direction-evidence-strength.md"
+if (Test-Path -LiteralPath $commonProfileJson) {
+    try {
+        $commonProfileData = Read-Utf8 -Path $commonProfileJson | ConvertFrom-Json
+        if (-not $commonProfileData.directions -or @($commonProfileData.directions).Count -lt 13) {
+            Add-Failure "${commonProfileJson}: must contain generated profiles for the common research directions"
+        }
+        foreach ($directionProfile in $commonProfileData.directions) {
+            if ([int]$directionProfile.sampled_paper_count -lt 20) {
+                Add-Failure "${commonProfileJson} direction $($directionProfile.id): must sample at least 20 papers"
+            }
+        }
+    } catch {
+        Add-Failure "${commonProfileJson}: invalid JSON: $($_.Exception.Message)"
+    }
+} else {
+    Add-Failure "Missing evaluation\common-research-direction-evidence-strength.json"
+}
+if (Test-Path -LiteralPath $commonProfileMarkdown) {
+    $commonProfileMarkdownText = Read-Utf8 -Path $commonProfileMarkdown
+    if ($commonProfileMarkdownText -notmatch "Common Research Direction Evidence Strength") {
+        Add-Failure "common-research-direction-evidence-strength.md must contain the generated direction evidence report"
+    }
+} else {
+    Add-Failure "Missing evaluation\common-research-direction-evidence-strength.md"
 }
 
 if (-not $SkipPowerLitSearch) {

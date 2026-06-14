@@ -10,6 +10,7 @@ Flag language that weakens professionalism:
 - vague contribution verbs: explore, study, analyze, comprehensively investigate, empower, enable a new paradigm;
 - repeated meta narration: "本文首先介绍...", "This section introduces...";
 - defensive claim posture: "需要强调的是，本文不...", "本文不主张...", "not intended to replace...", or comparison paragraphs that make retreat the main subject;
+- Chinese manuscript register failures: `声称/宣称` in authorial prose, quotation marks used only for concept emphasis, or em-dash chains used to dramatize explanation rather than state the technical relation;
 - casual expressions or policy slogans without technical content.
 
 Prefer technical subjects:

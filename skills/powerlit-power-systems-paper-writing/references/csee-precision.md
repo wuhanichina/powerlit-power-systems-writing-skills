@@ -84,6 +84,7 @@ Do not mix literature review, model construction, and case interpretation in the
 - A formula must be accompanied by physical meaning, not by a long paraphrase.
 - Innovation should be written as a technical action, not as a self-evaluation.
 - Evidence sentences should name system, scenario, metric, and direction of change.
+- Chinese punctuation should look like journal prose, not a draft memo: avoid `声称/宣称`, avoid quotation marks for emphasis, and avoid em-dash chains for explanation. Use direct technical subjects, enumerations with `、/和`, semicolon-separated clauses, or parentheses.
 
 ## Final Tightening Pass
 

@@ -23,6 +23,7 @@ Track these while revising:
 - symbol or notation drift: one quantity uses multiple symbols, or one symbol refers to different quantities;
 - undefined abbreviation: an abbreviation appears before its full name, or the definition is too far from first use;
 - formula density: consecutive equations lack words that explain the grid quantity, coupling, feasibility condition, or algorithmic step;
+- abrupt technical blocks: a proposition, proof, algorithm, feasibility condition, or named property appears before the reader knows why that property is needed for the model or next optimization step;
 - cross-reference searching: the sentence forces the reader to search backward for a definition, figure, equation, scenario, or metric that should be locally recoverable;
 - unit, per-unit, benchmark, or denominator ambiguity;
 - narrative drift: a paragraph starts from one technical object but ends by proving, testing, or claiming another;
@@ -54,6 +55,7 @@ Use the smallest repair that removes the burden:
 - replace empty emphasis with a metric, condition, scenario, or mechanism;
 - align the paragraph opening, method action, case evidence, and conclusion boundary;
 - add a short transition that names why the next equation, result, or baseline is needed.
+- add a local motivation sentence before a proposition, proof, algorithm, or property subsection, naming the modeling difficulty it resolves and the consequence for the next step.
 
 Do not add new experiments, baselines, citations, or stronger claims to fix a reading-experience problem. If the missing item is technical evidence, report it as a blocker under the review-closure gate.
 

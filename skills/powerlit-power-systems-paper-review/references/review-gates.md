@@ -8,6 +8,19 @@ Accepted PowerLit papers can calibrate the review skill through masked reconstru
 
 Use this calibration to find review-gate errors, not to reward textual similarity. A reconstruction fails at full-paper level when the supplied packet lacks method facts, baseline protocols, metric definitions, or claim boundaries, even if the numerical case data look strong. In that situation, review only the case-study section and mark the missing facts as blockers for a full-paper verdict.
 
+## Evidence-Strength Calibration
+
+Before judging a full-paper draft as high-score or submission-ready, compare its evidence dimensions with accepted PowerLit papers from the same venue or claim class. Use `powerlit-evidence-strength.md` and, when shell access is available, `Analyze-PowerLitEvidenceStrength.ps1` to identify which quantities accepted papers make visible in the manuscript.
+
+The comparison should ask:
+
+- Does the draft expose the same class of systems, scenarios, baselines, metrics, sensitivity, ablation, runtime, certificate, or reproducibility details as accepted papers making a similar claim?
+- Does the case study verify the proposed mechanism, or only show that the method ran?
+- Are fallback rules, disabled modules, and weaker-than-baseline dimensions labeled as clearly as accepted papers label their boundaries?
+- Are result numbers defined and traceable in the manuscript, not only in local result files?
+
+If the current draft has materially thinner evidence than accepted papers in the same claim class, lower evidence sufficiency and claim-boundary scores even when the prose is fluent.
+
 ## Published-Corpus Surface
 
 | Venue / Type | Papers | Median pages | Median intro paragraphs | Gap marker | Median method paragraphs | Median case paragraphs | Median references |

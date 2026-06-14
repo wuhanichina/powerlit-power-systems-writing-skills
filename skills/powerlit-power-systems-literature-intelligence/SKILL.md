@@ -16,12 +16,14 @@ Resolve the PowerLit JSON root in this order:
 
 1. Explicit path supplied by the user or command parameter.
 2. Environment variable `POWERLIT_JSON_ROOT`.
-3. Environment variable `POWERLIT_LITERATURE_JSON`.
-4. Default LAN path: `\\WHome\PowerLit\literature\json`.
+3. Environment variable `POWERLIT_LOCAL_SUBSET`, for prompt-debugging subsets copied from the full corpus.
+4. Environment variable `POWERLIT_LOCAL_CACHE`, for a local reusable cache.
+5. Environment variable `POWERLIT_LITERATURE_JSON`.
+6. Default LAN path: `\\WHome\PowerLit\literature\json`.
 
 The resolved root must be a readable directory containing venue folders and `.json` paper records. Do not hard-code any other machine-specific path.
 
-Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell access is available. Use `scripts/Search-PowerLitJson.ps1` for lightweight local retrieval.
+Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check availability when shell access is available. Use `scripts/Search-PowerLitJson.ps1` for lightweight local retrieval. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting. Use `scripts/Build-PowerLitLocalSubset.ps1` before repeated prompt debugging or benchmark runs when the LAN corpus is slow.
 
 The search script interface is:
 
@@ -34,9 +36,21 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.
 
 `-VenueFolder` is optional but should be used when a target venue is known. `-Top` controls the number of returned records. The script returns JSON with access status, root path, query terms, match count, and ranked results containing title, source title, DOI, file path, matched terms, and a snippet.
 
+For repeated prompt debugging, first build a local subset:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Build-PowerLitLocalSubset.ps1 `
+  -Query "<technical query>" `
+  -VenueFolder ieee_tpwrs `
+  -Top 100
+```
+
+Then set the emitted `POWERLIT_LOCAL_SUBSET` path in the current shell and run search or evidence-strength analysis against the local subset. The subset preserves venue-relative paths and writes `powerlit_subset_manifest.json` for auditability.
+
 ## Access Policy
 
 - If PowerLit is accessible, base novelty and citation judgments on retrieved papers.
+- For repeated prompt-debugging loops, prefer a local subset built from the needed venues and technical query over scanning the LAN corpus every run.
 - If PowerLit is inaccessible, say `PowerLit unavailable; using fallback non-corpus workflow` once, then continue.
 - Never invent citations, DOIs, years, venues, or paper titles.
 - Treat retrieval as evidence, not authority. A close paper still needs technical comparison.
@@ -62,6 +76,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.
    - novelty pack for prewriting review,
    - citation pack for introduction writing,
    - corpus style exemplar pack for venue-specific writing,
+   - evidence-strength profile for score-targeted writing or review calibration,
    - literature coverage audit for manuscript review,
    - focused reading synthesis for a specific method or venue.
 
@@ -101,6 +116,14 @@ For writing-style reference, produce:
 - `Paragraph-function signals`: how paragraphs move from object to limitation to contribution to evidence.
 - `Rhythm and register signals`: sentence subjects, contrast markers, contribution placement, and evidence wording.
 - `Do-not-copy boundary`: a reminder to use corpus patterns only, not source wording.
+
+For evidence-strength learning, produce:
+
+- `Accepted-paper sample`: 3 to 5 venue-near and mechanism-near papers with DOI/path.
+- `Manuscript-facing quantities`: systems, data, scenarios, baselines, metrics, solver/runtime, sensitivity, ablation, boundary/failure cases, and reproducibility details visible in the accepted papers.
+- `Evidence-depth pattern`: how many independent evidence dimensions the accepted papers use to support the claim class.
+- `Claim-boundary pattern`: how accepted papers state limitations or complementary value without defensive posture.
+- `Current-manuscript implication`: evidence dimensions that must be added, downgraded, relabeled, or moved into the manuscript before a high-score draft can be claimed.
 
 For review, produce:
 

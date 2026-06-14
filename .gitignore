@@ -2,6 +2,7 @@
 Thumbs.db
 *.tmp
 *.log
+.cache/
 __pycache__/
 .venv/
 venv/
