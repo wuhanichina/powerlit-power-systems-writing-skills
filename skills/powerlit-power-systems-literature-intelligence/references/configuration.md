@@ -48,7 +48,7 @@ python scripts/Search-PowerLitIndex.py \
   --top 10
 ```
 
-The index stores compact metadata and content heads, not original PDFs. It is a cache artifact and must remain outside version control.
+The index stores compact metadata and content heads, not original PDFs. The repository may version `.cache/powerlit-index/*.sqlite` plus `manifest.json` as a convenience cache; temporary files, JSONL inspection dumps, and other `.cache` contents remain local.
 
 ## Search Commands
 

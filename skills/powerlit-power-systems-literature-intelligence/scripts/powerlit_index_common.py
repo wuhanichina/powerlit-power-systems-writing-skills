@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import hashlib
 from pathlib import Path
 from typing import Iterable, Optional
 
@@ -164,8 +165,13 @@ def iter_json_files(root: Path, include_analysis: bool = False) -> Iterable[Path
 
 
 def safe_name(value: str) -> str:
-    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", value.strip())
-    return cleaned.strip("._") or "root"
+    raw = value.strip()
+    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", raw)
+    cleaned = cleaned.strip("._")
+    if cleaned and cleaned != "_":
+        return cleaned
+    digest = hashlib.sha1(raw.encode("utf-8")).hexdigest()[:12]
+    return f"venue_{digest}" if digest else "root"
 
 
 def load_json(path: Path) -> Optional[dict]:

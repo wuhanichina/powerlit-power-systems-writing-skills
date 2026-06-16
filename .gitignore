@@ -2,7 +2,11 @@
 Thumbs.db
 *.tmp
 *.log
-.cache/
+.cache/*
+!.cache/powerlit-index/
+.cache/powerlit-index/*
+!.cache/powerlit-index/*.sqlite
+!.cache/powerlit-index/manifest.json
 __pycache__/
 .venv/
 venv/
