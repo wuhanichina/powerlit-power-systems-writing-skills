@@ -1,4 +1,4 @@
-[中文](README.md) · English
+[中文](README.md) · English · [Changelog](CHANGELOG.md)
 
 # ⚡ PowerLit Power Systems Writing and Review Skills
 
@@ -20,7 +20,7 @@ Supported venues and formats:
 - IEEE Transactions on Smart Grid
 - IEEE power-systems Letters and short technical communications
 
-[🚀 Install](#install-and-use) · [🧰 What It Does](#what-it-does) · [🎯 Common Entrypoints](#common-entrypoints) · [🧠 Core Mechanisms](#core-mechanisms) · [🧩 Skills](#skills) · [✅ Validation](#validation) · [🔒 Corpus Boundary](#powerlit-corpus-boundary)
+[🚀 Install](#install-and-use) · [🧰 What It Does](#what-it-does) · [🎯 Common Entrypoints](#common-entrypoints) · [🧠 Core Mechanisms](#core-mechanisms) · [🧩 Skills](#skills) · [✅ Validation](#validation) · [📝 Changelog](CHANGELOG.md) · [🔒 Corpus Boundary](#powerlit-corpus-boundary)
 
 ---
 
@@ -132,7 +132,7 @@ PowerLit JSON root resolution order:
 4. `POWERLIT_LITERATURE_JSON`
 5. Default LAN path: `\\WHome\PowerLit\literature\json`
 
-For frequent use, build a local SQLite FTS index. The index is written to `.cache/powerlit-index` or `POWERLIT_INDEX_ROOT` and is not versioned:
+For frequent use, prefer the local SQLite FTS index. The repository may carry `.cache/powerlit-index/*.sqlite` plus `manifest.json` as a convenience cache; temporary files, JSONL inspection dumps, and other `.cache` contents remain local:
 
 ```powershell
 python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `
