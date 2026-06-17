@@ -1,5 +1,12 @@
 # 版本说明
 
+## Unreleased - Physical-Story Reviewer Revision Gate
+
+- 新增按审稿意见改稿的物理叙事规则：先把意见转成物理机理、模型假设、证据比较或结论边界上的真实缺口，再把修改自然融入正文。
+- 在写作入口、`method-model.md`、`prose-quality-gates.md` 和 `review-closed-loop.md` 中加入 `physical-story`、`reviewer-feedback integration` 和 `engineering-math balance` 检查。
+- 审稿侧新增 `reviewer-response leakage` 与 `Engineering-Math Balance Review`，用于拦截叠甲式正文、逐条回应痕迹和数学证明过载。
+- 增加审稿意见改稿回归用例，验证 CSEE 方法段不会用完整证明替代物理解释。
+
 ## 2026-06-16 - Versioned PowerLit Search Index
 
 本版本把 PowerLit 检索从“每台机器各自临时建缓存”调整为“仓库携带可复用索引缓存”，用于支撑论文写作、预审、审稿和文献智能任务的默认快速检索路径。

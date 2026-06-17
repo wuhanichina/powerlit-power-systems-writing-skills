@@ -34,12 +34,13 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - case study, numerical results, experiment, simulation, conclusion, or closing section: `references/case-conclusion.md`;
    - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
    - target review score, 8-9 score debugging, or score-bearing evaluation: `references/score-targeted-writing.md`;
-   - light editing, translation, compression, expansion, logic checking, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
+   - light editing, translation, compression, expansion, logic checking, reviewer-comment revision, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
    - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
    - optional deep wording examples only when the consolidated gate is insufficient: `references/publishable-prose.md`, `references/rhythm.md`, `references/lexicon.md`, and `references/anti-ai-style.md`.
 8. Build the internal drafting map before writing:
    - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
+   - reviewer-feedback integration when revising after comments: reviewer concern, real technical gap, physical mechanism, manuscript location, and evidence or formula used;
    - venue profile;
    - closest competitors or fallback status;
    - PowerLit evidence-strength profile for the same venue, claim class, and technical object when PowerLit is available;
@@ -48,7 +49,7 @@ Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writi
    - gap-to-contribution-to-evidence map;
    - section budget so standard material does not hide the contribution.
 9. Draft manuscript prose by section. Do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
-10. Before finalizing, run the claim pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, cut pass, rhythm pass, working-language firewall, Chinese register gate, and English AI-tells gate from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`.
+10. Before finalizing, run the claim pass, physical-story pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, reviewer-feedback integration pass, engineering-math balance pass, cut pass, rhythm pass, working-language firewall, Chinese register gate, and English AI-tells gate from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`.
 11. If a target review score is requested, apply `references/score-targeted-writing.md` before review closure. Do not claim an 8-9 full-paper target when the evidence packet only supports a section-level result.
 12. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
@@ -62,6 +63,10 @@ Prefer this order over generic AI, ML, or optimization paper templates:
 4. Proposed technical object: model, formulation, control strategy, algorithm, estimator, certificate, or dispatch mechanism.
 5. Why it works: physical mechanism, convexity/relaxation, decomposition, uncertainty calibration, stability condition, or computational property.
 6. Evidence: benchmark system, field/system data, comparative method, sensitivity, ablation where meaningful, and boundary cases.
+
+When revising after reviewer comments, first translate each comment into a missing physical link, unsupported evidence relation, unclear model assumption, or overbroad claim. Then repair the manuscript at the natural location in the problem-method-evidence story. Do not insert standalone defensive paragraphs whose main function is to answer the reviewer.
+
+Mathematics should grow out of the power-system picture. Equations, lemmas, and proofs are useful only when they clarify the grid object, operating constraint, feasibility boundary, uncertainty mechanism, or computational property that the paper needs. For most engineering journals, do not turn the section into a complete mathematical proof unless the venue and claim require it.
 
 ## Venue Routing
 
@@ -104,7 +109,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 
 - Abstract: one compact problem sentence, one contribution sentence, one to three technical-action sentences, one evidence sentence, optional boundary sentence.
 - Introduction: use `references/introduction-scalpel.md`; move from a concrete power-system object to a precise unresolved technical reason.
-- Method/model: use `references/method-model.md`; define variables, sets, assumptions, physical meaning, constraints, transformations, and algorithmic steps in the venue's expected order. Key equations need physical intuition, not only symbol definitions.
+- Method/model: use `references/method-model.md`; define variables, sets, assumptions, physical meaning, constraints, transformations, and algorithmic steps in the venue's expected order. Key equations need physical intuition, not only symbol definitions. If an uncommon mathematical theory is introduced, give only the prerequisite concepts needed later, tie them to the power-system object, and then return to the physical mechanism.
 - Case study/results: use power-system evidence objects, not generic SOTA language. State system, operating scenario, baselines, metrics, solver/protocol, sensitivity, and boundary where relevant.
 - Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
@@ -116,6 +121,8 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not polish a NO-GO idea into manuscript prose.
 - Do not copy project `claims.md` wording into the paper as the headline contribution. Project claims are often rigid evidence controls; translate them into a venue-fit paper claim before drafting.
 - Do not lead manuscript paragraphs with defensive boundary language such as "需要强调的是", "本文不把...", "本文不主张...", or "not intended to replace..." unless the target text is explicitly a limitations paragraph. Translate the boundary into a positive technical subject plus a stated scope.
+- Do not answer reviewer comments in the manuscript body by stacking disclaimers, apology-like hedges, or isolated rebuttal sentences. Reviewer concerns should be absorbed into the physical logic, model definition, evidence comparison, or scoped conclusion at the point where the paper itself needs them.
+- Do not over-mathematize an engineering paper. Avoid full proof-style exposition when the journal expects physical mechanism, modeling assumptions, engineering interpretation, and validation. If a proof is necessary, keep the main text focused on the physical statement, condition, and consequence.
 - For Chinese journal manuscripts, run the punctuation-register gate before delivery: remove `声称/宣称` from manuscript prose, remove quotation marks used only for emphasis or concept packaging, and replace em-dash explanation chains with commas, semicolons, parentheses, or direct enumeration. Quotation marks are allowed only for literal titles, survey items, direct quotations, or template-required text.
 - Do not cite papers unless they were supplied by the user, retrieved from PowerLit, or present as verified accepted entries in `evaluation/method-canon/method-canon.json`.
 - Do not summarize papers unless the source text was supplied or retrieved. An out-of-corpus method-canon entry can support bibliographic positioning only.

@@ -10,6 +10,7 @@ Lock four items before editing:
 2. Engineering object: grid, device, market, uncertainty source, control layer, resilience setting, or data source.
 3. Technical object: model, formulation, estimator, control law, algorithm, index, theorem, counterexample, or validation protocol.
 4. Evidence boundary: supplied result, equation, citation, case system, or explicit missing item.
+5. Reviewer comment or revision target, if the task is a response-to-reviewer rewrite.
 
 If one item is missing, proceed only when the task is pure wording cleanup. Do not add unsupported results, citations, baselines, deployment claims, robustness claims, privacy claims, scalability claims, or real-time claims.
 
@@ -83,6 +84,16 @@ User prompt shape:
 ```
 
 Expected behavior: list only high-impact issues that change the rewrite. If there is no major issue, return the cleaned text without a long review checklist.
+
+### Reviewer-Comment Revision
+
+User prompt shape:
+
+```text
+请根据这些审稿意见修改正文。不要写成逐条防御或叠甲；先把每条意见转成物理逻辑、模型假设、证据比较或结论边界上的真实缺口，再把修改自然融进对应章节。
+```
+
+Expected behavior: build the reviewer-feedback integration map internally, then return revised manuscript prose. The final text should read as if the paper always had the clarified physical story: no standalone "为回应审稿人", no apology-like hedging, no paragraph that begins by denying overclaim unless the user explicitly asks for a response letter or limitations paragraph. When the comment asks for mathematical detail, add only the derivation or theory needed to make the physical mechanism and claim reviewable; do not replace engineering explanation with a complete proof tutorial.
 
 ### Abstract and Contribution Repair
 

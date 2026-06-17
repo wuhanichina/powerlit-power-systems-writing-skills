@@ -26,6 +26,24 @@ The method section is where the paper's claim becomes a technical object. Write 
 
 Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
 
+## Physical Story Before Mathematics
+
+For power-system engineering papers, the physical picture is the primary logic and mathematics is the disciplined language used to express it. Before adding equations, propositions, or proof fragments, state the grid object, operating conflict, coupling mechanism, and engineering consequence that make the mathematics necessary.
+
+Use this order for mathematically dense material:
+
+1. physical scene: network, device, market, uncertainty source, control layer, or feasibility boundary;
+2. engineering conflict: which voltage, current, power, reserve, risk, communication, or observability relation fails or becomes hard;
+3. mathematical object: variable, kernel, constraint, ambiguity set, relaxation, certificate, theorem, or algorithmic property;
+4. physical reading of the object: what the operator, planner, or reviewer learns from it;
+5. evidence or next model step.
+
+Do not write engineering manuscripts as if they were pure-math papers. Most target venues need enough derivation to make assumptions, validity conditions, and computational consequences reviewable; they do not need a complete proof of every supporting property. Put proof-level detail in the main text only when the claim depends on the proof and the venue expects it.
+
+When introducing an uncommon mathematical theory in power-system papers, add a short prerequisite bridge before using it: define only the concepts needed later, state the condition under which they apply, and tie the concept to the current grid object. Do not insert a self-contained textbook tutorial.
+
+Reviewer-comment revisions follow the same rule. A reviewer request for clarification should become a clearer physical mechanism, assumption, equation interpretation, or evidence comparison at the natural manuscript location. It should not become a defensive proof block or a paragraph whose main subject is the reviewer's concern.
+
 ## Local Motivation Before Properties
 
 Do not let propositions, proofs, lemmas, algorithm blocks, or named properties appear without a local reason. Before a subsection such as `半正定性`, `可行性`, `收敛性`, `复杂度`, `等价性`, or `约束满足性`, add one short technical bridge that states:
@@ -175,5 +193,7 @@ Before finalizing, verify:
 - Algorithm steps correspond to specific model difficulties.
 - Approximation, relaxation, or linearization has a stated validity condition or boundary.
 - Every relaxation, reformulation, decomposition, or surrogate states its relationship to the original problem (equivalence, bound, or gap) and the condition under which it holds.
+- Mathematical depth matches the venue: enough derivation for reviewability, not proof-heavy exposition that displaces the engineering mechanism.
+- Any uncommon theory is introduced only to the extent needed by the later model and is connected to the physical object before it is used.
 - Solver and platform details are placed in the method only when method-level claims depend on them.
 - The venue's expected granularity is respected: broader mechanism for 中国电机工程学报, leaner operational formulation for 电力系统自动化, assumption-explicit formulation for TPWRS.

@@ -49,6 +49,13 @@
     "repair_required_when": "The draft only lists variables after equations, treats moment matching as generic statistics, or fails to explain what physical infeasibility the SDP certificate detects."
   },
   {
+    "id": "reviewer-comment-physical-story-loop",
+    "write_prompt": "请用 $powerlit-power-systems-paper-writing 按审稿意见修改一个中国电机工程学报方法段。审稿意见要求补充理论说明和澄清与基线方法的关系；修改时先重建物理图景和工程背景，再把必要数学自然编织进正文。",
+    "review_prompt": "请用 $powerlit-power-systems-paper-review 检查修改后的段落是否把审稿意见融入正文逻辑。重点检查是否存在叠甲式防御、逐条回应痕迹、证明过载、物理机理不清或数学脱离电力系统对象的问题。",
+    "pass_criteria": "修改后的正文以工程对象和物理机制为主线，数学只服务于模型、假设、边界或证据解释；审稿意见不以防御性措辞、回应痕迹或孤立证明块出现在正文中。",
+    "repair_required_when": "段落出现'为回应审稿人'、'需要强调的是本文不...'等防御姿态，或用完整理论证明替代物理解释，导致读者仍然看不清模型为何成立、公式对应什么电力系统量、以及基线比较的有效边界。"
+  },
+  {
     "id": "figure-table-result-loop",
     "write_prompt": "Use $powerlit-power-systems-paper-writing to produce an IEEE TSG figure caption and result paragraph for a voltage-violation probability plot with a stated feeder, baseline, metric unit, and delayed-communication scenario.",
     "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced caption and result paragraph. Check whether the caption is self-contained, the result paragraph interprets the metric in grid-operational terms, and the conclusion boundary matches the supplied evidence.",

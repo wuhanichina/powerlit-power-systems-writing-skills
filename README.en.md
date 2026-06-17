@@ -104,6 +104,10 @@ source claim -> evidence state -> review risk -> paper claim -> boundary sentenc
 
 This prevents project slogans from becoming unsupported venue claims.
 
+### 🧱 Physical Story First
+
+When revising after reviewer comments, the skills first translate each comment into a real gap in physical mechanism, model assumption, evidence comparison, or conclusion boundary, then integrate the repair into the natural manuscript location. The body text should not read like point-by-point defense, and mathematics should serve the engineering picture and reviewability instead of turning the paper into a complete proof exercise.
+
 ### 🧩 Venue Profile Routing
 
 Full-paper writing keeps one public entrypoint, `powerlit-power-systems-paper-writing`, and routes venue differences through reference files for CSEE, AEPS, TPWRS, and TSG. The IEEE Letter flow is separate because a Letter is not a compressed full paper.

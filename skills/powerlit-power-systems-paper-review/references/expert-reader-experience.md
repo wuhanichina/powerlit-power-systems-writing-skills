@@ -58,6 +58,7 @@ Only `text-internal` failures can by themselves produce an expert-reader `FAIL`.
 - the introduction, method, evidence, or conclusion appear to follow different technical objects during linear reading;
 - central symbols, formulas, assumptions, units, baselines, or metrics are undefined or inconsistent enough to block trust;
 - formula density forces the reader to reconstruct the physical mechanism without textual help;
+- mathematical preliminaries, proofs, or reviewer-triggered derivations take over the section before the power-system picture and engineering consequence are clear;
 - propositions, proofs, algorithms, or property subsections appear abruptly, without a local sentence explaining why the property is needed for the preceding model difficulty and how it enables the next step;
 - empty emphasis, generic claims, or defensive posture repeatedly erode confidence;
 - positive control signals are absent or too weak to sustain expert reading motivation.

@@ -8,8 +8,9 @@ Run this gate after:
 
 1. project claims have been translated into paper claims through `project-claim-translation.md`;
 2. venue profile and PowerLit evidence have been applied;
-3. the draft has passed claim, reader-burden, mandatory reader-experience, cut, rhythm, and anti-AI-language passes;
-4. section-specific references have been applied.
+3. reviewer comments, if present, have been translated into physical mechanism, model, evidence, or scope repairs at natural manuscript locations;
+4. the draft has passed claim, physical-story, reader-burden, mandatory reader-experience, cut, rhythm, and anti-AI-language passes;
+5. section-specific references have been applied.
 
 For a full manuscript, review the full manuscript. For a section-only task, review the produced section and state the verdict as section-level.
 
@@ -24,6 +25,8 @@ Apply the standards of `powerlit-power-systems-paper-review`:
 - key equations explain physical intuition, not only notation;
 - case evidence supports the claim and uses relevant baselines, scenarios, metrics, and boundaries;
 - venue rhythm and depth match the target journal;
+- reviewer feedback is absorbed into the paper's physical logic rather than preserved as defensive rebuttal posture;
+- mathematical depth matches engineering need; proof-style detail does not displace physical mechanism, assumptions, and validation unless the claim requires it;
 - expert reader experience is at least `CONDITIONAL PASS`;
 - final prose does not hide unsupported claims behind polished wording;
 - final prose does not convert valid claim boundaries into defensive "not a replacement" posture.
@@ -46,6 +49,8 @@ The draft fails the closure gate if the internal review would identify any of th
 - introduction motivates one problem while the method or section solves another;
 - method claims a property that is not derived, tested, or bounded;
 - method formulas are syntactically defined but lack the physical intuition needed to understand what grid quantity, coupling, or feasibility property they represent;
+- reviewer comments are handled as standalone defensive disclaimers, apology-like hedges, or isolated rebuttal sentences instead of repairs to the manuscript's physical story;
+- an engineering section becomes proof-heavy or theory-heavy while leaving the physical picture, engineering background, or operating interpretation unclear;
 - case/conclusion claims unsupported superiority, scalability, robustness, privacy, or engineering deployability;
 - expert reader experience would be `FAIL` because critical sections are not linearly followable, high-impact `[writing]` burdens remain, or target-method-evidence alignment breaks during reading;
 - manuscript paragraphs lead with defensive self-limitation when a positive technical contribution and scoped boundary can be stated instead;
@@ -56,10 +61,11 @@ The draft fails the closure gate if the internal review would identify any of th
 If the draft fails:
 
 1. Repair the issue in the manuscript text when the needed information is available.
-2. Update the internal project-claim translation if the review shows the source claim was too rigid, too broad, or not paper-shaped.
-3. If the issue is expert-reader `FAIL`, repair structure, definitions, transitions, formula explanation, paragraph order, or boundary language before any further polish.
-4. Rerun the relevant review check mentally against the repaired section.
-5. If the issue remains because information is missing, do not hide it. Return a bounded draft and a short note naming the missing model, evidence, baseline, citation requirement, or reading-experience blocker.
+2. If the failure came from reviewer-comment revision, rebuild the physical-story map before changing sentences: concern -> real gap -> physical mechanism -> manuscript location -> evidence or formula.
+3. Update the internal project-claim translation if the review shows the source claim was too rigid, too broad, or not paper-shaped.
+4. If the issue is expert-reader `FAIL`, repair structure, definitions, transitions, formula explanation, paragraph order, or boundary language before any further polish.
+5. Rerun the relevant review check mentally against the repaired section.
+6. If the issue remains because information is missing, do not hide it. Return a bounded draft and a short note naming the missing model, evidence, baseline, citation requirement, or reading-experience blocker.
 
 Do not run unlimited polishing cycles. One repair loop is required; a second loop is allowed when the first repair exposes a clear fix. After that, report the blocker.
 

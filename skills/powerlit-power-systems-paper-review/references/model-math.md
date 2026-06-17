@@ -53,6 +53,20 @@ Flag a major method-writing issue when:
 
 For voltage-domain inverse PLF, the review should expect the paper to explain that the quadratic power-flow moment kernel maps voltage means and covariances to power moments, that identifiability concerns observable voltage co-fluctuation directions, and that SDP feasibility separates numerical nonconvergence from physically impossible power-moment targets.
 
+## Engineering-Math Balance Review
+
+Review mathematical depth against the paper's venue and engineering claim, not against a pure-theory standard.
+
+Flag a major writing or method-presentation issue when:
+
+- the manuscript adds propositions, proofs, or theory preliminaries without first stating the operating conflict or physical condition they protect;
+- proof-style exposition dominates a section while the grid object, engineering background, assumptions, and evidence link remain unclear;
+- reviewer-triggered revisions add defensive derivations that answer the comment locally but do not improve the manuscript's physical story;
+- an uncommon mathematical theory is introduced without a short bridge explaining only the concepts later used and how they map to the power-system object;
+- mathematical detail is used to mask an unsupported claim that should instead be bounded or tested.
+
+Accept mathematical density when each derivation step has a visible role: defining the model, preserving or relaxing a physical constraint, proving a property claimed by the paper, enabling an algorithm, or explaining a case-study diagnostic.
+
 ## Complexity and Simplification
 
 Ask whether the model is more complex than the contribution requires:

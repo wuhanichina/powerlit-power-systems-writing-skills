@@ -95,6 +95,15 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "formula physical-intuition pass") {
         Add-Failure "paper-writing skill must require a formula physical-intuition pass"
     }
+    if ($paperSkillText -notmatch "physical-story pass") {
+        Add-Failure "paper-writing skill must require a physical-story pass"
+    }
+    if ($paperSkillText -notmatch "reviewer-feedback integration pass") {
+        Add-Failure "paper-writing skill must require reviewer-feedback integration"
+    }
+    if ($paperSkillText -notmatch "engineering-math balance pass") {
+        Add-Failure "paper-writing skill must require engineering-math balance"
+    }
     if ($paperSkillText -notmatch "references/reader-experience-pass\.md") {
         Add-Failure "paper-writing skill must load references/reader-experience-pass.md"
     }
@@ -147,6 +156,12 @@ if (Test-Path -LiteralPath $methodModelReference) {
     }
     if ($methodModelText -notmatch "quadratic power-flow kernel") {
         Add-Failure "method-model.md must include inverse PLF physical-intuition guidance"
+    }
+    if ($methodModelText -notmatch "Physical Story Before Mathematics") {
+        Add-Failure "method-model.md must require physical story before mathematics"
+    }
+    if ($methodModelText -notmatch "uncommon mathematical theory") {
+        Add-Failure "method-model.md must guide uncommon mathematical theory introduction"
     }
 } else {
     Add-Failure "Missing method-model.md"
@@ -215,6 +230,9 @@ if (Test-Path -LiteralPath $reviewModelMath) {
     if ($reviewModelMathText -notmatch "Physical-Intuition Review") {
         Add-Failure "review model-math.md must include Physical-Intuition Review"
     }
+    if ($reviewModelMathText -notmatch "Engineering-Math Balance Review") {
+        Add-Failure "review model-math.md must include Engineering-Math Balance Review"
+    }
 } else {
     Add-Failure "Missing review model-math.md"
 }
@@ -224,6 +242,9 @@ if (Test-Path -LiteralPath $reviewLanguageFormat) {
     $reviewLanguageFormatText = Read-Utf8 -Path $reviewLanguageFormat
     if ($reviewLanguageFormatText -notmatch "defensive claim posture") {
         Add-Failure "review language-format.md must check defensive claim posture"
+    }
+    if ($reviewLanguageFormatText -notmatch "reviewer-response leakage") {
+        Add-Failure "review language-format.md must check reviewer-response leakage"
     }
 } else {
     Add-Failure "Missing review language-format.md"
@@ -298,6 +319,12 @@ if (Test-Path -LiteralPath $proseQualityGates) {
     if ($proseQualityText -notmatch "No-Invention Boundary") {
         Add-Failure "prose-quality-gates.md must preserve no-invention cleanup boundaries"
     }
+    if ($proseQualityText -notmatch "Reviewer-comment integration pass") {
+        Add-Failure "prose-quality-gates.md must include reviewer-comment integration pass"
+    }
+    if ($proseQualityText -notmatch "Engineering-math balance pass") {
+        Add-Failure "prose-quality-gates.md must include engineering-math balance pass"
+    }
 } else {
     Add-Failure "Missing prose-quality-gates.md"
 }
@@ -311,6 +338,9 @@ if (Test-Path -LiteralPath $taskPromptsReference) {
     }
     if ($taskPromptsText -notmatch "prose-quality-gates\.md" -or $taskPromptsText -notmatch "reader-experience-pass\.md") {
         Add-Failure "task-prompts.md must route light cleanup through prose-quality-gates.md and reader-experience-pass.md"
+    }
+    if ($taskPromptsText -notmatch "Reviewer-Comment Revision") {
+        Add-Failure "task-prompts.md must include reviewer-comment revision handling"
     }
 } else {
     Add-Failure "Missing task-prompts.md"
@@ -451,7 +481,11 @@ if (Test-Path -LiteralPath $actualEvidencePackets) {
 $reviewLoop = Join-Path $repoRoot "evaluation\writing-review-closure.json"
 if (Test-Path -LiteralPath $reviewLoop) {
     try {
-        $loopCases = Read-Utf8 -Path $reviewLoop | ConvertFrom-Json
+        $reviewLoopText = Read-Utf8 -Path $reviewLoop
+        if ($reviewLoopText -notmatch "reviewer-comment-physical-story-loop") {
+            Add-Failure "${reviewLoop}: must include reviewer-comment physical-story closure case"
+        }
+        $loopCases = $reviewLoopText | ConvertFrom-Json
         if (-not $loopCases) {
             Add-Failure "${reviewLoop}: empty review closure file"
         }

@@ -10,6 +10,7 @@ Flag language that weakens professionalism:
 - vague contribution verbs: explore, study, analyze, comprehensively investigate, empower, enable a new paradigm;
 - repeated meta narration: "本文首先介绍...", "This section introduces...";
 - defensive claim posture: "需要强调的是，本文不...", "本文不主张...", "not intended to replace...", or comparison paragraphs that make retreat the main subject;
+- reviewer-response leakage: "针对审稿人意见", "为回应上述质疑", "as suggested by the reviewer", or other manuscript-body phrasing that exposes the revision process instead of repairing the technical narrative;
 - Chinese manuscript register failures: `声称/宣称` in authorial prose, quotation marks used only for concept emphasis, or em-dash chains used to dramatize explanation rather than state the technical relation;
 - casual expressions or policy slogans without technical content.
 
@@ -19,6 +20,8 @@ Prefer technical subjects:
 - not "the paper" as the subject in every sentence.
 
 When the evidence boundary is valid, require direct scoped wording rather than defensive self-limitation. The baseline's valid condition and the proposed paper's positive technical object should both be visible.
+
+When reviewing a revision after comments, check whether the new text reads as natural manuscript logic. A good revision clarifies the physical mechanism, model assumption, comparison condition, or evidence boundary; a weak revision keeps the review conversation visible and makes the paper sound defensive.
 
 ## Section and Heading Review
 
