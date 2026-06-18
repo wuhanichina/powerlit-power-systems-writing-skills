@@ -1,199 +1,175 @@
 # Method, Model, and Formulation Reference
 
-Use this reference when drafting or rewriting 方法, 模型, 问题描述, 目标函数, 约束条件, 算法, 求解, 控制策略, `Problem Formulation`, `System Model`, `Proposed Method`, or `Solution Algorithm` sections.
+Use this reference for problem formulation, system models, objectives, constraints, algorithms, control strategies, derivations, relaxations, and feasibility certificates.
 
-## Corpus Signal
+## Core Order
 
-PowerLit mining found method-like sections in almost all target papers:
+Unless the technical object requires another order, present:
 
-- 中国电机工程学报: 802 papers, 97.4% with method sections, median 6 method sections, 30 method paragraphs, 29 display-equation markers.
-- 电力系统自动化: 538 papers, 99.3% with method sections, median 9 method sections, 40 method paragraphs, 41.5 display-equation markers.
-- IEEE TPWRS full papers: 553 full papers, 99.5% with method sections, median 7 method sections, 68 method paragraphs, 64 display-equation markers.
-- IEEE TSG full papers: 209 full papers, 99.5% with method sections, median 62 method paragraphs.
+1. operating/planning object and modeling boundary;
+2. assumptions, sets, indices, variables, parameters, units, and information timing;
+3. objective, physical equations, constraints, uncertainty/data model, or control law;
+4. transformation, approximation, relaxation, decomposition, analytical result, or certificate;
+5. algorithm, implementation condition, and stopping/fallback rule;
+6. evidence boundary and reproducibility details relevant to the claim.
 
-The exact counts are heuristic, but the signal is stable: the method section must be explicit, technical, and venue-specific.
-
-## Global Rule
-
-The method section is where the paper's claim becomes a technical object. Write in this order unless the manuscript has a good reason to deviate:
-
-1. Operating object and modeling boundary.
-2. Assumptions, variables, sets, parameters, and information timing.
-3. Objective, constraints, physical equations, uncertainty model, or control law.
-4. Transformation, derivation, relaxation, decomposition, or analytical property.
-5. Solution algorithm, control procedure, or implementation condition.
-6. Reproducibility details only when they affect interpretation.
-
-Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
+Do not begin with a generic announcement. Start with the power-system object or the precise modeling conflict.
 
 ## Physical Story Before Mathematics
 
-For power-system engineering papers, the physical picture is the primary logic and mathematics is the disciplined language used to express it. Before adding equations, propositions, or proof fragments, state the grid object, operating conflict, coupling mechanism, and engineering consequence that make the mathematics necessary.
+Before a dense equation group, state:
 
-Use this order for mathematically dense material:
+- the grid, device, market, uncertainty, communication, or planning object;
+- the operating conflict or missing information;
+- why the mathematical object is needed;
+- what operational or physical conclusion it permits.
 
-1. physical scene: network, device, market, uncertainty source, control layer, or feasibility boundary;
-2. engineering conflict: which voltage, current, power, reserve, risk, communication, or observability relation fails or becomes hard;
-3. mathematical object: variable, kernel, constraint, ambiguity set, relaxation, certificate, theorem, or algorithmic property;
-4. physical reading of the object: what the operator, planner, or reviewer learns from it;
-5. evidence or next model step.
-
-Do not write engineering manuscripts as if they were pure-math papers. Most target venues need enough derivation to make assumptions, validity conditions, and computational consequences reviewable; they do not need a complete proof of every supporting property. Put proof-level detail in the main text only when the claim depends on the proof and the venue expects it.
-
-When introducing an uncommon mathematical theory in power-system papers, add a short prerequisite bridge before using it: define only the concepts needed later, state the condition under which they apply, and tie the concept to the current grid object. Do not insert a self-contained textbook tutorial.
-
-Reviewer-comment revisions follow the same rule. A reviewer request for clarification should become a clearer physical mechanism, assumption, equation interpretation, or evidence comparison at the natural manuscript location. It should not become a defensive proof block or a paragraph whose main subject is the reviewer's concern.
-
-## Local Motivation Before Properties
-
-Do not let propositions, proofs, lemmas, algorithm blocks, or named properties appear without a local reason. Before a subsection such as `半正定性`, `可行性`, `收敛性`, `复杂度`, `等价性`, or `约束满足性`, add one short technical bridge that states:
-
-- which modeling or optimization difficulty from the previous subsection makes the property necessary;
-- what physical, probabilistic, feasibility, or computational condition the property protects;
-- what the consequence is for the next step, such as gradient refinement, relaxation, decomposition, or certificate construction.
-
-Weak: opening `2.2 半正定性` directly with a proposition.
-Strong: state that covariance must remain positive semidefinite during unconstrained gradient refinement; otherwise the recovered voltage distribution is nonphysical and residual reduction is meaningless. Then give the proposition.
+Mathematics is not justified by density. A lemma, proposition, proof, or certificate belongs in the main text only when it establishes a property used by the paper's claim or algorithm.
 
 ## Formula Physical Intuition
 
-Symbol definition is not enough. For every key equation or equation group, give the reader one short physical-intuition sentence or paragraph that answers the following questions when relevant:
+For each key equation group, explain when relevant:
 
-- What grid object does the equation represent: voltage phasor, branch flow, injection, reserve, covariance, uncertainty set, certificate, or operating limit?
-- What is the cause-effect direction: which disturbance, decision, or network parameter changes which electrical quantity?
-- Why are the terms added, multiplied, relaxed, decomposed, or bounded in this form?
-- Do the sign convention, units, dimensions, and per-unit scaling match the stated physical direction?
-- What happens in a limiting case: zero uncertainty, radial feeder without reverse flow, independent injections, perfect observability, no communication delay, or a single mixture component?
-- What does the equation let an operator or reviewer diagnose that a black-box numerical result would not show?
+- represented electrical/operational quantity;
+- cause-effect direction;
+- units, per-unit base, sign convention, and dimensions;
+- why terms are coupled, bounded, relaxed, or decomposed in that form;
+- limiting or degenerate case;
+- the diagnostic or operating implication.
 
-Do not turn "式中:" or notation paragraphs into long textbook exposition. Keep notation close to the formula, then add physical intuition as a separate technical sentence anchored to the manuscript's claim.
-
-For inverse probabilistic load flow, the physical intuition must be explicit:
-
-- The voltage-to-power moment equation is a quadratic power-flow kernel: voltage means and covariances create active/reactive power moments through network admittance, rather than through a generic statistical fit.
-- Voltage-covariance identifiability asks which co-fluctuation directions can be observed from the supplied power moments; null-space directions should not be interpreted as meaningful voltage variance.
-- An SDP feasibility certificate states whether a target power-moment set can be produced by any physically admissible voltage distribution under the stated voltage and PSD constraints.
+Definitions alone are insufficient. Keep symbol definitions close to first use, then add one concise physical explanation.
 
 ## Model-Algorithm Consistency
 
-Whenever the method uses a relaxation, convexification, penalty, discretization, decomposition, or surrogate model, the manuscript must state the relationship between the original problem and what is actually solved.
+For every approximation, relaxation, surrogate, penalty, decomposition, or discretization, state the exact relationship to the original problem:
 
-- State the relationship explicitly in prose: equivalence, upper bound, lower bound, or gap, together with the condition under which it holds.
-- A simple relationship (for example, an exact relaxation) needs one sentence. A complex relationship (penalty limiting behavior, the equivalence chain of a multi-step decomposition, surrogate approximation quality) may take a short paragraph, but it must still land on two points: the relationship, and the condition.
-- If the relationship cannot be established, do not default to claiming equivalence. Keep it as an explicit conditional statement in the text rather than hiding it.
+- equivalence under listed conditions;
+- outer or inner approximation;
+- lower or upper bound on a named objective;
+- asymptotic relation;
+- heuristic relation with an unquantified gap.
 
-Examples:
+If the relationship is not established, do not write “equivalent”, “exact”, or “guaranteed”. Report the method actually solved and its observed behavior.
 
-- "The second-order cone relaxation is exact when the network is radial and load over-satisfaction does not occur, so the relaxed optimum recovers the original AC solution."
-- "The penalty reformulation approaches the original feasible region as the penalty weight grows; for finite weights the solution is a feasible upper bound on the original cost."
+## SOCP and Convex-Relaxation Claims
 
-## Standard Parts vs Claimed Novelty
+Do not use radial topology, or radial topology plus one informal condition, as a universal SOCP exactness statement.
 
-Many power-system methods reuse high-frequency standard parts. By default these are not the paper's contribution.
+An exactness claim must identify:
 
-- Treat SOCP relaxation, ADMM, chance-constrained reformulation, DRO ambiguity sets, scenario reduction, PINN, and similar well-established techniques as standard machinery, not as the novelty, unless the paper changes the technique itself.
-- Map every claimed contribution to a specific equation, algorithm step, or proposition. If a claimed novelty cannot be mapped to a concrete object, soften the statement or flag it for the author rather than asserting it.
-- This complements the Prewriting Gate in `SKILL.md`: this rule constrains how novelty is worded during drafting; it does not repeat the prewriting novelty judgment.
+1. the network and branch-flow/bus-injection model;
+2. the objective and required monotonicity properties;
+3. load and generation lower/upper bounds;
+4. voltage, current, power-flow, and controllability conditions;
+5. feasibility and topology assumptions;
+6. the cited theorem or a proof applicable to this formulation;
+7. the recovery condition showing that the relaxed solution satisfies the original nonconvex relation.
 
-## 中国电机工程学报
+Acceptable template:
 
-Write the method section as an engineering-mechanism expansion:
+> Under Assumptions A1–A5 and the exactness theorem cited in [x], the conic relaxation recovers an original feasible solution because the stated objective, bound, and voltage/current conditions satisfy that theorem. Table/Fig. y additionally reports the recovery residual or rank condition.
 
-- Start from system structure, coupling relation, device behavior, operating scenario, or physical mechanism.
-- Then construct the model: variables and parameters should be defined near the first equation.
-- Separate objective function, constraints, control equations, and solution algorithm.
-- Explain the physical meaning of important constraints before giving the algorithm.
-- Use parameter configuration or implementation subsections only when they affect engineering use.
+Unacceptable template:
 
-Useful section shapes:
+> The relaxation is exact because the network is radial.
 
-- `系统建模`
-- `问题描述`
-- `目标函数与约束条件`
-- `协调控制策略`
-- `模型求解`
-- `参数整定与实现`
+If exactness is not proved, describe a relaxation, report the relaxation gap or recovery residual, and bound the conclusion accordingly.
 
-Preferred sentence rhythm:
+## Penalty and Augmented-Lagrangian Claims
 
-- "针对...，将...表示为...，建立..."
-- "约束...用于刻画...，其物理含义为..."
-- "在上述模型基础上，采用...求解..."
+Distinguish:
 
-Do not let "首先/其次/最后" become a list of writing actions. Each sequence marker must move the model forward.
+- quadratic or smooth penalty methods;
+- exact nonsmooth penalties;
+- augmented-Lagrangian methods;
+- regularization terms used only to guide a numerical solution.
 
-## 电力系统自动化
+For a finite quadratic penalty parameter, the minimizer generally need not satisfy the original constraints and is not automatically a feasible upper bound. Do not make either claim without proof.
 
-Write the method section as a compact operational model and execution procedure:
+An exact-penalty statement requires:
 
-- Clarify time scale, information source, dispatch/control object, and decision boundary early.
-- Make decision variables, objective function, constraints, uncertainty/disturbance model, and solution process easy to scan.
-- Use direct functional headings: `问题描述`, `模型构建`, `目标函数`, `约束条件`, `求解算法`, `协调优化策略`.
-- Keep implementation notes brief unless solver behavior, convergence, or runtime is part of the claim.
+- the actual penalty function;
+- regularity/constraint-qualification assumptions;
+- a proved or cited threshold for the penalty parameter;
+- a statement of local or global scope;
+- a feasibility check for the returned solution.
 
-Preferred sentence rhythm:
+For an augmented-Lagrangian algorithm, report primal and dual residuals, multiplier/penalty updates, stopping criteria, and any feasibility-recovery step. Numerical residual decrease is not by itself proof of equivalence.
 
-- "计及...，构建..."
-- "以...为目标，约束包括..."
-- "采用...对模型进行求解/滚动优化/分层协调。"
+## SDP and Moment Feasibility Certificates
 
-Avoid mixing background motivation, modeling, and case-study interpretation in the same paragraph.
+First identify whether the SDP set is:
 
-## IEEE TPWRS
+- an outer relaxation of the original feasible set;
+- an inner approximation;
+- an exact reformulation under rank/structure conditions;
+- one level of a moment/SOS hierarchy.
 
-Write the method section as a formulation-first technical argument:
+For an outer relaxation \(F\subseteq F_{\mathrm{SDP}}\):
 
-- Use `NOMENCLATURE` only if notation is heavy; otherwise define notation near first use.
-- Put assumptions, sets, indices, variables, uncertainty, and information timing before equations.
-- Separate the original physical/operational model from approximation, reformulation, relaxation, or decomposition.
-- State what each transformation preserves, relaxes, approximates, or guarantees.
-- Give the algorithm after the formulation difficulty is clear.
-- Include convergence, scalability, complexity, or exactness only when actually supported.
+\[
+F_{\mathrm{SDP}}=\varnothing \;\Rightarrow\; F=\varnothing,
+\]
 
-Common section names:
+provided the relaxation and numerical infeasibility certificate are valid. The converse does not hold in general:
 
-- `II. PROBLEM FORMULATION`
-- `II. SYSTEM MODEL`
-- `III. PROPOSED METHOD`
-- `III. SOLUTION METHODOLOGY`
-- `A. Preliminaries`
-- `B. Reformulation`
-- `C. Solution Algorithm`
+\[
+F_{\mathrm{SDP}}\ne\varnothing
+\]
 
-Preferred English subjects:
+is not sufficient to establish a physically realizable original solution.
 
-- `The formulation...`
-- `The constraint...`
-- `The relaxation...`
-- `The decomposition...`
-- `The operator...`
-- `The uncertainty model...`
+A positive physical-realizability claim additionally requires the condition appropriate to the formulation, such as exactness, rank recovery, flat extension, or existence of a representing measure. State solver tolerances and distinguish:
 
-Avoid "we explore", "we comprehensively investigate", and "a novel framework" unless followed by a precise formulation, assumption, or guarantee.
+- certified infeasible;
+- relaxed feasible with recovery condition satisfied;
+- relaxed feasible but physically inconclusive;
+- numerically indeterminate.
 
-## IEEE TSG
+Use “certificate” only for the proposition actually certified. Prefer:
 
-Write the method section as a smart-grid mechanism, not as a generic algorithm description:
+> infeasibility evidence relative to the stated SDP relaxation and tolerance
 
-- State the grid object first: feeder, DER fleet, microgrid, EV/storage system, sensors, market participants, communication graph, or cyber-physical layer.
-- Make the information structure explicit: centralized/distributed, local measurements, delayed communication, privacy, online data, or attack model.
-- Keep physical constraints close to data/control machinery: power flow, voltage/current limits, inverter capability, storage dynamics, frequency, stability, or restoration constraints.
-- For learning/data-driven methods, state training/test split, noise, forecast horizon, domain shift, robustness, or generalization when relevant.
-- For distributed/cyber-physical methods, state communication assumptions, privacy mechanism, attack model, or implementation burden when relevant.
+unless the stronger original-space implication has been proved.
 
-Avoid letting the method read like an ML/control paper with a power-grid dataset attached. The algorithmic object must explain what grid-operational difficulty it resolves.
+## Inverse Probabilistic Load Flow
 
-## Method-Section Quality Check
+When relevant, explain that voltage-domain means and covariances generate active/reactive power moments through the network power-flow relation, rather than a generic statistical fit. Identifiability concerns which voltage co-fluctuation directions are observable from the supplied moments. Any SDP condition must be described according to the relaxation logic above; relaxed feasibility alone cannot be called proof that an admissible voltage distribution exists.
 
-Before finalizing, verify:
+## Standard Machinery and Claimed Novelty
 
-- Every variable in an equation is defined close to first use.
-- Objective and constraints are not buried inside prose.
-- The physical meaning of key equations and constraints is stated through grid objects, cause-effect direction, units/signs, limiting cases, or operational diagnosis.
-- Algorithm steps correspond to specific model difficulties.
-- Approximation, relaxation, or linearization has a stated validity condition or boundary.
-- Every relaxation, reformulation, decomposition, or surrogate states its relationship to the original problem (equivalence, bound, or gap) and the condition under which it holds.
-- Mathematical depth matches the venue: enough derivation for reviewability, not proof-heavy exposition that displaces the engineering mechanism.
-- Any uncommon theory is introduced only to the extent needed by the later model and is connected to the physical object before it is used.
-- Solver and platform details are placed in the method only when method-level claims depend on them.
-- The venue's expected granularity is respected: broader mechanism for 中国电机工程学报, leaner operational formulation for 电力系统自动化, assumption-explicit formulation for TPWRS.
+SOCP, SDP, ADMM, chance constraints, ambiguity sets, scenario reduction, Gaussian mixtures, PINNs, and standard Bayesian updates are established machinery by default. A contribution must map to a concrete formulation, mechanism, theorem, algorithm step, diagnostic quantity, or application insight supported by evidence.
+
+Do not reject legitimate application work merely because it uses standard machinery. Instead distinguish a research-method claim from an application-paper claim and require the evidence appropriate to that type.
+
+## Venue Routing
+
+### 中国电机工程学报
+
+Use an engineering mechanism-model-evidence order. Keep equations, assumptions, variable definitions, and physical meaning close together. Do not replace the contribution with policy background.
+
+### 电力系统自动化
+
+State time scale, information source, operating object, objective, constraints, and execution procedure early. Keep implementation logic easy to scan.
+
+### IEEE TPWRS
+
+Use an assumption-explicit, formulation-led argument. Separate original model, transformation/relaxation, theoretical relationship, algorithm, and validation. State every exactness, guarantee, and scalability claim with its conditions and evidence.
+
+### IEEE TSG
+
+Connect data, learning, communication, privacy, cyber, DER, or edge machinery to physical grid constraints and an operational metric. State data protocol and information structure.
+
+## Final Method Check
+
+Before delivery verify:
+
+- every core variable is defined and used consistently;
+- units, signs, bases, indices, and domains are coherent;
+- required operating constraints are present;
+- assumptions precede the result that uses them;
+- transformations state their relationship to the original model;
+- exactness, penalty, and certificate claims satisfy the rules above;
+- algorithm steps correspond to modeling difficulties;
+- initialization, stopping, fallback, and reproducibility details are present when material;
+- conclusions do not exceed proved or tested conditions.
