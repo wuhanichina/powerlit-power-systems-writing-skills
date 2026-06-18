@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "venues": {
+    "ieee_tpwrs": {
+      "canonical": "ieee_tpwrs",
+      "aliases": ["tpwrs", "ieee transactions on power systems", "transactions on power systems"]
+    },
+    "ieee_tsg": {
+      "canonical": "ieee_tsg",
+      "aliases": ["tsg", "ieee transactions on smart grid", "transactions on smart grid"]
+    },
+    "中国电机工程学报": {
+      "canonical": "中国电机工程学报",
+      "aliases": ["csee", "proceedings of the csee"]
+    },
+    "电力系统自动化": {
+      "canonical": "电力系统自动化",
+      "aliases": ["aeps", "automation of electric power systems"]
+    },
+    "电网技术": {
+      "canonical": "电网技术",
+      "aliases": ["power system technology", "power grid technology"]
+    },
+    "ieee_tpwrd": {
+      "canonical": "ieee_tpwrd",
+      "aliases": ["tpwrd", "ieee transactions on power delivery"]
+    },
+    "mpce": {
+      "canonical": "mpce",
+      "aliases": ["journal of modern power systems and clean energy"]
+    },
+    "ijepes": {
+      "canonical": "ijepes",
+      "aliases": ["international journal of electrical power and energy systems"]
+    },
+    "applied_energy": {
+      "canonical": "applied_energy",
+      "aliases": ["applied energy"]
+    },
+    "energy": {
+      "canonical": "energy",
+      "aliases": ["energy journal"]
+    }
+  }
+}
