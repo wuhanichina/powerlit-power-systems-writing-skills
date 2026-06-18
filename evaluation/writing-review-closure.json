@@ -23,9 +23,9 @@
   {
     "id": "letter-near-neighbor-loop",
     "write_prompt": "Use $ieee-power-engineering-letter-writing to compress a full-paper idea into an IEEE power-system Letter around one analytical correction or counterexample.",
-    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced Letter as an IEEE power-system Letter. Check whether it has one hard claim, a compact technical core, and decisive evidence.",
-    "pass_criteria": "No same-claim near-neighbor threat, no missing technical core, no broad related-work drift, and no unsupported comprehensive-validation claim.",
-    "repair_required_when": "The review finds that the output is merely a shortened full paper or that a retrieved near-neighbor already covers the same claim."
+    "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced Letter as an IEEE power-system Letter. Check whether it has one hard 论点, a compact technical core, and decisive evidence.",
+    "pass_criteria": "No near-neighbor threat covering the same 论点, no missing technical core, no broad related-work drift, and no unsupported comprehensive-validation 论点.",
+    "repair_required_when": "The review finds that the output is merely a shortened full paper or that a retrieved near-neighbor already covers the same 论点."
   },
   {
     "id": "corpus-style-no-copy-loop",
@@ -36,10 +36,10 @@
   },
   {
     "id": "actual-project-claim-translation-loop",
-    "write_prompt": "Use $powerlit-power-systems-paper-writing on one actual-project claim fixture from evaluation/actual-project-claim-regressions.json. Translate the project claim into a venue-fit paper claim before drafting.",
-    "review_prompt": "Use $powerlit-power-systems-paper-review to check whether the produced claim still has the original fixture's expected review failure. The review result must drive a second-round repair or blocker.",
-    "pass_criteria": "The second-round claim removes the fixture's known review failure while preserving the real evidence boundary.",
-    "repair_required_when": "The draft preserves a rigid project claim verbatim, overclaims beyond the fixture evidence, or presents a defensive gate statement as the paper's headline contribution."
+    "write_prompt": "Use $powerlit-power-systems-paper-writing on one actual-project 论点 fixture from evaluation/actual-project-claim-regressions.json. Translate the 项目论点 into a venue-fit 论文论点 before drafting.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to check whether the produced 论点 still has the original fixture's expected review failure. The review result must drive a second-round repair or blocker.",
+    "pass_criteria": "The second-round 论点 removes the fixture's known review failure while preserving the real evidence boundary.",
+    "repair_required_when": "The draft preserves a rigid 项目论点 verbatim, overstates beyond the fixture evidence, or presents a defensive gate statement as the paper's headline contribution."
   },
   {
     "id": "formula-physical-intuition-loop",

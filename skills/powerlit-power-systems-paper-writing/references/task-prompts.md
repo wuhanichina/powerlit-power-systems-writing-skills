@@ -53,7 +53,7 @@ User prompt shape:
 请把这段中文技术草稿翻译成 IEEE TPWRS 英文。不要直译项目管理语言；把工程对象、模型关系和证据边界转成论文语言。
 ```
 
-Expected behavior: translate the technical relation, not the literal project wording. Replace internal terms such as `claim boundary`, `evidence pack`, or `closest competitor` with manuscript language or omit them.
+Expected behavior: translate the technical relation, not the literal project wording. Replace internal terms such as `claim boundary`, `evidence pack`, or `closest competitor` with manuscript language or omit them. In Chinese-facing output, render "claim" as "论点" rather than "主张".
 
 ### Compression
 
@@ -100,7 +100,7 @@ Expected behavior: build the reviewer-feedback integration map internally, then 
 User prompt shape:
 
 ```text
-请把这些 project claims 改成[期刊]论文摘要/贡献表述。不要照抄 claims.md；先把防守性边界转成可审稿的技术主张。
+请把这些项目论点改成[期刊]论文摘要/贡献表述。不要照抄 claims.md；先把防守性边界转成可审稿的技术论点。
 ```
 
 Expected behavior: load `project-claim-translation.md`; keep the supported boundary but make the manuscript statement positive, technical, and reviewable.

@@ -2,7 +2,7 @@
   {
     "id": "tsg-distributed-control-introduction",
     "prompt": "Use $powerlit-power-systems-paper-writing to rewrite an IEEE TSG introduction for a distributed voltage control paper using local inverter measurements, delayed communication, and feeder voltage-violation metrics. Use PowerLit if available and keep data-driven claims tied to grid operation.",
-    "expected": "The response first builds or consumes PowerLit-backed citation and venue evidence internally, runs the review-closure gate, then returns manuscript-ready TSG prose without exposing internal labels such as closest competitor or claim boundary."
+    "expected": "The response first builds or consumes PowerLit-backed citation and venue evidence internally, runs the review-closure gate, then returns manuscript-ready TSG prose without exposing internal labels such as closest competitor or 论点边界."
   },
   {
     "id": "tpwrs-formulation-method",
@@ -26,8 +26,8 @@
   },
   {
     "id": "actual-project-claim-translation",
-    "prompt": "Use $powerlit-power-systems-paper-writing with an actual project claim file such as RT-GMM claims.md, TS-VARX claims.md, PALI_EM_SCA claims.md, or BayesAQPPF_3ph claims.md. Translate the project claim into a paper claim, then use review feedback to repair the first draft if it keeps the claim too rigid or overbroad.",
-    "expected": "The response treats project claims as evidence boundaries, not manuscript text; it records review-failure risk internally, drafts a venue-fit paper claim, and repairs or blocks the draft if review would find a major issue."
+    "prompt": "Use $powerlit-power-systems-paper-writing with an actual 项目论点 file such as RT-GMM claims.md, TS-VARX claims.md, PALI_EM_SCA claims.md, or BayesAQPPF_3ph claims.md. Translate the 项目论点 into a 论文论点, then use review feedback to repair the first draft if the 论点 remains too rigid or overbroad.",
+    "expected": "The response treats 项目论点 as evidence boundaries, not manuscript text; it records review-failure risk internally, drafts a venue-fit 论文论点, and repairs or blocks the draft if review would find a major issue."
   },
   {
     "id": "light-edit-no-overclaim",
@@ -47,17 +47,17 @@
   {
     "id": "actual-case-readiness-target",
     "prompt": "Use $powerlit-power-systems-paper-writing with evaluation/actual-case-evidence-packets.json to draft toward MANUSCRIPT_REVIEW_READY for one target venue. Apply internal-readiness-writing.md as the internal readiness gate and block if the evidence packet only supports a section-level claim.",
-    "expected": "The response builds a readiness packet from actual case evidence plus a PowerLit evidence-strength profile when available, applies the full-manuscript readiness minimum, drafts or repairs the lowest-readiness dimension, and refuses to call a full paper MANUSCRIPT_REVIEW_READY when method, baseline, metric, or claim-boundary facts are missing."
+    "expected": "The response builds a readiness packet from actual case evidence plus a PowerLit evidence-strength profile when available, applies the full-manuscript readiness minimum, drafts or repairs the lowest-readiness dimension, and refuses to call a full paper MANUSCRIPT_REVIEW_READY when method, baseline, metric, or 论点边界 facts are missing."
   },
   {
     "id": "powerlit-evidence-strength-before-drafting",
-    "prompt": "Use $powerlit-power-systems-paper-writing to plan a CSEE full paper from an evidence packet whose main baseline is stronger on accuracy and runtime. Before drafting, learn from PowerLit accepted papers what evidence dimensions and claim boundaries are needed for a diagnostic or inverse-method paper.",
+    "prompt": "Use $powerlit-power-systems-paper-writing to plan a CSEE full paper from an evidence packet whose main baseline is stronger on accuracy and runtime. Before drafting, learn from PowerLit accepted papers what evidence dimensions and 论点边界 are needed for a diagnostic or inverse-method paper.",
     "expected": "The response must build or request a PowerLit evidence-strength profile before drafting, identify the non-substitutable scenario and manuscript-facing evidence required, and keep the paper below MANUSCRIPT_REVIEW_READY if the profile shows missing transition, baseline, or reproducibility evidence."
   },
   {
     "id": "defensive-boundary-and-formula-intuition",
     "prompt": "Use $powerlit-power-systems-paper-writing to rewrite a CSEE paragraph that currently begins with '需要强调的是，本文不把结果表述为对线性化 GMM 概率潮流的全面精度替代' and to expand the physical intuition around equations mapping voltage GMM means/covariances to power moments and an SDP feasibility certificate.",
-    "expected": "The response rewrites the boundary as a positive inverse-PLF technical claim with scoped GMM-PLF comparison, removes defensive '本文不...' posture from manuscript prose, and explains the formula group through grid objects, cause-effect direction, covariance identifiability, and SDP feasibility evidence relative to the stated relaxation model and constraints."
+    "expected": "The response rewrites the boundary as a positive inverse-PLF technical 论点 with scoped GMM-PLF comparison, removes defensive '本文不...' posture from manuscript prose, and explains the formula group through grid objects, cause-effect direction, covariance identifiability, and SDP feasibility evidence relative to the stated relaxation model and constraints."
   },
   {
     "id": "reviewer-comment-physical-story-revision",

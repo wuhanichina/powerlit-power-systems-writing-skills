@@ -2,6 +2,8 @@
 
 Use this reference whenever a project provides `claims.md`, `evidence_map.md`, a research note, a gate report, a reviewer support index, or a pre-submission review. These files are not automatically manuscript claims. They often exist to keep the project honest, so their wording can be too rigid, defensive, implementation-specific, or gate-shaped for a paper.
 
+Chinese-facing wording rule: translate "claim" as "论点" rather than "主张". Keep code identifiers, filenames, and schema fields such as `claims.md`, `claim_boundary`, and `paper_claim_candidate` unchanged.
+
 ## Core Rule
 
 Do not preserve a project claim verbatim unless it already reads as a venue-fit scientific contribution. Translate it.
