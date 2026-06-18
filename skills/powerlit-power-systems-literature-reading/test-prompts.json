@@ -1,0 +1,12 @@
+[
+  {
+    "id": "single-paper-chinese-six-part-reading",
+    "prompt": "请用 $powerlit-power-systems-literature-reading 精读我提供的一篇 TPWRS 论文 PDF，并用中文总结核心论点、理论机制、理论贡献、研究设计、关键发现，以及它如何回应我的研究问题：台风天气下源荷不确定性如何影响静态安全风险。",
+    "expected": "The response must state the evidence state, then use the six Chinese sections in order. In 理论贡献, when PowerLit is available, it should position the paper within its research direction, summarize the method family, and compare same-family differences before stating unique value and claim boundaries. It should tie the paper to the user's research question without inventing missing DOI, metrics, or results."
+  },
+  {
+    "id": "abstract-limited-reading-boundary",
+    "prompt": "请用 $powerlit-power-systems-literature-reading 总结这篇文献。我目前只提供题名和摘要，没有全文。",
+    "expected": "The response must mark the evidence state as abstract/metadata limited, still use the Chinese summary structure where possible, avoid unsupported key findings or page anchors, and state that precise research-question relevance requires either the user's question or fuller source material."
+  }
+]

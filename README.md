@@ -8,7 +8,7 @@
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-语料边界)
 
-这个仓库提供一组面向电力系统论文的 Codex 技能，覆盖选题预审、PowerLit 文献智能、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
+这个仓库提供一组面向电力系统论文的 Codex 技能，覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
 
 它不是普通润色工具。PowerLit 可访问时，技能先检索近邻论文和引用证据，锁定论点边界，再按目标期刊的段落功能、论证节奏和证据呈现方式写正文；投稿前还会用本地审稿 skill 反向检查，形成“写作 -> 审稿 -> 修复”的闭环。
 
@@ -32,6 +32,7 @@
 python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
   --repo wuhanichina/powerlit-power-systems-writing-skills `
   --path skills/powerlit-power-systems-literature-intelligence `
+         skills/powerlit-power-systems-literature-reading `
          skills/powerlit-power-systems-prewriting-review `
          skills/powerlit-power-systems-paper-writing `
          skills/ieee-power-engineering-letter-writing `
@@ -46,6 +47,10 @@ python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-s
 
 ```text
 把这段引言改成 TPWRS 风格，先锁定论点边界和近邻文献。
+```
+
+```text
+请用 powerlit-power-systems-literature-reading 精读这篇论文，并按核心论点、理论机制、理论贡献、研究设计、关键发现和我的研究问题回应来总结。
 ```
 
 ```text
@@ -66,6 +71,7 @@ python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-s
 |---|---|---|---|
 | 🧭 写作前预审 | `powerlit-power-systems-prewriting-review` | `GO` / `CONDITIONAL GO` / `NO-GO` / `RETARGET` 与修复清单 | idea、模型、实验包或粗稿还不确定能不能写 |
 | 🔎 文献智能 | `powerlit-power-systems-literature-intelligence` | 近邻竞争工作、引用包、创新性风险、文献覆盖审计 | 写引言、回应审稿、判断 novelty |
+| 📖 文献精读总结 | `powerlit-power-systems-literature-reading` | 核心论点、理论机制、理论贡献、研究设计、关键发现、研究问题回应 | 精读单篇或少量指定文献 |
 | 📝 完整论文写作 | `powerlit-power-systems-paper-writing` | 摘要、引言、方法、算例、结论、图表标题和结果段 | CSEE、AEPS、TPWRS、TSG 正文写作 |
 | ✉️ IEEE Letter 写作 | `ieee-power-engineering-letter-writing` | 一个硬论点、紧凑技术核心和最小决定性证据 | 符合官方页数规则的 IEEE PES Letter |
 | 🧪 投稿前审稿 | `powerlit-power-systems-paper-review` | 按严重程度排序的拒稿风险和必须修复项 | 投稿前自查、返修前定位致命问题 |
@@ -79,6 +85,7 @@ python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-s
 | 任务 | 必要输入 | 示例提示 | 期望输出 |
 |---|---|---|---|
 | 写作前决策 | idea、模型、证据状态、目标期刊 | `请判断这个台风配电网风险评估 idea 是否能进入中国电机工程学报写作。` | `GO`、`CONDITIONAL GO`、`NO-GO` 或 `RETARGET`，并给出具体修复项。 |
+| 文献精读总结 | PDF、题名/DOI、摘要或 PowerLit 记录；最好附自己的研究问题 | `请精读这篇 TPWRS 论文，并说明它如何回应我的研究问题：台风天气下源荷不确定性如何影响静态安全风险。` | 中文六块总结：核心论点、理论机制、理论贡献、研究设计、关键发现、研究问题回应。 |
 | 引言重写 | 目标期刊、草稿、证据边界、引用状态 | `把这段引言改成 TPWRS 风格，先锁定论点边界和近邻文献。` | 缩窄或阻断无支撑论点后的论文正文。 |
 | 方法模型段 | 方程、假设、变量、算法、期刊 | `把这个 DRO AC OPF 方法部分改成 TPWRS 写法，重点检查假设、公式和可解性论点。` | 以 formulation 为中心的方法段，包含变量、约束、重构、算法和边界。 |
 | 算例结果段 | MATLAB 或结果表、基线、指标、场景 | `根据这些 case33bw 结果写算例分析段，不要泛称有效性。` | 说明系统、指标方向、对比、机理和边界的结果段。 |
@@ -161,6 +168,19 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
   -Top 10
 ```
 
+### `powerlit-power-systems-literature-reading`
+
+用于精读单篇或少量指定文献，并用中文输出固定结构的研究笔记：
+
+- 核心论点
+- 理论机制
+- 理论贡献
+- 研究设计
+- 关键发现
+- 如何回应我的研究问题
+
+如果全文可读，它会先标注证据状态，再把论点、机制、设计、发现和研究启示绑定到正文、方法、实验或结论证据。PowerLit 可用时，`理论贡献` 会进一步给出该文献在研究方向中的地位、独特价值、方法体系归属，以及与同派系方法的差异。若只有摘要、题名或元数据，它会明确标注 `摘要/元数据有限`，不编造 DOI、结果、基线、页码或关键发现。对电力系统论文，`理论机制` 会按物理机制、数学模型、优化/控制逻辑、统计机制或工程因果链理解，而不是生硬套用社会科学术语。
+
 ### `powerlit-power-systems-prewriting-review`
 
 用于正式写作前的预审。它判断一个 idea、大纲、模型、实验包或粗稿是否已经可以进入目标期刊写作。
@@ -216,9 +236,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 
 1. 先运行 `powerlit-power-systems-prewriting-review`，判断工作是否已经可写。
 2. 使用 `powerlit-power-systems-literature-intelligence` 检索近邻竞争工作和引用证据。
-3. 完整论文使用 `powerlit-power-systems-paper-writing`，Letter 使用 `ieee-power-engineering-letter-writing`。
-4. 投稿前运行 `powerlit-power-systems-paper-review`，让审稿门槛反向关闭写作风险。
-5. 维护技能本身时，把真实项目中的审稿失败加入回归用例，例如 `evaluation/actual-project-claim-regressions.json`。
+3. 对确定需要细读的文献，使用 `powerlit-power-systems-literature-reading` 形成中文六块研究笔记。
+4. 完整论文使用 `powerlit-power-systems-paper-writing`，Letter 使用 `ieee-power-engineering-letter-writing`。
+5. 投稿前运行 `powerlit-power-systems-paper-review`，让审稿门槛反向关闭写作风险。
+6. 维护技能本身时，把真实项目中的审稿失败加入回归用例，例如 `evaluation/actual-project-claim-regressions.json`。
 
 ---
 
@@ -233,6 +254,7 @@ powerlit-power-systems-writing-skills/
 │   └── Validate-PowerLitSkillRepo.ps1
 ├── skills/
 │   ├── powerlit-power-systems-literature-intelligence/
+│   ├── powerlit-power-systems-literature-reading/
 │   ├── powerlit-power-systems-prewriting-review/
 │   ├── powerlit-power-systems-paper-writing/
 │   ├── ieee-power-engineering-letter-writing/

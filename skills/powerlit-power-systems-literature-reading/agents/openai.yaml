@@ -1,0 +1,6 @@
+interface:
+  display_name: "PowerLit Literature Reading"
+  short_description: "Chinese structured paper reading and research-question synthesis."
+  default_prompt: "Use $powerlit-power-systems-literature-reading to read this paper and summarize it in Chinese by argument, mechanism, contribution, design, findings, and relevance to my research question."
+policy:
+  allow_implicit_invocation: true

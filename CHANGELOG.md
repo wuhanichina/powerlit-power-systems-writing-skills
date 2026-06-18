@@ -1,5 +1,14 @@
 # 版本说明
 
+## Unreleased - Literature Reading Skill
+
+- 新增 `powerlit-power-systems-literature-reading`，用于对单篇或少量指定电力系统文献做中文精读总结。
+- 固定输出六个阅读维度：核心论点、理论机制、理论贡献、研究设计、关键发现、如何回应我的研究问题。
+- 将 PowerLit 作为文献精读的可选增强来源：PowerLit 可用时，`理论贡献` 部分需要给出文献在研究方向中的地位、独特价值、方法体系归属，以及与同派系方法的差异。
+- 明确证据状态边界：区分 `全文可读`、`摘要/元数据有限` 和 `用户问题缺失`，不编造 DOI、结果、基线、页码或关键发现。
+- 同步更新 `README.md`、`README.en.md`、`agents/openai.yaml` 和 `test-prompts.json`，使安装入口、任务入口和行为夹具都能发现该技能。
+- 验证记录：`quick_validate.py` 通过；`scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch` 通过，当前 `skill_count=6`。
+
 ## Unreleased - Major Portability, Retrieval, Validation, And Readiness Migration
 
 - Moved the distributable PowerLit index into `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index` and removed machine-local default paths from runtime resolution.

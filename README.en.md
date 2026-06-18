@@ -8,7 +8,7 @@
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-corpus-boundary)
 
-This repository provides a set of Codex skills for power-systems research writing: prewriting review, PowerLit literature intelligence, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
+This repository provides a set of Codex skills for power-systems research writing: prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
 
 It is not a generic polishing tool. When PowerLit is available, the skills first retrieve nearby papers and citation evidence, define what can be claimed, and then write in the target venue's section shape, paragraph function, argument rhythm, and evidence style. Before submission, the review skill closes the loop by checking whether the draft would still fail under a local reviewer gate.
 
@@ -32,6 +32,7 @@ Run this in PowerShell:
 python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
   --repo wuhanichina/powerlit-power-systems-writing-skills `
   --path skills/powerlit-power-systems-literature-intelligence `
+         skills/powerlit-power-systems-literature-reading `
          skills/powerlit-power-systems-prewriting-review `
          skills/powerlit-power-systems-paper-writing `
          skills/ieee-power-engineering-letter-writing `
@@ -46,6 +47,10 @@ Use powerlit-power-systems-prewriting-review to decide whether this typhoon dist
 
 ```text
 Rewrite this introduction in TPWRS style. Start by locking the claim boundary and nearby literature.
+```
+
+```text
+Use powerlit-power-systems-literature-reading to read this paper and summarize its core argument, mechanism, contribution, research design, key findings, and relevance to my research question.
 ```
 
 ```text
@@ -66,6 +71,7 @@ No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, re
 |---|---|---|---|
 | 🧭 Prewriting decision | `powerlit-power-systems-prewriting-review` | `GO` / `CONDITIONAL GO` / `NO-GO` / `RETARGET` with repair actions | Decide whether an idea, model, experiment package, or rough draft is ready |
 | 🔎 Literature intelligence | `powerlit-power-systems-literature-intelligence` | Nearby work, citation packets, novelty risks, coverage audits | Introduction writing, rebuttal preparation, novelty checks |
+| 📖 Structured paper reading | `powerlit-power-systems-literature-reading` | Core argument, mechanism, contribution, design, findings, and research-question relevance | Read one or a small set of selected papers |
 | 📝 Full-paper writing | `powerlit-power-systems-paper-writing` | Abstract, introduction, method, case study, conclusion, captions, results | CSEE, AEPS, TPWRS, and TSG manuscript writing |
 | ✉️ IEEE Letter writing | `ieee-power-engineering-letter-writing` | One hard claim, compact technical core, minimal decisive evidence | IEEE PES Letters under official page-budget rules |
 | 🧪 Pre-submission review | `powerlit-power-systems-paper-review` | Review risks ranked by severity | Submission checks and revision planning |
@@ -79,6 +85,7 @@ No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, re
 | Task | Required Input | Example Prompt | Expected Output |
 |---|---|---|---|
 | Prewriting decision | Idea, model, evidence state, target venue | `Decide whether this typhoon distribution-network risk assessment idea can enter Proceedings of the CSEE writing.` | `GO`, `CONDITIONAL GO`, `NO-GO`, or `RETARGET`, plus concrete repairs. |
+| Structured paper reading | PDF, title/DOI, abstract, or PowerLit record; preferably with the user's research question | `Read this TPWRS paper and explain how it responds to my research question: how typhoon-driven source-load uncertainty affects static-security risk.` | Chinese six-part note: core argument, mechanism, contribution, research design, key findings, and research-question response. |
 | Introduction rewrite | Target venue, draft, evidence boundary, citation state | `Rewrite this introduction in TPWRS style. First lock the claim boundary and nearby literature.` | Manuscript text after unsupported claims are narrowed or blocked. |
 | Method/model section | Equations, assumptions, variables, algorithm, venue | `Rewrite this DRO AC OPF method section for TPWRS, focusing on assumptions, formulation, and solvability claims.` | A formulation-centered method section with variables, constraints, reformulation, algorithm, and boundaries. |
 | Case-study results | MATLAB outputs or result tables, baselines, metrics, scenarios | `Use these case33bw results to write the case-study analysis paragraph. Do not make a generic effectiveness claim.` | A result paragraph tied to system, metric direction, comparison, mechanism, and boundary. |
@@ -161,6 +168,19 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
   -Top 10
 ```
 
+### `powerlit-power-systems-literature-reading`
+
+Use this to read one or a small set of selected papers and return a Chinese research note with a fixed structure:
+
+- core argument
+- theoretical or physical mechanism
+- theoretical contribution
+- research design
+- key findings
+- how the paper responds to the user's research question
+
+When the full paper is readable, the skill states the evidence state and ties arguments, mechanisms, design, findings, and research implications to paper sections or results. When PowerLit is available, the theoretical contribution section also positions the paper within its research direction, identifies its method family, and compares its unique value against same-family methods. When only title, abstract, or metadata are available, it marks the summary as abstract/metadata limited and does not invent DOI, results, baselines, page numbers, or findings. For power-system papers, `theoretical mechanism` may mean physical mechanism, mathematical model, optimization/control logic, statistical mechanism, or an engineering causal chain.
+
 ### `powerlit-power-systems-prewriting-review`
 
 Use this before formal writing. It decides whether an idea, outline, model, experiment package, or rough draft is ready for target-venue writing.
@@ -216,9 +236,10 @@ Use this for strict review under CSEE, AEPS, TPWRS, TSG, and IEEE Letter standar
 
 1. Run `powerlit-power-systems-prewriting-review` to decide whether the work is ready.
 2. Use `powerlit-power-systems-literature-intelligence` to retrieve nearby competing work and citation evidence.
-3. Use `powerlit-power-systems-paper-writing` for full papers, or `ieee-power-engineering-letter-writing` for Letters.
-4. Run `powerlit-power-systems-paper-review` before submission to close writing risks against reviewer standards.
-5. When maintaining the skills, add real review failures to regression fixtures such as `evaluation/actual-project-claim-regressions.json`.
+3. Use `powerlit-power-systems-literature-reading` to produce Chinese six-part notes for papers that need close reading.
+4. Use `powerlit-power-systems-paper-writing` for full papers, or `ieee-power-engineering-letter-writing` for Letters.
+5. Run `powerlit-power-systems-paper-review` before submission to close writing risks against reviewer standards.
+6. When maintaining the skills, add real review failures to regression fixtures such as `evaluation/actual-project-claim-regressions.json`.
 
 ---
 
@@ -233,6 +254,7 @@ powerlit-power-systems-writing-skills/
 │   └── Validate-PowerLitSkillRepo.ps1
 ├── skills/
 │   ├── powerlit-power-systems-literature-intelligence/
+│   ├── powerlit-power-systems-literature-reading/
 │   ├── powerlit-power-systems-prewriting-review/
 │   ├── powerlit-power-systems-paper-writing/
 │   ├── ieee-power-engineering-letter-writing/
