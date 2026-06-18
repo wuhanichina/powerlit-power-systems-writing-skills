@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-paper-writing
-description: Draft, rewrite, or review full-length power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, method/model sections, case studies, figure/table captions, result paragraphs, conclusions, terminology cleanup, venue adaptation, and PowerLit-grounded citation planning.
+description: Draft, rewrite, or revise full-length power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, method/model sections, case studies, figure/table captions, result paragraphs, conclusions, terminology cleanup, reviewer-comment revision, venue adaptation, and PowerLit-grounded citation planning.
 ---
 # PowerLit Power-Systems Paper Writing
 
@@ -9,6 +9,8 @@ description: Draft, rewrite, or review full-length power-system research papers 
 Use this skill to produce full-paper manuscript prose that is ready for serious venue review. The skill is a shared writing entry point plus venue profiles, not four independent skills. Shared rules handle evidence, PowerLit retrieval, logic closure, paragraph discipline, and anti-AI cleanup. Venue profiles handle the journal-specific register, structure, evidence expectation, and rejection risks.
 
 Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writing` when the target is a 3-4 page Letter or compact technical communication.
+
+Do not use this skill as the standalone acceptability or reject-risk reviewer. Use `powerlit-power-systems-paper-review` for strict manuscript review; this writing skill only applies review standards internally before delivery.
 
 ## Core Workflow
 

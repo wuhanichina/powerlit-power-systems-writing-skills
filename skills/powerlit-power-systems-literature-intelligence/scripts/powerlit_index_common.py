@@ -50,6 +50,8 @@ def resolve_index_dir(explicit: Optional[str] = None, create: bool = False) -> O
     if explicit:
         candidates.append(Path(explicit))
 
+    candidates.append(repo_root() / ".cache" / "powerlit-index")
+
     env_index = os.environ.get("POWERLIT_INDEX_ROOT")
     if env_index:
         candidates.append(Path(env_index))
@@ -57,8 +59,6 @@ def resolve_index_dir(explicit: Optional[str] = None, create: bool = False) -> O
     local_cache = os.environ.get("POWERLIT_LOCAL_CACHE")
     if local_cache:
         candidates.append(Path(local_cache) / "powerlit-index")
-
-    candidates.append(repo_root() / ".cache" / "powerlit-index")
 
     for path in candidates:
         if create:

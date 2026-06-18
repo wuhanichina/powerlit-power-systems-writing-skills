@@ -22,13 +22,14 @@ Resolve the PowerLit JSON root in this order:
 
 The resolved root must be a readable directory containing venue folders and `.json` paper records. Do not hard-code any other machine-specific path.
 
-Fast retrieval is mandatory for PowerLit-backed workflows. Prefer the local SQLite FTS index when it exists:
+Fast retrieval is mandatory for PowerLit-backed workflows. Prefer the repository-bundled local SQLite FTS cache when it exists:
 
-1. `POWERLIT_INDEX_ROOT`.
-2. `POWERLIT_LOCAL_CACHE/powerlit-index`.
-3. Repository `.cache/powerlit-index`.
+1. Explicit index path supplied by script parameter.
+2. Repository `.cache/powerlit-index`.
+3. `POWERLIT_INDEX_ROOT`.
+4. `POWERLIT_LOCAL_CACHE/powerlit-index`.
 
-Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `scripts/Search-PowerLitIndex.py` for direct cross-platform indexed retrieval. On Windows, `scripts/Search-PowerLitJson.ps1` is still the public search entry and automatically uses the local index first; it falls back to `rg` prefiltering and raw JSON parsing only when the index is missing or incomplete. Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check corpus availability when shell access is available. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
+Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `scripts/Search-PowerLitIndex.py` for direct cross-platform indexed retrieval. On Windows, `scripts/Search-PowerLitJson.ps1` is still the public search entry and automatically uses the local index first, starting with the repository cache; it falls back to `rg` prefiltering and raw JSON parsing only when the index is missing or incomplete. Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check corpus availability when shell access is available. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
 
 When the task maps to a known direction or method family, consult `evaluation/method-canon/method-canon.json` before broad retrieval. The method canon is a quality anchor for method families and evidence bars; it is not a substitute for a final main-corpus novelty search.
 
@@ -84,7 +85,7 @@ python scripts/Build-PowerLitIndex.py --venue-folder ieee_tsg --venue-folder iee
    - likely venue.
 3. Read relevant verified method-canon entries when available, respecting `usage_policy`.
 4. Retrieve candidate papers from the main PowerLit corpus:
-   - use the local PowerLit index first; build or refresh it if repeated queries are expected,
+   - use the repository-bundled local PowerLit index first; build or refresh it if repeated queries are expected and the cache is missing or stale,
    - start with target-venue folders when the target venue is known,
    - widen to TPWRS, TSG, CSEE, AEPS, MPCE, Applied Energy, Energy, IJEPES, and Power Grid Technology when needed,
    - keep the raw file paths for auditability.

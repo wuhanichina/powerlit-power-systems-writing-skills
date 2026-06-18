@@ -136,7 +136,7 @@ PowerLit JSON 根目录解析顺序：
 4. `POWERLIT_LITERATURE_JSON`
 5. 默认局域网路径：`\\WHome\PowerLit\literature\json`
 
-高频应用应先构建本地 SQLite FTS 索引。仓库可携带 `.cache/powerlit-index` 下的 SQLite 与 manifest 缓存，便于开箱即用；临时文件、JSONL 调试文件和其他 `.cache` 内容仍保持本地：
+高频应用默认优先使用仓库随附的本地 SQLite FTS 缓存。仓库可携带 `.cache/powerlit-index` 下的 SQLite 与 manifest 缓存，便于开箱即用；临时文件、JSONL 调试文件和其他 `.cache` 内容仍保持本地：
 
 ```powershell
 python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `
@@ -153,7 +153,7 @@ python skills\powerlit-power-systems-literature-intelligence\scripts\Search-Powe
   --top 10
 ```
 
-Windows 兼容检索接口会优先使用本地索引，索引缺失时才回退到主库 `rg` 预筛：
+Windows 兼容检索接口会优先使用仓库本地缓存，缓存缺失时才回退到环境变量索引或主库 `rg` 预筛：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `

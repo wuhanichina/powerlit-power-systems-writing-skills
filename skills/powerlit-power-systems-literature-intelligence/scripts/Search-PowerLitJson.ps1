@@ -47,10 +47,10 @@ function Resolve-PowerLitIndexRoot {
 
     $candidates = New-Object System.Collections.Generic.List[string]
     if ($Root) { $candidates.Add($Root) }
-    if ($env:POWERLIT_INDEX_ROOT) { $candidates.Add($env:POWERLIT_INDEX_ROOT) }
-    if ($env:POWERLIT_LOCAL_CACHE) { $candidates.Add((Join-Path $env:POWERLIT_LOCAL_CACHE "powerlit-index")) }
     $repoRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
     $candidates.Add((Join-Path $repoRoot ".cache\powerlit-index"))
+    if ($env:POWERLIT_INDEX_ROOT) { $candidates.Add($env:POWERLIT_INDEX_ROOT) }
+    if ($env:POWERLIT_LOCAL_CACHE) { $candidates.Add((Join-Path $env:POWERLIT_LOCAL_CACHE "powerlit-index")) }
 
     $seen = @{}
     foreach ($candidate in $candidates) {

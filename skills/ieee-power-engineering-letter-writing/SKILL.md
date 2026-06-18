@@ -1,12 +1,14 @@
 ---
 name: ieee-power-engineering-letter-writing
-description: Write, rewrite, or review IEEE power-system Letters such as IEEE Power Engineering Letters, TPWRS/TSG short Letters, and 3-4 page power-system technical communications. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, and anti-full-paper cleanup.
+description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Power Engineering Letters, TPWRS/TSG short Letters, and 3-4 page power-system technical communications. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, reviewer-comment revision, and anti-full-paper cleanup.
 ---
 # IEEE Power Engineering Letter Writing
 
 ## Purpose
 
 Use this skill when the target is an IEEE power-system Letter. A Letter is not a shortened full paper. It is a compact technical communication built around one hard claim, one deliverable, and minimal evidence.
+
+Do not use this skill as the standalone acceptability or reject-risk reviewer. Use `powerlit-power-systems-paper-review` for strict IEEE Letter review; this Letter skill only applies review standards internally before delivery.
 
 ## Core Workflow
 

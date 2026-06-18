@@ -14,6 +14,8 @@ Resolve PowerLit through `powerlit-power-systems-literature-intelligence`:
 
 If the corpus is accessible, use it before drafting citation-sensitive prose. If it is not accessible, state `PowerLit unavailable; using fallback non-corpus workflow` once and continue only with supplied references, citation slots, or literature-limited wording.
 
+For shell-backed retrieval, use the repository-bundled `.cache/powerlit-index` SQLite cache before raw corpus search. Explicit script parameters may override it, but ordinary literature checks should prefer the checked-in local cache before `POWERLIT_INDEX_ROOT`, `POWERLIT_LOCAL_CACHE/powerlit-index`, or LAN `rg` fallback.
+
 For recurring research directions, first consult `evaluation/method-canon/method-canon.json`. Use verified accepted entries to identify foundational papers, method-family exemplars, and evidence-bar anchors. Then search the main PowerLit corpus for current nearest neighbors, target-venue papers, and project-specific novelty threats.
 
 Do not treat the benchmark paper set as recall coverage. It is a curated quality anchor; final novelty and citation coverage still come from the main corpus or user-supplied references.
