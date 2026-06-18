@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "expansions": {
+    "ac": ["alternating current"],
+    "dc": ["direct current"],
+    "opf": ["optimal power flow"],
+    "acopf": ["AC optimal power flow"],
+    "dcopf": ["DC optimal power flow"],
+    "dro": ["distributionally robust optimization"],
+    "ro": ["robust optimization"],
+    "uc": ["unit commitment"],
+    "ed": ["economic dispatch"],
+    "der": ["distributed energy resource"],
+    "ders": ["distributed energy resources"],
+    "dr": ["demand response"],
+    "vpp": ["virtual power plant"],
+    "ev": ["electric vehicle"],
+    "v2g": ["vehicle to grid"],
+    "pv": ["photovoltaic"],
+    "ess": ["energy storage system"],
+    "bess": ["battery energy storage system"],
+    "gmm": ["Gaussian mixture model"],
+    "ppf": ["probabilistic power flow", "probabilistic load flow"],
+    "plf": ["probabilistic load flow"],
+    "sdp": ["semidefinite programming"],
+    "socp": ["second order cone programming"],
+    "admm": ["alternating direction method of multipliers"],
+    "rl": ["reinforcement learning"],
+    "gnn": ["graph neural network"],
+    "lstm": ["long short term memory"],
+    "pmu": ["phasor measurement unit"],
+    "ami": ["advanced metering infrastructure"],
+    "n-1": ["N minus one contingency"],
+    "n-k": ["N minus k contingency"]
+  },
+  "protected_tokens": [
+    "AC", "DC", "PV", "EV", "DR", "UC", "ED", "RL", "OPF", "DRO",
+    "GMM", "PPF", "PLF", "SDP", "SOCP", "ADMM", "DER", "VPP", "V2G",
+    "PMU", "AMI", "N-1", "N-k", "P", "Q", "V"
+  ]
+}
