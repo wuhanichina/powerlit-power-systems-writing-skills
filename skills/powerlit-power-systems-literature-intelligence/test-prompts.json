@@ -22,6 +22,6 @@
   {
     "id": "method-canon-before-main-corpus",
     "prompt": "Use $powerlit-power-systems-literature-intelligence for a probabilistic power-flow paper idea. First consult the benchmark paper set, then explain how the main PowerLit corpus should be searched for current nearest neighbors.",
-    "expected": "The response treats evaluation/method-canon as a quality anchor rather than recall coverage, then uses the main PowerLit corpus for traceable current retrieval and final novelty coverage."
+    "expected": "The response treats skills/powerlit-power-systems-literature-intelligence/references/method-canon as a quality anchor rather than recall coverage, then uses the main PowerLit corpus for traceable current retrieval and final novelty coverage."
   }
 ]

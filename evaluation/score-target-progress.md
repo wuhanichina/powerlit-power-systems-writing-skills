@@ -71,7 +71,7 @@ Current blocker for the overall objective:
 
 New TPWRS replay evidence:
 
-- Base AC replay produced `D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_base_9events_20260612_233630/historical_replay_ac_base_summary.csv`.
-- Connected N-1 AC replay produced `D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_summary.csv`.
+- Base AC replay produced `project://typhoon-rt-gmm/result/historical_replay_ac_base_9events_20260612_233630/historical_replay_ac_base_summary.csv`.
+- Connected N-1 AC replay produced `project://typhoon-rt-gmm/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_summary.csv`.
 - Replay reference: `30344` AC N-1 topK cases, `30344` AC successes, `24333` event-minute rows with at least one AC-confirmed branch above 100%, and worst pair `285 -> 286` in all replayed events.
 - The TPWRS claim was repaired from direct top-branch validation to a two-stage screening workflow because RT-GMM and AC replay expose different high-risk structures.

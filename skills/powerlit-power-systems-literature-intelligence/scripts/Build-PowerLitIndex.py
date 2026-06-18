@@ -8,6 +8,7 @@ import json
 import sqlite3
 import sys
 import time
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -92,9 +93,9 @@ def initialize_sqlite(path: Path) -> sqlite3.Connection:
         """
         CREATE TABLE records (
             id INTEGER PRIMARY KEY,
+            record_id TEXT NOT NULL UNIQUE,
             venue_folder TEXT NOT NULL,
             relative_path TEXT NOT NULL,
-            path TEXT NOT NULL,
             title TEXT,
             title_source TEXT,
             source_title TEXT,
@@ -124,9 +125,9 @@ def insert_record(conn: sqlite3.Connection, item: dict) -> None:
     cursor = conn.execute(
         """
         INSERT INTO records (
+            record_id,
             venue_folder,
             relative_path,
-            path,
             title,
             title_source,
             source_title,
@@ -139,9 +140,9 @@ def insert_record(conn: sqlite3.Connection, item: dict) -> None:
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
+            item.get("record_id"),
             item.get("venue_folder"),
             item.get("relative_path"),
-            item.get("path"),
             item.get("title"),
             item.get("title_source"),
             item.get("source_title"),
@@ -168,10 +169,35 @@ def count_sqlite_records(path: Path) -> int:
         conn.close()
 
 
+def sqlite_venue_folder(path: Path) -> str:
+    conn = sqlite3.connect(str(path))
+    try:
+        row = conn.execute("SELECT venue_folder FROM records LIMIT 1").fetchone()
+        return str(row[0]) if row and row[0] else path.stem
+    finally:
+        conn.close()
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def write_manifest(path: Path, manifest: dict, started: float) -> None:
     manifest["total_records"] = sum(int(item.get("records") or 0) for item in manifest["venues"].values())
     manifest["failed_records"] = sum(int(item.get("failed_records") or 0) for item in manifest["venues"].values())
     manifest["elapsed_ms"] = int((time.perf_counter() - started) * 1000)
+    manifest["shards"] = {
+        entry["sqlite_file"]: {
+            "sha256": sha256_file(path / entry["sqlite_file"]),
+            "records": int(entry.get("records") or 0),
+        }
+        for entry in manifest["venues"].values()
+        if entry.get("sqlite_file") and (path / entry["sqlite_file"]).is_file()
+    }
     manifest_path = path / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -199,27 +225,25 @@ def main() -> int:
 
     existing_manifest = load_existing_manifest(index_dir)
     if args.refresh_manifest_only:
-        root = root or Path(existing_manifest.get("corpus_root") or "")
         manifest = {
-            "schema_version": 1,
-            "built_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-            "corpus_root": str(root) if root else existing_manifest.get("corpus_root"),
-            "index_dir": str(index_dir),
-            "content_head_chars": existing_manifest.get("content_head_chars") or args.content_head_chars,
+            "schema_version": 2,
+            "cache_version": existing_manifest.get("cache_version") or "2026.06",
+            "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            "corpus_snapshot_date": existing_manifest.get("corpus_snapshot_date"),
+            "analyzer_version": "powerlit-index-portable-v1",
             "include_analysis": bool(existing_manifest.get("include_analysis", args.include_analysis)),
-            "venues": existing_manifest.get("venues") or {},
+            "venues": {},
             "total_records": 0,
             "failed_records": 0,
         }
         for sqlite_path in sorted(index_dir.glob("*.sqlite")):
-            venue_name = sqlite_path.stem
+            venue_name = sqlite_venue_folder(sqlite_path)
             existing = manifest["venues"].get(venue_name) or {}
             manifest["venues"][venue_name] = {
                 "sqlite_file": sqlite_path.name,
                 "jsonl_file": existing.get("jsonl_file"),
                 "records": count_sqlite_records(sqlite_path),
                 "failed_records": int(existing.get("failed_records") or 0),
-                "source_root": existing.get("source_root") or (str(root / venue_name) if root else None),
             }
         write_manifest(index_dir, manifest, started)
         print(json.dumps({"ok": True, **manifest}, ensure_ascii=False, indent=2))
@@ -227,11 +251,11 @@ def main() -> int:
 
     venues = discover_venues(root, args.venue_folders)
     manifest = {
-        "schema_version": 1,
-        "built_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "corpus_root": str(root),
-        "index_dir": str(index_dir),
-        "content_head_chars": args.content_head_chars,
+        "schema_version": 2,
+        "cache_version": existing_manifest.get("cache_version") or "2026.06",
+        "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "corpus_snapshot_date": existing_manifest.get("corpus_snapshot_date"),
+        "analyzer_version": "powerlit-index-portable-v1",
         "include_analysis": bool(args.include_analysis),
         "venues": existing_manifest.get("venues") or {},
         "total_records": 0,
@@ -286,7 +310,6 @@ def main() -> int:
             "jsonl_file": jsonl_name if args.write_jsonl else None,
             "records": records,
             "failed_records": failed,
-            "source_root": str(venue_root),
         }
     write_manifest(index_dir, manifest, started)
 

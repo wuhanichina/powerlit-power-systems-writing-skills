@@ -132,11 +132,9 @@ PowerLit JSON root resolution order:
 
 1. Explicit user path or script parameter
 2. `POWERLIT_JSON_ROOT`
-3. `POWERLIT_LOCAL_CACHE`
-4. `POWERLIT_LITERATURE_JSON`
-5. Default LAN path: `\\WHome\PowerLit\literature\json`
+3. `POWERLIT_LITERATURE_JSON`
 
-For frequent use, prefer the repository-bundled local SQLite FTS cache. The repository may carry `.cache/powerlit-index/*.sqlite` plus `manifest.json` as a convenience cache; temporary files, JSONL inspection dumps, and other `.cache` contents remain local:
+For frequent use, prefer the SQLite FTS cache bundled inside the literature skill at `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`. Standard skill installation copies that directory, so indexed retrieval works without a private raw corpus:
 
 ```powershell
 python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `
@@ -153,7 +151,7 @@ python skills\powerlit-power-systems-literature-intelligence\scripts\Search-Powe
   --top 10
 ```
 
-Windows-compatible search prefers the repository-bundled local cache and only falls back to environment indexes or `rg` prefiltering when the cache is missing:
+Windows-compatible search prefers the skill-bundled local cache and only falls back to `rg` prefiltering when a raw corpus root is explicitly configured:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `

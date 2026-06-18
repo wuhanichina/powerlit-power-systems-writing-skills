@@ -4,9 +4,7 @@ PowerLit access is configurable. Resolve the JSON corpus root in this order:
 
 1. User-provided path or script parameter.
 2. `POWERLIT_JSON_ROOT`.
-3. `POWERLIT_LOCAL_CACHE`.
-4. `POWERLIT_LITERATURE_JSON`.
-5. `\\WHome\PowerLit\literature\json`.
+3. `POWERLIT_LITERATURE_JSON`.
 
 Expected layout:
 
@@ -25,14 +23,13 @@ If the path is unavailable, run the caller skill in fallback mode. Do not stop m
 
 ## Local Search Index
 
-For recurring PowerLit-backed applications, raw LAN search is not fast enough. Use the repository-bundled local SQLite FTS cache as the default retrieval path when it is present.
+For recurring PowerLit-backed applications, raw corpus search is not fast enough. Use the skill-bundled local SQLite FTS cache as the default retrieval path when it is present.
 
 Index root resolution order:
 
 1. Explicit index path supplied by script parameter.
-2. Repository `.cache/powerlit-index`.
-3. `POWERLIT_INDEX_ROOT`.
-4. `POWERLIT_LOCAL_CACHE/powerlit-index`.
+2. `POWERLIT_INDEX_ROOT`.
+3. Skill-bundled `assets/powerlit-index`.
 
 Build or refresh the index:
 
@@ -49,7 +46,7 @@ python scripts/Search-PowerLitIndex.py \
   --top 10
 ```
 
-The index stores compact metadata and content heads, not original PDFs. The repository may version `.cache/powerlit-index/*.sqlite` plus `manifest.json` as the default convenience cache; temporary files, JSONL inspection dumps, and other `.cache` contents remain local.
+The index stores compact metadata and content heads, not original PDFs. The literature skill carries `assets/powerlit-index/*.sqlite` plus `manifest.json` as the default convenience cache; temporary files, JSONL inspection dumps, and other cache build artifacts remain local.
 
 ## Search Commands
 
@@ -62,4 +59,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.
   -Top 10
 ```
 
-`Search-PowerLitJson.ps1` uses the repository-bundled local index first when available and falls back to `rg` prefiltering over the raw corpus only when the index is missing or incomplete. Use `-VenueFolder` or `--venue-folder` for target-venue searches before widening. Use `-Top` or `--top` to keep retrieval bounded.
+`Search-PowerLitJson.ps1` uses the skill-bundled local index first when available and falls back to `rg` prefiltering over the raw corpus only when the index is missing or incomplete and a raw corpus root is explicitly configured. Use `-VenueFolder` or `--venue-folder` for target-venue searches before widening. Use `-Top` or `--top` to keep retrieval bounded.

@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "cache_version": "2026.06",
+  "generated_at": "2026-06-18T06:55:53.548430Z",
+  "corpus_snapshot_date": "2026-06-16",
+  "analyzer_version": "powerlit-index-portable-v1",
+  "total_records": 14148,
+  "failed_records": 0,
+  "elapsed_ms": 6738,
+  "venues": {
+    "applied_energy": {
+      "sqlite_file": "applied_energy.sqlite",
+      "jsonl_file": null,
+      "records": 2,
+      "failed_records": 0
+    },
+    "energy": {
+      "sqlite_file": "energy.sqlite",
+      "jsonl_file": null,
+      "records": 1,
+      "failed_records": 0
+    },
+    "ieee_tpwrd": {
+      "sqlite_file": "ieee_tpwrd.sqlite",
+      "jsonl_file": null,
+      "records": 1,
+      "failed_records": 0
+    },
+    "ieee_tpwrs": {
+      "sqlite_file": "ieee_tpwrs.sqlite",
+      "jsonl_file": null,
+      "records": 7139,
+      "failed_records": 0
+    },
+    "ieee_tsg": {
+      "sqlite_file": "ieee_tsg.sqlite",
+      "jsonl_file": null,
+      "records": 5638,
+      "failed_records": 0
+    },
+    "ijepes": {
+      "sqlite_file": "ijepes.sqlite",
+      "jsonl_file": null,
+      "records": 2,
+      "failed_records": 0
+    },
+    "mpce": {
+      "sqlite_file": "mpce.sqlite",
+      "jsonl_file": null,
+      "records": 1,
+      "failed_records": 0
+    },
+    "电力系统自动化": {
+      "sqlite_file": "venue_5fa2986a16a0.sqlite",
+      "jsonl_file": null,
+      "records": 538,
+      "failed_records": 0
+    },
+    "电网技术": {
+      "sqlite_file": "venue_c62427ef1b1b.sqlite",
+      "jsonl_file": null,
+      "records": 24,
+      "failed_records": 0
+    },
+    "中国电机工程学报": {
+      "sqlite_file": "venue_cf71f77aed85.sqlite",
+      "jsonl_file": null,
+      "records": 802,
+      "failed_records": 0
+    }
+  },
+  "shards": {
+    "applied_energy.sqlite": {
+      "sha256": "6e36e7905ce617b289c254e091db22c5c2ae66b6eba9732444b3a980560a071a",
+      "records": 2
+    },
+    "energy.sqlite": {
+      "sha256": "f765db3b72536ae823e913420ba05cfacfe8b3312aab23a39b6131dbfa6fb1d6",
+      "records": 1
+    },
+    "ieee_tpwrd.sqlite": {
+      "sha256": "b581e50d803c44d2bb47a144d12b7956214e7e2d77ee15a25ee45c3f993c6248",
+      "records": 1
+    },
+    "ieee_tpwrs.sqlite": {
+      "sha256": "65c4d1f02202d5011fdac99ea0d85ea9b52cc3abd857629bfafa45d764c4d54f",
+      "records": 7139
+    },
+    "ieee_tsg.sqlite": {
+      "sha256": "e2c852a7311629442035558060897f0e55d17e160d5e46810623b5da1ccc6b9d",
+      "records": 5638
+    },
+    "ijepes.sqlite": {
+      "sha256": "862bda03ec65da1dd6d541aa7470f5e3e78f182ec4d07108f890afcbcabbcc66",
+      "records": 2
+    },
+    "mpce.sqlite": {
+      "sha256": "a97e3e3bcd831d830f0b700ba1fcf5d2685e9f439b16c33d2501334a427c7010",
+      "records": 1
+    },
+    "venue_5fa2986a16a0.sqlite": {
+      "sha256": "a77e43a7fcafaf18c7b8e0015a41e63656a6c3c22b91e761e344663f6fefa56f",
+      "records": 538
+    },
+    "venue_c62427ef1b1b.sqlite": {
+      "sha256": "354631eea95e48c713f7f86235f31c7eebc07393e74e5f540c39790ea12ab94e",
+      "records": 24
+    },
+    "venue_cf71f77aed85.sqlite": {
+      "sha256": "0661ea3176c417f7b04e68b96d46203f3d342bb07351ccc660ed709a3c682e84",
+      "records": 802
+    }
+  }
+}

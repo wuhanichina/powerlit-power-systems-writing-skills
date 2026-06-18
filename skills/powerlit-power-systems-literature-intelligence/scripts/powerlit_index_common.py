@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Iterable, Optional
 
 
-DEFAULT_LAN_ROOT = r"\\WHome\PowerLit\literature\json"
 DEFAULT_HEAD_CHARS = 8000
 
 
@@ -19,19 +18,22 @@ def script_dir() -> Path:
     return Path(__file__).resolve().parent
 
 
-def repo_root() -> Path:
-    return script_dir().parents[2]
+def skill_root() -> Path:
+    return script_dir().parent
+
+
+def built_in_index_dir() -> Path:
+    return skill_root() / "assets" / "powerlit-index"
 
 
 def resolve_json_root(explicit: Optional[str] = None) -> Optional[Path]:
     candidates: list[str] = []
     if explicit:
         candidates.append(explicit)
-    for name in ("POWERLIT_JSON_ROOT", "POWERLIT_LOCAL_CACHE", "POWERLIT_LITERATURE_JSON"):
+    for name in ("POWERLIT_JSON_ROOT", "POWERLIT_LITERATURE_JSON"):
         value = os.environ.get(name)
         if value:
             candidates.append(value)
-    candidates.append(DEFAULT_LAN_ROOT)
 
     seen: set[str] = set()
     for candidate in candidates:
@@ -50,15 +52,11 @@ def resolve_index_dir(explicit: Optional[str] = None, create: bool = False) -> O
     if explicit:
         candidates.append(Path(explicit))
 
-    candidates.append(repo_root() / ".cache" / "powerlit-index")
-
     env_index = os.environ.get("POWERLIT_INDEX_ROOT")
     if env_index:
         candidates.append(Path(env_index))
 
-    local_cache = os.environ.get("POWERLIT_LOCAL_CACHE")
-    if local_cache:
-        candidates.append(Path(local_cache) / "powerlit-index")
+    candidates.append(built_in_index_dir())
 
     for path in candidates:
         if create:
@@ -201,14 +199,16 @@ def make_index_record(path: Path, root: Path, venue_folder: str, head_chars: int
     try:
         relative_path = str(path.resolve().relative_to(root.resolve()))
     except ValueError:
-        relative_path = str(path)
+        relative_path = path.name
+    relative_path = relative_path.replace(os.sep, "/")
+    record_id = hashlib.sha1(relative_path.encode("utf-8")).hexdigest()[:20]
 
     stat = path.stat()
     return {
         "schema_version": 1,
+        "record_id": record_id,
         "venue_folder": venue_folder,
-        "relative_path": relative_path.replace(os.sep, "/"),
-        "path": str(path.resolve()),
+        "relative_path": relative_path,
         "title": title,
         "title_source": title_source,
         "source_title": source_title,

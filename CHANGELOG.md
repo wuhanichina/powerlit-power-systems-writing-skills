@@ -13,8 +13,8 @@
 
 主要变化：
 
-- 重建 `.cache/powerlit-index`，覆盖 10 个 venue，共 14148 条 PowerLit JSON 记录，`failed_records=0`。
-- 将 `.cache/powerlit-index/*.sqlite` 和 `manifest.json` 纳入版本管理；`.cache` 下的其他临时文件、subset、JSONL 调试文件和 raw run 日志仍保持本地忽略。
+- 重建 `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`，覆盖 10 个 venue，共 14148 条 PowerLit JSON 记录，`failed_records=0`。
+- 将 `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/*.sqlite` 和 `manifest.json` 纳入版本管理；`.cache` 下的其他临时文件、subset、JSONL 调试文件和 raw run 日志仍保持本地忽略。
 - 修复中文 venue 索引文件名冲突：非 ASCII venue 目录现在使用稳定 hash 文件名，避免多个中文期刊都写入 `root.sqlite` 并互相覆盖。
 - 验证 Windows PowerShell 搜索入口优先走 SQLite 索引；TPWRS 英文检索约 0.5 秒，`中国电机工程学报` 中文检索约 4 毫秒。
 
@@ -22,16 +22,16 @@
 
 | Venue | Records | SQLite |
 | --- | ---: | --- |
-| `ieee_tpwrs` | 7139 | `.cache/powerlit-index/ieee_tpwrs.sqlite` |
-| `ieee_tsg` | 5638 | `.cache/powerlit-index/ieee_tsg.sqlite` |
-| `中国电机工程学报` | 802 | `.cache/powerlit-index/venue_cf71f77aed85.sqlite` |
-| `电力系统自动化` | 538 | `.cache/powerlit-index/venue_5fa2986a16a0.sqlite` |
-| `电网技术` | 24 | `.cache/powerlit-index/venue_c62427ef1b1b.sqlite` |
-| `applied_energy` | 2 | `.cache/powerlit-index/applied_energy.sqlite` |
-| `energy` | 1 | `.cache/powerlit-index/energy.sqlite` |
-| `ieee_tpwrd` | 1 | `.cache/powerlit-index/ieee_tpwrd.sqlite` |
-| `ijepes` | 2 | `.cache/powerlit-index/ijepes.sqlite` |
-| `mpce` | 1 | `.cache/powerlit-index/mpce.sqlite` |
+| `ieee_tpwrs` | 7139 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/ieee_tpwrs.sqlite` |
+| `ieee_tsg` | 5638 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/ieee_tsg.sqlite` |
+| `中国电机工程学报` | 802 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/venue_cf71f77aed85.sqlite` |
+| `电力系统自动化` | 538 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/venue_5fa2986a16a0.sqlite` |
+| `电网技术` | 24 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/venue_c62427ef1b1b.sqlite` |
+| `applied_energy` | 2 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/applied_energy.sqlite` |
+| `energy` | 1 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/energy.sqlite` |
+| `ieee_tpwrd` | 1 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/ieee_tpwrd.sqlite` |
+| `ijepes` | 2 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/ijepes.sqlite` |
+| `mpce` | 1 | `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/mpce.sqlite` |
 
 验证记录：
 
@@ -48,7 +48,7 @@
 
 ## 2026-06-14 - Method Canon And Indexed Retrieval Workflow
 
-- 新增 `evaluation/method-canon/method-canon.json`，将 DOI 元数据核验和人工策展状态分离。
+- 新增 `skills/powerlit-power-systems-literature-intelligence/references/method-canon.json`，将 DOI 元数据核验和人工策展状态分离。
 - 明确合法引用来源：用户提供文献、PowerLit 检索结果、以及 DOI 已核验且 curation accepted 的 method-canon 条目。
 - 新增 complete-draft 模式：证据不足以达到 8-9 full-paper gate 时，输出当前证据支持的完整 bounded draft 和缺口清单，而不是编造 DOI、实验数字或 baseline。
 - 给 `Search-PowerLitJson.ps1` 增加 index-first 路径、`rg` fallback 和检索 telemetry。

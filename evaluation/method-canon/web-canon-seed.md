@@ -368,7 +368,7 @@ Use this shape when converting to JSON:
 
 ## Next Curation Pass
 
-1. Convert this file to a machine-readable canon file under `evaluation/method-canon/method-canon.json`.
+1. Convert this file to a machine-readable canon file under `skills/powerlit-power-systems-literature-intelligence/references/method-canon.json`.
 2. For each DOI, resolve the PowerLit relative path if present; mark missing entries as `external_only`.
 3. Normalize titles from DOI/publisher metadata, not mined PowerLit `title`.
 4. Add `accepted=true/false`, `rejection_reason`, and `notes_for_skill`.

@@ -21,9 +21,7 @@ function Resolve-PowerLitJsonRoot {
     $candidates = New-Object System.Collections.Generic.List[string]
     if ($Root) { $candidates.Add($Root) }
     if ($env:POWERLIT_JSON_ROOT) { $candidates.Add($env:POWERLIT_JSON_ROOT) }
-    if ($env:POWERLIT_LOCAL_CACHE) { $candidates.Add($env:POWERLIT_LOCAL_CACHE) }
     if ($env:POWERLIT_LITERATURE_JSON) { $candidates.Add($env:POWERLIT_LITERATURE_JSON) }
-    $candidates.Add("\\WHome\PowerLit\literature\json")
 
     $seen = @{}
     foreach ($candidate in $candidates) {

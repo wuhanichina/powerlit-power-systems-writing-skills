@@ -1,18 +1,18 @@
 [
   {
     "id": "csee-pali-em-sca-pv8f8",
-    "project": "D:/Research/19PALI_EM_SCA",
+    "project": "project://pali-em-sca",
     "target_venue": "CSEE",
     "target_score_band": "8-9",
     "paper_type": "full paper",
     "evidence_sources": [
-      "D:/Research/19PALI_EM_SCA/01_IDEA/claims.md",
-      "D:/Research/19PALI_EM_SCA/PALI_EM_SCA_note.md",
-      "D:/Research/19PALI_EM_SCA/result/case33bw/reports/sota/case33bw_sota_comparison.md",
-      "D:/Research/19PALI_EM_SCA/result/case141/reports/sota/case141_sota_comparison.md",
-      "D:/Research/19PALI_EM_SCA/result/case33bw/reports/identifiability/identifiability_case33_summary.csv",
-      "D:/Research/19PALI_EM_SCA/result/case141/reports/identifiability/identifiability_case141_summary.csv",
-      "D:/Research/19PALI_EM_SCA/result/case33bw/reports/feasibility/feasibility_case33_summary.csv"
+      "project://pali-em-sca/01_IDEA/claims.md",
+      "project://pali-em-sca/PALI_EM_SCA_note.md",
+      "project://pali-em-sca/result/case33bw/reports/sota/case33bw_sota_comparison.md",
+      "project://pali-em-sca/result/case141/reports/sota/case141_sota_comparison.md",
+      "project://pali-em-sca/result/case33bw/reports/identifiability/identifiability_case33_summary.csv",
+      "project://pali-em-sca/result/case141/reports/identifiability/identifiability_case141_summary.csv",
+      "project://pali-em-sca/result/case33bw/reports/feasibility/feasibility_case33_summary.csv"
     ],
     "evidence_packet": {
       "technical_object": "single-step voltage-domain GMM inversion from power-sample moments for probabilistic load flow",
@@ -40,18 +40,18 @@
   },
   {
     "id": "tpwrs-rtgmm-risk-screening",
-    "project": "D:/Research/25Typhoon_resilience_RT-GMM",
+    "project": "project://typhoon-rt-gmm",
     "target_venue": "IEEE TPWRS",
     "target_score_band": "8-9",
     "paper_type": "full paper",
     "evidence_sources": [
-      "D:/Research/25Typhoon_resilience_RT-GMM/01_IDEA/claims.md",
-      "D:/Research/25Typhoon_resilience_RT-GMM/result/rtgmm_multi_event_summary_20260601_143328.csv",
-      "D:/Research/25Typhoon_resilience_RT-GMM/result/sota_source_load_ablation_full_check/source_load_ablation_evidence.md",
-      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_base_9events_20260612_233630/historical_replay_ac_base_summary.csv",
-      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_summary.csv",
-      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_meta.csv",
-      "D:/Research/25Typhoon_resilience_RT-GMM/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_manifest.csv"
+      "project://typhoon-rt-gmm/01_IDEA/claims.md",
+      "project://typhoon-rt-gmm/result/rtgmm_multi_event_summary_20260601_143328.csv",
+      "project://typhoon-rt-gmm/result/sota_source_load_ablation_full_check/source_load_ablation_evidence.md",
+      "project://typhoon-rt-gmm/result/historical_replay_ac_base_9events_20260612_233630/historical_replay_ac_base_summary.csv",
+      "project://typhoon-rt-gmm/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_summary.csv",
+      "project://typhoon-rt-gmm/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_meta.csv",
+      "project://typhoon-rt-gmm/result/historical_replay_ac_n1_connected_screened_9events_20260612_235005/historical_replay_ac_n1_screened_manifest.csv"
     ],
     "evidence_packet": {
       "technical_object": "closed-form candidate-line risk screening under typhoon-conditioned multimodal source-load tails and connected N-1 topology states",
@@ -83,15 +83,15 @@
   },
   {
     "id": "tsg-bayesaqppf-edge-update",
-    "project": "D:/Research/17BayesAQPPF_3ph",
+    "project": "project://bayes-aqppf-3ph",
     "target_venue": "IEEE TSG",
     "target_score_band": "8-9",
     "paper_type": "full paper",
     "evidence_sources": [
-      "D:/Research/17BayesAQPPF_3ph/01_IDEA/claims.md",
-      "D:/Research/17BayesAQPPF_3ph/result/IEEE 13/edge_small_sample/edge_small_sample_acceptance_report.md",
-      "D:/Research/17BayesAQPPF_3ph/result/IEEE 123/edge_scaling/edge_ieee123_scaling_acceptance_report.md",
-      "D:/Research/17BayesAQPPF_3ph/result/IEEE 123 full refit/edge_full_refit_months2_12/edge_small_sample_acceptance_report.md"
+      "project://bayes-aqppf-3ph/01_IDEA/claims.md",
+      "project://bayes-aqppf-3ph/result/IEEE 13/edge_small_sample/edge_small_sample_acceptance_report.md",
+      "project://bayes-aqppf-3ph/result/IEEE 123/edge_scaling/edge_ieee123_scaling_acceptance_report.md",
+      "project://bayes-aqppf-3ph/result/IEEE 123 full refit/edge_full_refit_months2_12/edge_small_sample_acceptance_report.md"
     ],
     "evidence_packet": {
       "technical_object": "edge-side Bayesian Dirichlet-NIW update for three-phase AQPPF voltage-distribution and risk updates",
@@ -119,13 +119,13 @@
   },
   {
     "id": "aeps-tsvarx-mechanism-generation",
-    "project": "D:/Research/25Typhoon_resilience_TS_VARX",
+    "project": "project://typhoon-ts-varx",
     "target_venue": "AEPS",
     "target_score_band": "8-9",
     "paper_type": "conditional full paper",
     "evidence_sources": [
-      "D:/Research/25Typhoon_resilience_TS_VARX/01_IDEA/claims.md",
-      "D:/Research/25Typhoon_resilience_TS_VARX/result/varx_multi_event_mechanisms_20260601_212726.csv"
+      "project://typhoon-ts-varx/01_IDEA/claims.md",
+      "project://typhoon-ts-varx/result/varx_multi_event_mechanisms_20260601_212726.csv"
     ],
     "evidence_packet": {
       "technical_object": "weather-conditioned city-level TS-VARX source-load mechanism reproducer and dynamic injection-scenario generator",

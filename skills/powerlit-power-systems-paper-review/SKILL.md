@@ -25,7 +25,7 @@ Use this skill to review power-system papers against the standards implied by al
    - conclusion only,
    - reviewer response or revision plan.
 3. Try to use `powerlit-power-systems-literature-intelligence` for literature coverage and novelty risk:
-   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT` or `POWERLIT_LITERATURE_JSON`;
    - if accessible, retrieve closest competitors and missing-citation risks;
    - when judging full-paper evidence strength or an 8-9 target, also build or consume an evidence-strength profile from accepted venue-near papers;
    - if inaccessible, state fallback mode once and keep the review limited to manuscript evidence and general field knowledge.

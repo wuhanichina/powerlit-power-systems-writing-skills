@@ -132,11 +132,9 @@ PowerLit JSON 根目录解析顺序：
 
 1. 用户显式提供的路径或脚本参数
 2. `POWERLIT_JSON_ROOT`
-3. `POWERLIT_LOCAL_CACHE`
-4. `POWERLIT_LITERATURE_JSON`
-5. 默认局域网路径：`\\WHome\PowerLit\literature\json`
+3. `POWERLIT_LITERATURE_JSON`
 
-高频应用默认优先使用仓库随附的本地 SQLite FTS 缓存。仓库可携带 `.cache/powerlit-index` 下的 SQLite 与 manifest 缓存，便于开箱即用；临时文件、JSONL 调试文件和其他 `.cache` 内容仍保持本地：
+高频应用默认优先使用文献检索 skill 内置的 SQLite FTS 缓存：`skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`。标准 skill 安装会复制该目录，因此没有私有原始语料时也能使用索引检索：
 
 ```powershell
 python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `

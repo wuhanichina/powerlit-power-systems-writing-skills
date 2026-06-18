@@ -1,11 +1,11 @@
 [
   {
     "id": "rtgmm-screening-not-calibrated-prediction",
-    "project": "D:/Research/25Typhoon_resilience_RT-GMM",
+    "project": "project://typhoon-rt-gmm",
     "source_paths": [
-      "D:/Research/25Typhoon_resilience_RT-GMM/01_IDEA/claims.md",
-      "D:/Research/25Typhoon_resilience_RT-GMM/01_IDEA/evidence_map.md",
-      "D:/Research/25Typhoon_resilience_RT-GMM/README.md"
+      "project://typhoon-rt-gmm/01_IDEA/claims.md",
+      "project://typhoon-rt-gmm/01_IDEA/evidence_map.md",
+      "project://typhoon-rt-gmm/README.md"
     ],
     "rigid_claim_symptom": "The repository claim is written as a strict screening boundary: RT-GMM is not an event-level calibrated overload predictor and does not cover full N-k topology risk.",
     "review_failure_if_used_verbatim": "A reviewer would see the paper as either too defensive or overclaiming if the draft turns screening evidence into calibrated prediction or hides the N-k boundary.",
@@ -16,11 +16,11 @@
   },
   {
     "id": "tsvarx-mechanism-not-forecasting",
-    "project": "D:/Research/25Typhoon_resilience_TS_VARX",
+    "project": "project://typhoon-ts-varx",
     "source_paths": [
-      "D:/Research/25Typhoon_resilience_TS_VARX/01_IDEA/claims.md",
-      "D:/Research/25Typhoon_resilience_TS_VARX/01_IDEA/story.md",
-      "D:/Research/25Typhoon_resilience_TS_VARX/README.md"
+      "project://typhoon-ts-varx/01_IDEA/claims.md",
+      "project://typhoon-ts-varx/01_IDEA/story.md",
+      "project://typhoon-ts-varx/README.md"
     ],
     "rigid_claim_symptom": "The project claim explicitly says this is not a load, wind, or net-load forecasting paper and does not yet claim node-level risk propagation.",
     "review_failure_if_used_verbatim": "A reviewer would reject forecasting-superiority framing because the current evidence supports city-level mechanism reproduction, not point-forecasting or completed grid-risk propagation.",
@@ -31,11 +31,11 @@
   },
   {
     "id": "pali-em-sca-identifiability-not-dominance",
-    "project": "D:/Research/19PALI_EM_SCA",
+    "project": "project://pali-em-sca",
     "source_paths": [
-      "D:/Research/19PALI_EM_SCA/01_IDEA/claims.md",
-      "D:/Research/19PALI_EM_SCA/02_PAPER/csee_introduction_cn.md",
-      "D:/Research/19PALI_EM_SCA/PALI_EM_SCA_note.md"
+      "project://pali-em-sca/01_IDEA/claims.md",
+      "project://pali-em-sca/02_PAPER/csee_introduction_cn.md",
+      "project://pali-em-sca/PALI_EM_SCA_note.md"
     ],
     "rigid_claim_symptom": "The project claim contains a hard honesty constraint: do not claim accuracy dominance over GMM-PLF; the value is inverse formulation, identifiability, and feasibility certification.",
     "review_failure_if_used_verbatim": "A reviewer would attack any superiority claim because the recorded results show competitive or complementary performance, not uniform dominance.",
@@ -49,11 +49,11 @@
   },
   {
     "id": "bayesaqppf-edge-update-not-uniform-dominance",
-    "project": "D:/Research/17BayesAQPPF_3ph",
+    "project": "project://bayes-aqppf-3ph",
     "source_paths": [
-      "D:/Research/17BayesAQPPF_3ph/01_IDEA/claims.md",
-      "D:/Research/17BayesAQPPF_3ph/01_IDEA/evidence_map.md",
-      "D:/Research/17BayesAQPPF_3ph/BayesAQPPF_3ph_note.md"
+      "project://bayes-aqppf-3ph/01_IDEA/claims.md",
+      "project://bayes-aqppf-3ph/01_IDEA/evidence_map.md",
+      "project://bayes-aqppf-3ph/BayesAQPPF_3ph_note.md"
     ],
     "rigid_claim_symptom": "The project records diagnostic boundary evidence: full refit can outperform Bayes at larger N_new, so Bayes must not be described as globally dominant.",
     "review_failure_if_used_verbatim": "A reviewer would flag unsupported uniform-dominance language if the paper hides the larger-sample full-refit reversal.",

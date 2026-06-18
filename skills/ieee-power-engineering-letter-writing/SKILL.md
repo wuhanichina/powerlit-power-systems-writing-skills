@@ -22,7 +22,7 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
    - small but decisive empirical observation.
 2. Write the one-sentence claim before drafting.
 3. If the Letter claim depends on novelty or prior-work contrast, try `powerlit-power-systems-literature-intelligence`:
-   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
+   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT` or `POWERLIT_LITERATURE_JSON`;
    - if accessible, identify the nearest Letters/full papers and the one contrast the Letter must win;
    - if inaccessible, state fallback mode once and keep the Letter narrow without inventing citations.
 4. Apply the near-neighbor gate:

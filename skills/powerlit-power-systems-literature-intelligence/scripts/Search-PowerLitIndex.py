@@ -30,7 +30,7 @@ def parse_args() -> argparse.Namespace:
 def load_manifest(index_dir: Path) -> dict:
     manifest_path = index_dir / "manifest.json"
     if not manifest_path.is_file():
-        return {"venues": {}, "corpus_root": None, "built_at": None}
+        return {"venues": {}, "generated_at": None}
     return json.loads(manifest_path.read_text(encoding="utf-8"))
 
 
@@ -115,11 +115,12 @@ def push_result(heap: list[tuple[int, int, dict]], keep: int, sequence: int, rec
         return False
     result = {
         "score": score,
+        "record_id": record.get("record_id") or "",
         "title": record.get("title") or "",
         "title_source": record.get("title_source") or "record",
         "source_title": record.get("source_title") or "",
         "doi": record.get("doi") or "",
-        "path": record.get("path") or "",
+        "year": record.get("year") or "",
         "relative_path": record.get("relative_path") or "",
         "venue_folder": record.get("venue_folder") or "",
         "matched_terms": sorted(set(matched), key=matched.index),
@@ -147,9 +148,9 @@ def search_sqlite(files: list[Path], terms: list[str], keep: int) -> tuple[int, 
             rows = conn.execute(
                 """
                 SELECT
+                    r.record_id,
                     r.venue_folder,
                     r.relative_path,
-                    r.path,
                     r.title,
                     r.title_source,
                     r.source_title,
@@ -251,9 +252,8 @@ def main() -> int:
         json.dumps(
             {
                 "available": True,
-                "root": manifest.get("corpus_root"),
                 "index_dir": str(index_dir),
-                "index_built_at": manifest.get("built_at"),
+                "index_built_at": manifest.get("generated_at") or manifest.get("built_at"),
                 "query": args.query,
                 "terms": terms,
                 "candidate_source": candidate_source,

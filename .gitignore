@@ -3,10 +3,7 @@ Thumbs.db
 *.tmp
 *.log
 .cache/*
-!.cache/powerlit-index/
-.cache/powerlit-index/*
-!.cache/powerlit-index/*.sqlite
-!.cache/powerlit-index/manifest.json
+.powerlit.local.json
 __pycache__/
 .venv/
 venv/

@@ -119,7 +119,7 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "mandatory reader-experience pass") {
         Add-Failure "paper-writing skill must require mandatory reader-experience pass"
     }
-    if ($paperSkillText -notmatch "evaluation/method-canon/method-canon\.json") {
+    if ($paperSkillText -notmatch "skills/powerlit-power-systems-literature-intelligence/references/method-canon\.json") {
         Add-Failure "paper-writing skill must recognize verified method-canon citation sources"
     }
     if ($paperSkillText -notmatch "Do not invent or fill in missing DOI") {
@@ -179,7 +179,7 @@ if (Test-Path -LiteralPath $corpusDrafting) {
     if ($corpusDraftingText -notmatch "Evidence-Strength Learning Pass") {
         Add-Failure "corpus-grounded-drafting.md must include Evidence-Strength Learning Pass"
     }
-    if ($corpusDraftingText -notmatch "evaluation/method-canon/method-canon\.json") {
+    if ($corpusDraftingText -notmatch "skills/powerlit-power-systems-literature-intelligence/references/method-canon\.json") {
         Add-Failure "corpus-grounded-drafting.md must route recurring topics through method-canon.json"
     }
     if ($corpusDraftingText -notmatch "citation_only" -or $corpusDraftingText -notmatch "citation_and_pattern") {
@@ -452,10 +452,16 @@ if (Test-Path -LiteralPath $actualEvidencePackets) {
             if ($case.target_score_band -ne "8-9") {
                 Add-Failure "$actualEvidencePackets case $($case.id): target_score_band must be 8-9"
             }
+            if ([string]$case.project -notmatch "^project://") {
+                Add-Failure "$actualEvidencePackets case $($case.id): project must be a logical project:// id"
+            }
             foreach ($sourcePath in $case.evidence_sources) {
-                $localPath = [string]$sourcePath
-                if (-not (Test-Path -LiteralPath $localPath)) {
-                    Add-Failure "$actualEvidencePackets case $($case.id): evidence source path does not exist: $localPath"
+                $logicalPath = [string]$sourcePath
+                if ($logicalPath -match "^[A-Za-z]:/" -or $logicalPath -match "^[A-Za-z]:\\" -or $logicalPath -match "^\\\\") {
+                    Add-Failure "$actualEvidencePackets case $($case.id): evidence source must not be a machine path: $logicalPath"
+                }
+                if ($logicalPath -notmatch "^project://") {
+                    Add-Failure "$actualEvidencePackets case $($case.id): evidence source must be a logical project:// id: $logicalPath"
                 }
             }
             if (-not $case.evidence_packet.technical_object -or -not $case.evidence_packet.case_evidence -or -not $case.evidence_packet.claim_boundary) {
@@ -520,10 +526,16 @@ if (Test-Path -LiteralPath $actualProjectFixtures) {
                     Add-Failure "${actualProjectFixtures}: PALI regression must cover defensive manuscript posture and formula intuition"
                 }
             }
+            if ([string]$case.project -notmatch "^project://") {
+                Add-Failure "${actualProjectFixtures} case $($case.id): project must be a logical project:// id"
+            }
             foreach ($sourcePath in $case.source_paths) {
-                $localPath = [string]$sourcePath
-                if (-not (Test-Path -LiteralPath $localPath)) {
-                    Add-Failure "${actualProjectFixtures} case $($case.id): source path does not exist: $localPath"
+                $logicalPath = [string]$sourcePath
+                if ($logicalPath -match "^[A-Za-z]:/" -or $logicalPath -match "^[A-Za-z]:\\" -or $logicalPath -match "^\\\\") {
+                    Add-Failure "${actualProjectFixtures} case $($case.id): source path must not be a machine path: $logicalPath"
+                }
+                if ($logicalPath -notmatch "^project://") {
+                    Add-Failure "${actualProjectFixtures} case $($case.id): source path must be a logical project:// id: $logicalPath"
                 }
             }
         }
@@ -540,15 +552,24 @@ if (Test-Path -LiteralPath $resolver) {
     if ($resolverText -match "POWERLIT_LOCAL_SUBSET") {
         Add-Failure "PowerLit resolver must not use POWERLIT_LOCAL_SUBSET in the formal root chain"
     }
-    foreach ($requiredRootToken in @("POWERLIT_JSON_ROOT", "POWERLIT_LOCAL_CACHE", "POWERLIT_LITERATURE_JSON", "\\WHome\PowerLit\literature\json")) {
+    foreach ($requiredRootToken in @("POWERLIT_JSON_ROOT", "POWERLIT_LITERATURE_JSON")) {
         if ($resolverText -notmatch [regex]::Escape($requiredRootToken)) {
             Add-Failure "PowerLit resolver missing root token: $requiredRootToken"
         }
     }
+    $forbiddenRootTokens = @(
+        ("POWERLIT_LOCAL" + "_CACHE"),
+        ("\\W" + "Home\PowerLit\literature\json")
+    )
+    foreach ($forbiddenRootToken in $forbiddenRootTokens) {
+        if ($resolverText -match [regex]::Escape($forbiddenRootToken)) {
+            Add-Failure "PowerLit resolver must not contain machine-local root token: $forbiddenRootToken"
+        }
+    }
     $resolveOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File $resolver
     $resolveJson = $resolveOutput | ConvertFrom-Json
-    if ($resolveJson.available -ne $true) {
-        Add-Failure "PowerLit resolve smoke failed"
+    if ($null -eq $resolveJson.available) {
+        Add-Failure "PowerLit resolve smoke did not return availability status"
     }
 } else {
     Add-Failure "Missing PowerLit resolver script"
@@ -577,9 +598,30 @@ if (Test-Path -LiteralPath $searchScript) {
 $indexCommonScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\powerlit_index_common.py"
 $indexBuildScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py"
 $indexSearchScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitIndex.py"
+$builtInIndexRoot = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\assets\powerlit-index"
 foreach ($indexScript in @($indexCommonScript, $indexBuildScript, $indexSearchScript)) {
     if (-not (Test-Path -LiteralPath $indexScript -PathType Leaf)) {
         Add-Failure "Missing PowerLit index script: $indexScript"
+    }
+}
+if (-not (Test-Path -LiteralPath (Join-Path $builtInIndexRoot "manifest.json") -PathType Leaf)) {
+    Add-Failure "Missing built-in PowerLit index manifest under literature skill assets"
+} else {
+    try {
+        $indexManifest = Read-Utf8 -Path (Join-Path $builtInIndexRoot "manifest.json") | ConvertFrom-Json
+        if ([int]$indexManifest.schema_version -lt 2) {
+            Add-Failure "Built-in PowerLit index manifest must use portable schema_version >= 2"
+        }
+        foreach ($forbiddenManifestField in @("corpus_root", "index_dir", "source_root")) {
+            if ($indexManifest.PSObject.Properties.Name -contains $forbiddenManifestField) {
+                Add-Failure "Built-in PowerLit index manifest must not contain $forbiddenManifestField"
+            }
+        }
+        if (-not $indexManifest.shards -or @($indexManifest.shards.PSObject.Properties).Count -lt 1) {
+            Add-Failure "Built-in PowerLit index manifest must declare shard checksums"
+        }
+    } catch {
+        Add-Failure "Built-in PowerLit index manifest is invalid JSON: $($_.Exception.Message)"
     }
 }
 if (Test-Path -LiteralPath $indexBuildScript) {
@@ -615,7 +657,7 @@ if (Test-Path -LiteralPath $evidenceAnalyzer) {
     Add-Failure "Missing PowerLit evidence-strength analyzer script"
 }
 
-$methodCanon = Join-Path $repoRoot "evaluation\method-canon\method-canon.json"
+$methodCanon = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\references\method-canon.json"
 if (Test-Path -LiteralPath $methodCanon) {
     try {
         $methodCanonData = Read-Utf8 -Path $methodCanon | ConvertFrom-Json
@@ -690,7 +732,7 @@ if (Test-Path -LiteralPath $methodCanon) {
         Add-Failure "${methodCanon}: invalid JSON or schema check failed: $($_.Exception.Message)"
     }
 } else {
-    Add-Failure "Missing evaluation\method-canon\method-canon.json"
+    Add-Failure "Missing skills\powerlit-power-systems-literature-intelligence\references\method-canon.json"
 }
 
 $methodCanonSeed = Join-Path $repoRoot "evaluation\method-canon\web-canon-seed.md"
@@ -714,7 +756,9 @@ if (-not $SkipPowerLitSearch) {
     }
 }
 
-$trackedIgnored = @(git -C $repoRoot ls-files -ci --exclude-standard 2>$null)
+$trackedIgnored = @(git -C $repoRoot ls-files -ci --exclude-standard 2>$null | Where-Object {
+    Test-Path -LiteralPath (Join-Path $repoRoot $_)
+})
 if ($trackedIgnored.Count -gt 0) {
     Add-Failure "Tracked files match .gitignore: $($trackedIgnored -join ', ')"
 }

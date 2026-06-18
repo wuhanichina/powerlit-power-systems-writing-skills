@@ -16,7 +16,7 @@ Before writing a full paper or assigning an 8-9 target, build an evidence-streng
 
 ## Method-Canon Baselines
 
-For the user's recurring research, do not start from project-specific PowerLit scans alone. First load `evaluation/method-canon/method-canon.json` when it is available.
+For the user's recurring research, do not start from project-specific PowerLit scans alone. First load `skills/powerlit-power-systems-literature-intelligence/references/method-canon.json` when it is available.
 
 Map the current paper to one or more broad directions:
 
