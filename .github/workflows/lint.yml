@@ -38,3 +38,4 @@ jobs:
           if ($LASTEXITCODE -ne 1) {
             exit $LASTEXITCODE
           }
+          exit 0
