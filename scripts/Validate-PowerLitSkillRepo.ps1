@@ -707,6 +707,29 @@ if (Test-Path -LiteralPath $ruleSources -PathType Leaf) {
     Add-Failure "Missing references\rule-sources.yaml"
 }
 
+$independentReviewerPrompt = Join-Path $repoRoot "evaluation\behavior\independent-reviewer-prompt.md"
+if (Test-Path -LiteralPath $independentReviewerPrompt -PathType Leaf) {
+    $independentReviewerText = Read-Utf8 -Path $independentReviewerPrompt
+    foreach ($requiredReviewerToken in @("Independent Reviewer Prompt", "Every judgment must cite evidence", "PowerLit Internal Readiness Index", "BLOCKED", "MANUSCRIPT_REVIEW_READY", "not an editor decision")) {
+        if ($independentReviewerText -notmatch [regex]::Escape($requiredReviewerToken)) {
+            Add-Failure "independent-reviewer-prompt.md missing token: $requiredReviewerToken"
+        }
+    }
+    $forbiddenReviewerTokens = @(
+        ("D" + ":\"),
+        ("D" + ":/"),
+        ("\\" + "One" + "Drive"),
+        ("直接录用" + " / 小修 / 大修 / 拒稿")
+    )
+    foreach ($forbiddenReviewerToken in $forbiddenReviewerTokens) {
+        if ($independentReviewerText -match [regex]::Escape($forbiddenReviewerToken)) {
+            Add-Failure "independent-reviewer-prompt.md must not contain local path or legacy verdict token: $forbiddenReviewerToken"
+        }
+    }
+} else {
+    Add-Failure "Missing evaluation\behavior\independent-reviewer-prompt.md"
+}
+
 $evidenceAnalyzer = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Analyze-PowerLitEvidenceStrength.ps1"
 if (Test-Path -LiteralPath $evidenceAnalyzer) {
     $evidenceAnalyzerText = Read-Utf8 -Path $evidenceAnalyzer

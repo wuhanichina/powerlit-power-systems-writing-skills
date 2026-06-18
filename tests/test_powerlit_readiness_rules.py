@@ -68,3 +68,17 @@ def test_application_paper_is_not_auto_rejected_for_engineering_integration():
     assert "Application Paper" in rubric
     assert "engineering integration is not an automatic rejection reason" in rubric
     assert "engineering integration or system deployment value is not an automatic rejection reason" in standards
+
+
+def test_independent_reviewer_prompt_is_portable_and_readiness_based():
+    prompt = read_text("evaluation/behavior/independent-reviewer-prompt.md")
+    assert "Independent Reviewer Prompt" in prompt
+    assert "Every judgment must cite evidence" in prompt
+    assert "PowerLit Internal Readiness Index" in prompt
+    assert "BLOCKED" in prompt
+    assert "SUBMISSION_CANDIDATE" in prompt
+    assert ("D" + ":\\") not in prompt
+    assert ("D" + ":/") not in prompt
+    assert ("\\" + "One" + "Drive") not in prompt
+    legacy_verdict = "直接录用" + " / 小修 / 大修 / 拒稿"
+    assert legacy_verdict not in prompt
