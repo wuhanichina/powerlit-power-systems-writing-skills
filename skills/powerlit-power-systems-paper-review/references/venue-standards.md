@@ -1,104 +1,95 @@
-# Venue-Specific Review Standards
+# Venue- and Paper-Type Review Standards
 
-Use this reference to judge venue fit and acceptance risk.
+Use this reference after classifying both the target venue and paper type. Venue fit is not a substitute for technical correctness, and a research-method paper must not be judged by the same novelty rule as an application paper or review paper.
+
+Official rules change. Hard page, article-type, and submission requirements must be traced through `rule-sources.yaml` and rechecked when stale.
+
+## Paper-Type Gate
+
+### Research or Method Paper
+
+Expected contribution: a reviewable theoretical result, model, formulation, algorithm, estimator, controller, mechanism, certificate, or evidence insight. Engineering integration alone may be insufficient when the manuscript claims method novelty.
+
+### Application Paper
+
+Expected contribution: valuable industry/system experience, a technically credible application of existing or adapted technology to a complex problem, transferable engineering knowledge, and evidence from a realistic implementation, field/system study, or operationally representative validation.
+
+Do not reject an application paper solely because it combines established components. Reject-risk arises when the paper provides neither methodological advance nor transferable application knowledge, or when the engineering evidence cannot establish the claimed benefit.
+
+### Review Paper
+
+Expected contribution: explicit scope, reproducible search/selection method where appropriate, a defensible taxonomy, critical synthesis, gap analysis, and traceable coverage. A long list of papers is not sufficient.
+
+### Letter
+
+Expected contribution: one narrow hard claim supported by a compact derivation, counterexample, formulation, algorithmic result, or decisive observation. Apply current IEEE PES Letter page rules separately from corpus page statistics.
 
 ## 中国电机工程学报
 
-Expected paper shape:
+Expected research-paper shape:
 
-- clear engineering object and physical mechanism;
-- sufficient model/control/optimization depth;
+- explicit engineering object and physical mechanism;
+- sufficient model, control, optimization, or theoretical depth;
 - detailed simulation, experiment, or engineering case;
-- conclusions that connect to engineering applicability.
+- conclusions bounded by the tested systems and conditions.
 
-Reject-risk patterns:
+Application-oriented work should expose the system problem, implementation constraints, engineering decisions, and transferable evidence rather than rely on general “工程实用性”.
 
-- policy-heavy motivation but weak technical object;
-- method section lacks physical mechanism or model details;
-- case study is shallow compared with the breadth of the claim;
-- "工程实用性" is claimed without scenario, data, device, or implementation evidence.
-
-Review stance: tolerate broader engineering explanation, but demand a real mechanism-model-evidence chain.
+Reject-risk patterns include policy-heavy motivation, weak technical object, missing physical mechanism, shallow case evidence, or broad applicability claims without a corresponding system/scenario basis.
 
 ## 电力系统自动化
 
-Expected paper shape:
+Expected shape:
 
-- compact operational problem;
-- explicit decision variables, objective, constraints, time scale, and information structure;
-- focused dispatch/control/operation validation;
-- concise conclusion, often with practical boundary or follow-up direction.
+- compact operating or automation problem;
+- explicit variables, objective, constraints, time scale, information structure, and execution protocol;
+- focused dispatch, control, protection, market, or operation validation;
+- concise conclusion with operating boundary.
 
-Reject-risk patterns:
+Reject-risk patterns include long conceptual motivation, an opaque solving procedure, absent operational baselines/scenarios, or claims of effectiveness without a named constraint, metric, and scenario.
 
-- long background before the operational problem appears;
-- model and solving procedure are not easy to scan;
-- case study lacks comparison, operating scenarios, or sensitivity;
-- text claims "有效性/可行性" without showing which constraint, metric, or scenario proves it.
+## IEEE Transactions on Power Systems
 
-Review stance: favor clarity, operational relevance, and complete validation over broad conceptual claims.
+Research papers normally require a formulation-, theory-, or mechanism-led contribution relevant to planning, operation, markets, stability, reliability, security, estimation, or optimization. Assumptions and the relationship between the original problem and any approximation, relaxation, reformulation, or decomposition must be explicit.
 
-## IEEE TPWRS
+Reject-risk patterns include hidden assumptions, unsupported exactness/tractability claims, comparison against irrelevant baselines, and validation that does not test the claimed mathematical or operational property.
 
-Expected paper shape:
+An application-oriented manuscript must still match the venue's scope and demonstrate broadly useful power-system insight; a site-specific implementation report without transferable technical content is weak fit.
 
-- formulation-first contribution;
-- explicit assumptions, sets, indices, variables, uncertainty, information timing;
-- original model separated from reformulation, relaxation, approximation, or algorithm;
-- case studies with baselines, metrics, and reproducibility details;
-- contribution list with concrete deliverables.
+## IEEE Transactions on Smart Grid
 
-Reject-risk patterns:
+Research papers should connect data, communication, DERs, grid-edge control, cyber-physical operation, privacy, distributed coordination, learning, markets, or resilience to a power-system operating mechanism and physical constraints.
 
-- contribution is a framework label rather than a formulation or algorithmic advance;
-- assumptions are hidden or only appear in the case study;
-- method novelty depends on an approximation whose error or boundary is not discussed;
-- validation does not include relevant baselines or scalability checks when claimed.
+Application papers are a distinct valid type. Review their industry relevance, application complexity, implementation evidence, transferable experience, and operational effect. Do not apply an automatic “new model or reject” rule to an application paper.
 
-Review stance: be strict on mathematical clarity, novelty relative to existing formulations, and claim-evidence alignment.
+Reject-risk patterns include a generic AI/control method attached to a grid dataset, absent physical feasibility, untested privacy/distributed/scalability claims, data leakage, or no grid-side metric.
 
-## IEEE TSG
+## Applied Energy
 
-Expected paper shape:
+Assess whether the work provides a substantial energy-system contribution, not merely use of an optimization or AI technique. Relevant evidence may include integrated energy-system behavior, realistic data, cross-sector coupling, economic/environmental metrics, sensitivity/uncertainty, and practical implications.
 
-- smart-grid mechanism: data, communication, distributed coordination, DER/grid-edge control, cyber-physical operation, markets, learning/control integration, resilience, or active distribution network operation;
-- clear distinction between algorithmic novelty and power-system insight;
-- evidence on realistic smart-grid settings, data, uncertainty, or communication constraints.
-
-Reject-risk patterns:
-
-- generic ML/control method with only a power-grid dataset attached;
-- no physical constraint, operational boundary, or grid-side interpretation;
-- data-driven method lacks robustness, generalization, or benchmark comparison;
-- communication/privacy/distribution claims are not tested.
-
-Review stance: require both methodological substance and power-system operational meaning.
+Application and system-integration work can be valid when the contribution is broadly informative and quantitatively supported. Reject-risk patterns include a single small test system, weak energy-system interpretation, generic algorithm comparison, or conclusions that exceed the geographical, technological, or temporal evidence.
 
 ## IEEE Power-System Letter
 
-Expected paper shape:
+The current submission rule is an external hard constraint, not a corpus median. Initial manuscripts are limited to 3 formatted pages; revisions are limited to 3.5 formatted pages. Use `rule-sources.yaml` for source and verification date.
+
+Expected shape:
 
 - one hard claim;
-- one compact formulation, derivation, counterexample, or algorithmic trick;
+- one compact formulation, derivation, correction, counterexample, or algorithmic result;
 - minimal but decisive evidence;
-- short conclusion.
+- a short scoped conclusion.
 
-Reject-risk patterns:
-
-- full-paper scope squeezed into four pages;
-- multiple contributions with no single sharp claim;
-- long literature review;
-- technical core requires many assumptions or modules to understand;
-- validation is broad but not decisive.
-
-Review stance: judge sharpness and necessity. A Letter can be narrow, but it cannot be vague.
+Reject-risk patterns include full-paper scope, several unrelated contributions, a broad literature review, a technical core that cannot fit the permitted space, or broad but non-decisive validation.
 
 ## Journal Recommendation
 
-If the direction is technically meaningful but not fit for the target:
+When recommending another venue, state the reason in terms of contribution type and evidence:
 
-- engineering mechanism and device/system validation: consider 中国电机工程学报;
-- operation/control/dispatch automation with compact evidence: consider 电力系统自动化;
-- rigorous formulation, optimization, market, stability, reliability, or planning contribution: consider TPWRS;
-- smart-grid data, DER, cyber-physical, distributed control, learning-enabled grid operation: consider TSG;
-- one equation, one counterexample, one analytical correction, or one compact trick: consider Letter.
+- broader Chinese engineering mechanism or system validation: consider 中国电机工程学报;
+- compact operating/automation/control logic: consider 电力系统自动化;
+- formulation, planning, market, reliability, stability, or optimization contribution: consider TPWRS;
+- smart-grid data, DER, cyber-physical, distributed, or application experience: consider TSG;
+- integrated energy-system analysis with broad energy implications: consider Applied Energy;
+- one narrow analytical claim: consider a Letter, subject to current page rules.
