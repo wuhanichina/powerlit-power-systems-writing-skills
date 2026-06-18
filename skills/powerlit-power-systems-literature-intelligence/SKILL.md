@@ -1,168 +1,168 @@
 ---
 name: powerlit-power-systems-literature-intelligence
-description: Retrieve and synthesize nearby power-system papers from a configurable local PowerLit JSON corpus for novelty checks, closest-competitor analysis, citation packs, introduction support, and review coverage audits. Use when PowerLit literature access, citation evidence, or corpus-backed innovation judgment is requested.
+description: Retrieve and technically compare nearby power-system papers from a portable PowerLit index or an explicitly configured JSON corpus. Use for candidate-literature discovery, closest-competitor analysis, citation planning, literature coverage audits, and descriptive evidence-profile support.
 ---
 # PowerLit Power-Systems Literature Intelligence
 
 ## Purpose
 
-Use this skill when a writing, prewriting, or review task needs evidence from the user's PowerLit corpus.
+Use this skill to discover and inspect literature evidence. Retrieval score is a ranking signal, not a novelty score, acceptance score, or authority. A novelty judgment requires technical comparison of the current manuscript with retrieved papers.
 
-The skill is optional by design. If the PowerLit corpus is accessible, use it aggressively. If it is not accessible, report that the task is running in fallback mode and continue with the original non-corpus writing, prewriting, or review workflow.
+## Portable Configuration
 
-## Configuration
+The installable skill contains its default cache at:
 
-Resolve the PowerLit JSON root in this order:
-
-1. Explicit path supplied by the user or command parameter.
-2. Environment variable `POWERLIT_JSON_ROOT`.
-3. Environment variable `POWERLIT_LOCAL_CACHE`, for a local reusable cache or index.
-4. Environment variable `POWERLIT_LITERATURE_JSON`.
-5. Default LAN path: `\\WHome\PowerLit\literature\json`.
-
-The resolved root must be a readable directory containing venue folders and `.json` paper records. Do not hard-code any other machine-specific path.
-
-Fast retrieval is mandatory for PowerLit-backed workflows. Prefer the repository-bundled local SQLite FTS cache when it exists:
-
-1. Explicit index path supplied by script parameter.
-2. Repository `.cache/powerlit-index`.
-3. `POWERLIT_INDEX_ROOT`.
-4. `POWERLIT_LOCAL_CACHE/powerlit-index`.
-
-Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `scripts/Search-PowerLitIndex.py` for direct cross-platform indexed retrieval. On Windows, `scripts/Search-PowerLitJson.ps1` is still the public search entry and automatically uses the local index first, starting with the repository cache; it falls back to `rg` prefiltering and raw JSON parsing only when the index is missing or incomplete. Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check corpus availability when shell access is available. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
-
-When the task maps to a known direction or method family, consult `evaluation/method-canon/method-canon.json` before broad retrieval. The method canon is a quality anchor for method families and evidence bars; it is not a substitute for a final main-corpus novelty search.
-
-The search script interface is:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.ps1 `
-  -Query "<technical query>" `
-  -VenueFolder ieee_tsg `
-  -Top 10
+```text
+assets/powerlit-index/
 ```
 
-Cross-platform indexed interface:
+Resolve an index in this order:
+
+1. explicit `--index-dir` or `-PowerLitIndexRoot`;
+2. `POWERLIT_INDEX_ROOT`;
+3. `$CODEX_HOME/powerlit/powerlit-index`;
+4. the bundled `assets/powerlit-index` directory.
+
+Resolve a raw JSON corpus only from:
+
+1. explicit `--root` or `-PowerLitJsonRoot`;
+2. `POWERLIT_JSON_ROOT`;
+3. `POWERLIT_LITERATURE_JSON`.
+
+Do not assume a LAN share, drive letter, user directory, or repository checkout. `POWERLIT_LOCAL_CACHE` is no longer a mixed root/index setting.
+
+Use:
 
 ```bash
 python scripts/Search-PowerLitIndex.py \
-  --query "<technical query>" \
+  --query "distributed voltage control" \
   --venue-folder ieee_tsg \
   --top 10
 ```
 
-Index build interface:
+On Windows, `scripts/Search-PowerLitJson.ps1` resolves the portable index first and uses `scripts/Search-PowerLitRaw.py` only when an explicit raw corpus is available.
+
+Build a new schema-v2 cache with:
 
 ```bash
-python scripts/Build-PowerLitIndex.py --venue-folder ieee_tsg --venue-folder ieee_tpwrs
+python scripts/Build-PowerLitIndex.py \
+  --root <json-root> \
+  --venue-folder ieee_tsg \
+  --venue-folder ieee_tpwrs
 ```
 
-`-VenueFolder` or `--venue-folder` is optional but should be used when a target venue is known. `-Top` or `--top` controls the number of returned records. The script returns JSON with access status, root path, query terms, candidate source, candidate count, parsed count, elapsed milliseconds, match count, and ranked results containing title, title source, source title, DOI, file path, matched terms, and a snippet. `candidate_source=powerlit_index_sqlite` is the normal fast path. `candidate_source=rg` is a fallback path and should trigger index build/refresh when repeated workflows depend on PowerLit.
+Build output defaults to `$CODEX_HOME/powerlit/powerlit-index`; bundled assets are not overwritten implicitly.
 
-## Access Policy
+## Retrieval Contract
 
-- If PowerLit is accessible, base novelty and citation judgments on retrieved papers.
-- Use the method canon as a stable benchmark set, then use the main corpus for current nearest-neighbor retrieval.
-- Legal citation sources are user-supplied references, PowerLit retrieval results, and method-canon entries whose `metadata_verification.status` is `verified` and whose `curation_status` is `accepted`.
-- For `powerlit_status=in_corpus`, use the PowerLit record or `.cache/powerlit-method-canon/` copy for citation, evidence-bar pattern extraction, and corpus style/structure signals. Do not copy source wording.
-- For `powerlit_status=out_of_corpus`, use only bibliographic identity and method-family positioning. Do not summarize method details, evidence patterns, results, or prose style unless the paper text is separately supplied or retrieved.
-- Entries marked `pending`, `candidate`, or needing title/DOI verification must not be cited in manuscript prose and must not be used as evidence-bar exemplars.
-- If PowerLit is inaccessible, say `PowerLit unavailable; using fallback non-corpus workflow` once, then continue.
-- Never invent citations, DOIs, years, venues, or paper titles.
-- Treat retrieval as evidence, not authority. A close paper still needs technical comparison.
-- Prefer recent, venue-relevant, and technically adjacent papers over broad background papers.
-- Never copy long passages from retrieved JSON into a response. Summarize the paper's role, overlap, and citation function.
+The search layer must:
 
-## Core Workflow
+- preserve short domain tokens such as AC, DC, PV, EV, DR, UC, OPF, GMM, SDP, and RL;
+- expand registered acronyms while retaining the original token;
+- generate Chinese bigram/trigram candidates for substring recall;
+- treat unknown or absent venue names as errors rather than silently widening the search;
+- rank by field-aware matches in title, abstract, keywords, introduction, method, results, and conclusion when available;
+- use publication year as a bounded recency signal, not an automatic quality score;
+- deduplicate by normalized DOI and then normalized title;
+- return relative paths only;
+- expose corpus-coverage status and year coverage.
 
-1. Resolve the PowerLit JSON root.
-2. Translate the manuscript idea into method-canon and search objects:
-   - grid object,
-   - operational or planning problem,
-   - uncertainty/control/optimization mechanism,
-   - mathematical object,
-   - benchmark or evidence object,
-   - likely venue.
-3. Read relevant verified method-canon entries when available, respecting `usage_policy`.
-4. Retrieve candidate papers from the main PowerLit corpus:
-   - use the repository-bundled local PowerLit index first; build or refresh it if repeated queries are expected and the cache is missing or stale,
-   - start with target-venue folders when the target venue is known,
-   - widen to TPWRS, TSG, CSEE, AEPS, MPCE, Applied Energy, Energy, IJEPES, and Power Grid Technology when needed,
-   - keep the raw file paths for auditability.
-5. Build a closest-competitor set. Do not select papers merely because they share one keyword; they must overlap in problem, mechanism, model, data, or evidence.
-6. Produce the requested artifact:
-   - novelty pack for prewriting review,
-   - citation pack for introduction writing,
-   - corpus style exemplar pack for venue-specific writing,
-   - evidence-strength profile for score-targeted writing or review calibration,
-   - literature coverage audit for manuscript review,
-   - focused reading synthesis for a specific method or venue.
+The bundled schema-v1 cache remains searchable. New builds use richer schema-v2 fields and optional trigram FTS.
 
-## Venue Folder Hints
+## Query Decomposition
 
-When the target venue is known, search that venue first:
+Translate the current paper or question into separate search objects:
 
-- IEEE TSG: `ieee_tsg`
-- IEEE TPWRS: `ieee_tpwrs`
-- 中国电机工程学报: `中国电机工程学报`
-- 电力系统自动化: `电力系统自动化`
+- grid, device, market, or planning object;
+- operating/planning problem;
+- uncertainty, control, optimization, estimation, data, or communication mechanism;
+- mathematical object;
+- evidence object and benchmark;
+- target venue and year window.
 
-Widen to MPCE, IJEPES, Applied Energy, Energy, IEEE TPWRD, Power Grid Technology, or other available folders only after the target-venue search is sparse or the technical object is cross-venue.
+Use multiple focused queries rather than one long keyword string. Include both established terminology and manuscript-specific terminology.
+
+## Venue Registry
+
+Use `references/venue-registry.json` as the canonical alias map. Examples:
+
+- `tpwrs` → `ieee_tpwrs`;
+- `tsg` → `ieee_tsg`;
+- `csee` → `中国电机工程学报`;
+- `aeps` → `电力系统自动化`.
+
+If a requested venue is absent from the manifest, return `UNKNOWN` coverage. Do not substitute all venues.
+
+## Method Canon
+
+Use `references/method-canon.json` when the task maps to a covered method family. It provides curated bibliographic anchors, not exhaustive recall.
+
+- `powerlit_status=in_corpus` and accepted/verified entries may support citation and direct pattern inspection from the indexed record.
+- `powerlit_status=out_of_corpus` entries support bibliographic positioning only unless full text is separately supplied.
+- The canon cannot replace current nearest-neighbor retrieval.
+
+## Novelty Comparison Gate
+
+Search output may return:
+
+- `REQUIRES_TECHNICAL_COMPARISON`: coverage is adequate for candidate retrieval, but a human/agent must compare technical objects;
+- `UNKNOWN`: venue coverage, year coverage, record depth, or candidate count is inadequate.
+
+For each serious competitor, compare:
+
+| Dimension | Question |
+|---|---|
+| Problem | Is the same operating/planning difficulty solved? |
+| Scenario | Is the same grid, uncertainty, information, or deployment setting used? |
+| Model | Is the same formulation, variable relation, or mathematical object used? |
+| Mechanism | Is the same technical mechanism or algorithmic property central? |
+| Data | Are the same data assumptions, distributions, or information sources used? |
+| Evidence | Are the same systems, baselines, metrics, and boundary cases tested? |
+| Claim | Does the prior paper already establish the manuscript's principal claim? |
+
+Only after this comparison may the task assign `HIGH_THREAT`, `MEDIUM_THREAT`, or `LOW_THREAT`. If source depth is insufficient, use `UNKNOWN`.
+
+## Literature-Claim Discipline
+
+- Never infer method details from title or metadata alone.
+- Never invent titles, authors, years, venues, DOIs, results, or comparisons.
+- Prefer recent technically adjacent work for competitor analysis and foundational work for method-family context.
+- A missing-paper judgment without adequate corpus coverage must be marked `【待核查】`.
+- A paper explicitly named by the manuscript but omitted from a necessary comparison may be marked `【已确认遗漏】`.
+- Do not copy source wording.
+
+## Descriptive Evidence Profiling
+
+Use `scripts/Analyze-PowerLitEvidenceStrength.py` to select papers for direct inspection and identify lexical hints for systems, baselines, metrics, sensitivity/ablation, reproducibility, and scope boundaries.
+
+The output is explicitly `UNCALIBRATED`:
+
+- accepted-paper samples describe visible practices among accepted papers;
+- they do not estimate acceptance probability;
+- they do not define a journal review threshold;
+- keyword presence does not establish evidence sufficiency.
+
+Use the profile as a reading checklist, then inspect the selected papers before applying manuscript-specific requirements.
 
 ## Output Artifacts
 
-For prewriting review, produce:
+For novelty or prewriting work, return:
 
-- `PowerLit access`: resolved path or fallback mode.
-- `Closest competitors`: title, venue, DOI/path, problem, method, evidence, overlap with the current paper.
-- `Novelty threat`: high, medium, low, or unknown.
-- `Innovation boundary`: what can still be claimed after comparison.
-- `Required repairs`: missing baselines, missing citations, unclear distinction, or insufficient evidence.
+- access and coverage status;
+- focused queries and query analysis;
+- candidate competitors with title, year, venue, DOI/relative path, matched fields, and retrieval rationale;
+- the seven-dimension technical-overlap matrix;
+- novelty threat with evidence, or `UNKNOWN`;
+- bounded claim and required repairs.
 
-For introduction writing, produce:
+For citation planning, return sentence-level citation roles: background, method family, limitation/gap, and direct competitor. For review, separate confirmed omissions from items requiring external verification.
 
-- `Background citations`: papers supporting the engineering context.
-- `Method-family citations`: papers representing existing technical routes.
-- `Gap citations`: papers that expose the limitation the manuscript must resolve.
-- `Closest-competitor citations`: papers that must be contrasted directly.
-- `Citation-to-sentence plan`: which claim each citation supports.
+## Fallback
 
-For writing-style reference, produce:
+When neither a portable index nor explicit raw corpus is available, state once:
 
-- `Venue exemplars`: 3 to 5 retrieved papers, with path or DOI.
-- `Section-shape signals`: how the target venue organizes introduction, method, case study, and conclusion.
-- `Paragraph-function signals`: how paragraphs move from object to limitation to contribution to evidence.
-- `Rhythm and register signals`: sentence subjects, contrast markers, contribution placement, and evidence wording.
-- `Do-not-copy boundary`: a reminder to use corpus patterns only, not source wording.
+```text
+PowerLit unavailable; using literature-limited workflow.
+```
 
-For evidence-strength learning, produce:
-
-- `Accepted-paper sample`: 3 to 5 venue-near and mechanism-near papers with DOI/path.
-- `Manuscript-facing quantities`: systems, data, scenarios, baselines, metrics, solver/runtime, sensitivity, ablation, boundary/failure cases, and reproducibility details visible in the accepted papers.
-- `Evidence-depth pattern`: how many independent evidence dimensions the accepted papers use to support the claim class.
-- `Claim-boundary pattern`: how accepted papers state limitations or complementary value without defensive posture.
-- `Current-manuscript implication`: evidence dimensions that must be added, downgraded, relabeled, or moved into the manuscript before a high-score draft can be claimed.
-
-For review, produce:
-
-- `Coverage audit`: important nearby papers that are absent or under-discussed.
-- `Novelty risk`: whether the claimed contribution is already covered.
-- `Citation risk`: missing, stale, weak, or misused references.
-- `Reviewer action`: accept the cited boundary, require revision, or reject/retarget due to weak novelty.
-
-## Retrieval Discipline
-
-- Search both titles and body content.
-- Keep duplicates under control by DOI and normalized title.
-- Prefer exact mechanism matches over broad topical matches.
-- Use negative evidence: if a nearby paper already solves the same core object, narrow or reject the current claim.
-- Cite file paths or DOI identifiers in intermediate artifacts so the result can be traced.
-
-## Fallback Discipline
-
-When PowerLit is unavailable:
-
-- keep using `powerlit-power-systems-prewriting-review`, `powerlit-power-systems-paper-writing`, `ieee-power-engineering-letter-writing`, or `powerlit-power-systems-paper-review`;
-- mark novelty and citation judgments as literature-limited;
-- do not create fake citation packs;
-- ask for supplied references only if the task cannot proceed without any literature evidence.
+Continue with supplied references and manuscript-internal evidence. Do not generate a fabricated citation pack or a low-novelty conclusion from absent retrieval evidence.
