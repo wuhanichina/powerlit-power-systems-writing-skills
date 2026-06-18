@@ -1,128 +1,135 @@
-# Decision Rubric
+# Independent Review Decision Rubric
 
-Use this rubric when the user asks for scores or an accept/reject recommendation.
+Use this rubric only after applying `independent-reviewer-protocol.md` and completing the evidence-bound findings.
 
-## Scores
+## Statistical Status
 
-Score each item from 1 to 10:
+The 1-10 scores are internal descriptive scores. They are not:
 
-- Problem importance and venue relevance.
-- Innovation substance.
-- Logic-chain closure.
-- Model and mathematical correctness.
-- Method clarity and reproducibility.
-- Case-study and evidence sufficiency.
-- Conclusion support and claim boundary.
-- Writing, structure, and format.
+- target-journal official scores;
+- calibrated probabilities of acceptance;
+- thresholds learned from accepted papers;
+- substitutes for fatal-issue analysis.
 
-Use strict scoring:
+Accepted-paper samples estimate characteristics conditional on publication. Without comparable rejected-paper outcomes, they cannot identify acceptance probability or an acceptance threshold. Scores must therefore be interpreted as a structured summary of the current evidence state.
 
-- 9-10: publishable at target venue with only minor refinements.
-- 7-8: promising but still has repairable weaknesses.
-- 5-6: major revision required; contribution or evidence is not yet convincing.
-- 3-4: likely rejection; core logic, model, or validation is weak.
-- 1-2: fatal flaw, wrong problem, wrong model, unsupported claim, or plagiarism risk.
+## Nine Equal-Weight Dimensions
 
-## 8-9 Target Gate
+Score each dimension from 1 to 10 and give a location/evidence-based deduction reason.
 
-Use this gate when a draft is being debugged toward an 8-9 score.
+1. 选题与行业相关性。
+2. 创新性，并标注理论、方法或工程创新。
+3. 建模正确性。
+4. 方法合理性与可扩展性。
+5. 算例与对比充分性。
+6. 结论可信度与可外推性。
+7. 可复现性。
+8. 可读性。
+9. 投稿匹配度，并指明目标期刊与论文类型。
 
-An 8-score full-paper verdict requires:
+Default to equal weighting. A non-equal weighting is permitted only when the user requests it or the paper type makes equal weighting demonstrably inappropriate; state the weights and reason before scoring.
 
-- no fatal flaw and no major venue mismatch;
-- average score at least 8 across the eight categories;
-- no core category below 8 for problem relevance, innovation substance, logic-chain closure, model correctness, evidence sufficiency, or claim boundary;
-- writing/structure score at least 7.5 after technical repair;
-- Chinese manuscript register is clean when the target venue is Chinese: no `声称/宣称` in authorial prose, no emphasis quotation marks around ordinary technical terms, and no em-dash explanation chains in manuscript text;
-- actual case evidence with baselines, metrics, systems, scenarios, and boundaries;
-- complete manuscript content: introduction, novelty positioning, method/model with equations and physical interpretation, algorithm or solution procedure, case-study protocol, result tables/figures, comparative analysis, discussion, and conclusion.
-- result provenance is inspected: key numeric tables and figures match source CSV/report/log/manifest artifacts after rounding;
-- reproducibility details are manuscript-facing: solver, tolerance, hyperparameters, initialization/fallback, software/hardware or runtime context, and stopping criteria are stated when they affect the result;
-- references are manuscript-ready: no placeholder notes, no "to be verified" entries, no uncited references, and no citation used for the wrong method family.
+## Score Anchors
 
-A 9-score full-paper verdict requires:
+Use these descriptive anchors consistently:
 
-- average score at least 9;
-- no category below 8.5;
-- model correctness, evidence sufficiency, and claim boundary at least 9;
-- only minor refinements remain.
+- `9-10`: the supplied evidence establishes this dimension with only minor bounded refinements remaining;
+- `7-8`: substantially developed but containing one or more repairable weaknesses;
+- `5-6`: major evidence, correctness, or positioning repair is required;
+- `3-4`: a central weakness makes this dimension unsuitable for submission in its current form;
+- `1-2`: fatal or nearly fatal failure in this dimension, or no usable evidence for a central requirement.
 
-Do not give a full-paper score above 7.5 when only case-analysis data are supplied without enough method, novelty, baseline, and claim-boundary facts. Score the available section instead.
+A missing section must not receive a high score because it might exist elsewhere. Score only the supplied scope and label section-only review where applicable.
 
-Do not let compressed artifacts pass as full papers. A representative package, outline, abstract-with-results draft, or score-target run that lacks full equations, model derivation, complete case analysis, comparison tables, and discussion must be labeled `blocked below 8-9 full-paper completeness` even if its direction is promising.
+## Total Score
 
-Do not give an 8-score verdict to a complete-looking manuscript whose main result tables are not checked against source artifacts, whose references still contain placeholders or wrong citation roles, or whose algorithm/protocol cannot be reproduced from manuscript-facing details. Use `repairable below 8-9` when the manuscript is complete but these issues are repairable.
+Compute the arithmetic mean:
 
-Do not give an 8-score verdict to a diagnostic, inverse, feasibility-certifying, or boundary-characterization paper merely because the formulation is novel. If the most relevant baseline is better on primary accuracy and runtime metrics, the manuscript must prove a distinct non-substitutable use case and validate that use case with direct evidence. Without that, score innovation, logic-chain closure, and conclusion support in the 5-7 range even when the mathematics is sound.
+\[
+S=\frac{1}{9}\sum_{i=1}^{9}s_i.
+\]
 
-Do not let a main case study hide a fallback. If a core contribution is turned off, replaced by a baseline, or selected after seeing worse accuracy, require explicit table/caption/abstract/conclusion labeling and a transition experiment or pre-declared diagnostic threshold. Without it, evidence sufficiency cannot reach 8.
+Report the numerical average and `【高/中/低】` confidence. Confidence reflects the completeness and traceability of supplied evidence, not certainty about the editor's future decision.
 
-When sensitivity, ablation, and SOTA tables reuse the same metric name, check whether the aggregation scope and post-processing are identical. Unexplained differences such as two different W1 values for the same nominal case are a reproducibility and claim-boundary issue, not a formatting issue.
+Do not mechanically map an average to a verdict. Examples:
+
+- one high-confidence fatal model error can justify rejection despite a moderate average;
+- incomplete manuscript scope can require a section-level result despite high prose quality;
+- unresolved external literature coverage should reduce confidence rather than become an invented omission.
+
+## Readiness State
+
+Report one state separately from the verdict:
+
+- `BLOCKED`: a fatal issue, invalid central method, or missing central evidence prevents serious submission review;
+- `SECTION_READY`: the supplied section is technically reviewable, but full-paper readiness is unknown;
+- `MANUSCRIPT_REVIEW_READY`: the complete manuscript can undergo serious peer review, although major revisions may remain;
+- `SUBMISSION_CANDIDATE`: no fatal issue is established and remaining issues are bounded; this is not an acceptance prediction.
 
 ## Verdict Mapping
 
-`直接录用`:
+Use the four user-facing verdicts from the independent protocol.
 
-- Rare. Use only when the manuscript is already technically complete, correctly written, and has no meaningful reviewer risk.
+### 直接录用
 
-`小修后录用`:
+Rare. Use only when the complete manuscript has no meaningful technical or evidence defect and no important item remains `【待核查】`. This is a reviewer recommendation, not an editorial decision.
 
-- Core contribution is sound.
-- Model and evidence are sufficient.
-- Remaining issues are clarity, formatting, minor missing explanations, or limited extra references.
+### 小修
 
-`大修后录用`:
+Use when the central contribution, model, evidence, and conclusion are established. Remaining issues are bounded clarification, minor reproducibility details, limited extra analysis, or format/wording repair that does not alter the central result.
 
-- Direction is worth publishing.
-- Core model may be sound, but evidence, framing, explanation, or venue fit needs substantial repair.
-- No fatal mathematical or logical flaw.
+### 大修
 
-`拒绝录用`:
+Means `建议大修后重新评审`, not “大修后录用”. Use when the direction may be publishable but substantial model explanation, evidence, comparison, reproducibility, framing, or paper-type alignment must be repaired and no established fatal flaw necessarily invalidates the work.
 
-- Fatal issue in problem, novelty, logic chain, model correctness, or evidence.
-- Contribution is too incremental for the target venue.
-- Validation cannot support the claims.
-- Paper solves a different problem from the one it motivates.
-- Suspected plagiarism or duplicated contribution requires rejection or formal investigation.
+### 拒稿
 
-## Output Discipline
+Use when a high- or medium-confidence fatal issue remains, the central validation cannot support the claim, the paper solves a materially different problem from the one motivated, or the contribution is not viable for the selected paper type/venue after evidence-bound comparison.
 
-Findings must lead. Order by severity:
+Suspected external plagiarism or duplication cannot be used without external evidence. Text-internal duplication, inconsistent numbers, or citation-content contradictions may be used when their locations are identified.
 
-1. fatal flaws;
-2. major technical flaws;
-3. missing evidence;
-4. venue mismatch;
-5. writing and formatting issues.
+## Finding-to-Decision Discipline
 
-For each finding, state:
+Order findings by severity:
 
-- location or section if available;
-- what the manuscript claims;
-- why the claim is not established;
-- what would be required to repair it.
+1. fatal correctness or integrity defects;
+2. major technical defects;
+3. missing or unfair evidence;
+4. literature/positioning items, separated into `【已确认遗漏】` and `【待核查】`;
+5. venue or paper-type mismatch;
+6. readability and format.
 
-Do not bury a rejection reason inside a long proofreading list.
+For each finding state:
 
-## Score-Target Output
+- location;
+- manuscript claim;
+- quoted/formula/table evidence;
+- why the evidence fails;
+- what to change;
+- how to change it;
+- pass criterion.
 
-When the user asks whether a draft reaches 8-9, return a compact score table with exactly these categories:
+Mark non-executable strategic advice `【方向性建议】` and supply the first concrete step.
 
-- Problem importance and venue relevance.
-- Innovation substance.
-- Logic-chain closure.
-- Model and mathematical correctness.
-- Method clarity and reproducibility.
-- Case-study and evidence sufficiency.
-- Conclusion support and claim boundary.
-- Writing, structure, and format.
+## Required Score Output
 
-Then state:
+| 维度 | 分数（1-10） | 扣分依据 |
+|---|---:|---|
+| 选题与行业相关性 | | |
+| 创新性（理论/方法/工程） | | |
+| 建模正确性 | | |
+| 方法合理性与可扩展性 | | |
+| 算例与对比充分性 | | |
+| 结论可信度与可外推性 | | |
+| 可复现性 | | |
+| 可读性 | | |
+| 投稿匹配度（期刊与论文类型） | | |
 
-- average score;
-- full-paper readiness: `complete manuscript`, `section-level only`, or `compressed evaluation package only`;
-- gate status: `passes 8-9 full-paper gate`, `repairable below 8-9`, `blocked below 8-9`, or `blocked below 8-9 full-paper completeness`;
-- lowest-scoring category;
+Then report:
+
+- total average and confidence;
+- evidence scope: full manuscript or named section(s);
+- readiness state;
+- final verdict and confidence;
+- lowest-scoring dimension;
 - first repair action.
-
-If the manuscript is section-only, label the score as section-level and do not use it as a full-paper score.
