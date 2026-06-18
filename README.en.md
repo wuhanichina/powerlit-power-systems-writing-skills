@@ -248,37 +248,46 @@ powerlit-power-systems-writing-skills/
 
 ## Validation
 
-Run the validator from the repository root:
+Run the repository lint and schema validator from the repository root:
 
 ```powershell
 $env:PYTHONUTF8 = "1"
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Validate-PowerLitSkillRepo.ps1
 ```
 
-To check structure and prompts without the live PowerLit search smoke:
+To check structure and fixture schemas without the live PowerLit search smoke:
 
 ```powershell
 $env:PYTHONUTF8 = "1"
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch
 ```
 
-The validator checks:
+This script is repository lint and schema validation, not a behavior-regression result. It checks:
 
 - skill frontmatter
 - referenced `references/` and `scripts/` paths
-- regression prompt JSON
-- write-review closure cases in `evaluation/writing-review-closure.json`
-- real project claim regressions in `evaluation/actual-project-claim-regressions.json`
+- behavior fixture JSON schemas
+- write-review closure fixture schemas in `evaluation/writing-review-closure.json`
+- real project claim fixture schemas in `evaluation/actual-project-claim-regressions.json`
 - published-paper reconstruction cases in `evaluation/powerlit-paper-reconstruction-cases.json`
 - high-scoring case evidence packets in `evaluation/actual-case-evidence-packets.json`
 - PowerLit resolver smoke
 - optional PowerLit search smoke
 
+Deterministic unit tests and the retrieval benchmark are separate layers:
+
+```powershell
+python -m pytest -q
+python evaluation/retrieval/run_retrieval_eval.py
+```
+
+CI runs repository lint, unit tests, and retrieval evaluation on both `ubuntu-latest` and `windows-latest`.
+
 ---
 
 ## PowerLit Corpus Boundary
 
-This repository stores only skill instructions, venue signals, scripts, and regression prompts. It does not store original PowerLit corpus records, PDFs, or private literature data.
+This repository stores only skill instructions, venue signals, scripts, and behavior fixtures. It does not store original PowerLit corpus records, PDFs, or private literature data.
 
 The skills read local PowerLit JSON only when that corpus is accessible. If the corpus is unavailable, they enter fallback mode and do not fabricate citations, nearby papers, or corpus-style conclusions. Retrieved papers may be used as local analytical evidence and writing references, but source text must not be copied into generated output.
 

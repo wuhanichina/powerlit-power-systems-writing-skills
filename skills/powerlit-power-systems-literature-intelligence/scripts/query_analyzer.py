@@ -42,10 +42,18 @@ def unique_ordered(values: Iterable[str]) -> list[str]:
 
 def explicit_phrases(query: str) -> list[str]:
     phrases: list[str] = []
-    for match in re.finditer(r'"([^"]+)"|“([^”]+)”|\'([^\']+)\'', query):
-        phrase = next((group for group in match.groups() if group), "")
-        if phrase:
-            phrases.append(phrase)
+    patterns = (
+        r'"([^"]+)"',
+        r"'([^']+)'",
+        r"\u201c([^\u201d]+)\u201d",
+        r"\u300c([^\u300d]+)\u300d",
+        r"\u300e([^\u300f]+)\u300f",
+    )
+    for pattern in patterns:
+        for match in re.finditer(pattern, query):
+            phrase = match.group(1)
+            if phrase:
+                phrases.append(phrase)
     return phrases
 
 

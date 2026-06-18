@@ -5,6 +5,10 @@ param(
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $failures = New-Object System.Collections.Generic.List[string]
+$powerShellCommand = Get-Command powershell -ErrorAction SilentlyContinue
+if (-not $powerShellCommand) {
+    $powerShellCommand = Get-Command pwsh -ErrorAction SilentlyContinue
+}
 
 function Add-Failure {
     param([string]$Message)
@@ -25,6 +29,17 @@ function Normalize-Text {
 function Test-DoiFormat {
     param([string]$Doi)
     return ($Doi -match '^10\.\d{4,9}/\S+$')
+}
+
+function Invoke-PowerLitPowerShell {
+    param(
+        [string]$File,
+        [string[]]$Arguments = @()
+    )
+    if (-not $script:powerShellCommand) {
+        throw "No powershell or pwsh executable is available"
+    }
+    return & $script:powerShellCommand.Source -NoProfile -ExecutionPolicy Bypass -File $File @Arguments
 }
 
 $skillFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "skills") -Recurse -File -Filter "SKILL.md"
@@ -566,7 +581,7 @@ if (Test-Path -LiteralPath $resolver) {
             Add-Failure "PowerLit resolver must not contain machine-local root token: $forbiddenRootToken"
         }
     }
-    $resolveOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File $resolver
+    $resolveOutput = Invoke-PowerLitPowerShell -File $resolver
     $resolveJson = $resolveOutput | ConvertFrom-Json
     if ($null -eq $resolveJson.available) {
         Add-Failure "PowerLit resolve smoke did not return availability status"
@@ -772,7 +787,7 @@ if (-not (Test-Path -LiteralPath $methodCanonSeed)) {
 if (-not $SkipPowerLitSearch) {
     $search = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitJson.ps1"
     if (Test-Path -LiteralPath $search) {
-        $searchOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File $search -Query "voltage control" -VenueFolder "ieee_tsg" -Top 1
+        $searchOutput = Invoke-PowerLitPowerShell -File $search -Arguments @("-Query", "voltage control", "-VenueFolder", "ieee_tsg", "-Top", "1")
         $searchJson = $searchOutput | ConvertFrom-Json
         if ($searchJson.available -ne $true) {
             Add-Failure "PowerLit search smoke did not report available=true"
@@ -802,6 +817,7 @@ if ($failures.Count -gt 0) {
 
 [pscustomobject]@{
     ok = $true
+    validation_layers = @("repository_lint", "schema_validation", $(if ($SkipPowerLitSearch) { "powerlit_search_smoke_skipped" } else { "powerlit_search_smoke" }))
     skill_count = $skillFiles.Count
     test_prompt_files = $jsonFiles.Count
     review_closure_cases = if (Test-Path -LiteralPath $reviewLoop) { @($loopCases).Count } else { 0 }

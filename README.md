@@ -248,37 +248,46 @@ powerlit-power-systems-writing-skills/
 
 ## 验证
 
-在仓库根目录运行验证脚本：
+在仓库根目录运行 repository lint 和 schema validation：
 
 ```powershell
 $env:PYTHONUTF8 = "1"
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Validate-PowerLitSkillRepo.ps1
 ```
 
-如果只想检查结构和 prompt，不运行实时 PowerLit 检索 smoke：
+如果只想检查结构和夹具 schema，不运行实时 PowerLit 检索 smoke：
 
 ```powershell
 $env:PYTHONUTF8 = "1"
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch
 ```
 
-验证脚本检查：
+该脚本是 repository lint 和 schema validation，不代表行为回归测试结果。它检查：
 
 - skill frontmatter
 - `references/` 和 `scripts/` 引用路径
-- 回归 prompt JSON
-- `evaluation/writing-review-closure.json` 中的写作到审稿闭环用例
-- `evaluation/actual-project-claim-regressions.json` 中的真实项目 claim 回归用例
+- 行为夹具 JSON schema
+- `evaluation/writing-review-closure.json` 中的写作到审稿闭环夹具 schema
+- `evaluation/actual-project-claim-regressions.json` 中的真实项目 claim 夹具 schema
 - `evaluation/powerlit-paper-reconstruction-cases.json` 中的已发表论文重建用例
 - `evaluation/actual-case-evidence-packets.json` 中的 8-9 分真实算例证据包
 - PowerLit resolver smoke
 - 可选的 PowerLit search smoke
 
+确定性单元测试和检索 benchmark 是独立层：
+
+```powershell
+python -m pytest -q
+python evaluation/retrieval/run_retrieval_eval.py
+```
+
+CI 会在 `ubuntu-latest` 和 `windows-latest` 上分别运行 repository lint、unit tests 和 retrieval evaluation。
+
 ---
 
 ## PowerLit 语料边界
 
-本仓库只保存技能说明、期刊信号、脚本和回归 prompt。它不保存原始 PowerLit 语料、PDF 或私有论文记录。
+本仓库只保存技能说明、期刊信号、脚本和行为夹具。它不保存原始 PowerLit 语料、PDF 或私有论文记录。
 
 技能只在可访问 PowerLit JSON 语料库时读取本地语料；语料不可用时进入 fallback 模式，不编造引用、近邻文献或语料风格结论。检索到的论文只能作为本地分析证据和写作参照，不能把原文复制进输出。
 

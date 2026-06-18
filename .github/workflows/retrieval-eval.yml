@@ -1,0 +1,35 @@
+name: Retrieval evaluation
+
+on:
+  push:
+  pull_request:
+
+env:
+  PYTHONUTF8: "1"
+
+jobs:
+  retrieval-eval:
+    name: Retrieval eval (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run retrieval benchmark fixture
+        run: python evaluation/retrieval/run_retrieval_eval.py
+
+      - name: Verify unknown venue does not widen search
+        shell: pwsh
+        run: |
+          python skills/powerlit-power-systems-literature-intelligence/scripts/Search-PowerLitIndex.py --query "voltage control" --venue-folder "not_a_venue" --top 2
+          if ($LASTEXITCODE -eq 2) {
+            exit 0
+          }
+          exit 1

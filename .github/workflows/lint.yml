@@ -1,0 +1,39 @@
+name: Repository lint
+
+on:
+  push:
+  pull_request:
+
+env:
+  PYTHONUTF8: "1"
+
+jobs:
+  repository-lint:
+    name: Repository lint (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate repository structure and schemas
+        shell: pwsh
+        run: pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch
+
+      - name: Check for machine-local path leaks
+        shell: pwsh
+        run: |
+          $matches = git grep -n -E "\\\\WHome|D:/Research|D:\\\\Research|POWERLIT_LOCAL_CACHE|evaluation/method-canon|\\.cache/powerlit-index" -- .
+          if ($LASTEXITCODE -eq 0) {
+            $matches
+            exit 1
+          }
+          if ($LASTEXITCODE -ne 1) {
+            exit $LASTEXITCODE
+          }
