@@ -16,9 +16,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -29,7 +29,8 @@ jobs:
       - name: Check for machine-local path leaks
         shell: pwsh
         run: |
-          $matches = git grep -n -E "\\\\WHome|D:/Research|D:\\\\Research|POWERLIT_LOCAL_CACHE|evaluation/method-canon|\\.cache/powerlit-index" -- .
+          $pattern = "\\\\WHome|D:/Research|D:\\\\Research|POWERLIT_LOCAL_CACHE|evaluation/method-canon|\\.cache/powerlit-index"
+          $matches = git grep -n -E $pattern -- . ":(exclude).github/workflows/lint.yml"
           if ($LASTEXITCODE -eq 0) {
             $matches
             exit 1
