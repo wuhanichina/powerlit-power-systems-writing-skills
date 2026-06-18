@@ -1,84 +1,54 @@
 ---
 name: ieee-power-engineering-letter-writing
-description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Power Engineering Letters, TPWRS/TSG short Letters, and 3-4 page power-system technical communications. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, reviewer-comment revision, and anti-full-paper cleanup.
+description: Write and revise IEEE power-system Letters around one narrow technical claim under current IEEE PES page limits.
 ---
 # IEEE Power Engineering Letter Writing
 
 ## Purpose
 
-Use this skill when the target is an IEEE power-system Letter. A Letter is not a shortened full paper. It is a compact technical communication built around one hard claim, one deliverable, and minimal evidence.
+Use this skill for one compact analytical result, correction, counterexample, formulation, focused algorithm, or decisive observation. A Letter is not a full paper shortened after drafting.
 
-Do not use this skill as the standalone acceptability or reject-risk reviewer. Use `powerlit-power-systems-paper-review` for strict IEEE Letter review; this Letter skill only applies review standards internally before delivery.
+Use `powerlit-power-systems-paper-review` for an independent review before describing a Letter as review-ready.
 
-## Core Workflow
+## Page Rule
 
-1. Identify the Letter claim type:
-   - counterexample,
-   - analytical derivation,
-   - correction or limitation of a common model,
-   - compact formulation,
-   - fast algorithm or sensitivity calculation,
-   - focused metric/index,
-   - small but decisive empirical observation.
-2. Write the one-sentence claim before drafting.
-3. If the Letter claim depends on novelty or prior-work contrast, try `powerlit-power-systems-literature-intelligence`:
-   - resolve PowerLit from user path, `POWERLIT_JSON_ROOT`, `POWERLIT_LITERATURE_JSON`, or `\\WHome\PowerLit\literature\json`;
-   - if accessible, identify the nearest Letters/full papers and the one contrast the Letter must win;
-   - if inaccessible, state fallback mode once and keep the Letter narrow without inventing citations.
-4. Apply the near-neighbor gate:
-   - if PowerLit finds a close Letter or full paper with the same problem, mechanism, and evidence object, do not proceed by rephrasing;
-   - narrow the claim, change the technical object, retarget as a full paper, or recommend against submission;
-   - if the nearest papers are broad background only, keep novelty language narrow.
-5. Load `references/letter-structure.md` for section and page-budget guidance.
-6. Load `references/introduction.md` for the surgical introduction and contribution style.
-7. Load `references/technical-core.md` for problem statement, compact formulation, derivation, counterexample, or solution-method sections.
-8. Load `references/evidence-conclusion.md` for case-study, numerical-results, and conclusion sections.
-9. Load `references/precision.md` before final prose.
-10. Load `references/compression.md` when cutting a full-paper draft into Letter form.
-11. Draft with "this letter" as the natural self-reference when appropriate.
-12. Apply the reader-burden rule in `references/precision.md`: state the local judgment first, keep one idea per paragraph, and remove anything that does not support the single claim.
-13. Before returning a submission-ready Letter, apply `powerlit-power-systems-paper-review` standards for IEEE power-system Letters. If the review would find a fatal novelty, logic, model, or evidence issue, narrow the claim, repair the technical core, or return a blocker instead of polished Letter prose.
+The IEEE PES rule verified on 2026-06-18 is:
 
-## Corpus-Based Defaults
+- initial submission: at most 3 formatted pages;
+- revision: at most 3.5 formatted pages;
+- the final edited Letter should remain within 4 pages.
 
-PowerLit mining found 69 IEEE power-system Letter-style papers in TPWRS/TSG:
+The 4-page median observed in published papers is descriptive and must not be used as the initial-submission limit.
 
-- median length: 4 pages;
-- median abstract: 5 sentences, about 21 words per sentence;
-- median introduction: 7 paragraphs;
-- median major sections: 5;
-- median equations: 15;
-- median references: 9.
+## Workflow
 
-Treat these as pressure constraints. If the draft needs a long literature review, a large nomenclature section, many experiments, and 30+ references, it is drifting into full-paper form.
+1. State the single claim and its validity condition in one sentence.
+2. Classify it as a derivation, counterexample, correction, compact formulation, focused algorithm, metric, or decisive empirical/application result.
+3. When novelty matters, use `powerlit-power-systems-literature-intelligence` to retrieve nearby Letters and full papers. Treat retrieval as candidate discovery and compare problem, mechanism, model, data, evidence, and claim.
+4. Load `references/letter-structure.md`, `references/introduction.md`, `references/technical-core.md`, `references/evidence-conclusion.md`, and `references/precision.md`. Load `references/compression.md` when reducing a longer draft.
+5. Draft to the 3-page initial-submission budget unless the user explicitly supplies a revision context.
+6. Apply the independent reviewer protocol. Narrow or block the Letter when a central novelty, model, derivation, or evidence issue remains.
 
-## Required Shape
+## Required Movement
 
-The Letter should usually fit this movement:
-
-1. Abstract: problem assumption -> Letter claim -> technical deliverable -> compact validation -> implication.
-2. Introduction: object -> narrow prior work -> exact gap -> why the gap matters -> this letter's single contribution.
-3. Technical core: load `references/technical-core.md`; define only necessary variables and derive, formulate, or test the deliverable.
-4. Evidence: one focused case study, counterexample, benchmark, or numerical check.
-5. Conclusion: one short paragraph stating what was established and the boundary.
+1. Abstract: problem or assumption, claim, technical object, decisive evidence, scoped implication.
+2. Introduction: object, narrow prior work, exact unresolved point, importance, one contribution.
+3. Technical core: only necessary variables, assumptions, equations, and steps.
+4. Evidence: one focused proof, counterexample, system, benchmark, or numerical check.
+5. Conclusion: established result, validity condition, and boundary.
 
 ## Hard Rules
 
-- One Letter, one core claim.
-- Every paragraph must either expose the claim, derive it, or verify it.
-- Do not write a broad related-work section.
-- Do not add `NOMENCLATURE` unless the notation is truly impossible to read inline.
+- One Letter, one principal claim.
+- Every paragraph must expose, derive, verify, or delimit that claim.
+- Avoid a broad related-work section and a multi-item contribution list.
+- Add nomenclature only when inline definitions are insufficient.
 - Do not promise comprehensive validation.
-- Do not use a full contribution list unless each item is a concrete deliverable.
-- Prefer a narrow title that names the exact object.
-- Run `references/precision.md` before final output. Every sentence must expose, derive, verify, or delimit the Letter claim.
-- Keep each paragraph centered on one judgment; five sentences is the upper bound, and most Letter paragraphs should be shorter.
-- If PowerLit finds a close prior Letter with the same claim, do not proceed by rephrasing. Narrow the claim, change the technical object, or recommend against Letter submission.
-- Do not turn a weak full-paper idea into a Letter merely by cutting length. The Letter must have a sharper claim than the full paper, not just fewer paragraphs.
-- Do not invent DOI, title, venue, year, or author details when PowerLit is unavailable or sparse.
-- Do not expose internal labels such as `near-neighbor gate`, `claim boundary`, or `closest competitor` in final Letter prose.
-- Do not call a Letter submission-ready if the local review skill would reject it for weak novelty, unsupported claim, missing technical core, or insufficient evidence.
+- Do not turn a weak full-paper idea into a Letter by deleting paragraphs.
+- Do not invent citations, metadata, results, or page-rule exceptions.
+- Do not expose internal drafting labels in manuscript prose.
+- Do not call an initial manuscript review-ready above 3 formatted pages or a revision review-ready above 3.5 formatted pages.
 
 ## Output Contract
 
-When rewriting prose, return manuscript-ready text first. Add only a short note for removed full-paper material, unsupported claims, or missing minimum evidence.
+Return manuscript text first. Add a short note only for page-budget violations, unsupported claims, missing minimum evidence, or unresolved literature coverage.
