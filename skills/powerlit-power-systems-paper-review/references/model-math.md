@@ -1,89 +1,141 @@
-# Model, Math, and Method Review
+# Model, Mathematics, and Method Review
 
-Use this reference for methods, mathematical models, symbols, formulas, algorithms, and physical correctness.
+Use this reference for physical models, variables, equations, algorithms, relaxations, proofs, and certificates. Every finding must cite a manuscript location and the relation that fails.
 
 ## Model Correctness
 
-Check whether the model can express the stated engineering need:
+Check whether the formulation can express the stated engineering problem:
 
-- physical variables match the system object;
-- assumptions are stated before they are used;
-- constraints correspond to real operating limits;
-- objective function matches the claimed optimization target;
-- uncertainty, disturbance, or data model matches the case setting;
-- time scale and information timing are consistent;
-- units and per-unit conventions are clear.
+- variables match the grid, device, market, or planning object;
+- assumptions, time scale, information timing, and uncertainty/data model are explicit;
+- objective represents the claimed decision goal;
+- constraints include the physical and operating limits needed for the conclusion;
+- units, per-unit bases, signs, domains, and dimensions are consistent;
+- case settings do not silently change the model.
 
-Fatal issues:
+A central omitted constraint, invalid physical relation, or inconsistent variable definition may be fatal when the principal result depends on it.
 
-- the model omits the constraint that defines the claimed problem;
-- the formulation violates physical laws or standard operating conventions;
-- variables are used before definition or with inconsistent meanings;
-- the proof or algorithm assumes convexity, independence, radiality, stationarity, observability, or perfect information without saying so;
-- the method's approximation changes the problem but the paper reports results as if it solved the original problem.
+## Formula-Level Check
 
-## Equation and Symbol Check
+For each key equation group verify:
 
-For each formula block, verify:
+- every symbol, set, index, and operator is defined near first use;
+- dimensions, units, signs, and bounds are valid;
+- the physical quantity and cause-effect direction are stated;
+- limiting/degenerate cases behave consistently;
+- equation numbers and cross-references are correct;
+- no unused variable or decorative equation remains.
 
-- every symbol is defined near first use;
-- indices and sets are consistent;
-- dimensions and units are compatible;
-- signs follow the stated convention;
-- constraints have clear domains and bounds;
-- the manuscript explains the physical intuition of the formula: represented grid object, cause-effect direction, coupling mechanism, limiting case, or operational diagnosis;
-- equation numbering is continuous and referenced correctly;
-- no unused variables or decorative formulas remain.
+Do not pass algebra merely because notation is syntactically complete.
 
-For Chinese manuscripts, variable explanation after formulas should be concise and aligned with journal formatting. "式中：" explanations normally should not become long prose paragraphs.
+## Original Model Versus Solved Model
 
-For IEEE manuscripts, notation should be either in `NOMENCLATURE` or defined near first use. Do not scatter key assumptions across footnotes, captions, and case-study settings.
+Classify every transformation as one of:
 
-## Physical-Intuition Review
+- exact reformulation under stated conditions;
+- outer relaxation;
+- inner approximation;
+- lower/upper bounding model;
+- asymptotic method;
+- heuristic surrogate.
 
-Do not pass a method section only because the algebra is syntactically defined. A publishable power-system formula should tell the reader why the mathematical relation has the stated physical form.
+Flag a major or fatal issue when the manuscript solves one object but reports conclusions as though it solved another, or when the required condition is hidden.
 
-Flag a major method-writing issue when:
+## SOCP Exactness Review
 
-- variables are defined, but the voltage/current/power/reserve/risk object represented by the equation is not stated;
-- a covariance, uncertainty, or probability expression is presented as generic statistics with no link to grid physics or operating state;
-- a relaxation, certificate, or feasibility condition is given without saying what physical infeasibility or operating boundary it detects;
-- signs, units, or per-unit conventions are plausible but not connected to injection/flow/voltage direction;
-- the equation's limiting case would reveal the mechanism, but the manuscript never uses it.
+Radial topology is not, by itself, a universal exactness condition.
 
-For voltage-domain inverse PLF, the review should expect the paper to explain that the quadratic power-flow moment kernel maps voltage means and covariances to power moments, that identifiability concerns observable voltage co-fluctuation directions, and that SDP feasibility separates numerical nonconvergence from physically impossible power-moment targets.
+For an exactness claim, require the manuscript to identify and satisfy the applicable theorem's assumptions, including as relevant:
 
-## Engineering-Math Balance Review
+- branch-flow or bus-injection model;
+- network topology and parameter conditions;
+- objective monotonicity;
+- load/generation bounds and controllability;
+- voltage/current/flow limits;
+- feasibility conditions;
+- rank, residual, or recovery condition.
 
-Review mathematical depth against the paper's venue and engineering claim, not against a pure-theory standard.
+If these are absent, classify the model as a relaxation and require a relaxation-gap or recovery analysis. A numerical match on a few cases does not establish theorem-level exactness.
 
-Flag a major writing or method-presentation issue when:
+## Penalty and Augmented-Lagrangian Review
 
-- the manuscript adds propositions, proofs, or theory preliminaries without first stating the operating conflict or physical condition they protect;
-- proof-style exposition dominates a section while the grid object, engineering background, assumptions, and evidence link remain unclear;
-- reviewer-triggered revisions add defensive derivations that answer the comment locally but do not improve the manuscript's physical story;
-- an uncommon mathematical theory is introduced without a short bridge explaining only the concepts later used and how they map to the power-system object;
-- mathematical detail is used to mask an unsupported claim that should instead be bounded or tested.
+Identify the actual method: quadratic penalty, exact penalty, augmented Lagrangian, or regularization.
 
-Accept mathematical density when each derivation step has a visible role: defining the model, preserving or relaxing a physical constraint, proving a property claimed by the paper, enabling an algorithm, or explaining a case-study diagnostic.
+Flag an incorrect statement when a manuscript claims that a finite quadratic-penalty solution is automatically feasible for the original problem or constitutes a feasible upper bound. Such a claim requires an exact-penalty theorem or separate feasibility proof.
 
-## Complexity and Simplification
+For exact penalties require:
 
-Ask whether the model is more complex than the contribution requires:
+- penalty form;
+- regularity/constraint qualification;
+- parameter threshold;
+- local/global scope;
+- returned-solution feasibility check.
 
-- Can redundant variables be eliminated?
-- Can constraints be grouped or moved to appendix?
-- Is a nonlinear formulation necessary, or is an exact/controlled reformulation available?
-- Is a multi-stage or multi-layer structure justified by physics or operation, not only by presentation?
+For augmented-Lagrangian methods check multiplier updates, residual definitions, stopping rule, penalty schedule, and feasibility recovery. Convergence of the implemented algorithm must not be inferred from residual decrease alone unless the theorem assumptions are established.
 
-Complexity is acceptable when it resolves a real coupling or security requirement. Complexity is a weakness when it hides a simple incremental idea.
+## SDP and Moment-Certificate Review
 
-## Algorithm Review
+Determine the set relation. For a valid outer relaxation \(F\subseteq F_{\mathrm{SDP}}\):
 
-Check:
+- relaxed infeasibility can establish original infeasibility, subject to numerical certification;
+- relaxed feasibility alone cannot establish physical realizability.
 
-- algorithm steps correspond to specific model difficulties;
-- initialization, stopping criteria, convergence, feasibility recovery, or fallback are stated when needed;
-- distributed, online, real-time, scalable, or robust claims are tested accordingly;
-- solver choice does not become the hidden contribution;
-- computational results include hardware/runtime only when runtime is claimed.
+A positive original-space claim requires the relevant exactness/rank/flat-extension/representing-measure condition. Require the manuscript to distinguish:
+
+- certified infeasible;
+- relaxed feasible and recoverable;
+- relaxed feasible but inconclusive;
+- numerical solver failure or indeterminate status.
+
+Check solver tolerances, dual/primal certificate definition, and whether the reported certificate actually implies the manuscript's conclusion. Do not equate solver nonconvergence with physical infeasibility.
+
+## Theoretical-Method Review
+
+For every theorem, proposition, or claimed guarantee check:
+
+- complete assumptions;
+- statement matches what is proved;
+- exact, approximate, asymptotic, and empirical claims are separated;
+- degenerate cases reduce to known models when claimed;
+- error, gap, or validity boundary is stated;
+- the case study does not replace a missing proof.
+
+## Data-Driven Method Review
+
+When applicable check:
+
+- chronological or group-aware split where required;
+- normalization, feature engineering, and imputation fitted only on training data;
+- no future information in inputs;
+- baseline strength and equal information access;
+- random seeds or repeated-run uncertainty;
+- cross-time/system/penetration generalization where claimed;
+- physical feasibility or repair of outputs;
+- reward and safety constraints for reinforcement learning;
+- model/version disclosure for large-model components.
+
+## Complexity and Scalability
+
+A complexity or scalability claim requires both algorithmic analysis and empirical evidence appropriate to the statement. Runtime comparisons must use stated hardware/software, termination tolerances, implementation language, warm starts, and comparable solution quality.
+
+Do not treat use of a particular solver as the contribution unless the manuscript changes the algorithmic object or demonstrates a transferable implementation result.
+
+## Severity Guidance
+
+Potentially fatal:
+
+- physically invalid central model;
+- invalid transformation that overturns the result;
+- data leakage central to the reported advantage;
+- false exactness/certificate claim on which the conclusion depends;
+- essential constraint absent.
+
+Usually major:
+
+- unstated but repairable assumptions;
+- missing recovery/gap analysis;
+- insufficient algorithm details;
+- weak reproducibility information;
+- physical intuition absent while algebra remains interpretable.
+
+Assign severity from consequence, not from rule labels. Cite the manuscript evidence and confidence for fatal findings.
