@@ -1,5 +1,16 @@
 # 版本说明
 
+## Unreleased - Major Portability, Retrieval, Validation, And Readiness Migration
+
+- Moved the distributable PowerLit index into `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index` and removed machine-local default paths from runtime resolution.
+- Migrated public project fixtures to logical `project://` resource IDs and moved `method-canon.json` into the literature skill references.
+- Added domain-aware query analysis, venue registry resolution, unknown-venue hard errors, DOI/title deduplication, matched-field telemetry, and a seed retrieval benchmark.
+- Added pytest unit tests and Windows/Linux GitHub Actions for repository lint, unit tests, and retrieval evaluation.
+- Replaced review-score and score-target language with the `PowerLit Internal Readiness Index`, readiness states, and migrated actual-case evidence packet schema.
+- Added `references/rule-sources.yaml` to separate official rules, literature signals, heuristics, and project-specific constraints.
+- Updated IEEE PES Letter page-budget rules from official sources checked on 2026-06-18.
+- Corrected SOCP exactness, penalty-method, SDP certificate, Application Paper, and local-review recommendation wording.
+
 ## Unreleased - Physical-Story Reviewer Revision Gate
 
 - 新增按审稿意见改稿的物理叙事规则：先把意见转成物理机理、模型假设、证据比较或结论边界上的真实缺口，再把修改自然融入正文。
