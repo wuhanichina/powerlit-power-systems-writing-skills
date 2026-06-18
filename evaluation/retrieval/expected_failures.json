@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "notes": [
+    "This is a seed retrieval fixture, not the final 100-query benchmark.",
+    "The formal PR2 benchmark must expand these files with manually adjudicated qrels before enforcing Recall@20 and nDCG@10 gates."
+  ],
+  "expected_failures": []
+}

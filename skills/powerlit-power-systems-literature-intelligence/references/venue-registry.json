@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "venues": {
+    "csee": {
+      "display_name": "中国电机工程学报",
+      "index_venue": "中国电机工程学报",
+      "aliases": ["csee", "pcsee", "中国电机工程学报"]
+    },
+    "aeps": {
+      "display_name": "电力系统自动化",
+      "index_venue": "电力系统自动化",
+      "aliases": ["aeps", "电力系统自动化"]
+    },
+    "tpwrs": {
+      "display_name": "IEEE Transactions on Power Systems",
+      "index_venue": "ieee_tpwrs",
+      "aliases": ["tpwrs", "ieee_tpwrs", "IEEE TPWRS", "IEEE Transactions on Power Systems"]
+    },
+    "tsg": {
+      "display_name": "IEEE Transactions on Smart Grid",
+      "index_venue": "ieee_tsg",
+      "aliases": ["tsg", "ieee_tsg", "IEEE TSG", "IEEE Transactions on Smart Grid"]
+    },
+    "tpwrd": {
+      "display_name": "IEEE Transactions on Power Delivery",
+      "index_venue": "ieee_tpwrd",
+      "aliases": ["tpwrd", "ieee_tpwrd", "IEEE TPWRD", "IEEE Transactions on Power Delivery"]
+    },
+    "mpce": {
+      "display_name": "Journal of Modern Power Systems and Clean Energy",
+      "index_venue": "mpce",
+      "aliases": ["mpce"]
+    },
+    "ijepes": {
+      "display_name": "International Journal of Electrical Power and Energy Systems",
+      "index_venue": "ijepes",
+      "aliases": ["ijepes"]
+    },
+    "applied_energy": {
+      "display_name": "Applied Energy",
+      "index_venue": "applied_energy",
+      "aliases": ["applied_energy", "Applied Energy"]
+    },
+    "energy": {
+      "display_name": "Energy",
+      "index_venue": "energy",
+      "aliases": ["energy", "Energy"]
+    },
+    "power_grid_technology": {
+      "display_name": "电网技术",
+      "index_venue": "电网技术",
+      "aliases": ["电网技术", "power_grid_technology"]
+    }
+  }
+}

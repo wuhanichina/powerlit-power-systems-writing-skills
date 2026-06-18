@@ -30,6 +30,10 @@ Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `s
 
 When the task maps to a known direction or method family, consult `references/method-canon.json` before broad retrieval. The method canon is a quality anchor for method families and evidence bars; it is not a substitute for a final main-corpus novelty search.
 
+Use `references/venue-registry.json` for venue names and aliases. If a requested venue cannot be resolved to an indexed venue, report the error and do not silently widen to all venues.
+
+Use `scripts/query_analyzer.py` for domain-aware query terms. It preserves two-letter abbreviations such as AC, DC, PV, EV, UC, and DR; expands common power-system abbreviations; keeps explicit user phrases; and generates Chinese 2-gram and 3-gram terms.
+
 The search script interface is:
 
 ```powershell
@@ -112,7 +116,7 @@ For prewriting review, produce:
 
 - `PowerLit access`: resolved path or fallback mode.
 - `Closest competitors`: title, venue, DOI/path, problem, method, evidence, overlap with the current paper.
-- `Novelty threat`: high, medium, low, or unknown.
+- `Novelty threat`: `HIGH_THREAT`, `MEDIUM_THREAT`, `LOW_THREAT`, or `UNKNOWN`.
 - `Innovation boundary`: what can still be claimed after comparison.
 - `Required repairs`: missing baselines, missing citations, unclear distinction, or insufficient evidence.
 
@@ -151,6 +155,7 @@ For review, produce:
 
 - Search both titles and body content.
 - Keep duplicates under control by DOI and normalized title.
+- Treat retrieval score as candidate ranking only. Do not turn a score into a novelty verdict without the overlap matrix in `references/novelty-and-citation.md`.
 - Prefer exact mechanism matches over broad topical matches.
 - Use negative evidence: if a nearby paper already solves the same core object, narrow or reject the current claim.
 - Cite file paths or DOI identifiers in intermediate artifacts so the result can be traced.

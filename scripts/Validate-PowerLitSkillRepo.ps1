@@ -598,10 +598,31 @@ if (Test-Path -LiteralPath $searchScript) {
 $indexCommonScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\powerlit_index_common.py"
 $indexBuildScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py"
 $indexSearchScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitIndex.py"
+$queryAnalyzerScript = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\query_analyzer.py"
+$queryLexicon = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\references\power-system-query-lexicon.json"
+$venueRegistry = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\references\venue-registry.json"
 $builtInIndexRoot = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\assets\powerlit-index"
-foreach ($indexScript in @($indexCommonScript, $indexBuildScript, $indexSearchScript)) {
+foreach ($indexScript in @($indexCommonScript, $indexBuildScript, $indexSearchScript, $queryAnalyzerScript)) {
     if (-not (Test-Path -LiteralPath $indexScript -PathType Leaf)) {
         Add-Failure "Missing PowerLit index script: $indexScript"
+    }
+}
+foreach ($referenceFile in @($queryLexicon, $venueRegistry)) {
+    if (-not (Test-Path -LiteralPath $referenceFile -PathType Leaf)) {
+        Add-Failure "Missing PowerLit retrieval reference file: $referenceFile"
+    }
+}
+if ((Test-Path -LiteralPath $queryAnalyzerScript) -and (Get-Command python -ErrorAction SilentlyContinue)) {
+    try {
+        $queryAnalysisOutput = & python $queryAnalyzerScript --query "AC DC PV EV UC DR OPF GMM"
+        $queryAnalysis = $queryAnalysisOutput | ConvertFrom-Json
+        foreach ($abbr in @("AC", "DC", "PV", "EV", "UC", "DR", "OPF", "GMM")) {
+            if (@($queryAnalysis.terms) -notcontains $abbr) {
+                Add-Failure "query_analyzer.py must preserve abbreviation: $abbr"
+            }
+        }
+    } catch {
+        Add-Failure "query_analyzer.py smoke failed: $($_.Exception.Message)"
     }
 }
 if (-not (Test-Path -LiteralPath (Join-Path $builtInIndexRoot "manifest.json") -PathType Leaf)) {
@@ -634,10 +655,18 @@ if (Test-Path -LiteralPath $indexBuildScript) {
 }
 if (Test-Path -LiteralPath $indexSearchScript) {
     $indexSearchText = Read-Utf8 -Path $indexSearchScript
-    foreach ($requiredIndexSearchToken in @("powerlit_index_sqlite", "records_fts MATCH", "candidate_count", "parsed_count", "elapsed_ms")) {
+    foreach ($requiredIndexSearchToken in @("powerlit_index_sqlite", "records_fts MATCH", "candidate_count", "parsed_count", "elapsed_ms", "matched_fields", "resolve_venues")) {
         if ($indexSearchText -notmatch [regex]::Escape($requiredIndexSearchToken)) {
             Add-Failure "Search-PowerLitIndex.py missing index-search token: $requiredIndexSearchToken"
         }
+    }
+}
+
+$retrievalEvalDir = Join-Path $repoRoot "evaluation\retrieval"
+foreach ($retrievalEvalFile in @("queries.jsonl", "qrels.jsonl", "expected_failures.json", "run_retrieval_eval.py")) {
+    $target = Join-Path $retrievalEvalDir $retrievalEvalFile
+    if (-not (Test-Path -LiteralPath $target -PathType Leaf)) {
+        Add-Failure "Missing retrieval evaluation fixture: $target"
     }
 }
 

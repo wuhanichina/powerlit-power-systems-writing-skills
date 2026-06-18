@@ -11,29 +11,47 @@ A paper is a closest competitor when it overlaps in at least two of these dimens
 - same benchmark or evidence object,
 - same target venue and claim type.
 
-High novelty threat:
+Search score is only a candidate-ranking signal. It is not a novelty verdict.
+
+Use exactly these novelty threat states:
+
+`HIGH_THREAT`:
 
 - same object,
 - same mechanism,
 - same claim,
 - comparable or stronger evidence.
 
-Medium novelty threat:
+`MEDIUM_THREAT`:
 
 - same problem and evidence object,
 - different mechanism;
 - or same mechanism used for a nearby problem.
 
-Low novelty threat:
+`LOW_THREAT`:
 
 - shared background only;
 - different technical object or different verification target.
 
-Unknown:
+`UNKNOWN`:
 
 - retrieval result is too sparse,
 - PowerLit is unavailable,
 - manuscript idea is too vague to compare.
+- target venue coverage is unavailable or incomplete,
+- candidate records expose only title/abstract without method or result evidence,
+- query recall falls below the configured benchmark floor,
+- cache freshness or target-year coverage is incomplete.
+
+For every candidate, compare:
+
+- problem-object overlap,
+- engineering-scenario overlap,
+- mathematical-model overlap,
+- core-mechanism overlap,
+- data or uncertainty-object overlap,
+- case-study and evidence-object overlap,
+- claim overlap.
 
 ## Citation Roles
 

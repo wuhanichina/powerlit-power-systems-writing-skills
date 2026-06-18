@@ -23,5 +23,15 @@
     "id": "method-canon-before-main-corpus",
     "prompt": "Use $powerlit-power-systems-literature-intelligence for a probabilistic power-flow paper idea. First consult the benchmark paper set, then explain how the main PowerLit corpus should be searched for current nearest neighbors.",
     "expected": "The response treats skills/powerlit-power-systems-literature-intelligence/references/method-canon as a quality anchor rather than recall coverage, then uses the main PowerLit corpus for traceable current retrieval and final novelty coverage."
+  },
+  {
+    "id": "domain-abbreviation-query-analysis",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence to search for AC DC PV EV UC DR OPF and GMM terms. Preserve all domain abbreviations and expand common method names before retrieval.",
+    "expected": "The retrieval query keeps AC, DC, PV, EV, UC, DR, OPF, and GMM as searchable terms, adds domain expansions where available, and does not drop two-character abbreviations."
+  },
+  {
+    "id": "unknown-venue-no-leakage",
+    "prompt": "Use $powerlit-power-systems-literature-intelligence with a requested venue that is not in the venue registry or index.",
+    "expected": "The result reports a clear unknown-venue error and does not silently widen to all PowerLit venues."
   }
 ]
