@@ -1,0 +1,67 @@
+schema_version: 1
+last_audited: "2026-06-18"
+
+rules:
+  ieee-pes-letter-initial-page-limit:
+    source_type: "official"
+    source: "https://ieee-pes.org/publications/pes-letters/"
+    checked_at: "2026-06-18"
+    effective_statement: "Original submissions are limited to 3 formatted pages; revisions are limited to 3.5 pages; over-limit submissions/revisions are not reviewed."
+    applies_to: ["IEEE Power Engineering Letters"]
+    confidence: "high"
+
+  ieee-pes-letter-final-page-boundary:
+    source_type: "official"
+    source: "https://ieee-pes.org/publications/authors-kit/preparation-and-submission-of-transactions-papers/"
+    checked_at: "2026-06-18"
+    effective_statement: "Authors should keep an accepted letter at no more than 4 pages after revision/editing; the initial/revision review limits remain 3/3.5 pages."
+    applies_to: ["IEEE Power Engineering Letters"]
+    confidence: "high"
+
+  ieee-tsg-paper-types:
+    source_type: "official"
+    source: "https://ieee-pes.org/publications/transactions-on-smart-grid/"
+    checked_at: "2026-06-18"
+    effective_statement: "TSG publishes Research, Application, and Review Papers. Application Papers may share valuable industry experience, adoption of standards/technologies, or solutions to complex problems and should normally include industry leadership/affiliation."
+    applies_to: ["IEEE Transactions on Smart Grid"]
+    confidence: "high"
+
+  ieee-tpwrs-editorial-philosophy:
+    source_type: "official"
+    source: "https://ieee-pes.org/publications/transactions-on-power-systems/"
+    checked_at: "2026-06-18"
+    effective_statement: "A technically sound paper with adequate contribution that does not mislead readers deserves consideration; contribution type and evidence should be assessed rather than applying an automatic new-model-only rule."
+    applies_to: ["IEEE Transactions on Power Systems"]
+    confidence: "high"
+
+  accepted-paper-evidence-profile:
+    source_type: "methodological"
+    source: "selection-bias identity: accepted-only samples estimate P(X|accepted), not P(accepted|X)"
+    checked_at: "2026-06-18"
+    effective_statement: "Accepted-paper profiles are descriptive checklists and cannot be treated as calibrated acceptance thresholds without outcome-balanced data and validation."
+    applies_to: ["PowerLit evidence profiling", "internal review scoring"]
+    confidence: "high"
+
+  socp-exactness-claim:
+    source_type: "mathematical"
+    source: "claim-specific theorem and assumptions required"
+    checked_at: "2026-06-18"
+    effective_statement: "Radial topology alone, or radial topology plus a single informal load condition, is not a universal exactness theorem. State the cited theorem, network model, objective, bounds, voltage/current conditions, feasibility assumptions, and recovered rank/solution condition."
+    applies_to: ["SOCP power-flow and OPF relaxations"]
+    confidence: "high"
+
+  finite-penalty-claim:
+    source_type: "mathematical"
+    source: "penalty-method definitions and counterexample tests"
+    checked_at: "2026-06-18"
+    effective_statement: "A finite quadratic penalty generally does not guarantee original feasibility or a feasible upper bound. Exact-penalty claims require the actual penalty form, regularity conditions, and a proved parameter threshold."
+    applies_to: ["penalty reformulations", "augmented Lagrangian methods"]
+    confidence: "high"
+
+  sdp-feasibility-certificate:
+    source_type: "mathematical"
+    source: "relaxation-set containment and moment/representing-measure conditions"
+    checked_at: "2026-06-18"
+    effective_statement: "Infeasibility of a valid outer relaxation certifies original infeasibility; relaxed feasibility alone does not certify physical realizability without exactness, rank, flat-extension, or representing-measure conditions appropriate to the formulation."
+    applies_to: ["SDP relaxations", "moment feasibility certificates"]
+    confidence: "high"
