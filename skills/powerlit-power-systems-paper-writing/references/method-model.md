@@ -72,7 +72,7 @@ For inverse probabilistic load flow, the physical intuition must be explicit:
 
 - The voltage-to-power moment equation is a quadratic power-flow kernel: voltage means and covariances create active/reactive power moments through network admittance, rather than through a generic statistical fit.
 - Voltage-covariance identifiability asks which co-fluctuation directions can be observed from the supplied power moments; null-space directions should not be interpreted as meaningful voltage variance.
-- An SDP feasibility certificate states whether a target power-moment set can be produced by any physically admissible voltage distribution under the stated voltage and PSD constraints.
+- An SDP feasibility certificate should be stated as evidence relative to the given relaxation model and constraint set. Distinguish original-problem feasibility, SDP-relaxation feasibility, infeasibility at the chosen relaxation order, and any rank or representing-measure condition needed to lift the certificate back to the original physical model.
 
 ## Model-Algorithm Consistency
 
@@ -82,10 +82,22 @@ Whenever the method uses a relaxation, convexification, penalty, discretization,
 - A simple relationship (for example, an exact relaxation) needs one sentence. A complex relationship (penalty limiting behavior, the equivalence chain of a multi-step decomposition, surrogate approximation quality) may take a short paragraph, but it must still land on two points: the relationship, and the condition.
 - If the relationship cannot be established, do not default to claiming equivalence. Keep it as an explicit conditional statement in the text rather than hiding it.
 
-Examples:
+SOCP exactness template:
 
-- "The second-order cone relaxation is exact when the network is radial and load over-satisfaction does not occur, so the relaxed optimum recovers the original AC solution."
-- "The penalty reformulation approaches the original feasible region as the penalty weight grows; for finite weights the solution is a feasible upper bound on the original cost."
+- State the network model: branch-flow or bus-injection, radial or meshed, balanced or unbalanced, and which variables are relaxed.
+- State objective monotonicity: whether the objective is strictly or weakly increasing in losses, injections, currents, or controllable load.
+- State load and generation bounds: whether over-satisfaction, reverse flow, reactive limits, or flexible demand can break the condition.
+- State voltage and branch constraints: whether binding upper voltage, current, or apparent-power constraints affect exactness.
+- State feasible-region assumptions and the exact theorem being invoked.
+- State the conclusion only within that theorem's scope. Do not write a universal sentence such as "radial network plus no load over-satisfaction makes SOCP exact" unless the cited theorem's other assumptions are also satisfied.
+
+Penalty relationship template:
+
+- Distinguish quadratic penalty, augmented Lagrangian, and exact penalty.
+- For quadratic penalties, state limiting behavior as the penalty weight grows; do not claim finite-penalty feasibility unless proved.
+- For augmented Lagrangian methods, state primal feasibility and dual update conditions separately from objective bounds.
+- For exact penalties, state the regularity and threshold conditions that make a finite penalty parameter exact.
+- Do not claim that a finite penalty parameter produces a feasible upper bound for the original problem unless the manuscript proves both feasibility and the objective-bound relation.
 
 ## Standard Parts vs Claimed Novelty
 

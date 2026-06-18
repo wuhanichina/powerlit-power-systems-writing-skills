@@ -95,7 +95,7 @@ python scripts/Build-PowerLitIndex.py --venue-folder ieee_tsg --venue-folder iee
    - novelty pack for prewriting review,
    - citation pack for introduction writing,
    - corpus style exemplar pack for venue-specific writing,
-   - evidence-strength profile for score-targeted writing or review calibration,
+   - evidence-strength profile for internal readiness writing or review calibration,
    - literature coverage audit for manuscript review,
    - focused reading synthesis for a specific method or venue.
 
@@ -142,7 +142,7 @@ For evidence-strength learning, produce:
 - `Manuscript-facing quantities`: systems, data, scenarios, baselines, metrics, solver/runtime, sensitivity, ablation, boundary/failure cases, and reproducibility details visible in the accepted papers.
 - `Evidence-depth pattern`: how many independent evidence dimensions the accepted papers use to support the claim class.
 - `Claim-boundary pattern`: how accepted papers state limitations or complementary value without defensive posture.
-- `Current-manuscript implication`: evidence dimensions that must be added, downgraded, relabeled, or moved into the manuscript before a high-score draft can be claimed.
+- `Current-manuscript implication`: evidence dimensions that must be added, downgraded, relabeled, or moved into the manuscript before a higher readiness state can be claimed.
 
 For review, produce:
 

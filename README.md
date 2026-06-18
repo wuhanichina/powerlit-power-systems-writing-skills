@@ -67,7 +67,7 @@ python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-s
 | 🧭 写作前预审 | `powerlit-power-systems-prewriting-review` | `GO` / `CONDITIONAL GO` / `NO-GO` / `RETARGET` 与修复清单 | idea、模型、实验包或粗稿还不确定能不能写 |
 | 🔎 文献智能 | `powerlit-power-systems-literature-intelligence` | 近邻竞争工作、引用包、创新性风险、文献覆盖审计 | 写引言、回应审稿、判断 novelty |
 | 📝 完整论文写作 | `powerlit-power-systems-paper-writing` | 摘要、引言、方法、算例、结论、图表标题和结果段 | CSEE、AEPS、TPWRS、TSG 正文写作 |
-| ✉️ IEEE Letter 写作 | `ieee-power-engineering-letter-writing` | 一个硬主张、紧凑技术核心和最小决定性证据 | 3-4 页 Letter 或短技术通信 |
+| ✉️ IEEE Letter 写作 | `ieee-power-engineering-letter-writing` | 一个硬主张、紧凑技术核心和最小决定性证据 | 符合官方页数规则的 IEEE PES Letter |
 | 🧪 投稿前审稿 | `powerlit-power-systems-paper-review` | 按严重程度排序的拒稿风险和必须修复项 | 投稿前自查、返修前定位致命问题 |
 | 📊 图表与结果段 | `powerlit-power-systems-paper-writing` | 自洽 caption、正文解释句、MATLAB 结果到论文段落 | 处理 figure、table、case study、ablation、sensitivity |
 | ✨ 轻量润色 | `powerlit-power-systems-paper-writing` | 保留原技术含义的最小必要修改 | 去 AI 味、术语统一、压缩、扩写、翻译、逻辑修理 |
@@ -198,7 +198,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 
 ### `ieee-power-engineering-letter-writing`
 
-用于 IEEE 电力系统 Letter 和 3-4 页短技术通信。它把 Letter 当作独立文体，而不是把完整论文压缩：
+用于符合官方 IEEE PES 页数规则的电力系统 Letter。它把 Letter 当作独立文体，而不是把完整论文压缩：
 
 - 一个硬主张
 - 一个紧凑技术核心
@@ -270,7 +270,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Validate-PowerLitSki
 - `evaluation/writing-review-closure.json` 中的写作到审稿闭环夹具 schema
 - `evaluation/actual-project-claim-regressions.json` 中的真实项目 claim 夹具 schema
 - `evaluation/powerlit-paper-reconstruction-cases.json` 中的已发表论文重建用例
-- `evaluation/actual-case-evidence-packets.json` 中的 8-9 分真实算例证据包
+- `evaluation/actual-case-evidence-packets.json` 中的 readiness 真实算例证据包
 - PowerLit resolver smoke
 - 可选的 PowerLit search smoke
 

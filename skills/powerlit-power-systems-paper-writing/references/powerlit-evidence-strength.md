@@ -1,12 +1,12 @@
 # PowerLit Evidence-Strength Learning
 
-Use this reference before drafting, rewriting, or scoring a full paper when PowerLit is available. The goal is to learn from accepted papers what evidence is manuscript-facing, what evidence strength normally survives review, and which missing facts should block a high-score claim.
+Use this reference before drafting, rewriting, or assessing internal readiness for a full paper when PowerLit is available. The goal is to learn from published papers what evidence is manuscript-facing, what evidence dimensions normally survive review, and which missing facts should block a readiness claim.
 
 ## Core Rule
 
 Do not use PowerLit only as a citation finder or style source. Use it first as an evidence-strength teacher.
 
-Before writing a full paper or assigning an 8-9 target, build an evidence-strength profile from venue-near and mechanism-near accepted papers. The profile must answer:
+Before writing a full paper or assigning a full-manuscript readiness target, build an evidence-strength profile from venue-near and mechanism-near accepted papers. The profile must answer:
 
 - what system, data, scenario, baseline, metric, sensitivity, ablation, runtime, and reproducibility facts are visible in the published paper;
 - which facts appear in the main text or tables rather than only in code, supplementary material, or local files;
@@ -46,7 +46,7 @@ The method canon cannot replace a final full-corpus novelty check before submiss
 
 ## Evidence-Strength Profile
 
-For a target paper, score-target task, or skill-maintenance case, extract a compact profile from 3 to 5 accepted papers:
+For a target paper, readiness task, or skill-maintenance case, extract a compact profile from 3 to 5 accepted papers:
 
 1. `Paper object`: venue, paper type, grid object, technical problem, and contribution type.
 2. `Method visibility`: assumptions, variables, constraints, algorithm steps, theorem/certificate/diagnostic quantities, and physical intuition written in the paper.
@@ -84,7 +84,7 @@ Accepted papers usually make review-critical quantities visible in the paper. Fo
 
 ## Failure Modes to Block
 
-Block an 8-9 full-paper target when any of these remain after the PowerLit evidence-strength pass:
+Block `MANUSCRIPT_REVIEW_READY` when any of these remain after the PowerLit evidence-strength pass:
 
 - the current manuscript has fewer evidence dimensions than accepted papers making the same claim class;
 - the core module is disabled in a main case but the paper presents the case as full-method validation;

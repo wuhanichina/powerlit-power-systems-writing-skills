@@ -11,7 +11,7 @@
   },
   {
     "id": "powerlit-evidence-strength-review",
-    "prompt": "请用 $powerlit-power-systems-paper-review 评审一篇目标为 8-9 分的中国电机工程学报完整稿。稿件结构完整，但最强基线在主指标上更好，且作者把价值转移到诊断/反演边界。请先用 PowerLit 同类已发表论文的证据强度来判断其算例和结论是否足够。",
-    "expected": "The review must build or consume a PowerLit evidence-strength profile when available, compare the draft's evidence dimensions with accepted-paper evidence bars, and refuse an 8-9 verdict if the non-substitutable scenario, transition cases, fallback labeling, or reproducibility details are missing."
+    "prompt": "请用 $powerlit-power-systems-paper-review 评审一篇目标为 MANUSCRIPT_REVIEW_READY 的中国电机工程学报完整稿。稿件结构完整，但最强基线在主指标上更好，且作者把价值转移到诊断/反演边界。请先用 PowerLit 同类已发表论文的证据维度来判断其算例和结论是否足够。",
+    "expected": "The review must build or consume a PowerLit evidence-strength profile when available, compare the draft's evidence dimensions with accepted-paper evidence bars, and refuse MANUSCRIPT_REVIEW_READY if the non-substitutable scenario, transition cases, fallback labeling, or reproducibility details are missing."
   }
 ]

@@ -1,0 +1,90 @@
+rules:
+  ieee_pes_letter_initial_revision_page_limit:
+    source_type: official
+    source: https://ieee-pes.org/publications/pes-letters/
+    checked_at: 2026-06-18
+    effective_date: current as of checked_at
+    applies_to:
+      - IEEE Power Engineering Letters
+      - IEEE PES Transactions Letter sections
+    confidence: high
+    summary: Original submissions are limited to 3 formatted pages; revisions are limited to 3.5 pages; letters exceeding these limits are not reviewed.
+
+  ieee_pes_letter_final_page_limit:
+    source_type: official
+    source: https://ieee-pes.org/publications/authors-kit/information-for-authors-of-ieee-power-energy-society-transactions-papers/
+    checked_at: 2026-06-18
+    effective_date: current as of checked_at
+    applies_to:
+      - IEEE Power Engineering Letters
+      - IEEE PES Transactions Letter sections
+    confidence: high
+    summary: Accepted letters should not exceed 4 pages after revision and editing; letters over 4 pages after formatting are not accepted for publication.
+
+  powerlit_internal_readiness_index:
+    source_type: heuristic
+    source: skills/powerlit-power-systems-paper-review/references/decision-rubric.md
+    checked_at: 2026-06-18
+    effective_date: 2026-06-18
+    applies_to:
+      - local writing readiness
+      - local review diagnostics
+    confidence: medium
+    summary: Internal evidence-anchored readiness levels 0-4 and states BLOCKED, SECTION_READY, MANUSCRIPT_REVIEW_READY, SUBMISSION_CANDIDATE.
+
+  published_paper_evidence_dimensions:
+    source_type: literature
+    source: skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index/manifest.json
+    checked_at: 2026-06-18
+    effective_date: 2026.06 cache snapshot
+    applies_to:
+      - descriptive completeness benchmark
+      - evidence-dimension reference
+      - writing-structure reference
+    confidence: medium
+    summary: Published PowerLit papers are descriptive benchmarks only and are not publication-outcome probabilities, official reviewer scores, or journal thresholds.
+
+  socp_exactness_claim_template:
+    source_type: heuristic
+    source: skills/powerlit-power-systems-paper-writing/references/method-model.md
+    checked_at: 2026-06-18
+    effective_date: 2026-06-18
+    applies_to:
+      - SOCP relaxation wording
+      - OPF exactness claims
+    confidence: medium
+    summary: SOCP exactness claims must state network model, objective monotonicity, load/generation bounds, voltage/branch constraints, feasible-region assumptions, and theorem scope.
+
+  penalty_claim_template:
+    source_type: heuristic
+    source: skills/powerlit-power-systems-paper-writing/references/method-model.md
+    checked_at: 2026-06-18
+    effective_date: 2026-06-18
+    applies_to:
+      - quadratic penalty
+      - augmented Lagrangian
+      - exact penalty
+    confidence: medium
+    summary: Finite penalty feasibility or original-cost upper-bound claims require proof of both feasibility and objective-bound relations.
+
+  sdp_certificate_template:
+    source_type: heuristic
+    source: skills/powerlit-power-systems-paper-review/references/model-math.md
+    checked_at: 2026-06-18
+    effective_date: 2026-06-18
+    applies_to:
+      - SDP feasibility certificates
+      - moment relaxation certificates
+    confidence: medium
+    summary: SDP certificates are evidence relative to the stated relaxation model and constraint set unless rank or representing-measure conditions justify lifting to the original physical model.
+
+  application_paper_not_auto_reject:
+    source_type: heuristic
+    source: skills/powerlit-power-systems-paper-review/references/venue-standards.md
+    checked_at: 2026-06-18
+    effective_date: 2026-06-18
+    applies_to:
+      - Application Paper review
+      - engineering integration papers
+    confidence: medium
+    summary: Engineering integration is not an automatic rejection reason for Application Papers; judge system value, realistic evidence, transferability, and operational lessons.

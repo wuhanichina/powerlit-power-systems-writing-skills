@@ -67,7 +67,7 @@ No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, re
 | 🧭 Prewriting decision | `powerlit-power-systems-prewriting-review` | `GO` / `CONDITIONAL GO` / `NO-GO` / `RETARGET` with repair actions | Decide whether an idea, model, experiment package, or rough draft is ready |
 | 🔎 Literature intelligence | `powerlit-power-systems-literature-intelligence` | Nearby work, citation packets, novelty risks, coverage audits | Introduction writing, rebuttal preparation, novelty checks |
 | 📝 Full-paper writing | `powerlit-power-systems-paper-writing` | Abstract, introduction, method, case study, conclusion, captions, results | CSEE, AEPS, TPWRS, and TSG manuscript writing |
-| ✉️ IEEE Letter writing | `ieee-power-engineering-letter-writing` | One hard claim, compact technical core, minimal decisive evidence | 3-4 page Letters and short communications |
+| ✉️ IEEE Letter writing | `ieee-power-engineering-letter-writing` | One hard claim, compact technical core, minimal decisive evidence | IEEE PES Letters under official page-budget rules |
 | 🧪 Pre-submission review | `powerlit-power-systems-paper-review` | Review risks ranked by severity | Submission checks and revision planning |
 | 📊 Figures and results | `powerlit-power-systems-paper-writing` | Self-contained captions, explanatory sentences, MATLAB-to-manuscript paragraphs | Figures, tables, case studies, ablations, sensitivity analysis |
 | ✨ Light editing | `powerlit-power-systems-paper-writing` | Smallest useful change that preserves technical meaning | Anti-AI cleanup, terminology, compression, expansion, translation, logic repair |
@@ -118,7 +118,7 @@ Before submission, run `powerlit-power-systems-paper-review`. If the local revie
 
 ### 📌 Real-Project Regressions
 
-The repository includes real project claim regressions, write-review closure cases, published-paper reconstruction cases, and high-scoring case evidence packets. Skill maintenance should add actual failure cases to `evaluation/`, not only abstract rules.
+The repository includes real project claim fixtures, write-review closure cases, published-paper reconstruction cases, and readiness evidence packets. Skill maintenance should add actual failure cases to `evaluation/`, not only abstract rules.
 
 ---
 
@@ -198,7 +198,7 @@ Use it for abstracts, introductions, methods and models, case studies, conclusio
 
 ### `ieee-power-engineering-letter-writing`
 
-Use this for IEEE power-systems Letters and 3-4 page short technical communications. It treats the Letter as an independent genre, not a compressed full paper:
+Use this for IEEE power-systems Letters under official IEEE PES page-budget rules. It treats the Letter as an independent genre, not a compressed full paper:
 
 - One hard claim
 - One compact technical core
@@ -270,7 +270,7 @@ This script is repository lint and schema validation, not a behavior-regression 
 - write-review closure fixture schemas in `evaluation/writing-review-closure.json`
 - real project claim fixture schemas in `evaluation/actual-project-claim-regressions.json`
 - published-paper reconstruction cases in `evaluation/powerlit-paper-reconstruction-cases.json`
-- high-scoring case evidence packets in `evaluation/actual-case-evidence-packets.json`
+- readiness evidence packets in `evaluation/actual-case-evidence-packets.json`
 - PowerLit resolver smoke
 - optional PowerLit search smoke
 

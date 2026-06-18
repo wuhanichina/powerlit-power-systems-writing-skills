@@ -83,6 +83,12 @@ Expected paper shape:
 - minimal but decisive evidence;
 - short conclusion.
 
+Official page rule checked 2026-06-18:
+
+- original submissions: at most 3 formatted pages;
+- revisions: at most 3.5 formatted pages;
+- accepted letter after revision and editing: should not exceed 4 pages.
+
 Reject-risk patterns:
 
 - full-paper scope squeezed into four pages;
@@ -92,6 +98,15 @@ Reject-risk patterns:
 - validation is broad but not decisive.
 
 Review stance: judge sharpness and necessity. A Letter can be narrow, but it cannot be vague.
+
+## Paper Type Handling
+
+Identify the paper type before judging novelty:
+
+- Research Paper: require a new or materially improved model, mechanism, theorem, algorithm, controller, estimator, certificate, or evidence insight.
+- Application Paper: engineering integration or system deployment value is not an automatic rejection reason. Judge realistic system evidence, transferable operating insight, implementation detail, and whether the application teaches something beyond a one-off demonstration.
+- Review Paper: judge coverage, taxonomy, synthesis, source balance, and whether the review creates a useful map for the field.
+- Letter: judge one hard claim, compact technical core, and decisive evidence under the Letter page rules.
 
 ## Journal Recommendation
 

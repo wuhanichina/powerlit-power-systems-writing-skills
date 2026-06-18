@@ -51,7 +51,30 @@ Flag a major method-writing issue when:
 - signs, units, or per-unit conventions are plausible but not connected to injection/flow/voltage direction;
 - the equation's limiting case would reveal the mechanism, but the manuscript never uses it.
 
-For voltage-domain inverse PLF, the review should expect the paper to explain that the quadratic power-flow moment kernel maps voltage means and covariances to power moments, that identifiability concerns observable voltage co-fluctuation directions, and that SDP feasibility separates numerical nonconvergence from physically impossible power-moment targets.
+For voltage-domain inverse PLF, the review should expect the paper to explain that the quadratic power-flow moment kernel maps voltage means and covariances to power moments, that identifiability concerns observable voltage co-fluctuation directions, and that an SDP certificate is evidence relative to the stated relaxation model and constraint set. The manuscript must distinguish original-problem feasibility, SDP-relaxation feasibility, infeasibility at the chosen relaxation order, and any rank or representing-measure condition needed to lift the certificate back to the original physical model.
+
+## Relaxation and Penalty Review
+
+Do not accept blanket exactness or penalty claims.
+
+For SOCP exactness, require the manuscript to state:
+
+- network model and relaxed variables;
+- objective monotonicity condition;
+- load and generation bounds, including whether over-satisfaction or reverse flow is possible;
+- voltage, current, and branch-flow constraint assumptions;
+- feasible-region condition and the exact theorem being used;
+- the precise conclusion and its scope.
+
+Flag a major issue if the manuscript says only that a radial network and no load over-satisfaction make SOCP exact while omitting objective, bound, or constraint assumptions required by the cited theorem.
+
+For penalty methods, require the manuscript to distinguish:
+
+- quadratic penalty;
+- augmented Lagrangian;
+- exact penalty.
+
+Flag a major issue if the manuscript claims that a finite penalty parameter yields original-problem feasibility or an original-cost upper bound without proving the feasibility relation and the objective-bound relation. Quadratic penalty limiting behavior, augmented-Lagrangian primal recovery, and exact-penalty threshold results are different claims.
 
 ## Engineering-Math Balance Review
 

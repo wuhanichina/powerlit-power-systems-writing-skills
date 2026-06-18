@@ -1,6 +1,6 @@
 ---
 name: ieee-power-engineering-letter-writing
-description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Power Engineering Letters, TPWRS/TSG short Letters, and 3-4 page power-system technical communications. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, reviewer-comment revision, and anti-full-paper cleanup.
+description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Power Engineering Letters and TPWRS/TSG short Letters under the official IEEE PES Letter page-budget rules. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, reviewer-comment revision, and anti-full-paper cleanup.
 ---
 # IEEE Power Engineering Letter Writing
 
@@ -9,6 +9,8 @@ description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Po
 Use this skill when the target is an IEEE power-system Letter. A Letter is not a shortened full paper. It is a compact technical communication built around one hard claim, one deliverable, and minimal evidence.
 
 Do not use this skill as the standalone acceptability or reject-risk reviewer. Use `powerlit-power-systems-paper-review` for strict IEEE Letter review; this Letter skill only applies review standards internally before delivery.
+
+Official IEEE PES Letter page-budget rule, checked 2026-06-18: original submissions are limited to 3 formatted pages; revisions are limited to 3.5 pages; letters exceeding these limits are not reviewed. The author information page also states that an accepted letter should not exceed 4 pages after revision and editing. Treat corpus median page counts only as descriptive statistics, never as the hard rule.
 
 ## Core Workflow
 
@@ -41,7 +43,7 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
 
 ## Corpus-Based Defaults
 
-PowerLit mining found 69 IEEE power-system Letter-style papers in TPWRS/TSG:
+PowerLit mining found 69 IEEE power-system Letter-style papers in TPWRS/TSG. These are descriptive corpus signals, not official page limits:
 
 - median length: 4 pages;
 - median abstract: 5 sentences, about 21 words per sentence;

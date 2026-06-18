@@ -31,20 +31,20 @@ Apply the standards of `powerlit-power-systems-paper-review`:
 - final prose does not hide unsupported claims behind polished wording;
 - final prose does not convert valid claim boundaries into defensive "not a replacement" posture.
 
-When the task targets an 8-9 review score, also apply `score-targeted-writing.md` and `decision-rubric.md`. The closure gate must repair or block any draft whose core score category would fall below the requested target band.
+When the task targets internal readiness, also apply `internal-readiness-writing.md` and `decision-rubric.md`. The closure gate must repair or block any draft whose core readiness dimension would fall below the requested readiness state.
 
 ## Pass Criteria
 
 A draft may be returned as manuscript-ready only if the internal review would be no worse than:
 
-- full manuscript: `小修后录用` or a clearly bounded `大修后录用` caused only by missing optional references, formatting, or minor extra explanation;
+- full manuscript: `建议小修后投稿` or a clearly bounded `建议大修后重审` caused only by missing optional references, formatting, or minor extra explanation;
 - section-only task: no fatal flaw, no section-level venue mismatch, and no major model/evidence contradiction inside the produced section.
 
 In both cases, the review skill's `专家级阅读体验` item must be at least `CONDITIONAL PASS`. A technical draft with expert-reader `FAIL` is not manuscript-ready.
 
 The draft fails the closure gate if the internal review would identify any of these:
 
-- `拒绝录用` verdict;
+- `不建议投稿` verdict;
 - fatal problem, novelty, logic-chain, model, or evidence issue;
 - introduction motivates one problem while the method or section solves another;
 - method claims a property that is not derived, tested, or bounded;

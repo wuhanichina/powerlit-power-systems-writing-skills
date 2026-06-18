@@ -45,19 +45,19 @@
     "expected": "The response converts MATLAB outputs into manuscript-facing result prose with system, scenario, metric direction, baseline, mechanism interpretation, and boundary; it does not mention local files, cache state, or unsupported comprehensive validation."
   },
   {
-    "id": "actual-case-score-target",
-    "prompt": "Use $powerlit-power-systems-paper-writing with evaluation/actual-case-evidence-packets.json to draft toward an 8-9 review score for one target venue. Apply score-targeted-writing.md and block if the evidence packet only supports a section-level claim.",
-    "expected": "The response builds a score-target packet from actual case evidence plus a PowerLit evidence-strength profile when available, applies the 8-9 full-paper minimum, drafts or repairs the lowest-scoring category, and refuses to call a full paper 8-9 when method, baseline, metric, or claim-boundary facts are missing."
+    "id": "actual-case-readiness-target",
+    "prompt": "Use $powerlit-power-systems-paper-writing with evaluation/actual-case-evidence-packets.json to draft toward MANUSCRIPT_REVIEW_READY for one target venue. Apply internal-readiness-writing.md as the internal readiness gate and block if the evidence packet only supports a section-level claim.",
+    "expected": "The response builds a readiness packet from actual case evidence plus a PowerLit evidence-strength profile when available, applies the full-manuscript readiness minimum, drafts or repairs the lowest-readiness dimension, and refuses to call a full paper MANUSCRIPT_REVIEW_READY when method, baseline, metric, or claim-boundary facts are missing."
   },
   {
     "id": "powerlit-evidence-strength-before-drafting",
     "prompt": "Use $powerlit-power-systems-paper-writing to plan a CSEE full paper from an evidence packet whose main baseline is stronger on accuracy and runtime. Before drafting, learn from PowerLit accepted papers what evidence dimensions and claim boundaries are needed for a diagnostic or inverse-method paper.",
-    "expected": "The response must build or request a PowerLit evidence-strength profile before drafting, identify the non-substitutable scenario and manuscript-facing evidence required, and keep the paper below the 8-9 gate if the profile shows missing transition, baseline, or reproducibility evidence."
+    "expected": "The response must build or request a PowerLit evidence-strength profile before drafting, identify the non-substitutable scenario and manuscript-facing evidence required, and keep the paper below MANUSCRIPT_REVIEW_READY if the profile shows missing transition, baseline, or reproducibility evidence."
   },
   {
     "id": "defensive-boundary-and-formula-intuition",
     "prompt": "Use $powerlit-power-systems-paper-writing to rewrite a CSEE paragraph that currently begins with '需要强调的是，本文不把结果表述为对线性化 GMM 概率潮流的全面精度替代' and to expand the physical intuition around equations mapping voltage GMM means/covariances to power moments and an SDP feasibility certificate.",
-    "expected": "The response rewrites the boundary as a positive inverse-PLF technical claim with scoped GMM-PLF comparison, removes defensive '本文不...' posture from manuscript prose, and explains the formula group through grid objects, cause-effect direction, covariance identifiability, and physical realizability."
+    "expected": "The response rewrites the boundary as a positive inverse-PLF technical claim with scoped GMM-PLF comparison, removes defensive '本文不...' posture from manuscript prose, and explains the formula group through grid objects, cause-effect direction, covariance identifiability, and SDP feasibility evidence relative to the stated relaxation model and constraints."
   },
   {
     "id": "reviewer-comment-physical-story-revision",

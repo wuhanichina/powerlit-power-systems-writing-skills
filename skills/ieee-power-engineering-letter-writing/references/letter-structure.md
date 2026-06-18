@@ -2,7 +2,9 @@
 
 ## Corpus Signal
 
-The PowerLit Letter corpus contained 69 IEEE TPWRS/TSG short papers selected by page count and Letter markers.
+Official rule source checked 2026-06-18: IEEE PES Letter original submissions are limited to 3 formatted pages; revisions are limited to 3.5 pages; letters exceeding those limits are not reviewed. IEEE PES author information also says the accepted letter should not exceed 4 pages after revision and editing.
+
+The PowerLit Letter corpus contained 69 IEEE TPWRS/TSG short papers selected by page count and Letter markers. Treat these as descriptive corpus signals, not as official page limits.
 
 Typical values:
 
@@ -40,9 +42,9 @@ Use one of these structures.
 4. `IV. ILLUSTRATIVE EXAMPLE`
 5. `V. CONCLUSION`
 
-## Page Budget
+## Drafting Budget
 
-Use this as a drafting budget:
+Use this as a drafting budget inside the official page constraints:
 
 - Abstract and index terms: 0.2 page.
 - Introduction: 0.7-1.0 page.

@@ -3,7 +3,7 @@
     "id": "csee-pali-em-sca-pv8f8",
     "project": "project://pali-em-sca",
     "target_venue": "CSEE",
-    "target_score_band": "8-9",
+    "target_readiness_state": "MANUSCRIPT_REVIEW_READY",
     "paper_type": "full paper",
     "evidence_sources": [
       "project://pali-em-sca/01_IDEA/claims.md",
@@ -26,23 +26,34 @@
       ],
       "claim_boundary": "Report GMM-PLF as the closest accuracy baseline where the evidence supports it; state the paper's positive claim as inverse voltage-domain formulation, identifiability boundary, blkLR stabilization, and SDP feasibility certification rather than as a defensive non-dominance disclaimer."
     },
-    "score_gate": {
-      "minimum_average": 8,
-      "minimum_core_category": 8,
+    "readiness_gate": {
+      "required_dimensions": [
+        "problem importance and venue relevance",
+        "innovation substance",
+        "logic-chain closure",
+        "model and mathematical correctness",
+        "case-study and evidence sufficiency",
+        "conclusion support and claim boundary"
+      ],
+      "blocking_conditions": [
+        "fatal model, logic, or evidence flaw",
+        "missing full-manuscript method or evidence section",
+        "untraced result provenance"
+      ],
       "must_not_fail": [
         "accuracy dominance over GMM-PLF",
         "hiding the case141 identifiability boundary",
         "presenting PV8f8 as general deployment validation"
       ]
     },
-    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft a CSEE mechanism-model-case argument from this actual evidence packet.",
-    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; repair until the CSEE full-paper score target is 8-9 or report the blocking category."
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the internal readiness gate to draft a CSEE mechanism-model-case argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to assess internal readiness; repair until the CSEE full-paper readiness state is MANUSCRIPT_REVIEW_READY or report the blocking condition."
   },
   {
     "id": "tpwrs-rtgmm-risk-screening",
     "project": "project://typhoon-rt-gmm",
     "target_venue": "IEEE TPWRS",
-    "target_score_band": "8-9",
+    "target_readiness_state": "MANUSCRIPT_REVIEW_READY",
     "paper_type": "full paper",
     "evidence_sources": [
       "project://typhoon-rt-gmm/01_IDEA/claims.md",
@@ -67,10 +78,21 @@
       ],
       "claim_boundary": "Use the evidence for two-stage screening and boundary diagnosis: RT-GMM screens typhoon source-load/topology tail candidates, while AC replay exposes structural connected N-1 weak pairs. Do not claim calibrated event-level overload prediction, direct RT-GMM-vs-replay top-branch equivalence, AC-MC equivalence, or complete N-k topology risk."
     },
-    "score_gate": {
-      "minimum_average": 8,
-      "minimum_core_category": 8,
-      "required_repair_evidence": "Independent replay evidence has been generated. The 8-9 gate is valid only if the manuscript is rewritten as a bounded two-stage screening workflow and does not claim direct top-branch equivalence between RT-GMM and AC replay.",
+    "readiness_gate": {
+      "required_dimensions": [
+        "problem importance and venue relevance",
+        "innovation substance",
+        "logic-chain closure",
+        "model and mathematical correctness",
+        "case-study and evidence sufficiency",
+        "conclusion support and claim boundary"
+      ],
+      "blocking_conditions": [
+        "fatal model, logic, or evidence flaw",
+        "missing full-manuscript method or evidence section",
+        "untraced result provenance"
+      ],
+      "required_repair_evidence": "Independent replay evidence has been generated. Full-manuscript readiness is valid only if the manuscript is rewritten as a bounded two-stage screening workflow and does not claim direct top-branch equivalence between RT-GMM and AC replay.",
       "must_not_fail": [
         "calibrated event-level prediction claim",
         "AC-MC equivalence claim",
@@ -78,14 +100,14 @@
         "direct RT-GMM-vs-replay ranking equivalence claim"
       ]
     },
-    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft a TPWRS formulation-evidence argument from this actual evidence packet.",
-    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; repair screening, formulation, evidence, and claim-boundary weaknesses until the target band is 8-9 or report blockers."
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the internal readiness gate to draft a TPWRS formulation-evidence argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to assess internal readiness; repair screening, formulation, evidence, and claim-boundary weaknesses until the target state is MANUSCRIPT_REVIEW_READY or report blockers."
   },
   {
     "id": "tsg-bayesaqppf-edge-update",
     "project": "project://bayes-aqppf-3ph",
     "target_venue": "IEEE TSG",
-    "target_score_band": "8-9",
+    "target_readiness_state": "MANUSCRIPT_REVIEW_READY",
     "paper_type": "full paper",
     "evidence_sources": [
       "project://bayes-aqppf-3ph/01_IDEA/claims.md",
@@ -104,9 +126,20 @@
       ],
       "claim_boundary": "Do not claim global dominance over full refit; IEEE123 full-refit evidence is a boundary case showing where larger-sample refit can be strong."
     },
-    "score_gate": {
-      "minimum_average": 8,
-      "minimum_core_category": 8,
+    "readiness_gate": {
+      "required_dimensions": [
+        "problem importance and venue relevance",
+        "innovation substance",
+        "logic-chain closure",
+        "model and mathematical correctness",
+        "case-study and evidence sufficiency",
+        "conclusion support and claim boundary"
+      ],
+      "blocking_conditions": [
+        "fatal model, logic, or evidence flaw",
+        "missing full-manuscript method or evidence section",
+        "untraced result provenance"
+      ],
       "required_boundary_evidence": "Separate IEEE 13 risk-ranking claims from IEEE 123 voltage-scaling and scope-check claims; do not generalize moderate IEEE123 topK-overlap evidence into a strong large-feeder risk-preservation claim.",
       "must_not_fail": [
         "uniform dominance over full refit",
@@ -114,14 +147,14 @@
         "smart-grid edge claim without grid-side risk or voltage metric"
       ]
     },
-    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft an IEEE TSG edge-update argument from this actual evidence packet.",
-    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; repair smart-grid mechanism, evidence, and boundary issues until the target band is 8-9 or report blockers."
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the internal readiness gate to draft an IEEE TSG edge-update argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to assess internal readiness; repair smart-grid mechanism, evidence, and boundary issues until the target state is MANUSCRIPT_REVIEW_READY or report blockers."
   },
   {
     "id": "aeps-tsvarx-mechanism-generation",
     "project": "project://typhoon-ts-varx",
     "target_venue": "AEPS",
-    "target_score_band": "8-9",
+    "target_readiness_state": "MANUSCRIPT_REVIEW_READY",
     "paper_type": "conditional full paper",
     "evidence_sources": [
       "project://typhoon-ts-varx/01_IDEA/claims.md",
@@ -137,17 +170,28 @@
       ],
       "claim_boundary": "Target AEPS only as a mechanism/scenario-generation paper. Do not claim point forecasting superiority, node-level VARX propagation, N-1 risk improvement, or probabilistic power-flow closure."
     },
-    "score_gate": {
-      "minimum_average": 8,
-      "minimum_core_category": 8,
-      "required_boundary_evidence": "Pass the 8-9 gate only under a mechanism/scenario-generation framing; block if the title, abstract, or conclusion claims node-level propagation, N-1 risk reduction, dispatch improvement, or probabilistic power-flow closure.",
+    "readiness_gate": {
+      "required_dimensions": [
+        "problem importance and venue relevance",
+        "innovation substance",
+        "logic-chain closure",
+        "model and mathematical correctness",
+        "case-study and evidence sufficiency",
+        "conclusion support and claim boundary"
+      ],
+      "blocking_conditions": [
+        "fatal model, logic, or evidence flaw",
+        "missing full-manuscript method or evidence section",
+        "untraced result provenance"
+      ],
+      "required_boundary_evidence": "Pass the readiness gate only under a mechanism/scenario-generation framing; block if the title, abstract, or conclusion claims node-level propagation, N-1 risk reduction, dispatch improvement, or probabilistic power-flow closure.",
       "must_not_fail": [
         "forecasting-superiority framing",
         "completed node-level propagation claim",
         "N-1 risk-reduction claim"
       ]
     },
-    "write_prompt": "Use $powerlit-power-systems-paper-writing with the score-targeted gate to draft an AEPS operational mechanism/scenario-generation argument from this actual evidence packet.",
-    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to score the draft; if node-level risk evidence is required for the chosen framing, block instead of forcing an 8-9 full-paper claim."
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with the internal readiness gate to draft an AEPS operational mechanism/scenario-generation argument from this actual evidence packet.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review and decision-rubric.md to assess internal readiness; if node-level risk evidence is required for the chosen framing, block instead of forcing full-manuscript readiness."
   }
 ]

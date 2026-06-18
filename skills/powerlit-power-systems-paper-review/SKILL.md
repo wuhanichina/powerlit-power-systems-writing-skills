@@ -6,7 +6,7 @@ description: Strictly review power-system manuscripts for 中国电机工程学�
 
 ## Purpose
 
-Use this skill to review power-system papers against the standards implied by already published papers in the target venues. The default stance is strict, technical, and evidence-bound. Do not role-play credentials; review from the manuscript evidence.
+Use this skill to review power-system papers against local PowerLit readiness standards and the standards implied by already published papers in the target venues. The default stance is strict, technical, and evidence-bound. Do not role-play credentials; review from the manuscript evidence. Give local advice only; do not present any verdict as an editor decision, journal score, or publication-outcome probability.
 
 ## Core Workflow
 
@@ -24,22 +24,27 @@ Use this skill to review power-system papers against the standards implied by al
    - case/results only,
    - conclusion only,
    - reviewer response or revision plan.
-3. Try to use `powerlit-power-systems-literature-intelligence` for literature coverage and novelty risk:
+3. Identify paper type before judging innovation:
+   - Research Paper,
+   - Application Paper,
+   - Review Paper,
+   - Letter.
+4. Try to use `powerlit-power-systems-literature-intelligence` for literature coverage and novelty risk:
    - resolve PowerLit from user path, `POWERLIT_JSON_ROOT` or `POWERLIT_LITERATURE_JSON`;
    - if accessible, retrieve closest competitors and missing-citation risks;
-   - when judging full-paper evidence strength or an 8-9 target, also build or consume an evidence-strength profile from accepted venue-near papers;
+   - when judging full-paper evidence strength or internal readiness, also build or consume an evidence-strength profile from accepted venue-near papers;
    - if inaccessible, state fallback mode once and keep the review limited to manuscript evidence and general field knowledge.
-4. Load `references/review-gates.md` for corpus-based acceptance signals.
-5. Load `references/venue-standards.md` for venue-specific review expectations.
-6. Load section references as needed:
+5. Load `references/review-gates.md` for corpus-based acceptance signals.
+6. Load `references/venue-standards.md` for venue-specific review expectations.
+7. Load section references as needed:
    - innovation, introduction, and claim logic: `references/innovation-logic.md`
    - method, model, variables, equations, physical correctness: `references/model-math.md`
    - case studies, numerical results, conclusion: `references/evidence-case-conclusion.md`
    - title, abstract, wording, format, references: `references/language-format.md`
-7. Load `references/expert-reader-experience.md` for every manuscript or section review.
-8. Load `references/decision-rubric.md` before giving scores or an accept/reject recommendation.
-9. For score-targeted reviews, especially 8-9 targets, apply the `8-9 Target Gate` in `references/decision-rubric.md` and report category scores, the lowest-scoring category, gate status, and required repair before any prose polish.
-10. If the manuscript is partial, state that the verdict is section-level unless the user explicitly asks for a full-paper risk estimate.
+8. Load `references/expert-reader-experience.md` for every manuscript or section review.
+9. Load `references/decision-rubric.md` before giving readiness levels or a submit/repair/block recommendation.
+10. For readiness reviews, apply the `PowerLit Internal Readiness Index` in `references/decision-rubric.md` and report dimension levels, readiness state, blocking conditions, the lowest-readiness dimension, and required repair before any prose polish.
+11. If the manuscript is partial, state that the verdict is section-level unless the user explicitly asks for a full-paper risk estimate.
 
 ## Review Priority
 
@@ -61,7 +66,7 @@ Check in this order:
 Recommend rejection when any of these are central and unrepaired:
 
 - The claimed problem is vague, stale, or not a real bottleneck for the stated venue.
-- The innovation is only an engineering combination, dataset substitution, parameter tuning, or incremental application with no new model, mechanism, algorithm, control law, estimator, certificate, or evidence insight.
+- For a Research Paper, the innovation is only an engineering combination, dataset substitution, parameter tuning, or incremental application with no new model, mechanism, algorithm, control law, estimator, certificate, or evidence insight. For an Application Paper, engineering integration is not an automatic rejection reason; judge system value, field or realistic-system evidence, transferable experience, and operational lessons.
 - The paper changes the problem during the argument: the introduction claims one difficulty, the method solves another, and the case verifies a third.
 - Mathematical formulation cannot represent the stated engineering need, violates physical constraints, or uses undefined/inconsistent variables.
 - Key equations are only symbolically defined and do not explain the grid quantity, coupling, feasibility condition, or operating mechanism they represent.
@@ -77,7 +82,7 @@ For a full manuscript review, use this structure:
 
 Include a `PowerLit literature coverage` item when corpus retrieval is available, or a fallback limitation when it is not.
 
-1. `审稿结论`: one of `直接录用`, `小修后录用`, `大修后录用`, `拒绝录用`.
+1. `本地审稿建议`: one of `建议直接投稿`, `建议小修后投稿`, `建议大修后重审`, `不建议投稿`.
 2. `总体判断`: 3-6 sentences explaining the main reason.
 3. `主要问题`: ordered by severity. Each issue should state the claim, why it fails, and what evidence from the manuscript supports the criticism.
 4. `专家级阅读体验`: `PASS`, `CONDITIONAL PASS`, or `FAIL`, with anchored reasons and first repair action from `references/expert-reader-experience.md`.
@@ -85,14 +90,14 @@ Include a `PowerLit literature coverage` item when corpus retrieval is available
 6. `模型与方法审查`: equations, variables, assumptions, physical meaning, algorithm, complexity, simplification opportunities.
 7. `算例与结论审查`: scenarios, baselines, metrics, sensitivity, boundary, conclusion support.
 8. `文字与格式问题`: only material issues, including defensive claim posture, not minor copyediting unless requested.
-9. `评分`: use the rubric in `references/decision-rubric.md`.
+9. `PowerLit 内部投稿就绪度`: use the rubric in `references/decision-rubric.md`.
 10. `修改建议`: concrete actions, grouped by must-fix and should-fix.
 
 If `专家级阅读体验` is `FAIL`, do not describe the manuscript as submission-ready even if the technical review has no fatal correctness issue.
 
-For an 8-9 target review, the `评分` item must include eight category scores, average score, target-gate status, the lowest-scoring category, and the first repair action needed to move that category into the target band.
+For an internal readiness review, the `PowerLit 内部投稿就绪度` item must include eight dimension levels, readiness state (`BLOCKED`, `SECTION_READY`, `MANUSCRIPT_REVIEW_READY`, or `SUBMISSION_CANDIDATE`), blocking conditions, the lowest-readiness dimension, and the first repair action needed to advance that dimension.
 
-For a section-only review, keep the same severity discipline but do not pretend to know missing sections. Use `本节录用风险` instead of a full-paper verdict when appropriate.
+For a section-only review, keep the same severity discipline but do not pretend to know missing sections. Use `本节投稿风险` instead of a full-paper verdict when appropriate.
 
 ## Tone
 

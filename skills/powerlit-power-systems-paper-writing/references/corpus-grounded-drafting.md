@@ -55,7 +55,7 @@ Do not copy sentences, phrases, abstracts, or paragraph templates from the corpu
 
 ## Evidence-Strength Learning Pass
 
-Before drafting a full paper, score-targeted manuscript, review response, or major case-study section, use PowerLit to learn the evidence bar for the same venue and claim class. Load `powerlit-evidence-strength.md` and build an internal evidence-strength profile from accepted papers before writing.
+Before drafting a full paper, readiness-targeted manuscript, review response, or major case-study section, use PowerLit to learn the evidence bar for the same venue and claim class. Load `powerlit-evidence-strength.md` and build an internal evidence-strength profile from accepted papers before writing.
 
 This pass is different from citation planning. It asks:
 
@@ -63,7 +63,7 @@ This pass is different from citation planning. It asks:
 - which baselines, metrics, systems, scenarios, sensitivity studies, ablations, certificates, runtime details, and reproducibility details are visible;
 - how result tables are interpreted rather than merely reported;
 - how the conclusion is bounded when a competing method wins on some metrics;
-- what the current manuscript must add, narrow, or relabel before it can claim a high review score.
+- what the current manuscript must add, narrow, or relabel before it can claim a higher internal readiness state.
 
 For diagnostic, inverse, certificate, screening, or boundary-characterization papers, this pass is mandatory when PowerLit is available. If a stronger baseline wins on primary metrics, the profile must identify accepted-paper precedents for treating diagnostic value as publishable evidence; otherwise the paper claim must be narrowed.
 

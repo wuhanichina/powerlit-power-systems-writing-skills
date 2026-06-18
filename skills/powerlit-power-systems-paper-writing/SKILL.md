@@ -8,7 +8,7 @@ description: Draft, rewrite, or revise full-length power-system research papers 
 
 Use this skill to produce full-paper manuscript prose that is ready for serious venue review. The skill is a shared writing entry point plus venue profiles, not four independent skills. Shared rules handle evidence, PowerLit retrieval, logic closure, paragraph discipline, and anti-AI cleanup. Venue profiles handle the journal-specific register, structure, evidence expectation, and rejection risks.
 
-Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writing` when the target is a 3-4 page Letter or compact technical communication.
+Do not use this skill for IEEE Letters. Use `ieee-power-engineering-letter-writing` when the target is an IEEE PES Letter or compact technical communication under the official Letter page-budget rules.
 
 Do not use this skill as the standalone acceptability or reject-risk reviewer. Use `powerlit-power-systems-paper-review` for strict manuscript review; this writing skill only applies review standards internally before delivery.
 
@@ -23,7 +23,7 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
    - evidence package;
    - claim boundary.
 4. Load `references/project-claim-translation.md`. Treat project `claims.md`, research notes, evidence maps, and gate files as evidence boundaries, not as final manuscript claims.
-5. Load `references/corpus-grounded-drafting.md` and `references/powerlit-evidence-strength.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, style/rhythm calibration, full-paper drafting, score-targeting, or evidence-strength judgment is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
+5. Load `references/corpus-grounded-drafting.md` and `references/powerlit-evidence-strength.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, style/rhythm calibration, full-paper drafting, internal readiness, or evidence-strength judgment is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
    - For skill maintenance or known-paper reconstruction tasks, also load `references/published-paper-reconstruction.md`. Treat accepted papers as masked evidence benchmarks, not text sources to imitate.
 6. Load `references/venue-profiles.md`, then load exactly one venue reference:
    - 中国电机工程学报: `references/csee.md`; also load `references/csee-precision.md`.
@@ -35,7 +35,7 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
    - method, model, formulation, algorithm, control, optimization, or derivation: `references/method-model.md`;
    - case study, numerical results, experiment, simulation, conclusion, or closing section: `references/case-conclusion.md`;
    - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
-   - target review score, 8-9 score debugging, or score-bearing evaluation: `references/score-targeted-writing.md`;
+   - internal readiness debugging or readiness-bearing evaluation: `references/internal-readiness-writing.md`;
    - light editing, translation, compression, expansion, logic checking, reviewer-comment revision, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
    - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
@@ -52,7 +52,7 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
    - section budget so standard material does not hide the contribution.
 9. Draft manuscript prose by section. Do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
 10. Before finalizing, run the claim pass, physical-story pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, reviewer-feedback integration pass, engineering-math balance pass, cut pass, rhythm pass, working-language firewall, Chinese register gate, and English AI-tells gate from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`.
-11. If a target review score is requested, apply `references/score-targeted-writing.md` before review closure. Do not claim an 8-9 full-paper target when the evidence packet only supports a section-level result.
+11. If an internal readiness target is requested, apply `references/internal-readiness-writing.md` before review closure. Do not claim full-manuscript readiness when the evidence packet only supports a section-level result.
 12. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
 ## Power-System Story Order
@@ -138,7 +138,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 
 ## Complete-Draft Mode
 
-When the evidence is insufficient for an 8-9 full-paper gate but enough to make progress, return the strongest complete bounded draft the evidence supports plus a short gap list. The draft must mark missing references, experiments, baselines, formulas, or tables as gaps instead of fabricating them. A complete bounded draft is not submission-ready unless the review-closure gate passes.
+When the evidence is insufficient for full-manuscript readiness but enough to make progress, return the strongest complete bounded draft the evidence supports plus a short gap list. The draft must mark missing references, experiments, baselines, formulas, or tables as gaps instead of fabricating them. A complete bounded draft is not submission-ready unless the review-closure gate passes.
 
 ## Output Contract
 

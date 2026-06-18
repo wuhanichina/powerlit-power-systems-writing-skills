@@ -10,7 +10,7 @@ Use this calibration to find review-gate errors, not to reward textual similarit
 
 ## Evidence-Strength Calibration
 
-Before judging a full-paper draft as high-score or submission-ready, compare its evidence dimensions with accepted PowerLit papers from the same venue or claim class. Use `powerlit-evidence-strength.md` and, when shell access is available, `Analyze-PowerLitEvidenceStrength.ps1` to identify which quantities accepted papers make visible in the manuscript.
+Before judging a full-paper draft as internally ready or submission-ready, compare its evidence dimensions with accepted PowerLit papers from the same venue or claim class. Use `powerlit-evidence-strength.md` and, when shell access is available, `Analyze-PowerLitEvidenceStrength.ps1` to identify which quantities accepted papers make visible in the manuscript.
 
 The comparison should ask:
 

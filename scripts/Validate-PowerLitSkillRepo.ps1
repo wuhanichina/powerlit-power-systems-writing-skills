@@ -101,8 +101,8 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "references/powerlit-evidence-strength\.md") {
         Add-Failure "paper-writing skill must load references/powerlit-evidence-strength.md for PowerLit evidence-strength learning"
     }
-    if ($paperSkillText -notmatch "references/score-targeted-writing\.md") {
-        Add-Failure "paper-writing skill must load references/score-targeted-writing.md for score-targeted drafting"
+    if ($paperSkillText -notmatch "references/internal-readiness-writing\.md") {
+        Add-Failure "paper-writing skill must load references/internal-readiness-writing.md for readiness drafting"
     }
     if ($paperSkillText -notmatch "boundary-posture pass") {
         Add-Failure "paper-writing skill must require a boundary-posture pass"
@@ -229,11 +229,15 @@ if (Test-Path -LiteralPath $powerlitEvidenceStrength) {
 $decisionRubric = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\references\decision-rubric.md"
 if (Test-Path -LiteralPath $decisionRubric) {
     $decisionRubricText = Read-Utf8 -Path $decisionRubric
-    if ($decisionRubricText -notmatch "8-9 Target Gate") {
-        Add-Failure "decision-rubric.md must define the 8-9 Target Gate"
+    if ($decisionRubricText -notmatch "PowerLit Internal Readiness Index") {
+        Add-Failure "decision-rubric.md must define the PowerLit Internal Readiness Index"
     }
-    if ($decisionRubricText -notmatch "Score-Target Output") {
-        Add-Failure "decision-rubric.md must define score-target output"
+    if ($decisionRubricText -notmatch "Readiness Output") {
+        Add-Failure "decision-rubric.md must define readiness output"
+    }
+    $forbiddenProbabilityPhrase = "acceptance " + "probability"
+    if ($decisionRubricText -match [regex]::Escape($forbiddenProbabilityPhrase)) {
+        Add-Failure "decision-rubric.md must not contain forbidden publication-probability wording"
     }
 } else {
     Add-Failure "Missing decision-rubric.md"
@@ -281,26 +285,26 @@ if (Test-Path -LiteralPath $reconstructionReference) {
     Add-Failure "Missing published-paper-reconstruction.md"
 }
 
-$scoreTargetedReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\score-targeted-writing.md"
-if (Test-Path -LiteralPath $scoreTargetedReference) {
-    $scoreTargetedText = Read-Utf8 -Path $scoreTargetedReference
-    if ($scoreTargetedText -notmatch "Score-Targeted Writing Gate") {
-        Add-Failure "score-targeted-writing.md must define the score-targeted writing gate"
+$readinessWritingReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\internal-readiness-writing.md"
+if (Test-Path -LiteralPath $readinessWritingReference) {
+    $readinessWritingText = Read-Utf8 -Path $readinessWritingReference
+    if ($readinessWritingText -notmatch "Internal Readiness Writing Gate") {
+        Add-Failure "internal-readiness-writing.md must define the internal readiness writing gate"
     }
-    if ($scoreTargetedText -notmatch "8-9 Full-Paper Minimum") {
-        Add-Failure "score-targeted-writing.md must define the 8-9 full-paper minimum"
+    if ($readinessWritingText -notmatch "Full-Manuscript Readiness Minimum") {
+        Add-Failure "internal-readiness-writing.md must define the full-manuscript readiness minimum"
     }
-    if ($scoreTargetedText -notmatch "Case-analysis evidence alone") {
-        Add-Failure "score-targeted-writing.md must preserve the case-data boundary"
+    if ($readinessWritingText -notmatch "Case-analysis evidence alone") {
+        Add-Failure "internal-readiness-writing.md must preserve the case-data boundary"
     }
-    if ($scoreTargetedText -notmatch "Full-Paper Completeness Gate") {
-        Add-Failure "score-targeted-writing.md must define the full-paper completeness gate"
+    if ($readinessWritingText -notmatch "Full-Paper Completeness Gate") {
+        Add-Failure "internal-readiness-writing.md must define the full-paper completeness gate"
     }
-    if ($scoreTargetedText -notmatch "blocked below 8-9 full-paper completeness") {
-        Add-Failure "score-targeted-writing.md must define the compressed-package blocked status"
+    if ($readinessWritingText -notmatch "BLOCKED") {
+        Add-Failure "internal-readiness-writing.md must define the compressed-package blocked status"
     }
 } else {
-    Add-Failure "Missing score-targeted-writing.md"
+    Add-Failure "Missing internal-readiness-writing.md"
 }
 
 $readerExperienceReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\reader-experience-pass.md"
@@ -461,11 +465,14 @@ if (Test-Path -LiteralPath $actualEvidencePackets) {
             Add-Failure "${actualEvidencePackets}: empty actual evidence packet file"
         }
         foreach ($case in $actualEvidencePacketData) {
-            if (-not $case.id -or -not $case.project -or -not $case.target_venue -or -not $case.target_score_band -or -not $case.paper_type -or -not $case.evidence_sources -or -not $case.evidence_packet -or -not $case.score_gate -or -not $case.write_prompt -or -not $case.review_prompt) {
-                Add-Failure "${actualEvidencePackets}: each actual evidence packet must contain all score-target fields"
+            if (-not $case.id -or -not $case.project -or -not $case.target_venue -or -not $case.target_readiness_state -or -not $case.paper_type -or -not $case.evidence_sources -or -not $case.evidence_packet -or -not $case.readiness_gate -or -not $case.write_prompt -or -not $case.review_prompt) {
+                Add-Failure "${actualEvidencePackets}: each actual evidence packet must contain all readiness fields"
             }
-            if ($case.target_score_band -ne "8-9") {
-                Add-Failure "$actualEvidencePackets case $($case.id): target_score_band must be 8-9"
+            if ($case.PSObject.Properties.Name -contains "target_score_band") {
+                Add-Failure "$actualEvidencePackets case $($case.id): target_score_band must be migrated to target_readiness_state"
+            }
+            if ($case.target_readiness_state -notin @("BLOCKED", "SECTION_READY", "MANUSCRIPT_REVIEW_READY", "SUBMISSION_CANDIDATE")) {
+                Add-Failure "$actualEvidencePackets case $($case.id): invalid target_readiness_state"
             }
             if ([string]$case.project -notmatch "^project://") {
                 Add-Failure "$actualEvidencePackets case $($case.id): project must be a logical project:// id"
@@ -482,11 +489,14 @@ if (Test-Path -LiteralPath $actualEvidencePackets) {
             if (-not $case.evidence_packet.technical_object -or -not $case.evidence_packet.case_evidence -or -not $case.evidence_packet.claim_boundary) {
                 Add-Failure "$actualEvidencePackets case $($case.id): evidence_packet must define technical_object, case_evidence, and claim_boundary"
             }
-            if (-not $case.score_gate.minimum_average -or -not $case.score_gate.minimum_core_category -or -not $case.score_gate.must_not_fail) {
-                Add-Failure "$actualEvidencePackets case $($case.id): score_gate must define minimum_average, minimum_core_category, and must_not_fail"
+            if (-not $case.readiness_gate.required_dimensions -or -not $case.readiness_gate.blocking_conditions -or -not $case.readiness_gate.must_not_fail) {
+                Add-Failure "$actualEvidencePackets case $($case.id): readiness_gate must define required_dimensions, blocking_conditions, and must_not_fail"
             }
-            if ($case.write_prompt -notmatch "score-targeted") {
-                Add-Failure "$actualEvidencePackets case $($case.id): write_prompt must invoke the score-targeted gate"
+            if ($case.readiness_gate.PSObject.Properties.Name -contains "minimum_average" -or $case.readiness_gate.PSObject.Properties.Name -contains "minimum_core_category") {
+                Add-Failure "$actualEvidencePackets case $($case.id): minimum score fields must be migrated"
+            }
+            if ($case.write_prompt -notmatch "readiness") {
+                Add-Failure "$actualEvidencePackets case $($case.id): write_prompt must invoke the readiness gate"
             }
             if ($case.review_prompt -notmatch "decision-rubric\.md") {
                 Add-Failure "$actualEvidencePackets case $($case.id): review_prompt must invoke decision-rubric.md"
@@ -683,6 +693,18 @@ foreach ($retrievalEvalFile in @("queries.jsonl", "qrels.jsonl", "expected_failu
     if (-not (Test-Path -LiteralPath $target -PathType Leaf)) {
         Add-Failure "Missing retrieval evaluation fixture: $target"
     }
+}
+
+$ruleSources = Join-Path $repoRoot "references\rule-sources.yaml"
+if (Test-Path -LiteralPath $ruleSources -PathType Leaf) {
+    $ruleSourcesText = Read-Utf8 -Path $ruleSources
+    foreach ($requiredRuleSourceToken in @("source_type: official", "source_type: literature", "source_type: heuristic", "checked_at:", "effective_date:", "ieee_pes_letter_initial_revision_page_limit", "powerlit_internal_readiness_index")) {
+        if ($ruleSourcesText -notmatch [regex]::Escape($requiredRuleSourceToken)) {
+            Add-Failure "rule-sources.yaml missing token: $requiredRuleSourceToken"
+        }
+    }
+} else {
+    Add-Failure "Missing references\rule-sources.yaml"
 }
 
 $evidenceAnalyzer = Join-Path $repoRoot "skills\powerlit-power-systems-literature-intelligence\scripts\Analyze-PowerLitEvidenceStrength.ps1"
