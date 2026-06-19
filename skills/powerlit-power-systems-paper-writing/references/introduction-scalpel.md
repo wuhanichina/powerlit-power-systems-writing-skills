@@ -38,6 +38,39 @@ Use this cutting order:
 6. Core contradiction: what requirement cannot be met jointly?
 7. Innovation: what model, constraint, strategy, algorithm, theorem, or validation answers it?
 
+## Opening Pain-Point Gate
+
+This gate controls how fast the introduction and abstract reach the pain point. It has two tiers because genres differ. A full-paper opening may warm up with a trend; a Letter opening may not. Apply the tier that matches the target venue.
+
+### Tier 1 — Full papers (CSEE / AEPS / TPWRS / TSG): reach the conflict quickly
+
+For full-length journal papers, the first sentence does NOT have to pinpoint the pain point. A trend or context opening is acceptable and common, e.g. "随着新能源渗透率不断提高..." or "With the increasing penetration of renewables...". What matters is that the opening does not stall on context.
+
+The mechanical rule for full papers:
+
+- the concrete power-system object, its failing condition, and the unresolved conflict must all appear by the end of the first paragraph (for Chinese venues, typically within the first 2-3 sentences);
+- a trend/importance/definition opener is allowed ONLY as a pivot — it must be followed, in the same paragraph, by the specific object and the conflict it faces;
+- a trend opener that is never cashed out into a concrete conflict in the first paragraph fails. The failure mode to block is "the first paragraph is all context and the pain point arrives on page 2", not "the first sentence is a trend".
+
+So for full papers the test is paragraph-level, not sentence-level: read the first paragraph in isolation and ask whether a reviewer learns what breaks and under what condition. If not, the opening has buried the pain point.
+
+### Tier 2 — IEEE Letters: pinpoint the pain point in the first sentence
+
+Letters have no room to warm up. The strict first-sentence rule lives in the Letter skill (`ieee-power-engineering-letter-writing`): the opening sentence itself must carry object + condition + conflict, and trend/importance/definition/literature-activity openers are prohibited. Do not apply that strict single-sentence requirement to full papers.
+
+### Examples (full-paper tier)
+
+Acceptable (trend pivot that reaches the conflict in the same paragraph):
+> 随着新能源渗透率不断提高，配电网运行条件日益复杂。台风过境期间，源荷出力与拓扑状态同时偏离常态，使得基于常态统计的风险筛查会系统性漏判真正承压的支路。
+
+Fail (trend that never lands — the whole first paragraph stays at context level):
+> 随着新能源渗透率不断提高，电力系统的安全运行面临新的挑战。新能源的发展对电网提出了更高要求。如何保障电网安全成为研究热点。
+
+Strong direct opening (still preferred when the genre and material allow it):
+> 台风过境期间，配电网的源荷出力与拓扑状态同时偏离常态，使得基于常态统计的风险筛查会系统性漏判真正承压的支路。
+
+The load-bearing part is always the conflict (what cannot be jointly achieved). A trend may introduce it; it may not replace it.
+
 ## Chinese Venues: Short Cut
 
 中国电机工程学报 and 电力系统自动化 usually place the first gap and the first proposal close together, often in the same or adjacent paragraph.

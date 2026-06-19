@@ -6,9 +6,10 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-语料边界)
 
-这个仓库提供一组面向电力系统论文的 Codex 技能，覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
+这个仓库提供一组面向电力系统论文的技能，兼容 Codex 和 Claude（Claude Code / Cowork），覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
 
 它不是普通润色工具。PowerLit 可访问时，技能先检索近邻论文和引用证据，锁定论点边界，再按目标期刊的段落功能、论证节奏和证据呈现方式写正文；投稿前还会用本地审稿 skill 反向检查，形成“写作 -> 审稿 -> 修复”的闭环。
 
@@ -26,6 +27,10 @@
 
 ## 装上就能用
 
+这套技能同时兼容 Codex 和 Claude（Claude Code / Cowork）。技能本体是标准的 `SKILL.md` + `references/` + Python 脚本，与运行平台无关；下面两种安装方式可任选，互不冲突。
+
+### Codex
+
 在 PowerShell 中运行：
 
 ```powershell
@@ -39,7 +44,25 @@ python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-s
          skills/powerlit-power-systems-paper-review
 ```
 
-安装后重启 Codex，然后直接说话：
+安装后重启 Codex。
+
+### Claude（Claude Code / Cowork）
+
+每个 `skills/<name>/` 目录就是一个标准 Claude 技能（含 `SKILL.md` frontmatter）。把它们放进 Claude 的技能目录即可被发现：
+
+```bash
+# 方式一：克隆后软链/复制到个人技能目录
+git clone https://github.com/wuhanichina/powerlit-power-systems-writing-skills.git
+cp -r powerlit-power-systems-writing-skills/skills/* ~/.claude/skills/
+```
+
+- 个人技能目录：`~/.claude/skills/`（项目级可用 `<repo>/.claude/skills/`）。
+- 也可以把单个技能目录打包成 `.skill`（zip）后在 Claude 中安装。
+- 安装后重启 / 重载 Claude，技能即出现在技能列表中。
+
+检索脚本在 Claude 的 Linux 环境下用 Python 入口（见[核心机制](#核心机制)），无需 PowerShell。
+
+### 装好后直接说话
 
 ```text
 请判断这个台风配电网风险评估 idea 是否能进入中国电机工程学报写作。
@@ -141,24 +164,28 @@ PowerLit JSON 根目录解析顺序：
 2. `POWERLIT_JSON_ROOT`
 3. `POWERLIT_LITERATURE_JSON`
 
-高频应用默认优先使用文献检索 skill 内置的 SQLite FTS 缓存：`skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`。标准 skill 安装会复制该目录，因此没有私有原始语料时也能使用索引检索：
+高频应用默认优先使用文献检索 skill 内置的 SQLite FTS 缓存：`skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`。标准 skill 安装会复制该目录，因此没有私有原始语料时也能使用索引检索。
 
-```powershell
-python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `
-  --venue-folder ieee_tsg `
+跨平台主入口是 Python 脚本，Codex、Claude（Linux 环境）和任何带 Python3 的环境都可直接调用。
+
+索引构建（Python，跨平台）：
+
+```bash
+python skills/powerlit-power-systems-literature-intelligence/scripts/Build-PowerLitIndex.py \
+  --venue-folder ieee_tsg \
   --venue-folder ieee_tpwrs
 ```
 
-跨平台快速检索接口：
+快速检索（Python，跨平台，推荐主路径）：
 
-```powershell
-python skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitIndex.py `
-  --query "distributed voltage control" `
-  --venue-folder ieee_tsg `
+```bash
+python skills/powerlit-power-systems-literature-intelligence/scripts/Search-PowerLitIndex.py \
+  --query "distributed voltage control" \
+  --venue-folder ieee_tsg \
   --top 10
 ```
 
-Windows 兼容检索接口会优先使用仓库本地缓存，缓存缺失时才回退到环境变量索引或主库 `rg` 预筛：
+Windows PowerShell 备选入口会优先使用仓库本地缓存，缓存缺失时才回退到环境变量索引或主库 `rg` 预筛：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `

@@ -58,8 +58,8 @@ Treat these as pressure constraints. If the draft needs a long literature review
 
 The Letter should usually fit this movement:
 
-1. Abstract: problem assumption -> Letter claim -> technical deliverable -> compact validation -> implication.
-2. Introduction: object -> narrow prior work -> exact gap -> why the gap matters -> this letter's single contribution.
+1. Abstract: problem assumption -> Letter claim -> technical deliverable -> compact validation -> implication. The first sentence must pinpoint the pain point (see Hard Rules), not warm up with a trend.
+2. Introduction: object -> narrow prior work -> exact gap -> why the gap matters -> this letter's single contribution. The very first sentence must already name the object, its failing condition, and the unresolved conflict.
 3. Technical core: load `references/technical-core.md`; define only necessary variables and derive, formulate, or test the deliverable.
 4. Evidence: one focused case study, counterexample, benchmark, or numerical check.
 5. Conclusion: one short paragraph stating what was established and the boundary.
@@ -67,6 +67,7 @@ The Letter should usually fit this movement:
 ## Hard Rules
 
 - One Letter, one core claim.
+- Pinpoint the pain point in the first sentence. The opening sentence of both the abstract and the introduction must itself carry: a concrete power-system object, its operating/uncertainty condition, and the unresolved conflict (two requirements that cannot be met together, or one that current methods cannot meet). Unlike full papers, a Letter has no room to warm up: a trend, importance, definition, or literature-activity opener ("随着...", "with the increasing penetration of...", "...受到广泛关注", "...至关重要", "许多学者研究了...") is prohibited as the first sentence. Read the first sentence in isolation — if a reviewer cannot tell what breaks and under what condition without the next sentence, rewrite it.
 - Every paragraph must either expose the claim, derive it, or verify it.
 - Do not write a broad related-work section.
 - Do not add `NOMENCLATURE` unless the notation is truly impossible to read inline.

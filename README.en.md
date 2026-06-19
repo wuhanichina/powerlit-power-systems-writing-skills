@@ -6,9 +6,10 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-corpus-boundary)
 
-This repository provides a set of Codex skills for power-systems research writing: prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
+This repository provides a set of power-systems research-writing skills, compatible with both Codex and Claude (Claude Code / Cowork): prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
 
 It is not a generic polishing tool. When PowerLit is available, the skills first retrieve nearby papers and citation evidence, define what can be claimed, and then write in the target venue's section shape, paragraph function, argument rhythm, and evidence style. Before submission, the review skill closes the loop by checking whether the draft would still fail under a local reviewer gate.
 
@@ -26,6 +27,10 @@ Supported venues and formats:
 
 ## Install And Use
 
+These skills work with both Codex and Claude (Claude Code / Cowork). Each skill is a standard `SKILL.md` + `references/` + Python-script bundle that is platform-independent, so the two install paths below can coexist.
+
+### Codex
+
 Run this in PowerShell:
 
 ```powershell
@@ -39,7 +44,24 @@ python "$env:USERPROFILE\.codex\skills\.system\skill-installer\scripts\install-s
          skills/powerlit-power-systems-paper-review
 ```
 
-Restart Codex, then talk to the skills directly:
+Restart Codex.
+
+### Claude (Claude Code / Cowork)
+
+Each `skills/<name>/` directory is a standard Claude skill (with `SKILL.md` frontmatter). Drop them into a Claude skills directory to make them discoverable:
+
+```bash
+git clone https://github.com/wuhanichina/powerlit-power-systems-writing-skills.git
+cp -r powerlit-power-systems-writing-skills/skills/* ~/.claude/skills/
+```
+
+- Personal skills directory: `~/.claude/skills/` (project-level: `<repo>/.claude/skills/`).
+- A single skill directory can also be zipped as a `.skill` package and installed in Claude.
+- Restart / reload Claude; the skills then appear in the skill list.
+
+The retrieval scripts run under Claude's Linux environment via the Python entry points (see [Core Mechanisms](#core-mechanisms)); no PowerShell required.
+
+### Then talk to the skills directly
 
 ```text
 Use powerlit-power-systems-prewriting-review to decide whether this typhoon distribution-network risk assessment idea is ready for Proceedings of the CSEE writing.
@@ -141,24 +163,28 @@ PowerLit JSON root resolution order:
 2. `POWERLIT_JSON_ROOT`
 3. `POWERLIT_LITERATURE_JSON`
 
-For frequent use, prefer the SQLite FTS cache bundled inside the literature skill at `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`. Standard skill installation copies that directory, so indexed retrieval works without a private raw corpus:
+For frequent use, prefer the SQLite FTS cache bundled inside the literature skill at `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`. Standard skill installation copies that directory, so indexed retrieval works without a private raw corpus.
 
-```powershell
-python skills\powerlit-power-systems-literature-intelligence\scripts\Build-PowerLitIndex.py `
-  --venue-folder ieee_tsg `
+The primary entry point is the Python script, callable from Codex, Claude (Linux environment), or any environment with Python3.
+
+Index build (Python, cross-platform):
+
+```bash
+python skills/powerlit-power-systems-literature-intelligence/scripts/Build-PowerLitIndex.py \
+  --venue-folder ieee_tsg \
   --venue-folder ieee_tpwrs
 ```
 
-Cross-platform fast search:
+Fast search (Python, cross-platform, recommended primary path):
 
-```powershell
-python skills\powerlit-power-systems-literature-intelligence\scripts\Search-PowerLitIndex.py `
-  --query "distributed voltage control" `
-  --venue-folder ieee_tsg `
+```bash
+python skills/powerlit-power-systems-literature-intelligence/scripts/Search-PowerLitIndex.py \
+  --query "distributed voltage control" \
+  --venue-folder ieee_tsg \
   --top 10
 ```
 
-Windows-compatible search prefers the skill-bundled local cache and only falls back to `rg` prefiltering when a raw corpus root is explicitly configured:
+The Windows PowerShell entry point is an alternative; it prefers the skill-bundled local cache and only falls back to `rg` prefiltering when a raw corpus root is explicitly configured:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `

@@ -63,7 +63,27 @@ Only `text-internal` failures can by themselves produce an expert-reader `FAIL`.
 - empty emphasis, generic claims, or defensive posture repeatedly erode confidence;
 - positive control signals are absent or too weak to sustain expert reading motivation.
 
-## Output Requirements
+## Opening Pain-Point And Verbosity-Density Check
+
+This check closes the loop with the writing skill's opening pain-point gate and sentence-tightening test. It is a `text-internal` check: judge only the manuscript text.
+
+### Opening pain-point
+
+Read the opening of the abstract and the introduction.
+
+- Full papers (CSEE / AEPS / TPWRS / TSG): a trend, importance, or definition opener is acceptable, but the concrete power-system object, its failing condition, and the unresolved conflict must arrive by the end of the first paragraph. Flag when the first paragraph stays entirely at context level and the pain point is deferred to a later paragraph (anchor the finding to the paragraph).
+- IEEE Letters: the first sentence itself must carry object + condition + conflict. Flag any trend/importance/definition/literature-activity opener as the first sentence.
+
+A buried or missing pain point is a `text-internal` reading-experience burden, not a style preference.
+
+### Verbosity density
+
+Spot-check whether retained sentences carry their payload concisely. Flag, with an anchored example, when prose is dominated by:
+
+- zero-payload sentences (no object, variable, mechanism, evidence, or contrast);
+- lead-in filler ("值得注意的是", "it is worth noting that"), stacked hedges, nominalization padding ("对...进行分析"), or empty intensifiers ("显著地"/"significantly" with no metric).
+
+Low information density is a `writing` burden. Concentrated padding that obscures the technical object can contribute to `CONDITIONAL PASS` or, when it blocks linear reading of a critical section, `FAIL`. Do not fail a paper for isolated, low-impact padding; name the repair instead.
 
 In the review output, include:
 

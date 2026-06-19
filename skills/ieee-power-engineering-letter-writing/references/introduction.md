@@ -6,7 +6,9 @@ The Letter introduction should cut directly to the technical nerve. It does not 
 
 ## Recommended Flow
 
-1. Define the system object or assumption under scrutiny.
+The first sentence must already pinpoint the pain point: name the concrete system object, its failing condition, and the unresolved conflict. No trend, importance, definition, or literature-activity warm-up before it. The flow below starts from that sentence, not before it.
+
+1. Define the system object or assumption under scrutiny, together with the condition under which it breaks.
 2. State why it matters operationally or mathematically.
 3. Summarize only the closest prior line.
 4. Identify the gap or wrong assumption.

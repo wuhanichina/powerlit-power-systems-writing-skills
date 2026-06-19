@@ -26,7 +26,7 @@ Fast retrieval is mandatory for PowerLit-backed workflows. Prefer the skill-bund
 2. `POWERLIT_INDEX_ROOT`.
 3. Skill-bundled `assets/powerlit-index`.
 
-Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `scripts/Search-PowerLitIndex.py` for direct cross-platform indexed retrieval. On Windows, `scripts/Search-PowerLitJson.ps1` is still the public search entry and automatically uses the skill-bundled cache first; it falls back to `rg` prefiltering and raw JSON parsing only when the index is missing or incomplete and a raw corpus root is explicitly configured. Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check corpus availability when shell access is available. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
+Use `scripts/Build-PowerLitIndex.py` to build or refresh the local index. Use `scripts/Search-PowerLitIndex.py` for indexed retrieval; this Python script is the primary cross-platform search entry and works under Codex, Claude (Linux environment), or any environment with Python3, and prefers the skill-bundled cache. On Windows, `scripts/Search-PowerLitJson.ps1` is an alternative public entry with equivalent behavior; it also uses the skill-bundled cache first and falls back to `rg` prefiltering and raw JSON parsing only when the index is missing or incomplete and a raw corpus root is explicitly configured. Use `scripts/Resolve-PowerLitJsonRoot.ps1` to check corpus availability when PowerShell access is available. Use `scripts/Analyze-PowerLitEvidenceStrength.ps1` when the task asks what accepted papers write into the manuscript, what evidence strength passes review, or which evidence dimensions should be required before drafting.
 
 When the task maps to a known direction or method family, consult `references/method-canon.json` before broad retrieval. The method canon is a quality anchor for method families and evidence bars; it is not a substitute for a final main-corpus novelty search.
 
@@ -34,22 +34,22 @@ Use `references/venue-registry.json` for venue names and aliases. If a requested
 
 Use `scripts/query_analyzer.py` for domain-aware query terms. It preserves two-letter abbreviations such as AC, DC, PV, EV, UC, and DR; expands common power-system abbreviations; keeps explicit user phrases; and generates Chinese 2-gram and 3-gram terms.
 
-The search script interface is:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.ps1 `
-  -Query "<technical query>" `
-  -VenueFolder ieee_tsg `
-  -Top 10
-```
-
-Cross-platform indexed interface:
+The primary search script interface (Python, cross-platform, recommended):
 
 ```bash
 python scripts/Search-PowerLitIndex.py \
   --query "<technical query>" \
   --venue-folder ieee_tsg \
   --top 10
+```
+
+Windows PowerShell alternative interface:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\Search-PowerLitJson.ps1 `
+  -Query "<technical query>" `
+  -VenueFolder ieee_tsg `
+  -Top 10
 ```
 
 Index build interface:
