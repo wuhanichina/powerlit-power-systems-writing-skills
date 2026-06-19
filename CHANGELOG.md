@@ -1,5 +1,28 @@
 # 版本说明
 
+## Unreleased - Paper Writing Spine, Evidence Freshness, And Default Venue
+
+本版本补强 `powerlit-power-systems-paper-writing` 的生成路径，使技能先自然形成论文主线、结果解释和证据边界，再用 gate 作为底线约束。
+
+参考来源：
+
+- Virginia Gewin, "How to write a first-class paper", Nature 555, 129-130 (2018), doi: `10.1038/d41586-018-02404-4`。本次只吸收其写作原则：中心主线、读者路径、discussion 的文献语境、证据约束和可复现信息完整性，不复制原文表达。
+- 现有 PowerLit 写作技能经验：保持项目 `claims.md` 只作为证据边界，通过“项目论点 -> 论文论点”转换、review-closed loop 和 reader-experience pass 防止防御型写作与过度润色。
+
+主要变化：
+
+- 新增内部 `paper spine` 生成对象，使标题、摘要、引言、结果讨论和结论围绕同一条技术主线展开。
+- 引言规则改为先形成内部主线，再决定保留、延后或删除背景、文献和贡献内容。
+- 结果/讨论段新增解释层：结果段应说明场景、指标、比较对象、物理或模型机制、支撑的论文论点和解释边界，而不是只复述表格。
+- 方法和图表结果规则新增“reproducibility as exposition”：系统、数据、场景、单位、样本数、K 值、求解协议和基线设置应出现在读者判断模型或结果时自然需要的位置。
+- 无指定期刊时，默认按 IEEE TPWRS 的路由、证据标准和审稿边界处理，但先输出中文技术稿；需要英文或最终 IEEE 文体时再转换。
+- 写作前默认解析最新一致证据面：优先使用最新 completed `RunMetadata`、结果 CSV/MAT、验证报告和与当前 run 对齐的 figure manifest 记录；多条 manifest 时不默认取第一条；`latest` 文件名与元数据冲突时以元数据为准并说明冲突。
+
+验证记录：
+
+- `git diff --check` 通过。
+- `scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch` 通过，`skill_count=6`。
+
 ## Unreleased - Literature Reading Skill
 
 - 新增 `powerlit-power-systems-literature-reading`，用于对单篇或少量指定电力系统文献做中文精读总结。
