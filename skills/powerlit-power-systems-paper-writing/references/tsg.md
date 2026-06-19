@@ -12,11 +12,11 @@ PowerLit mining used 209 IEEE Transactions on Smart Grid full papers from the lo
 - Median references: 38.
 - Compared with TPWRS, TSG has similar full-paper structure but stronger emphasis on data, distributed coordination, DER/distribution operation, learning-enabled control, communication/cyber/privacy constraints, and grid-edge mechanisms.
 
-Use this to write like TSG, not like generic AI/ML or generic TPWRS.
+Use this to write like TSG, not like generic AI/ML or generic TPWRS. Identify the supplied research object before applying this profile.
 
 ## Register
 
-TSG values smart-grid mechanisms with power-system meaning. A TSG paper can use data-driven, distributed, learning-based, communication-aware, cyber-physical, or DER-focused methods, but the contribution must still resolve a grid-operational problem.
+TSG values smart-grid mechanisms with power-system meaning. A TSG paper can use data-driven, distributed, learning-based, communication-aware, cyber-physical, or DER-focused methods, but that layer must be present in the supplied research object and evidence. If the supplied paper has no smart-grid layer, flag venue mismatch or retarget instead of adding one.
 
 Prefer:
 
@@ -31,15 +31,16 @@ Avoid:
 - treating a power-grid dataset as sufficient power-system contribution;
 - generic ML claims such as "state-of-the-art accuracy" without grid metrics;
 - broad "smart grid framework" language without an operational mechanism;
-- claiming privacy, distributed implementation, scalability, or real-time performance without testing the corresponding condition.
+- claiming privacy, distributed implementation, scalability, or real-time performance without testing the corresponding condition;
+- adding DER, communication, privacy, cyber, learning, or data-driven claims only because the target venue is TSG.
 
 ## Abstract
 
 Recommended shape:
 
-1. One sentence for smart-grid setting and operational difficulty.
-2. One sentence for the technical object: distributed control, estimator, learning policy, cyber-physical detector, DER coordination, market/DR mechanism, or data-driven model.
-3. Two to four sentences for mechanism: information structure, physical constraints, communication/privacy setting, learning/control formulation, or optimization.
+1. One sentence for the supplied smart-grid setting and power-system difficulty.
+2. One sentence for the supplied technical object: distributed control, estimator, learning policy, cyber-physical detector, DER coordination, market/DR mechanism, data-driven model, or another object actually present in the paper.
+3. Two to four sentences for mechanism: information structure, physical constraints, communication/privacy setting, learning/control formulation, or optimization only when these are part of the claim.
 4. One sentence for grid-side evidence and metrics.
 5. Optional boundary sentence if the claim depends on data availability, communication assumptions, topology, or DER behavior.
 
@@ -49,13 +50,13 @@ Use "This paper" once if useful. After that, make the method object, data mechan
 
 Use a TSG introduction arc:
 
-1. Smart-grid context: DERs, active distribution networks, microgrids, demand response, EVs, grid-edge control, cyber-physical operation, or data-driven monitoring.
+1. Supplied smart-grid context: DERs, active distribution networks, microgrids, demand response, EVs, grid-edge control, cyber-physical operation, data-driven monitoring, or another smart-grid layer present in the paper.
 2. Operational consequence: voltage/security/frequency/resilience/market/coordination/privacy/reliability issue.
 3. Existing method classes: optimization/control, data-driven/learning, distributed/communication-aware, cyber-physical/security, or market/DR.
 4. Exact gap: missing physical constraint, weak generalization, unmodeled communication/privacy limit, poor scalability, unrealistic information timing, or lack of operational interpretability.
 5. Contribution list with concrete deliverables and grid-side validation.
 
-Do not let the introduction read like an ML paper. Every data or learning claim should be tied to a grid constraint, operational metric, or physical interpretation.
+Do not let the introduction read like an ML paper. Every data or learning claim should be tied to a grid constraint, operational metric, or physical interpretation. Do not add data, learning, communication, or DER language when the supplied object and evidence do not contain it.
 
 ## Method And Formulation
 

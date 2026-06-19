@@ -14,24 +14,26 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
 
 ## Core Workflow
 
-1. Identify the target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG. If the user does not specify a venue, default to IEEE TPWRS and write the first manuscript draft in Chinese while still applying TPWRS logic, evidence standards, and claim boundaries. Produce IEEE English only when the user asks for English, translation, polishing, or final venue-language conversion.
-2. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not turn an unsupported paper into fluent manuscript prose.
-3. Lock the paper object before drafting:
+1. Load `references/research-object-gate.md` and identify the research object before venue adaptation: power-system object, problem type, technical object, evidence object, and adjacent non-objects. If any item is unclear, state the assumption or blocker before drafting.
+2. Identify the target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG. If the user does not specify a venue, use the research-object gate and routing defaults first; if still unclear, default to IEEE TPWRS and write the first manuscript draft in Chinese while still applying TPWRS logic, evidence standards, and claim boundaries. Produce IEEE English only when the user asks for English, translation, polishing, or final venue-language conversion.
+3. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not turn an unsupported paper into fluent manuscript prose.
+4. Lock the paper object before drafting:
    - grid or market object;
    - technical problem;
    - model, formulation, control law, estimator, algorithm, or mechanism;
    - evidence package;
    - claim boundary.
-4. Resolve the current evidence surface before drafting from project outputs. Unless the user names a specific run, use the latest coherent data and validation result: prefer the newest completed `RunMetadata`, result CSV/MAT files, validation/check reports, and figure manifest records that refer to existing files from the same run. Do not quote stale manifest entries, older `latest` files, or historical figures when a newer result table or validation report is present.
-5. Load `references/project-claim-translation.md`. Treat project `claims.md`, research notes, evidence maps, and gate files as evidence boundaries, not as final manuscript claims.
-6. Load `references/corpus-grounded-drafting.md` and `references/powerlit-evidence-strength.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, style/rhythm calibration, full-paper drafting, internal readiness, or evidence-strength judgment is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
+5. Apply the venue as a style, structure, and evidence constraint without changing the research object. Do not convert a manuscript into a venue's common topic unless that topic is already present in the supplied title, method, variables, equations, and evidence. Keep the original technical object and adapt its wording to the venue's rhythm and evidence bar.
+6. Resolve the current evidence surface before drafting from project outputs. Unless the user names a specific run, use the latest coherent data and validation result: prefer the newest completed `RunMetadata`, result CSV/MAT files, validation/check reports, and figure manifest records that refer to existing files from the same run. Do not quote stale manifest entries, older `latest` files, or historical figures when a newer result table or validation report is present.
+7. Load `references/project-claim-translation.md`. Treat project `claims.md`, research notes, evidence maps, and gate files as evidence boundaries, not as final manuscript claims.
+8. Load `references/corpus-grounded-drafting.md` and `references/powerlit-evidence-strength.md`. When introduction, related-work, novelty, citation-sensitive writing, venue adaptation, style/rhythm calibration, full-paper drafting, internal readiness, or evidence-strength judgment is requested, use `powerlit-power-systems-literature-intelligence` first unless PowerLit is unavailable.
    - For skill maintenance or known-paper reconstruction tasks, also load `references/published-paper-reconstruction.md`. Treat accepted papers as masked evidence benchmarks, not text sources to imitate.
-7. Load `references/venue-profiles.md`, then load exactly one venue reference:
+9. Load `references/venue-profiles.md`, then load exactly one venue reference:
    - 中国电机工程学报: `references/csee.md`; also load `references/csee-precision.md`.
    - 电力系统自动化: `references/aeps.md`.
    - IEEE TPWRS: `references/tpwrs.md`.
    - IEEE TSG: `references/tsg.md`.
-8. Load the section references needed for the requested manuscript part:
+10. Load the section references needed for the requested manuscript part:
    - introduction or related work: `references/introduction-scalpel.md`;
    - method, model, formulation, algorithm, control, optimization, or derivation: `references/method-model.md`;
    - case study, numerical results, experiment, simulation, conclusion, or closing section: `references/case-conclusion.md`;
@@ -41,7 +43,8 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
    - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
    - optional deep wording examples only when the consolidated gate is insufficient: `references/publishable-prose.md`, `references/rhythm.md`, `references/lexicon.md`, and `references/anti-ai-style.md`.
-9. Build the internal drafting map before writing:
+11. Build the internal drafting map before writing:
+   - research-object map: power-system object, problem type, technical object, evidence object, and non-object constraints;
    - paper spine: one sentence naming the technical object, unresolved conflict, central action, and evidence boundary that should quietly align the title, abstract, introduction, result discussion, and conclusion;
    - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
    - reviewer-feedback integration when revising after comments: reviewer concern, real technical gap, physical mechanism, manuscript location, and evidence or formula used;
@@ -52,10 +55,10 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
    - citation-to-sentence plan when literature evidence is needed;
    - gap-to-contribution-to-evidence map;
    - section budget so standard material does not hide the contribution.
-10. Draft manuscript prose by section. Let the paper spine shape the section order and emphasis, but do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
-11. Before finalizing, run the claim pass, physical-story pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, reviewer-feedback integration pass, engineering-math balance pass, cut pass, rhythm pass, working-language firewall, Chinese register gate, and English AI-tells gate from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`.
-12. If an internal readiness target is requested, apply `references/internal-readiness-writing.md` before review closure. Do not claim full-manuscript readiness when the evidence packet only supports a section-level result.
-13. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
+12. Draft manuscript prose by section. Let the paper spine shape the section order and emphasis, but do not expose planning labels, citation-pack labels, paragraph roles, or self-review scaffolds in final manuscript text unless the user explicitly asks to see them.
+13. Before finalizing, run the claim pass, physical-story pass, reader-burden pass, mandatory reader-experience pass, boundary-posture pass, formula physical-intuition pass, reviewer-feedback integration pass, engineering-math balance pass, cut pass, rhythm pass, working-language firewall, Chinese register gate, and English AI-tells gate from the loaded references. For captions, tables, and result paragraphs, also run the figure/table evidence check in `references/figures-tables-results.md`.
+14. If an internal readiness target is requested, apply `references/internal-readiness-writing.md` before review closure. Do not claim full-manuscript readiness when the evidence packet only supports a section-level result.
+15. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
 ## Power-System Story Order
 
@@ -74,13 +77,13 @@ Mathematics should grow out of the power-system picture. Equations, lemmas, and 
 
 ## Venue Routing
 
-Use the venue as a design constraint, not a late style filter.
+Use the venue as a design constraint, not a late style filter and not a topic-rewriting instruction. The research object gate always comes first.
 
 - No specified venue: default to IEEE TPWRS for routing, evidence bar, and review closure. The first draft should be Chinese technical manuscript prose unless the user asks for English or final IEEE conversion.
-- 中国电机工程学报: engineering mechanism and dense Chinese exposition. Keep policy background short and make every sentence define, constrain, derive, verify, or delimit.
-- 电力系统自动化: compact operational logic. Move quickly from operating scenario to variables, constraints, algorithm, and metric.
-- IEEE TPWRS: formulation-led English. Assumptions, constraints, reformulations, guarantees, and case evidence must be explicit.
-- IEEE TSG: smart-grid mechanism. Data, learning, DER, privacy, communication, distributed-control, and cyber claims must remain tied to grid operation and physical constraints.
+- 中国电机工程学报: object-preserving engineering exposition. Keep policy background short and make every sentence define, constrain, derive, verify, or delimit the supplied research object.
+- 电力系统自动化: compact, object-preserving technical logic. Move quickly from the manuscript's own scenario to the relevant variables, constraints, algorithm, estimator, index, criterion, or metric; use dispatch/operation/planning language only when the supplied paper actually has that object.
+- IEEE TPWRS: object-preserving formulation-led English. Assumptions, constraints, reformulations, guarantees, and case evidence must be explicit when they belong to the supplied research object.
+- IEEE TSG: object-preserving smart-grid mechanism. Data, learning, DER, privacy, communication, distributed-control, and cyber claims must remain tied to the supplied grid object and physical constraints; do not add a smart-grid layer that is not in the evidence.
 
 See `references/venue-profiles.md` for the full profile contract.
 
@@ -124,6 +127,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 ## Hard Rules
 
 - Do not polish a NO-GO idea into manuscript prose.
+- Do not let a target-venue profile change the manuscript's research object. A venue can change rhythm, section emphasis, evidence granularity, and register; it cannot add dispatch/operation/planning, smart-grid/data/cyber, formulation/guarantee, or broad engineering-implementation claims without supplied evidence for that shift.
 - Do not copy project `claims.md` wording into the paper as the headline contribution. Project claims are often rigid evidence controls; translate them into a venue-fit paper claim before drafting.
 - Do not lead manuscript paragraphs with defensive boundary language such as "需要强调的是", "本文不把...", "本文不主张...", or "not intended to replace..." unless the target text is explicitly a limitations paragraph. Translate the boundary into a positive technical subject plus a stated scope.
 - Do not answer reviewer comments in the manuscript body by stacking disclaimers, apology-like hedges, or isolated rebuttal sentences. Reviewer concerns should be absorbed into the physical logic, model definition, evidence comparison, or scoped conclusion at the point where the paper itself needs them.

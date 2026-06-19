@@ -32,7 +32,7 @@ Reject risk is high when:
 
 电力系统自动化:
 
-- expects lean but complete operation/control/dispatch validation;
+- expects lean but complete validation for the submitted object, including operation/control/dispatch validation only when those are the claims;
 - scenarios, baselines, and metrics should be easy to scan.
 
 IEEE TPWRS:
@@ -42,7 +42,7 @@ IEEE TPWRS:
 
 IEEE TSG:
 
-- expects smart-grid realism: data quality, DER behavior, communication/control limits, distribution operation, learning generalization, or cyber-physical constraints when claimed.
+- expects smart-grid realism when claimed: data quality, DER behavior, communication/control limits, distribution operation, learning generalization, or cyber-physical constraints.
 
 IEEE Letter:
 

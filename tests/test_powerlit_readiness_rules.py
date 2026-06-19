@@ -70,6 +70,38 @@ def test_application_paper_is_not_auto_rejected_for_engineering_integration():
     assert "engineering integration or system deployment value is not an automatic rejection reason" in standards
 
 
+def test_venue_profiles_preserve_research_object_before_adaptation():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    object_gate = read_text("skills/powerlit-power-systems-paper-writing/references/research-object-gate.md")
+    venue_profile = read_text("skills/powerlit-power-systems-paper-writing/references/venue-profiles.md")
+    aeps = read_text("skills/powerlit-power-systems-paper-writing/references/aeps.md")
+    csee = read_text("skills/powerlit-power-systems-paper-writing/references/csee.md")
+    tpwrs = read_text("skills/powerlit-power-systems-paper-writing/references/tpwrs.md")
+    tsg = read_text("skills/powerlit-power-systems-paper-writing/references/tsg.md")
+    method = read_text("skills/powerlit-power-systems-paper-writing/references/method-model.md")
+    case = read_text("skills/powerlit-power-systems-paper-writing/references/case-conclusion.md")
+    prewriting = read_text("skills/powerlit-power-systems-prewriting-review/references/venue-fit.md")
+    review = read_text("skills/powerlit-power-systems-paper-review/references/venue-standards.md")
+
+    assert "Load `references/research-object-gate.md`" in writing_skill
+    assert "research object before venue adaptation" in writing_skill
+    assert "The target journal comes after that" in object_gate
+    assert "A venue profile must not change" in object_gate
+    assert "Venue profiles are not topic converters" in venue_profile
+    assert "object-preserving 电力系统自动化 style guide" in aeps
+    assert "Do not rewrite a manuscript into grid dispatch, operation, or planning" in aeps
+    assert "do not silently add the missing venue object" in venue_profile
+    assert "the supplied research object" in csee
+    assert "it must come from the supplied paper rather than from the venue profile" in tpwrs
+    assert "flag venue mismatch or retarget instead of adding one" in tsg
+    assert "Write the method section as a compact, object-preserving model and execution procedure" in method
+    assert "Do not add optimization, planning, relaxation, guarantee, or scalability machinery" in method
+    assert "flag TSG venue mismatch instead of adding one" in method
+    assert "Use dispatch/control variables only when the supplied method actually has them" in case
+    assert "Do not rewrite the idea into a venue's common topic" in prewriting
+    assert "must not rewrite the manuscript into the venue's common topic" in review
+
+
 def test_independent_reviewer_prompt_is_portable_and_readiness_based():
     prompt = read_text("evaluation/behavior/independent-reviewer-prompt.md")
     assert "Independent Reviewer Prompt" in prompt

@@ -28,9 +28,9 @@ The installed skill is tuned for ML/CV/NLP-style writing. For power-system journ
 The new skill is venue-routed. It uses empirical style signals from PowerLit JSON papers:
 
 - 中国电机工程学报: broader engineering exposition, bilingual/article-format tendency, model/control/topology plus experiment/simulation evidence.
-- 电力系统自动化: compact operation/control/optimization style, explicit objective/constraint/algorithm/case structure.
-- IEEE TPWRS: formulation-first English, short abstract sentences, clear assumptions, tractability, case studies, and precise contribution lists.
-- IEEE TSG: IEEE Transactions structure with smart-grid mechanisms: data, DER/distribution operation, distributed control, communication/cyber/privacy, and grid-edge evidence.
+- 电力系统自动化: compact object-preserving style, explicit variables/constraints/indices/algorithm/case structure according to the supplied object.
+- IEEE TPWRS: object-preserving formulation-led English, short abstract sentences, clear assumptions, tractability only when claimed, case studies, and precise contribution lists.
+- IEEE TSG: IEEE Transactions structure with supplied smart-grid mechanisms: data, DER/distribution operation, distributed control, communication/cyber/privacy, and grid-edge evidence when those layers are present.
 
 ## Failure Modes Prevented
 
@@ -38,3 +38,4 @@ The new skill is venue-routed. It uses empirical style signals from PowerLit JSO
 - Writing "AI-polished" paragraphs that sound generic but do not define variables, constraints, systems, or metrics.
 - Importing ML paper structure into power-system manuscripts.
 - Leaving unsupported claims in the abstract or introduction.
+- Letting a target venue profile rewrite the research object before the object has been identified.

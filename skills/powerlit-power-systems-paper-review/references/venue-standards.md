@@ -2,12 +2,14 @@
 
 Use this reference to judge venue fit and acceptance risk.
 
+Before applying venue standards, identify the manuscript's research object: power-system object, problem type, technical object, evidence object, and adjacent non-objects. A venue standard can reject or redirect a mismatch, but it must not rewrite the manuscript into the venue's common topic.
+
 ## 中国电机工程学报
 
 Expected paper shape:
 
-- clear engineering object and physical mechanism;
-- sufficient model/control/optimization depth;
+- clear supplied engineering object and physical mechanism, estimator, certificate, model, or application insight;
+- sufficient model/control/optimization/estimation/certification depth for the supplied object;
 - detailed simulation, experiment, or engineering case;
 - conclusions that connect to engineering applicability.
 
@@ -24,27 +26,29 @@ Review stance: tolerate broader engineering explanation, but demand a real mecha
 
 Expected paper shape:
 
-- compact operational problem;
-- explicit decision variables, objective, constraints, time scale, and information structure;
-- focused dispatch/control/operation validation;
+- compact technical problem in the submitted power-system object;
+- explicit relevant variables, objectives, constraints, states, indices, time scale, and information structure;
+- focused validation for the submitted object, including dispatch/control/operation validation only when those are the actual claims;
 - concise conclusion, often with practical boundary or follow-up direction.
 
 Reject-risk patterns:
 
-- long background before the operational problem appears;
+- long background before the concrete submitted problem appears;
 - model and solving procedure are not easy to scan;
 - case study lacks comparison, operating scenarios, or sensitivity;
 - text claims "有效性/可行性" without showing which constraint, metric, or scenario proves it.
 
 Review stance: favor clarity, operational relevance, and complete validation over broad conceptual claims.
 
+Do not mark a manuscript as better aligned with any venue by rewriting its core into that venue's common topic. Judge the original object first, then assess whether the venue's model-evidence rhythm fits it.
+
 ## IEEE TPWRS
 
 Expected paper shape:
 
-- formulation-first contribution;
+- object-preserving, formulation-led contribution when the supplied research object supports it;
 - explicit assumptions, sets, indices, variables, uncertainty, information timing;
-- original model separated from reformulation, relaxation, approximation, or algorithm;
+- original model separated from reformulation, relaxation, approximation, or algorithm when those components are claimed;
 - case studies with baselines, metrics, and reproducibility details;
 - contribution list with concrete deliverables.
 
@@ -54,6 +58,7 @@ Reject-risk patterns:
 - assumptions are hidden or only appear in the case study;
 - method novelty depends on an approximation whose error or boundary is not discussed;
 - validation does not include relevant baselines or scalability checks when claimed.
+- venue drift adds optimization, planning, guarantee, or security-constraint claims that are not in the manuscript object.
 
 Review stance: be strict on mathematical clarity, novelty relative to existing formulations, and claim-evidence alignment.
 
@@ -61,7 +66,7 @@ Review stance: be strict on mathematical clarity, novelty relative to existing f
 
 Expected paper shape:
 
-- smart-grid mechanism: data, communication, distributed coordination, DER/grid-edge control, cyber-physical operation, markets, learning/control integration, resilience, or active distribution network operation;
+- supplied smart-grid mechanism: data, communication, distributed coordination, DER/grid-edge control, cyber-physical operation, markets, learning/control integration, resilience, or active distribution network operation;
 - clear distinction between algorithmic novelty and power-system insight;
 - evidence on realistic smart-grid settings, data, uncertainty, or communication constraints.
 
@@ -71,6 +76,7 @@ Reject-risk patterns:
 - no physical constraint, operational boundary, or grid-side interpretation;
 - data-driven method lacks robustness, generalization, or benchmark comparison;
 - communication/privacy/distribution claims are not tested.
+- venue drift adds a DER, data, communication, privacy, cyber, or distributed layer that is not in the manuscript object.
 
 Review stance: require both methodological substance and power-system operational meaning.
 

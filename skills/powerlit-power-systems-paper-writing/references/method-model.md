@@ -123,7 +123,7 @@ Many power-system methods reuse high-frequency standard parts. By default these 
 
 Write the method section as an engineering-mechanism expansion:
 
-- Start from system structure, coupling relation, device behavior, operating scenario, or physical mechanism.
+- Start from the supplied research object: system structure, coupling relation, device behavior, scenario, estimator, certificate, index, or physical mechanism.
 - Then construct the model: variables and parameters should be defined near the first equation.
 - Separate objective function, constraints, control equations, and solution algorithm.
 - Explain the physical meaning of important constraints before giving the algorithm.
@@ -148,24 +148,25 @@ Do not let "首先/其次/最后" become a list of writing actions. Each sequenc
 
 ## 电力系统自动化
 
-Write the method section as a compact operational model and execution procedure:
+Write the method section as a compact, object-preserving model and execution procedure:
 
-- Clarify time scale, information source, dispatch/control object, and decision boundary early.
-- Make decision variables, objective function, constraints, uncertainty/disturbance model, and solution process easy to scan.
-- Use direct functional headings: `问题描述`, `模型构建`, `目标函数`, `约束条件`, `求解算法`, `协调优化策略`.
+- Clarify time scale, information source, technical object, and decision, estimation, protection, screening, or verification boundary early.
+- Make relevant variables, objectives, constraints, states, indices, uncertainty/disturbance model, and solution or evaluation process easy to scan.
+- Use direct functional headings: `问题描述`, `模型构建`, `目标函数`, `约束条件`, `指标构建`, `状态估计`, `故障辨识`, `安全评估`, `求解算法`, `协调优化策略`.
 - Keep implementation notes brief unless solver behavior, convergence, or runtime is part of the claim.
+- Do not replace the manuscript object with dispatch, operation, or planning because the target venue is 电力系统自动化. Use dispatch/control vocabulary only when the supplied method actually contains those variables, objectives, constraints, or evidence.
 
 Preferred sentence rhythm:
 
 - "计及...，构建..."
-- "以...为目标，约束包括..."
-- "采用...对模型进行求解/滚动优化/分层协调。"
+- "以...为目标/判据，约束或条件包括..."
+- "采用...对模型进行求解/估计/辨识/校核/滚动优化/分层协调。"
 
 Avoid mixing background motivation, modeling, and case-study interpretation in the same paragraph.
 
 ## IEEE TPWRS
 
-Write the method section as a formulation-first technical argument:
+Write the method section as an object-preserving, formulation-first technical argument:
 
 - Use `NOMENCLATURE` only if notation is heavy; otherwise define notation near first use.
 - Put assumptions, sets, indices, variables, uncertainty, and information timing before equations.
@@ -173,6 +174,7 @@ Write the method section as a formulation-first technical argument:
 - State what each transformation preserves, relaxes, approximates, or guarantees.
 - Give the algorithm after the formulation difficulty is clear.
 - Include convergence, scalability, complexity, or exactness only when actually supported.
+- Do not add optimization, planning, relaxation, guarantee, or scalability machinery that is not part of the supplied research object.
 
 Common section names:
 
@@ -197,13 +199,14 @@ Avoid "we explore", "we comprehensively investigate", and "a novel framework" un
 
 ## IEEE TSG
 
-Write the method section as a smart-grid mechanism, not as a generic algorithm description:
+Write the method section as a supplied smart-grid mechanism, not as a generic algorithm description:
 
 - State the grid object first: feeder, DER fleet, microgrid, EV/storage system, sensors, market participants, communication graph, or cyber-physical layer.
 - Make the information structure explicit: centralized/distributed, local measurements, delayed communication, privacy, online data, or attack model.
 - Keep physical constraints close to data/control machinery: power flow, voltage/current limits, inverter capability, storage dynamics, frequency, stability, or restoration constraints.
 - For learning/data-driven methods, state training/test split, noise, forecast horizon, domain shift, robustness, or generalization when relevant.
 - For distributed/cyber-physical methods, state communication assumptions, privacy mechanism, attack model, or implementation burden when relevant.
+- If the supplied paper has no DER, data, communication, cyber, privacy, distributed, or grid-edge object, flag TSG venue mismatch instead of adding one.
 
 Avoid letting the method read like an ML/control paper with a power-grid dataset attached. The algorithmic object must explain what grid-operational difficulty it resolves.
 
@@ -220,4 +223,4 @@ Before finalizing, verify:
 - Mathematical depth matches the venue: enough derivation for reviewability, not proof-heavy exposition that displaces the engineering mechanism.
 - Any uncommon theory is introduced only to the extent needed by the later model and is connected to the physical object before it is used.
 - Solver and platform details are placed in the method only when method-level claims depend on them.
-- The venue's expected granularity is respected: broader mechanism for 中国电机工程学报, leaner operational formulation for 电力系统自动化, assumption-explicit formulation for TPWRS.
+- The venue's expected granularity is respected without changing the research object: broader mechanism for 中国电机工程学报, leaner object-preserving formulation for 电力系统自动化, assumption-explicit formulation for TPWRS, and supplied smart-grid mechanism for TSG.

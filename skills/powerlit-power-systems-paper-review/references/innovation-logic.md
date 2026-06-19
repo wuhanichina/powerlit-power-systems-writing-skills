@@ -2,14 +2,16 @@
 
 Use this reference for title, abstract, introduction, contribution, and overall logic.
 
+Before venue judgment, identify the research object. The title, abstract, method, evidence, and conclusion should preserve the same power-system object, problem type, technical object, and evidence object.
+
 ## Logic Chain
 
 A publishable power-system paper should close this chain:
 
-1. Operating context: what system, device, market, uncertainty, control layer, or planning setting is involved.
+1. Research context: what system, device, market, uncertainty, control layer, planning setting, protection layer, resilience event, data source, or feasibility boundary is involved.
 2. Technical contradiction: why existing practice or methods fail.
 3. Key problem: what must be modeled, controlled, estimated, optimized, proven, or validated.
-4. Proposed technical object: model, formulation, algorithm, control strategy, estimator, certificate, or dispatch mechanism.
+4. Proposed technical object: model, formulation, algorithm, control strategy, estimator, certificate, index, criterion, validation protocol, or dispatch mechanism when supplied.
 5. Verification: which case, scenario, metric, baseline, or theorem tests the object.
 6. Conclusion: what is now established and where it applies.
 

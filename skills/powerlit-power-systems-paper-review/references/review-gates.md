@@ -12,6 +12,8 @@ Use this calibration to find review-gate errors, not to reward textual similarit
 
 Before judging a full-paper draft as internally ready or submission-ready, compare its evidence dimensions with accepted PowerLit papers from the same venue or claim class. Use `powerlit-evidence-strength.md` and, when shell access is available, `Analyze-PowerLitEvidenceStrength.ps1` to identify which quantities accepted papers make visible in the manuscript.
 
+Run the research-object check before venue comparison. Compare with accepted papers in the same venue and claim class only after the manuscript's power-system object, problem type, technical object, and evidence object are clear.
+
 The comparison should ask:
 
 - Does the draft expose the same class of systems, scenarios, baselines, metrics, sensitivity, ablation, runtime, certificate, or reproducibility details as accepted papers making a similar claim?

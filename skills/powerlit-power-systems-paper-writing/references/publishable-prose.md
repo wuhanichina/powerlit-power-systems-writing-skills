@@ -89,8 +89,8 @@ Only return the final manuscript prose unless the user asks to see the reasoning
 The same standard appears differently by venue:
 
 - 中国电机工程学报: dense Chinese engineering prose; see `csee-precision.md`.
-- 电力系统自动化: compact operational logic; short path from scenario to variables, constraints, algorithm, and metric.
-- IEEE TPWRS: formulation-led English; assumptions, constraints, reformulations, and evidence must be explicit.
-- IEEE TSG: smart-grid mechanism must remain tied to grid operation, physical constraints, data assumptions, and implementation conditions.
+- 电力系统自动化: compact object-preserving logic; short path from the supplied scenario to the relevant variables, constraints, states, indices, algorithm, criterion, or metric.
+- IEEE TPWRS: object-preserving formulation-led English; assumptions, constraints, reformulations, and evidence must be explicit when those objects are supplied.
+- IEEE TSG: supplied smart-grid mechanism must remain tied to grid operation, physical constraints, data assumptions, and implementation conditions.
 
 No venue accepts polished vagueness.

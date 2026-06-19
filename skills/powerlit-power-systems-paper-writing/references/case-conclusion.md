@@ -46,7 +46,7 @@ This is a writing move, not a mandatory paragraph template. If the table already
 Use a complete engineering validation chain:
 
 1. System and parameters.
-2. Scenario or operating condition.
+2. Scenario, operating condition, or test condition.
 3. Comparison method.
 4. Main result.
 5. Mechanism interpretation.
@@ -74,18 +74,18 @@ Do not use the conclusion to introduce new claims.
 
 ### Case / Results
 
-Use a tighter operational validation chain:
+Use a tighter, object-preserving validation chain:
 
 1. Case setup.
 2. Scenario/data.
 3. Metrics and comparison.
-4. Operational result.
+4. Result tied to the submitted technical object.
 5. Parameter or scenario effect.
 6. Method effectiveness.
 
 Common headings include `算例分析`, `仿真验证`, `实验验证`, with subsections such as `算例设置`.
 
-Keep the writing close to the model: objective function, constraints, dispatch/control variables, and operating metrics should be visible in the validation.
+Keep the writing close to the model: objective function, constraints, states, indices, criteria, estimator variables, protection logic, or operating metrics should be visible according to the paper object. Use dispatch/control variables only when the supplied method actually has them.
 
 ### Conclusion
 
@@ -107,7 +107,7 @@ Use `CASE STUDY`, `CASE STUDIES`, `NUMERICAL RESULTS`, or `SIMULATION RESULTS`.
 A TPWRS case section should state:
 
 1. System and data.
-2. Scenario and uncertainty/model assumptions.
+2. Scenario, test condition, and uncertainty/model assumptions.
 3. Baselines.
 4. Metrics and units.
 5. Main result.
@@ -132,7 +132,7 @@ Do not repeat the abstract, re-open the literature review, or introduce unsuppor
 
 Use `CASE STUDY`, `CASE STUDIES`, `NUMERICAL RESULTS`, or `SIMULATION RESULTS`.
 
-A TSG case section should make the smart-grid mechanism visible:
+A TSG case section should make the supplied smart-grid mechanism visible:
 
 1. Distribution feeder, microgrid, DER/EV/storage system, sensor network, market/DR setting, or cyber-physical test system.
 2. Data, communication, privacy, attack, uncertainty, or distributed implementation assumptions when claimed.
@@ -140,6 +140,8 @@ A TSG case section should make the smart-grid mechanism visible:
 4. Grid metrics and method metrics with units.
 5. Generalization, robustness, communication burden, privacy leakage, or scalability if these are claimed.
 6. Operational interpretation of the result.
+
+Do not add communication, privacy, attack, DER, or learning evidence requirements unless the manuscript claims that layer. If the user requests TSG for a paper without a smart-grid evidence object, report the venue mismatch instead of fabricating a smart-grid case design.
 
 Avoid reporting ML/control performance without grid-side meaning. A TSG result paragraph should explain what improves in the grid, not only what improves in the algorithm.
 

@@ -22,7 +22,7 @@ For IEEE Transactions papers, rhythm is built by short-to-medium sentences. The 
 Typical beat:
 
 1. Engineering problem or limitation.
-2. Proposed model/control/topology/strategy.
+2. Proposed model/control/topology/strategy/estimator/certificate according to the supplied object.
 3. Mechanism or model construction.
 4. Solution/control/simulation arrangement.
 5. Result and engineering implication.
@@ -42,10 +42,10 @@ Writing rule:
 
 Typical beat:
 
-1. Operational problem.
-2. Proposed model/strategy.
+1. Concrete problem in the supplied power-system object.
+2. Proposed model, strategy, estimator, index, criterion, or algorithm.
 3. Modeling step.
-4. Solution or coordination step.
+4. Solution, estimation, identification, protection, coordination, or evaluation step.
 5. Case verification.
 
 Length tendency:
@@ -58,23 +58,24 @@ Writing rule:
 
 - This venue accepts explicit procedural rhythm, but prefers tighter sentences than 中国电机工程学报.
 - Keep "首先/然后/最后" for real model-solution-evidence progression, not for generic writing actions.
+- Do not turn this rhythm into dispatch/operation/planning content unless that content is already in the manuscript object and evidence.
 
 ### IEEE TPWRS / TSG
 
 Typical TPWRS beat:
 
-1. System setting and operational issue.
+1. System setting and supplied issue.
 2. Technical object of the paper.
-3. Formulation/model.
-4. Reformulation/algorithm/guarantee.
+3. Formulation/model/estimator/certificate.
+4. Reformulation/algorithm/guarantee when claimed.
 5. Case-study evidence.
 
 Typical TSG beat:
 
-1. Smart-grid setting and operational issue.
-2. Technical object: data-driven model, distributed controller, estimator, cyber-physical detector, or DER coordination mechanism.
-3. Physical/information structure.
-4. Learning/control/optimization mechanism.
+1. Supplied smart-grid setting and operational issue.
+2. Technical object: data-driven model, distributed controller, estimator, cyber-physical detector, DER coordination mechanism, or another supplied smart-grid object.
+3. Physical/information structure when supplied.
+4. Learning/control/optimization mechanism when claimed.
 5. Grid-side evidence.
 
 Length tendency:
@@ -88,6 +89,7 @@ Writing rule:
 - Prefer subject-led sentences: "The reformulation...", "The affine policy...", "Numerical tests...".
 - For TSG, prefer subjects such as "The distributed controller...", "The data-driven estimator...", "The communication constraint...", and "The DER coordination scheme...".
 - Use "This paper" once if useful, then shift subjects to the model, constraints, algorithm, and results.
+- Do not create a TPWRS formulation object or TSG smart-grid layer that is not supplied by the paper.
 
 ## Introduction Rhythm
 
