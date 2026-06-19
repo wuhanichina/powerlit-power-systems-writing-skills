@@ -58,6 +58,7 @@ Load `references/tsg.md`.
 
 ## Routing Defaults
 
+- If no venue is specified, default to IEEE TPWRS for venue routing and evidence standards, and produce the first manuscript draft in Chinese. Convert to IEEE English only when requested.
 - If the manuscript's center is formulation, security constraint, reliability, market, stability, or planning, default to TPWRS unless the smart-grid layer is central.
 - If the center is DER, data-driven operation, communication/privacy, cyber-physical security, distributed control, or grid-edge implementation, default to TSG.
 - If the center is a Chinese engineering mechanism with broader system explanation, default to 中国电机工程学报.

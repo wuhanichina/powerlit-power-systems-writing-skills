@@ -22,9 +22,21 @@ The method section is where the paper's claim becomes a technical object. Write 
 3. Objective, constraints, physical equations, uncertainty model, or control law.
 4. Transformation, derivation, relaxation, decomposition, or analytical property.
 5. Solution algorithm, control procedure, or implementation condition.
-6. Reproducibility details only when they affect interpretation.
+6. Reproducibility details at the point where they affect interpretation.
 
 Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
+
+## Reproducibility as Exposition
+
+Do not treat reproducibility information as an appendix-style checklist that is added after the method is already written. Place each fact where a reader needs it to understand or trust the technical object.
+
+- Put base system, topology, time scale, information timing, and operating boundary where the model object is introduced.
+- Define variables, units, per-unit bases, sign conventions, sets, and indices near the first equation that uses them.
+- State data source, sample construction, scenario generation, uncertainty model, train/test split, or forecast horizon where the method starts depending on those data.
+- Place solver, tolerance, convergence rule, hardware/software context, or runtime protocol near the algorithm only when they affect tractability, scalability, online use, or reproducibility of the reported computation.
+- Put baseline definitions and parameter settings before the comparison that depends on them, not after the result has already claimed superiority.
+
+The prose should make the study reproducible by being locally informative, not by dumping every parameter into the main text. Routine constants may remain in tables, appendices, or supplementary material when the venue allows it, but any fact needed to judge the paper's claim belongs near the claim it supports.
 
 ## Physical Story Before Mathematics
 

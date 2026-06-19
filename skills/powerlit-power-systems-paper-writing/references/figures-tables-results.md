@@ -16,6 +16,18 @@ Before writing, identify:
 
 If any item is missing, write only what the evidence supports and mark the missing item in a short note. Do not invent axes, units, baselines, confidence levels, case names, sample sizes, or solver settings.
 
+Evidence description should carry the reproducibility facts that make the result interpretable. Put them where the reader naturally looks: case setup before comparisons, table notes for parameter or solver settings, captions for scenario/metric context, and result prose for the specific baseline or boundary being discussed. Do not move a fact into a caption or result paragraph only to make the text look complete; include it when it changes how the reader should interpret the number, trend, or comparison.
+
+## Latest Evidence Selection
+
+When the user does not name a specific run, use the latest coherent data and validation result as the manuscript evidence surface.
+
+- Prefer result files whose metadata show `status: completed`, the newest `export_time` or timestamp, and consistency between `RunMetadata`, result CSV/MAT files, figure outputs, and validation/check reports.
+- If multiple `figure_manifest.jsonl` entries exist for the same figure, select the newest entry that matches existing result files and the current run metadata. Do not default to the first manifest record.
+- Treat a manifest record as stale if it references missing files, an older result object, a different sample count, a different model configuration, or a timestamp that does not match the current result tables.
+- Use the newest validation or figure-check result that belongs to the same evidence surface. If the latest numerical table has no matching validation report, write the result as unverified or requiring figure/manual review rather than borrowing an older PASS status.
+- If `latest` filenames conflict with dated or metadata-bearing outputs, trust the metadata-bearing output and state the conflict in a short note.
+
 ## Caption Rules
 
 A caption should be self-contained but not a miniature abstract.
@@ -76,7 +88,8 @@ When using MATLAB outputs, first extract the manuscript-facing fields:
 - method names exactly as used in the paper;
 - metric names, units, and direction;
 - baseline values and proposed-method values;
-- solver/runtime only when it supports the manuscript claim;
+- sample count, scenario count, horizon, or data split when the claim depends on statistical spread, generalization, or uncertainty coverage;
+- solver settings, convergence tolerance, runtime protocol, and platform only when the result supports a computational, scalability, real-time, or reproducibility claim;
 - failed, missing, or smoke-only runs that limit the conclusion.
 
 Do not describe script names, logs, cache state, or local file paths in manuscript prose unless the user is writing a reproducibility appendix.

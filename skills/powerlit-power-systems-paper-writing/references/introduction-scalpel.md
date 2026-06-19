@@ -22,6 +22,12 @@ Almost all introductions contain a gap. In Chinese venues, explicit "创新点/�
 
 The introduction should not merely prove that the topic is important. It should prove that a specific power-system object has a specific unresolved contradiction under a specific operating, planning, control, market, or uncertainty condition.
 
+Before drafting, reduce the paper to one internal spine sentence:
+
+`For [power-system object] under [operating condition], this paper [technical action] so that [unresolved conflict] can be addressed within [evidence boundary].`
+
+Do not print this sentence as a label. Use it to decide what the introduction keeps, delays, or deletes. The title should expose the same technical object or action when possible; the abstract should compress the same line; the contribution statement should unfold it; the result discussion and conclusion should return to what this line promised. If a background paragraph, citation group, or contribution candidate cannot attach to the spine, it is probably context noise or a different paper.
+
 Use this cutting order:
 
 1. Object: which system, device, market, uncertainty source, or control layer?
@@ -112,13 +118,13 @@ Actual innovations should be stated as objects:
 
 ## Gap-to-Contribution Map
 
-Before writing the final introduction, make this map:
+Before writing the final introduction, make this map as a support for the spine, not as a separate checklist:
 
 | Gap | Technical reason | Contribution | Evidence |
 | --- | --- | --- | --- |
 | What is not solved? | Why not? | What object solves it? | Which result supports it? |
 
-Every contribution should point back to a gap. Every gap kept in the introduction should either motivate a contribution or be removed.
+Every contribution should point back to a gap. Every gap kept in the introduction should either motivate a contribution or be removed. The map is successful only when the introduction reads as one developing line: the operating object creates the conflict, the literature explains why the conflict remains, the proposed technical object resolves the relevant part, and the evidence boundary makes the claim honest without sounding defensive.
 
 ## Numeric Whitelist
 

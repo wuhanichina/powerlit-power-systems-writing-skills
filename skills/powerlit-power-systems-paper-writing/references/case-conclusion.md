@@ -25,6 +25,20 @@ Median conclusion paragraph counts:
 - IEEE TPWRS: about 2.
 - IEEE TSG: about 2.
 
+## Result Discussion Layer
+
+Case-study prose should not merely restate tables or assert that the method is effective. Use the numerical result to explain what became clearer about the paper's technical object.
+
+When a result is important enough to discuss, write toward these functions naturally:
+
+- identify the scenario, metric, and comparison that make the result meaningful;
+- explain the physical mechanism, model property, constraint effect, uncertainty behavior, or computational reason behind the observed change;
+- connect the result back to the paper's main claim, abstract promise, or introduction contribution;
+- position the result against the relevant baseline or literature expectation when PowerLit or supplied references make that comparison available;
+- state the boundary of interpretation when the result supports diagnosis, complementarity, screening, feasibility, or scope control rather than broad superiority.
+
+This is a writing move, not a mandatory paragraph template. If the table already makes the numerical ranking obvious, spend the prose on why the ranking occurs and what claim it supports. If the evidence is mixed, let the discussion explain the tradeoff instead of smoothing it into uniform dominance.
+
 ## 中国电机工程学报
 
 ### Case / Results
