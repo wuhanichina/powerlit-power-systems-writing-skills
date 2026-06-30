@@ -6,7 +6,7 @@ Prewriting review answers one question: should this work enter formal manuscript
 
 `GO`:
 
-- The problem is real and venue-relevant.
+- The minimum research object is locked and the problem is real inside that object.
 - The gap is concrete.
 - The technical object is clear.
 - The model appears physically and mathematically coherent.
@@ -32,6 +32,7 @@ Prewriting review answers one question: should this work enter formal manuscript
 
 Stop before writing if any gate fails:
 
+- No locked minimum research object or small peer problem domain.
 - No concrete technical gap.
 - No identifiable technical object.
 - Model cannot express the claimed engineering need.

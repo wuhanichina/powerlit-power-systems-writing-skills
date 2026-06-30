@@ -55,6 +55,21 @@
     "expected": "The response must build or request a PowerLit evidence-strength profile before drafting, identify the non-substitutable scenario and manuscript-facing evidence required, and keep the paper below MANUSCRIPT_REVIEW_READY if the profile shows missing transition, baseline, or reproducibility evidence."
   },
   {
+    "id": "pre-drafting-innovation-title-confirmation",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 写一篇完整论文。写作前先检索项目文件，确认本文创新点和标题是什么；可以做 PowerLit 文献检索帮助我决策。先列出文件检索后确认的创新点和可行论文标题，等我确认后再写正文。",
+    "expected": "The response must load pre-drafting-confirmation.md before drafting, search project files for title/contribution/claim/evidence signals, use PowerLit or state fallback for literature-near novelty risk, return a 写作前确认 brief with file-search-confirmed innovation points and feasible title candidates, and ask the user to confirm before full manuscript prose."
+  },
+  {
+    "id": "pre-drafting-pain-point-significance",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 写作前先和我确认当前真实存在的行业/工程痛点问题，再说明创新点如何对应痛点，并列出本文技术层面的研究意义，最后再给可行标题。",
+    "expected": "The response must use pre-drafting-confirmation.md to identify the real industry or engineering pain point before innovation, map each innovation candidate to that pain point, list technical-level research significance rather than broad social value, provide feasible title candidates, and ask the user to confirm before drafting."
+  },
+  {
+    "id": "manuscript-section-quality-gate",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 起草一篇中国电机工程学报论文的标题、关键词、摘要、引言、算例分析和结论框架。标题要科学简洁并突出创新，关键词不超过5个；引言结合近五年 EI 以上文献；算例要围绕创新点设计并包含对比和灵敏度分析；结论不要夸大。",
+    "expected": "The response must load manuscript-section-quality.md, keep title/keywords/abstract/introduction/case analysis/conclusion aligned to the confirmed technical object, use PowerLit or state fallback for recent high-level literature support, cap keywords at five, design cases around the innovation with baselines and sensitivity, and keep conclusions evidence-bound."
+  },
+  {
     "id": "defensive-boundary-and-formula-intuition",
     "prompt": "Use $powerlit-power-systems-paper-writing to rewrite a CSEE paragraph that currently begins with '需要强调的是，本文不把结果表述为对线性化 GMM 概率潮流的全面精度替代' and to expand the physical intuition around equations mapping voltage GMM means/covariances to power moments and an SDP feasibility certificate.",
     "expected": "The response rewrites the boundary as a positive inverse-PLF technical 论点 with scoped GMM-PLF comparison, removes defensive '本文不...' posture from manuscript prose, and explains the formula group through grid objects, cause-effect direction, covariance identifiability, and SDP feasibility evidence relative to the stated relaxation model and constraints."

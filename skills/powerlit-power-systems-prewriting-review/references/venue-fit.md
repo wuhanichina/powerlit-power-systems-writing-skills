@@ -2,7 +2,7 @@
 
 Use this reference to decide whether the current work fits the requested venue.
 
-First identify the research object: power-system object, problem type, technical object, evidence object, and adjacent non-objects. Judge venue fit from that object. Do not rewrite the idea into a venue's common topic.
+First identify the minimum research object: power-system object, problem type, technical object, evidence object, small peer problem domain, and adjacent non-objects. Judge venue fit from that object. Do not rewrite the idea into a venue's common topic or a broader industry background.
 
 ## 中国电机工程学报
 

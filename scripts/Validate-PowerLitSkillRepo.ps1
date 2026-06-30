@@ -89,6 +89,21 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "references/project-claim-translation\.md") {
         Add-Failure "paper-writing skill must load references/project-claim-translation.md"
     }
+    if ($paperSkillText -notmatch "references/pre-drafting-confirmation\.md") {
+        Add-Failure "paper-writing skill must load references/pre-drafting-confirmation.md"
+    }
+    if ($paperSkillText -notmatch "references/manuscript-section-quality\.md") {
+        Add-Failure "paper-writing skill must load references/manuscript-section-quality.md"
+    }
+    if ($paperSkillText -notmatch "manuscript-section quality gate") {
+        Add-Failure "paper-writing skill must run the manuscript-section quality gate"
+    }
+    if ($paperSkillText -notmatch "file-search-confirmed innovation points" -or $paperSkillText -notmatch "feasible paper titles") {
+        Add-Failure "paper-writing skill must confirm innovation points and feasible paper titles before drafting"
+    }
+    if ($paperSkillText -notmatch "real industry or engineering pain point" -or $paperSkillText -notmatch "technical-level research significance") {
+        Add-Failure "paper-writing skill must confirm pain point and technical-level research significance before drafting"
+    }
     if ($paperSkillText -notmatch "references/review-closed-loop\.md") {
         Add-Failure "paper-writing skill must load references/review-closed-loop.md"
     }
@@ -161,6 +176,46 @@ if (Test-Path -LiteralPath $claimTranslation) {
     }
 } else {
     Add-Failure "Missing project-claim-translation.md"
+}
+
+$preDraftingConfirmation = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\pre-drafting-confirmation.md"
+if (Test-Path -LiteralPath $preDraftingConfirmation) {
+    $preDraftingConfirmationText = Read-Utf8 -Path $preDraftingConfirmation
+    if ($preDraftingConfirmationText -notmatch "Pre-Drafting Innovation and Title Confirmation") {
+        Add-Failure "pre-drafting-confirmation.md must define the pre-drafting confirmation gate"
+    }
+    if ($preDraftingConfirmationText -notmatch "Pain Point First") {
+        Add-Failure "pre-drafting-confirmation.md must require pain-point-first confirmation"
+    }
+    if ($preDraftingConfirmationText -notmatch "technical-level research significance") {
+        Add-Failure "pre-drafting-confirmation.md must require technical-level research significance"
+    }
+    if ($preDraftingConfirmationText -notmatch "Search project files before writing") {
+        Add-Failure "pre-drafting-confirmation.md must require project-file search"
+    }
+    if ($preDraftingConfirmationText -notmatch "PowerLit or literature retrieval") {
+        Add-Failure "pre-drafting-confirmation.md must allow PowerLit or literature retrieval support"
+    }
+    if ($preDraftingConfirmationText -notmatch "Do not continue into full manuscript drafting") {
+        Add-Failure "pre-drafting-confirmation.md must block full drafting before user confirmation"
+    }
+} else {
+    Add-Failure "Missing pre-drafting-confirmation.md"
+}
+
+$manuscriptSectionQuality = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\manuscript-section-quality.md"
+if (Test-Path -LiteralPath $manuscriptSectionQuality) {
+    $manuscriptSectionQualityText = Read-Utf8 -Path $manuscriptSectionQuality
+    if ($manuscriptSectionQualityText -notmatch "Manuscript Section Quality Gate") {
+        Add-Failure "manuscript-section-quality.md must define the section quality gate"
+    }
+    foreach ($requiredSectionToken in @("Title and Keywords", "Abstract", "Introduction", "Case Analysis", "Conclusion", "no more than five", "recent high-level literature", "parameter sensitivity")) {
+        if ($manuscriptSectionQualityText -notmatch [regex]::Escape($requiredSectionToken)) {
+            Add-Failure "manuscript-section-quality.md missing token: $requiredSectionToken"
+        }
+    }
+} else {
+    Add-Failure "Missing manuscript-section-quality.md"
 }
 
 $methodModelReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\method-model.md"
@@ -371,6 +426,12 @@ if (Test-Path -LiteralPath $reviewSkill) {
     if ($reviewSkillText -notmatch "references/expert-reader-experience\.md") {
         Add-Failure "paper-review skill must load references/expert-reader-experience.md"
     }
+    if ($reviewSkillText -notmatch "references/section-quality-review\.md") {
+        Add-Failure "paper-review skill must load references/section-quality-review.md"
+    }
+    if ($reviewSkillText -notmatch "Section quality") {
+        Add-Failure "paper-review skill must output title/keyword and section quality review"
+    }
     if ($reviewSkillText -notmatch "CONDITIONAL PASS") {
         Add-Failure "paper-review skill must output the expert reader-experience PASS scale"
     }
@@ -397,17 +458,83 @@ if (Test-Path -LiteralPath $expertReaderExperience) {
     Add-Failure "Missing expert-reader-experience.md"
 }
 
+$sectionQualityReview = Join-Path $repoRoot "skills\powerlit-power-systems-paper-review\references\section-quality-review.md"
+if (Test-Path -LiteralPath $sectionQualityReview) {
+    $sectionQualityReviewText = Read-Utf8 -Path $sectionQualityReview
+    if ($sectionQualityReviewText -notmatch "Section Quality Review") {
+        Add-Failure "section-quality-review.md must define section quality review"
+    }
+    foreach ($requiredReviewSectionToken in @("Title and Keywords", "Abstract", "Introduction", "Case Analysis", "Conclusion", "no more than five", "mainly from the last five years", "sensitivity, ablation, or boundary tests")) {
+        if ($sectionQualityReviewText -notmatch [regex]::Escape($requiredReviewSectionToken)) {
+            Add-Failure "section-quality-review.md missing token: $requiredReviewSectionToken"
+        }
+    }
+} else {
+    Add-Failure "Missing section-quality-review.md"
+}
+
 $prewritingSkill = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\SKILL.md"
 if (Test-Path -LiteralPath $prewritingSkill) {
     $prewritingSkillText = Read-Utf8 -Path $prewritingSkill
     if ($prewritingSkillText -notmatch "references/insight-discovery\.md") {
         Add-Failure "prewriting-review skill must load references/insight-discovery.md"
     }
+    if ($prewritingSkillText -notmatch "references/minimum-research-object\.md") {
+        Add-Failure "prewriting-review skill must load references/minimum-research-object.md"
+    }
+    if ($prewritingSkillText -notmatch "references/prewriting-scorecard\.md") {
+        Add-Failure "prewriting-review skill must load references/prewriting-scorecard.md"
+    }
+    if ($prewritingSkillText -notmatch "scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility") {
+        Add-Failure "prewriting-review skill must score required readiness dimensions"
+    }
+    if ($prewritingSkillText -notmatch "maximum defect") {
+        Add-Failure "prewriting-review skill must identify the maximum defect"
+    }
     if ($prewritingSkillText -notmatch "return to the innovation-chain gate") {
         Add-Failure "prewriting-review skill must route insight discovery back to the innovation-chain gate"
     }
+    if ($prewritingSkillText -notmatch "real-innovation repositioning" -or $prewritingSkillText -notmatch "physical storytelling") {
+        Add-Failure "prewriting-review skill must require real-innovation repositioning and a physics-first story"
+    }
+    if ($prewritingSkillText -notmatch "Mathematics should define the model, explain the mechanism, expose the physical intuition, or delimit the claim") {
+        Add-Failure "prewriting-review skill must keep mathematics subordinate to the physical story"
+    }
+    if ($prewritingSkillText -notmatch "multi-act engineering story" -or $prewritingSkillText -notmatch "math role") {
+        Add-Failure "prewriting-review skill must require a multi-act engineering story with math role"
+    }
+    if ($prewritingSkillText -notmatch "minimum research object" -or $prewritingSkillText -notmatch "small peer group") {
+        Add-Failure "prewriting-review skill must lock the minimum research object and small peer group"
+    }
 } else {
     Add-Failure "Missing prewriting-review SKILL.md"
+}
+
+$minimumResearchObject = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\minimum-research-object.md"
+if (Test-Path -LiteralPath $minimumResearchObject) {
+    $minimumObjectText = Read-Utf8 -Path $minimumResearchObject
+    foreach ($requiredMinimumObjectToken in @("Minimum Research Object Gate", "smallest expert community", "minimum_research_object", "small_peer_group", "Pain-Point Alignment", "analytical AC probabilistic load flow")) {
+        if ($minimumObjectText -notmatch [regex]::Escape($requiredMinimumObjectToken)) {
+            Add-Failure "minimum-research-object.md missing token: $requiredMinimumObjectToken"
+        }
+    }
+} else {
+    Add-Failure "Missing minimum-research-object.md"
+}
+
+$prewritingScorecard = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\prewriting-scorecard.md"
+if (Test-Path -LiteralPath $prewritingScorecard) {
+    $prewritingScorecardText = Read-Utf8 -Path $prewritingScorecard
+    if ($prewritingScorecardText -notmatch "Prewriting Scorecard") {
+        Add-Failure "prewriting-scorecard.md must define the prewriting scorecard"
+    }
+    foreach ($requiredScorecardToken in @("Scientificity", "Industry pain-point accuracy", "Correctness", "Reasonableness", "Innovation", "Engineering feasibility", "overall 1-10 score", "Maximum Defect", "not publication probabilities")) {
+        if ($prewritingScorecardText -notmatch [regex]::Escape($requiredScorecardToken)) {
+            Add-Failure "prewriting-scorecard.md missing token: $requiredScorecardToken"
+        }
+    }
+} else {
+    Add-Failure "Missing prewriting-scorecard.md"
 }
 
 $insightDiscovery = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\insight-discovery.md"
@@ -427,6 +554,18 @@ if (Test-Path -LiteralPath $insightDiscovery) {
     }
     if ($insightText -notmatch "innovation-chain\.md") {
         Add-Failure "insight-discovery.md must route candidates back to innovation-chain.md"
+    }
+    if ($insightText -notmatch "Physics-First Repositioning") {
+        Add-Failure "insight-discovery.md must define physics-first repositioning"
+    }
+    if ($insightText -notmatch "Multi-Act Engineering Story") {
+        Add-Failure "insight-discovery.md must define multi-act engineering story"
+    }
+    if ($insightText -notmatch "physical mechanism before mathematical structure") {
+        Add-Failure "insight-discovery.md must prioritize physical mechanism before mathematical structure"
+    }
+    if ($insightText -notmatch "real innovation" -or $insightText -notmatch "story logic") {
+        Add-Failure "insight-discovery.md must output real-innovation repositioning and physics story"
     }
 } else {
     Add-Failure "Missing insight-discovery.md"

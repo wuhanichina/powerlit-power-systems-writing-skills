@@ -218,13 +218,15 @@ It returns one of:
 - `NO-GO`
 - `RETARGET`
 
-It checks innovation chain, model correctness, evidence readiness, claim boundary, PowerLit nearby-work risk, and venue fit.
+It checks real-innovation repositioning, the multi-act engineering story and physics intuition, innovation chain, model correctness, evidence readiness, claim boundary, PowerLit nearby-work risk, and venue fit. It first answers what story the project should actually tell, then decides whether writing can proceed; the story unfolds through engineering scene, physical contradiction, mechanism intuition, technical object, evidence, and boundary. Mathematical derivation supports the model, mechanism, intuition, or boundary instead of replacing the power-system story. It also scores scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility from 1 to 10 against current research progress, gives an overall score, and names the maximum defect.
 
 ### `powerlit-power-systems-paper-writing`
 
 Use this for full research papers. The skill keeps one stable public entrypoint and handles venue differences through reference files:
 
 - `references/venue-profiles.md`
+- `references/pre-drafting-confirmation.md`
+- `references/manuscript-section-quality.md`
 - `references/corpus-grounded-drafting.md`
 - `references/csee.md`
 - `references/csee-precision.md`
@@ -240,7 +242,7 @@ Use this for full research papers. The skill keeps one stable public entrypoint 
 - `references/task-prompts.md`
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md` for optional deeper examples
 
-Use it for abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing.
+Use it for titles/keywords, abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing. Before a full paper, title, abstract, introduction, contribution statement, or major rewrite, it searches project files and available PowerLit/literature neighbors, first clarifies the real industry or engineering pain point, then lists file-search-confirmed innovation points that answer that pain point, technical-level research significance, literature-near novelty risk, and feasible paper titles, then asks the user to confirm before manuscript drafting. During drafting, it checks whether the title is concise and innovation-bearing, keywords are precise and capped at five, the abstract enters the topic quickly, the introduction uses recent high-level literature, case studies are designed around the innovation with comparisons and sensitivity analysis, and conclusions remain evidence-bound.
 
 ### `ieee-power-engineering-letter-writing`
 
@@ -254,7 +256,7 @@ Use this for IEEE power-systems Letters under official IEEE PES page-budget rule
 
 ### `powerlit-power-systems-paper-review`
 
-Use this for strict review under CSEE, AEPS, TPWRS, TSG, and IEEE Letter standards. Review priority is publishability, substantive innovation, closed logic chain, model and mathematical correctness, evidence sufficiency, conclusion support, venue fit, language, and format.
+Use this for strict review under CSEE, AEPS, TPWRS, TSG, and IEEE Letter standards. Review priority is publishability, substantive innovation, closed logic chain, model and mathematical correctness, evidence sufficiency, title/keyword and section quality, conclusion support, venue fit, language, and format.
 
 ---
 

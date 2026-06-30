@@ -60,11 +60,13 @@ Load `references/tsg.md`.
 
 ## Routing Defaults
 
+Routing is object-first. When no venue is specified, match the supplied research object to a venue using the object defaults below; use the IEEE TPWRS default only as a last-resort tiebreaker when the object does not clearly select a venue. This ordering must stay consistent with `SKILL.md` step 2.
+
 - Run the research-object gate before routing. Route by the supplied object, not by the venue's most common published topic.
-- If no venue is specified, default to IEEE TPWRS for venue routing and evidence standards, and produce the first manuscript draft in Chinese. Convert to IEEE English only when requested.
 - If the manuscript's center is formulation, security constraint, reliability, market, stability, or planning, default to TPWRS unless the smart-grid layer is central.
 - If the center is DER, data-driven operation, communication/privacy, cyber-physical security, distributed control, or grid-edge implementation, default to TSG.
 - If the center is a Chinese engineering mechanism with broader system explanation, default to 中国电机工程学报.
 - If the center is compact operational automation or dispatch/control logic, default to 电力系统自动化.
+- Last-resort tiebreaker only: if the object does not clearly select a venue, default to IEEE TPWRS for routing and evidence standards. Regardless of the routed venue, produce the first manuscript draft in Chinese unless the user asks for English or final IEEE conversion.
 - If the user specifies a venue whose profile does not fit the supplied object, preserve the object and either adapt with an explicit venue-fit warning or recommend retargeting; do not silently add the missing venue object.
 - If the contribution is one narrow analytical point, counterexample, correction, compact formulation, or decisive observation, route away from this skill and use `ieee-power-engineering-letter-writing`.

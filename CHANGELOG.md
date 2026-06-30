@@ -1,5 +1,24 @@
 # 版本说明
 
+## 2026-06-30 - 预审最小研究对象门与小同行痛点定位
+
+本版本修复预审技能在创新点分析中容易把工程痛点铺得过宽的问题：正式写作前必须先识别论文所属的最小研究对象和小同行问题域，再在该窄对象内定义痛点、创新、文献对照和工程故事。高水平论文可以在很细分的研究方向上做出关键创新；因此“找到新的研究对象或输出对象”本身可以成为创新点，但不能把窄对象的贡献包装成宽泛行业应用。
+
+主要变化：
+
+- 新增 `powerlit-power-systems-prewriting-review/references/minimum-research-object.md`，要求预审先锁定 `minimum_research_object`、`small_peer_group`、`closest_problem_family`、`broad_background` 与 `non_objects`。
+- `powerlit-power-systems-prewriting-review/SKILL.md` 将“最小研究对象定位”前置到真实创新点重定位之前；痛点、创新、期刊匹配和多幕工程故事均必须服从该对象，不得从更宽的新能源运行、规划、调度或智能电网背景借痛点。
+- `innovation-chain.md`、`insight-discovery.md`、`prewriting-scorecard.md`、`preflight-gates.md` 和 `venue-fit.md` 同步改为窄对象优先：创新链必须在最小研究对象内闭合，行业/工程痛点评分也按小同行问题域校准。
+- 新增预审回归样例 `minimum-research-object-before-pain-point`：对解析法概率潮流论文，应识别为解析交流概率潮流或更窄的电压状态反演 PLF，而不是扩展到新能源运行、规划或调度应用；允许“能输出电压实部/虚部状态分布并据此重构线路功率分布”成为候选创新。
+- `scripts/Validate-PowerLitSkillRepo.ps1` 增加最小研究对象门的结构检查，防止后续修改漏加载该参考文件或丢失小同行定位要求。
+
+验证记录：
+
+- `python -m json.tool skills\powerlit-power-systems-prewriting-review\test-prompts.json` 通过。
+- `scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch` 通过，`skill_count=6`。
+- `python -m pytest` 通过，19 项测试全部通过。
+- `git diff --check` 通过，仅有既有 CRLF/LF 提示。
+
 ## Unreleased - 开篇痛点分层规则、逐句删除/精炼测试与写作-审稿闭环
 
 针对"直接写出的论文难以一句话点出痛点、且废话偏多（Codex 比 Claude 更明显）"的问题，把原先依赖模型语感的软原则升级为可机械执行的硬规则，使不靠语感的模型也能照样卡住废话开局。"废话多"在两个层次出现：句子整句多余，以及句子该留但语言不够精炼；本版本两层都加了机械测试。

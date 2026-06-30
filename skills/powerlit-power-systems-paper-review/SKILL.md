@@ -41,6 +41,7 @@ Use this skill to review power-system papers against local PowerLit readiness st
    - method, model, variables, equations, physical correctness: `references/model-math.md`
    - case studies, numerical results, conclusion: `references/evidence-case-conclusion.md`
    - title, abstract, wording, format, references: `references/language-format.md`
+   - title/keywords, abstract, introduction, case analysis, and conclusion section quality: `references/section-quality-review.md`
 8. Load `references/expert-reader-experience.md` for every manuscript or section review.
 9. Load `references/decision-rubric.md` before giving readiness levels or a submit/repair/block recommendation.
 10. For readiness reviews, apply the `PowerLit Internal Readiness Index` in `references/decision-rubric.md` and report dimension levels, readiness state, blocking conditions, the lowest-readiness dimension, and required repair before any prose polish.
@@ -57,9 +58,10 @@ Check in this order:
 3. Logic chain: whether problem -> method -> validation -> conclusion is closed.
 4. Correctness: whether physical concepts, assumptions, mathematical formulation, units, variables, formula-level physical intuition, and algorithms are coherent.
 5. Evidence: whether cases, baselines, metrics, sensitivity, and boundary tests actually verify the innovation.
-6. Expert reader experience: whether a small-field expert can linearly follow the target, method, evidence, and boundary with at least `CONDITIONAL PASS`.
-7. Venue fit: whether the paper matches the expected depth and rhythm of the target journal.
-8. Language and format: only after the technical review unless the user asks for proofreading.
+6. Section quality: whether title/keywords, abstract, introduction, case analysis, and conclusion each satisfy their manuscript role without generic padding, missing literature, unsupported case claims, or overbroad conclusions.
+7. Expert reader experience: whether a small-field expert can linearly follow the target, method, evidence, and boundary with at least `CONDITIONAL PASS`.
+8. Venue fit: whether the paper matches the expected depth and rhythm of the target journal.
+9. Language and format: only after the technical review unless the user asks for proofreading.
 
 ## Hard Reject Triggers
 
@@ -89,9 +91,10 @@ Include a `PowerLit literature coverage` item when corpus retrieval is available
 5. `逻辑链与创新性`: problem -> gap -> method -> validation -> conclusion, with weak links identified.
 6. `模型与方法审查`: equations, variables, assumptions, physical meaning, algorithm, complexity, simplification opportunities.
 7. `算例与结论审查`: scenarios, baselines, metrics, sensitivity, boundary, conclusion support.
-8. `文字与格式问题`: only material issues, including defensive claim posture, not minor copyediting unless requested.
-9. `PowerLit 内部投稿就绪度`: use the rubric in `references/decision-rubric.md`.
-10. `修改建议`: concrete actions, grouped by must-fix and should-fix.
+8. `标题关键词与章节质量`: title/keywords, abstract, introduction, case analysis, and conclusion against `references/section-quality-review.md`.
+9. `文字与格式问题`: only material issues, including defensive claim posture, not minor copyediting unless requested.
+10. `PowerLit 内部投稿就绪度`: use the rubric in `references/decision-rubric.md`.
+11. `修改建议`: concrete actions, grouped by must-fix and should-fix.
 
 If `专家级阅读体验` is `FAIL`, do not describe the manuscript as submission-ready even if the technical review has no fatal correctness issue.
 

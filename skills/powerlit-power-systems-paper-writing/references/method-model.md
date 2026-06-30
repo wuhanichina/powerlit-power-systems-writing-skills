@@ -80,6 +80,16 @@ Symbol definition is not enough. For every key equation or equation group, give 
 
 Do not turn "式中:" or notation paragraphs into long textbook exposition. Keep notation close to the formula, then add physical intuition as a separate technical sentence anchored to the manuscript's claim.
 
+### Intuition sentence template
+
+After a key equation or group, write one sentence in this shape, dropping any slot that does not apply:
+
+> 式(n) 表明 [电网量/状态] 在 [物理成因/扰动/网络参数] 作用下 [如何变化或被约束]，从而 [运行/可行/可辨识后果]；当 [极限情形] 时退化为 [已知结果]。
+
+English: "Equation (n) says [grid quantity] responds to [physical cause] as [relation], so that [operating/feasibility consequence]; in the limit of [case] it reduces to [known result]."
+
+Use it as logic, not boilerplate. If a slot would be padding, cut it. Never invent the limiting-case result; omit that clause when it is not derivable. For paired before/after rewrites of equation paragraphs, see `references/worked-examples.md`.
+
 For inverse probabilistic load flow, the physical intuition must be explicit:
 
 - The voltage-to-power moment equation is a quadratic power-flow kernel: voltage means and covariances create active/reactive power moments through network admittance, rather than through a generic statistical fit.

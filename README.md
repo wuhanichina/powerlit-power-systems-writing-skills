@@ -21,7 +21,18 @@
 - IEEE Transactions on Smart Grid
 - IEEE 电力系统 Letter 和短技术通信
 
-[🚀 安装](#装上就能用) · [🧰 能做什么](#能做什么) · [🎯 常见任务入口](#常见任务入口) · [🧠 核心机制](#核心机制) · [🧩 技能入口](#技能入口) · [✅ 验证](#验证) · [📝 版本说明](CHANGELOG.md) · [🔒 语料边界](#powerlit-语料边界)
+[🚀 安装](#装上就能用) · [🧰 能做什么](#能做什么) · [🎯 常见任务入口](#常见任务入口) · [🧠 核心机制](#核心机制) · [🧩 技能入口](#技能入口) · [✅ 验证](#验证) · [🗓️ 更新记录](#版本更新记录) · [📝 版本说明](CHANGELOG.md) · [🔒 语料边界](#powerlit-语料边界)
+
+## 版本更新记录
+
+- 2026-06-30：新增预审阶段的最小研究对象门，先锁定小同行问题域，再判断痛点、创新点、文献对照和工程故事，避免把窄对象贡献扩写成宽泛行业背景。
+- 2026-06-27：新增预写作阶段的真实创新点重定位和物理故事线检查，先判断项目真正该讲什么技术故事再进入写作。
+- 2026-06-19：新增 Codex 与 Claude 双平台安装说明，并补强论文主线、证据新鲜度和开篇痛点分层规则。
+- 2026-06-18：新增文献精读 skill、readiness 迁移、跨平台检索入口和仓库验证层。
+- 2026-06-17：新增审稿意见改稿的物理叙事 gate，避免正文写成逐条回应或数学堆砌。
+- 2026-06-16：新增随仓库分发的 PowerLit SQLite 检索索引，使默认文献召回更快、更可复用。
+
+完整变更见 [CHANGELOG.md](CHANGELOG.md)。
 
 ---
 
@@ -124,6 +135,10 @@ cp -r powerlit-power-systems-writing-skills/skills/* ~/.claude/skills/
 
 PowerLit 可访问时，技能会先检索近邻论文，确认最近竞争工作、可引用证据和 novelty 风险。新颖性、贡献、对比优势和语料风格结论都必须有检索依据；没有依据时，skill 会缩窄论点或明确阻断。
 
+### 🧭 最小研究对象门
+
+预审和重大写作前，技能会先识别论文所属的最小研究对象和小同行问题域，再定义痛点、创新点、文献对照和故事主线。找到新的窄研究对象或输出对象本身可以是创新，但不能把解析方法、状态估计、概率潮流、保护配合等细分对象的贡献包装成宽泛的新能源运行、规划或调度背景。
+
 ### 🧭 项目论点到论文论点的翻译
 
 `claims.md`、`evidence_map.md`、研究笔记和 gate 报告只作为证据边界，不会被机械复制进论文。正式写作必须经过：
@@ -219,13 +234,15 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `NO-GO`
 - `RETARGET`
 
-检查重点包括创新链条、模型正确性、证据就绪度、论点边界、PowerLit 近邻风险和期刊匹配度。
+检查重点包括最小研究对象定位、真实创新点重定位、多幕工程故事与物理直觉、创新链条、模型正确性、证据就绪度、论点边界、PowerLit 近邻风险和期刊匹配度。它会先把问题压回最匹配的小同行研究对象，例如解析交流概率潮流、配电网状态估计、保护配合或台风风险评估中的具体技术对象，再回答“这个项目真正该讲什么故事”。故事按工程现场、物理矛盾、机制直觉、技术对象、证据和边界展开，数学推导只作为模型、机制、直觉或边界的支撑，不替代电力系统物理叙事。预审还会结合现有研究进展，从科学性、行业痛点把握准确性、正确性、合理性、创新性和工程可行性按 1-10 分给出分项评分、总体评分，并指出最大缺陷。
 
 ### `powerlit-power-systems-paper-writing`
 
 用于完整研究论文。技能保持一个稳定的公开入口，并通过 reference 文件处理期刊差异：
 
 - `references/venue-profiles.md`
+- `references/pre-drafting-confirmation.md`
+- `references/manuscript-section-quality.md`
 - `references/corpus-grounded-drafting.md`
 - `references/csee.md`
 - `references/csee-precision.md`
@@ -241,7 +258,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `references/task-prompts.md`
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md`（可选深入例子）
 
-适用于摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。
+适用于标题/关键词、摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。完整论文、标题、摘要、引言、贡献表述或重大改写前，会先检索项目文件和可用的 PowerLit/文献近邻，先厘清真实存在的行业/工程痛点，再列出文件检索后确认且对应痛点的创新点、技术层面的研究意义、文献近邻风险和可行论文标题，请使用者确认后再进入正文写作。写作时会按章节质量门槛检查标题是否科学简洁并突出创新、关键词是否精准且不超过 5 个、摘要是否快速进入主题、引言是否结合近五年 EI 以上高水平文献、算例是否围绕创新点设计并包含对比和灵敏度分析、结论是否有证据支撑且不夸大。
 
 ### `ieee-power-engineering-letter-writing`
 
@@ -255,7 +272,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 
 ### `powerlit-power-systems-paper-review`
 
-用于按照 CSEE、AEPS、TPWRS、TSG 和 IEEE Letter 标准严格审稿。审查优先级是可录用性、创新实质、逻辑链闭合、模型与数学正确性、证据充分性、结论支撑、期刊匹配、措辞和格式。
+用于按照 CSEE、AEPS、TPWRS、TSG 和 IEEE Letter 标准严格审稿。审查优先级是可录用性、创新实质、逻辑链闭合、模型与数学正确性、证据充分性、标题关键词与章节质量、结论支撑、期刊匹配、措辞和格式。
 
 ---
 

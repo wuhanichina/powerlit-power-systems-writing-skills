@@ -3,5 +3,20 @@
     "id": "insight-discovery-before-gate",
     "prompt": "请用 $powerlit-power-systems-prewriting-review 帮我从一个普通 idea 中发掘创新点：台风条件下配电网源荷波动会改变风险评估结果。先做问题重构、理论迁移、反直觉线索和候选技术对象，再判断是否能进入论文写作。",
     "expected": "The response must use insight-discovery.md before the prewriting gate, label ideas as known theory, structural analogy, or research hypothesis, propose candidate technical objects and evidence paths, then return to innovation-chain.md before giving GO / CONDITIONAL GO / NO-GO / RETARGET."
+  },
+  {
+    "id": "real-innovation-physical-story",
+    "prompt": "请用 $powerlit-power-systems-prewriting-review 帮我重新定位本项目真实创新点。告诉我应该讲一个什么样的故事，重点放在物理上而非数学推导，故事逻辑应该怎么顺，故事应该怎么讲。",
+    "expected": "The response must first lock the minimum research object and small peer problem domain, then include real-innovation repositioning and a multi-act engineering story before the writing decision: Act I engineering scene, Act II physical contradiction or missing coupling, Act III mechanism and physical intuition, Act IV technical object and supporting math, Act V evidence, and Act VI boundary. Mathematical derivation must be treated as support for engineering and physics, not as the main story."
+  },
+  {
+    "id": "minimum-research-object-before-pain-point",
+    "prompt": "请用 $powerlit-power-systems-prewriting-review 分析一个解析法概率潮流论文的创新点。注意不要把痛点扩展成新能源运行、规划或调度应用；本文对象是解析交流概率潮流，创新可能来自能输出电压实部/虚部状态分布并据此重构线路功率分布。",
+    "expected": "The response must load minimum-research-object.md, identify the minimum research object as analytical AC probabilistic load flow or a narrower voltage-state inverse PLF object, define the pain point inside analytical PLF, avoid expanding the story to operation, planning, or dispatch unless evidence supports it, and allow the newly identified narrow research object or output object itself to be a candidate innovation."
+  },
+  {
+    "id": "scorecard-and-maximum-defect",
+    "prompt": "请用 $powerlit-power-systems-prewriting-review 对这个电力系统论文 idea 做预审。结合现有研究进展，从科学性、行业痛点把握准确性、正确性、合理性、创新性、工程可行性等维度按 1-10 分给出分项评分和总体评分，并指出最大缺陷。",
+    "expected": "The response must load prewriting-scorecard.md, use PowerLit or state fallback for research-progress calibration, provide 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility, give an overall score, and name one maximum defect with evidence and repair action."
   }
 ]
