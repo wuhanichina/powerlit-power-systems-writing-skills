@@ -1,5 +1,20 @@
 # 版本说明
 
+## 2026-06-30 - 跨章节清单对齐、独立审稿姿态与孤儿文件清理
+
+本版本是上一版可实施性打磨的结构性收口，聚焦跨技能一致性、复审客观性与死代码清理，不改变写作或审稿的实质判断标准。
+
+主要变化：
+
+- 写作侧 `manuscript-section-quality.md` 与审稿侧 `section-quality-review.md` 互相加入 parallel 声明：同一组 section 维度，写作侧作为交付前验收、审稿侧作为审稿发现，明令两者漂移时主动对齐，避免跨技能各自演化。
+- `review-closed-loop.md` 新增 `Reviewer Stance`：写作闭环复审必须以独立审稿人姿态执行（首次阅读、无写作上下文），显式接入 `evaluation/behavior/independent-reviewer-prompt.md`，修复“写作与自评同一只手”的偏置。
+- 删除孤儿参考文件 `powerlit-power-systems-paper-writing/references/baseline-comparison.md`：它是一份过时的“本技能 vs 通用 research-paper-writing skill”迁移说明，无任何 `SKILL.md` 流程加载，其独特内容已被 `anti-ai-style.md`、`venue-profiles.md` 与 `method-model.md` 覆盖。
+
+验证记录：
+
+- `scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch` 通过，`skill_count=6`。
+- `python -m pytest` 通过，19 项测试全部通过。
+
 ## 2026-06-30 - 写作技能可实施性打磨：加载分层、Pass 去重、正例库与跨章节一致性
 
 本版本聚焦 `powerlit-power-systems-paper-writing` 的可实施性与内部一致性：在不改变实质判断标准的前提下，降低参考文件加载负担、消除重复与矛盾、补齐缺失的可执行检查与正例。
