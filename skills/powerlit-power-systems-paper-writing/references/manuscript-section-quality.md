@@ -93,3 +93,15 @@ The conclusion should be short and evidence-bound:
 - include reasonable future work only when it follows from a real boundary, such as additional data, larger systems, field validation, new constraints, or broader scenarios.
 
 Do not introduce new contributions, new numbers, or untested deployment implications in the conclusion.
+
+## Spine Consistency
+
+The paper spine is one sentence naming the technical object, the unresolved conflict, the central action, and the evidence boundary (defined in `introduction-scalpel.md`). Before delivery, verify the spine is consistent across the five load-bearing locations: title, abstract, introduction contribution, result discussion, and conclusion.
+
+Check that all five share:
+
+- the same name for the technical object — no silent rename (e.g. 反演 in the title but 估计 in the abstract; "screening index" in the contribution but "predictor" in the results);
+- the same central claim verb and scope — screening vs prediction, identification vs calibration, reduction vs elimination, support vs guarantee;
+- the same evidence boundary — a limit stated in the conclusion must also bound the abstract and introduction claims, not appear only at the end.
+
+If a location drifts, repair it back to the spine rather than weakening the spine. If two locations genuinely need different scope (for example a broader introduction motivation narrowing to a specific contribution), make the narrowing explicit so it does not read as a contradiction. This is a cross-section consistency check, not an instruction to repeat one sentence five times.

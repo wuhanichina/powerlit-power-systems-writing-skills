@@ -4,6 +4,8 @@ Use this reference before returning manuscript prose from `powerlit-power-system
 
 The goal is to make a qualified power-systems reader able to read the manuscript linearly, keep trust in the author's control of the material, and receive the technical judgment with low processing burden.
 
+This pass owns structural reading burden: ordering, definition placement, symbol consistency, formula density, and cross-references. Padding and redundancy deletion is owned by the sentence-deletion test in `prose-quality-gates.md`; do not re-run whole-sentence deletion here. The two passes are complementary, not duplicates: deletion removes sentences that carry nothing, this pass repairs sentences that carry something but cannot be followed in order.
+
 ## Core Rule
 
 Read the produced text in order. Do not use later sentences to excuse an earlier point of confusion. If a later sentence resolves an earlier stall, repair the earlier ordering, definition, transition, or signposting before returning the text.

@@ -6,7 +6,7 @@ Use this reference before delivery for manuscript prose in any target venue. It 
 
 Run these checks after the technical draft is complete:
 
-1. `Reader-burden cut`: each paragraph should carry one technical function; remove throat-clearing, policy padding, and repeated claims. Enforce this with the sentence-deletion test below, not by feel.
+1. `Reader-burden cut` (deletion-level): each paragraph should carry one technical function; remove throat-clearing, policy padding, and repeated claims. Enforce this with the sentence-deletion test below, not by feel. This pass owns padding and redundancy only. Structural reading burden — symbol drift, undefined abbreviations, formula density, ordering, missing definitions, and cross-reference searching (the `[writing]`/`[topic-hard]` classes) — is owned by `reader-experience-pass.md`; do not duplicate that classification here.
 2. `Rhythm pass`: vary sentence length only to improve traceability; keep technical subjects visible and avoid stacked abstractions.
 3. `Lexicon pass`: replace generic academic verbs with domain actions such as formulate, constrain, estimate, screen, certify, allocate, or dispatch when the evidence supports them.
 4. `Boundary-posture pass`: state the positive technical scope first; move limitations to scoped boundary sentences instead of opening with defensive disclaimers.

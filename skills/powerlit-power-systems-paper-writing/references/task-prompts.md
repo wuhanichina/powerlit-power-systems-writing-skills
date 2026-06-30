@@ -55,6 +55,8 @@ User prompt shape:
 
 Expected behavior: translate the technical relation, not the literal project wording. Replace internal terms such as `claim boundary`, `evidence pack`, or `closest competitor` with manuscript language or omit them. In Chinese-facing output, render "claim" as "论点" rather than "主张".
 
+Claim-boundary preservation (both directions): a translation must not strengthen a claim the source hedged. Keep the source's scope words across languages — render bounded Chinese ("在...条件下", "可用于筛查", "近似", "倾向于") as equally bounded English ("under ...", "supports screening", "approximates", "tends to"), never as unconditional English ("achieves", "guarantees", "outperforms"). Do not drop a qualifier just because the target language reads more fluently without it: if the qualifier bounds a claim, it is payload, not filler. When the source's intended strength is ambiguous, keep the weaker reading and flag it in a short note instead of upgrading it. The same rule applies when converting a Chinese draft to final IEEE English under the working-language firewall.
+
 ### Compression
 
 User prompt shape:

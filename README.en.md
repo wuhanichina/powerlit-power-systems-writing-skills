@@ -240,6 +240,7 @@ Use this for full research papers. The skill keeps one stable public entrypoint 
 - `references/prose-quality-gates.md`
 - `references/reader-experience-pass.md`
 - `references/task-prompts.md`
+- `references/worked-examples.md` for per-venue before→after rewrite examples (optional)
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md` for optional deeper examples
 
 Use it for titles/keywords, abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing. Before a full paper, title, abstract, introduction, contribution statement, or major rewrite, it searches project files and available PowerLit/literature neighbors, first clarifies the real industry or engineering pain point, then lists file-search-confirmed innovation points that answer that pain point, technical-level research significance, literature-near novelty risk, and feasible paper titles, then asks the user to confirm before manuscript drafting. During drafting, it checks whether the title is concise and innovation-bearing, keywords are precise and capped at five, the abstract enters the topic quickly, the introduction uses recent high-level literature, case studies are designed around the innovation with comparisons and sensitivity analysis, and conclusions remain evidence-bound.

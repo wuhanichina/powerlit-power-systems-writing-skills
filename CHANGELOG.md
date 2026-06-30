@@ -1,5 +1,26 @@
 # 版本说明
 
+## 2026-06-30 - 写作技能可实施性打磨：加载分层、Pass 去重、正例库与跨章节一致性
+
+本版本聚焦 `powerlit-power-systems-paper-writing` 的可实施性与内部一致性：在不改变实质判断标准的前提下，降低参考文件加载负担、消除重复与矛盾、补齐缺失的可执行检查与正例。
+
+主要变化：
+
+- `SKILL.md` 新增 `Reference Loading Tiers`：把参考文件分为 Tier 0（全文写作必读）、Tier 1（按所写章节加载）、Tier 2（PowerLit 相关，仅在可用且涉及引用/新颖性时）、Tier 3（可选深入）与轻量任务专用集，避免常见任务一次性加载十余个参考文件。
+- 第 14 步交付门由十余个平铺 pass 收敛为四组（机械/结构/文风核心/条件触发）并标注必做项，去掉与 `prose-quality-gates.md` 的重复列举（该文件成为这些 pass 的单一来源）。
+- 修复内部标签矛盾：`PowerLit evidence`、`evidence-strength profile` 等过程标签在预审/计划/`写作前确认` 响应中必须保留、在正文中必须删除；该规则在 `SKILL.md` 硬规则与 `prose-quality-gates.md` 的 working-language firewall 两处闭合。
+- 期刊路由改为对象优先：`venue-profiles.md` 与 `SKILL.md` step 2 一致，IEEE TPWRS 仅作“对象无法明确选定期刊”时的兜底，不再与对象默认并列。
+- `manuscript-section-quality.md` 确立为跨章节验收清单，并对 Introduction/Case/Conclusion 标注 authority 文件（`introduction-scalpel.md`、`case-conclusion.md`、`figures-tables-results.md`），冲突时以 authority 为准，消除三处定义漂移。
+- 新增 `references/worked-examples.md`：按 CSEE/AEPS/TPWRS/TSG 给出 before→after 改写正例，每例标注所违反的 gate，全程使用占位符、不含伪造引用或数值。
+- `method-model.md` 的 `Formula Physical Intuition` 新增可填空的“直觉句模板”（中/英）。
+- P2 去重与补检查：`prose-quality-gates.md` 与 `reader-experience-pass.md` 明确分工（前者管删冗余、后者管结构性阅读负担，互补不重复）；`manuscript-section-quality.md` 新增 `Spine Consistency` 跨章节主线一致性检查；`task-prompts.md` 的翻译模式新增“claim-boundary preservation”，禁止翻译时把 hedge 过的论点升级为无条件断言。
+
+验证记录：
+
+- `scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch` 通过，`skill_count=6`。
+- `python -m pytest` 通过，19 项测试全部通过。
+- 校验脚本所 grep 的全部门控字面短语（`boundary-posture pass`、`physical-story pass`、`[writing]`/`[topic-hard]`、section tokens 等）均保留。
+
 ## 2026-06-30 - 预审最小研究对象门与小同行痛点定位
 
 本版本修复预审技能在创新点分析中容易把工程痛点铺得过宽的问题：正式写作前必须先识别论文所属的最小研究对象和小同行问题域，再在该窄对象内定义痛点、创新、文献对照和工程故事。高水平论文可以在很细分的研究方向上做出关键创新；因此“找到新的研究对象或输出对象”本身可以成为创新点，但不能把窄对象的贡献包装成宽泛行业应用。

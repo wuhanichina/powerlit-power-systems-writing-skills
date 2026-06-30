@@ -25,6 +25,7 @@
 
 ## 版本更新记录
 
+- 2026-06-30：打磨写作技能可实施性——新增参考文件加载分层（常见任务不再全量加载）、把交付前的十余个 pass 收敛为四组并与 `prose-quality-gates.md` 去重、明确内部标签“计划要/正文删”规则、期刊路由改为对象优先（TPWRS 仅作兜底）、新增按期刊的 before→after 正例库与公式直觉句模板、跨章节主线一致性检查和翻译保边界规则。
 - 2026-06-30：新增预审阶段的最小研究对象门，先锁定小同行问题域，再判断痛点、创新点、文献对照和工程故事，避免把窄对象贡献扩写成宽泛行业背景。
 - 2026-06-27：新增预写作阶段的真实创新点重定位和物理故事线检查，先判断项目真正该讲什么技术故事再进入写作。
 - 2026-06-19：新增 Codex 与 Claude 双平台安装说明，并补强论文主线、证据新鲜度和开篇痛点分层规则。
@@ -256,6 +257,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `references/prose-quality-gates.md`
 - `references/reader-experience-pass.md`
 - `references/task-prompts.md`
+- `references/worked-examples.md`（按期刊的 before→after 改写正例，可选深入）
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md`（可选深入例子）
 
 适用于标题/关键词、摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。完整论文、标题、摘要、引言、贡献表述或重大改写前，会先检索项目文件和可用的 PowerLit/文献近邻，先厘清真实存在的行业/工程痛点，再列出文件检索后确认且对应痛点的创新点、技术层面的研究意义、文献近邻风险和可行论文标题，请使用者确认后再进入正文写作。写作时会按章节质量门槛检查标题是否科学简洁并突出创新、关键词是否精准且不超过 5 个、摘要是否快速进入主题、引言是否结合近五年 EI 以上高水平文献、算例是否围绕创新点设计并包含对比和灵敏度分析、结论是否有证据支撑且不夸大。
