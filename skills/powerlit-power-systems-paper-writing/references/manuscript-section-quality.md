@@ -13,6 +13,8 @@ This file is the cross-section quality checklist: it turns reviewer expectations
 
 When this checklist and an authority file appear to disagree on detail, the authority file wins. Fix the discrepancy at the authority file rather than carrying two versions.
 
+The review-side parallel of this checklist is `powerlit-power-systems-paper-review/references/section-quality-review.md` (the same dimensions seen from the reviewer stance). Keep the two aligned; do not let the writing-side and review-side wording drift apart.
+
 ## Title and Keywords
 
 The title must be scientific, concise, and contribution-bearing:

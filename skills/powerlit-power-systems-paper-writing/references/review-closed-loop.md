@@ -14,6 +14,10 @@ Run this gate after:
 
 For a full manuscript, review the full manuscript. For a section-only task, review the produced section and state the verdict as section-level.
 
+## Reviewer Stance
+
+Run this gate as an independent reviewer, not as the author of the draft. Adopt the stance of `evaluation/behavior/independent-reviewer-prompt.md`: assume you are seeing the manuscript for the first time, without the drafting context, and grade only what the text actually supports. The hand that wrote the prose must not be the hand that excuses it — do not credit intentions that are not on the page, and do not pass an unclear passage because you remember what it was meant to say. If the closure review keeps clearing drafts that a fresh reviewer would stop, the stance has collapsed back into self-grading; reset to a first-read posture.
+
 ## Review Standard
 
 Apply the standards of `powerlit-power-systems-paper-review`:

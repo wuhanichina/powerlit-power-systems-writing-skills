@@ -2,6 +2,8 @@
 
 Use this reference when reviewing full manuscripts or any title/keywords, abstract, introduction, case-analysis, or conclusion section. It complements technical review by checking whether each manuscript component does its job.
 
+This review-side checklist is the parallel of the writing-side `powerlit-power-systems-paper-writing/references/manuscript-section-quality.md`. The two are intentionally the same dimensions seen from two stances: writing applies them as pre-delivery acceptance checks, review applies them as reviewer findings. When the two appear to diverge, align them deliberately rather than letting the wording drift; the section dimensions (title/keywords, abstract, introduction, case analysis, conclusion) must stay shared on both sides.
+
 ## Title and Keywords
 
 Check whether the title is:
