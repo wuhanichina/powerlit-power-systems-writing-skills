@@ -9,11 +9,11 @@
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
-[![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-corpus-boundary)
+[![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#about-powerlit)
 
-This repository provides a set of power-systems research-writing skills, compatible with both Codex and Claude (Claude Code / Cowork): prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
+This repository provides a set of power-systems research-writing skills for Codex, Claude (Claude Code / Cowork), and Cursor: prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
 
-It is not a generic polishing tool. When PowerLit is available, the skills first retrieve nearby papers and citation evidence, define what can be claimed, and then write in the target venue's section shape, paragraph function, argument rhythm, and evidence style. Before submission, the review skill closes the loop by checking whether the draft would still fail under a local reviewer gate.
+It is not a generic polishing tool. Each install ships a **~14k-paper SQLite index** so the skills can retrieve nearby work, plan citations, and lock claim boundaries before drafting in the target venue's section shape, paragraph function, and evidence style. Before submission, the review skill closes the loop with a local reviewer gate.
 
 Supported venues and formats:
 
@@ -23,7 +23,7 @@ Supported venues and formats:
 - IEEE Transactions on Smart Grid
 - IEEE power-systems Letters and short technical communications
 
-[🚀 Install](#install-and-use) · [🧰 What It Does](#what-it-does) · [🎯 Common Entrypoints](#common-entrypoints) · [🧠 Core Mechanisms](#core-mechanisms) · [🧩 Skills](#skills) · [✅ Validation](#validation) · [🗓️ Release Notes](#release-notes) · [📝 Changelog](CHANGELOG.md) · [🔒 Corpus Boundary](#powerlit-corpus-boundary)
+[🚀 Install](#install-and-use) · [🧰 What It Does](#what-it-does) · [🎯 Common Entrypoints](#common-entrypoints) · [🧠 Core Mechanisms](#core-mechanisms) · [🧩 Skills](#skills) · [✅ Validation](#validation) · [🗓️ Release Notes](#release-notes) · [📝 Changelog](CHANGELOG.md) · [🔒 About PowerLit](#about-powerlit)
 
 ## Release Notes
 
@@ -38,7 +38,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 ## Install And Use
 
-These skills work with both Codex and Claude (Claude Code / Cowork). Each skill is a standard `SKILL.md` + `references/` + Python-script bundle that is platform-independent, so the two install paths below can coexist.
+These skills run on Codex, Claude, and Cursor. Each skill is a standard `SKILL.md` + `references/` + Python-script bundle—pick any install path below.
 
 ### Codex
 
@@ -88,8 +88,8 @@ Any runtime that supports the Agent Skills standard (`SKILL.md` frontmatter + `r
 Installed copies can drift from the repository as the skills evolve. Each `SKILL.md` frontmatter carries a `version:` date stamp; compare and sync with:
 
 ```powershell
-Select-String -Path "skills\*\SKILL.md", "$env:USERPROFILE\.codex\skills\*\SKILL.md" -Pattern "^version:"
-Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
+Select-String -Path "skills\*\SKILL.md", "$env:USERPROFILE\.cursor\skills\*\SKILL.md" -Pattern "^version:"
+Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 ```
 
 If you installed via the skill installer, rerun the install command to pick up the latest version.
@@ -113,10 +113,10 @@ Use these case33bw results to write the case-study analysis paragraph. Do not ma
 ```
 
 ```text
-Review this manuscript strictly as an IEEE TSG reviewer and decide whether it is publishable.
+Review this manuscript strictly under IEEE TSG standards and return local review advice plus must-fix items.
 ```
 
-No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, result table, or evidence packet; the skills turn it into venue-aware manuscript work.
+Provide an idea, draft, model, result table, or evidence packet—the skills turn it into venue-aware manuscript work.
 
 ---
 
@@ -129,7 +129,7 @@ No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, re
 | 📖 Structured paper reading | `powerlit-power-systems-literature-reading` | Core argument, mechanism, contribution, design, findings, and research-question relevance | Read one or a small set of selected papers |
 | 📝 Full-paper writing | `powerlit-power-systems-paper-writing` | Abstract, introduction, method, case study, conclusion, captions, results | CSEE, AEPS, TPWRS, and TSG manuscript writing |
 | ✉️ IEEE Letter writing | `ieee-power-engineering-letter-writing` | One hard claim, compact technical core, minimal decisive evidence | IEEE PES Letters under official page-budget rules |
-| 🧪 Pre-submission review | `powerlit-power-systems-paper-review` | Review risks ranked by severity | Submission checks and revision planning |
+| 🧪 Pre-submission review | `powerlit-power-systems-paper-review` | Local review advice + prioritized fix list | Submission checks and revision planning |
 | 📊 Figures and results | `powerlit-power-systems-paper-writing` | Self-contained captions, explanatory sentences, MATLAB-to-manuscript paragraphs | Figures, tables, case studies, ablations, sensitivity analysis |
 | ✨ Light editing | `powerlit-power-systems-paper-writing` | Smallest useful change that preserves technical meaning | Anti-AI cleanup, terminology, compression, expansion, translation, logic repair |
 
@@ -146,7 +146,7 @@ No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, re
 | Case-study results | MATLAB outputs or result tables, baselines, metrics, scenarios | `Use these case33bw results to write the case-study analysis paragraph. Do not make a generic effectiveness claim.` | A result paragraph tied to system, metric direction, comparison, mechanism, and boundary. |
 | Figure/table caption | Figure content, axes or columns, venue | `Write an IEEE TSG caption for this voltage violation probability plot and add one explanatory sentence for the body text.` | A self-contained caption and body explanation tied to grid meaning. |
 | Light edit | Original paragraph, target venue, keep/delete constraints | `Lightly polish this Chinese paragraph. Do not add conclusions or citations; only remove AI-style vague wording.` | Revised text first, with only necessary terminology, logic, and style repair. |
-| Pre-submission review | Manuscript or section, venue, evidence packet | `Strictly review this paper under Proceedings of the CSEE standards and decide whether it is publishable.` | Review issues and required fixes ranked by severity. |
+| Pre-submission review | Manuscript or section, venue, evidence packet | `Strictly review this paper under Proceedings of the CSEE standards and return local review advice plus must-fix items.` | Local review advice (submit / minor / major / do not submit) and a prioritized fix list. |
 
 ---
 
@@ -154,7 +154,11 @@ No buttons, no panel, no manual JSON browsing. Provide an idea, draft, model, re
 
 ### 🔎 PowerLit Evidence Gate
 
-When PowerLit is available, the skills retrieve nearby papers before making novelty, contribution, comparison, or venue-style claims. If evidence is missing, the skills narrow the claim or explicitly block it.
+The literature skill ships with a SQLite index (~14k records, ready after install). Writing and prewriting skills search nearby work first, then set citations, novelty, and claim boundaries—you describe the research object; retrieval runs through the skill scripts.
+
+### 🧭 Minimum Research Object Gate
+
+Before prewriting and major drafting, the skills identify the paper's minimum research object and subfield problem domain, then define pain points, innovation, and story line—preventing narrow technical contributions from being inflated into broad industry narratives.
 
 ### 🧭 Project Claim To Paper Claim
 
@@ -172,7 +176,7 @@ When revising after reviewer comments, the skills first translate each comment i
 
 ### 🧩 Venue Profile Routing
 
-Full-paper writing keeps one public entrypoint, `powerlit-power-systems-paper-writing`, and routes venue differences through reference files for CSEE, AEPS, TPWRS, and TSG. The IEEE Letter flow is separate because a Letter is not a compressed full paper.
+Full-paper writing keeps one public entrypoint, `powerlit-power-systems-paper-writing`, and routes venue differences through reference files for CSEE, AEPS, TPWRS, and TSG. **When the venue is unset, default routing follows TPWRS evidence standards with a Chinese technical first draft** (convert to English IEEE prose when needed). The IEEE Letter flow is separate because a Letter is not a compressed full paper.
 
 ### 🧪 Write-Review Closure
 
@@ -188,27 +192,9 @@ The repository includes real project claim fixtures, write-review closure cases,
 
 ### `powerlit-power-systems-literature-intelligence`
 
-Use this for PowerLit-backed literature work: novelty checks, nearby competing work, citation packets, introduction support, and literature coverage audits.
+Use this for novelty checks, nearby competing work, citation packets, introduction support, and literature coverage audits. **Each install includes a SQLite index (~14k records)**—no private corpus required for retrieval.
 
-PowerLit JSON root resolution order:
-
-1. Explicit user path or script parameter
-2. `POWERLIT_JSON_ROOT`
-3. `POWERLIT_LITERATURE_JSON`
-
-For frequent use, prefer the SQLite FTS cache bundled inside the literature skill at `skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`. Standard skill installation copies that directory, so indexed retrieval works without a private raw corpus.
-
-The primary entry point is the Python script, callable from Codex, Claude (Linux environment), or any environment with Python3.
-
-Index build (Python, cross-platform):
-
-```bash
-python skills/powerlit-power-systems-literature-intelligence/scripts/Build-PowerLitIndex.py \
-  --venue-folder ieee_tsg \
-  --venue-folder ieee_tpwrs
-```
-
-Fast search (Python, cross-platform, recommended primary path):
+Fast search (Python, cross-platform, primary path):
 
 ```bash
 python skills/powerlit-power-systems-literature-intelligence/scripts/Search-PowerLitIndex.py \
@@ -217,7 +203,7 @@ python skills/powerlit-power-systems-literature-intelligence/scripts/Search-Powe
   --top 10
 ```
 
-The Windows PowerShell entry point is an alternative; it prefers the skill-bundled local cache and only falls back to `rg` prefiltering when a raw corpus root is explicitly configured:
+Windows users can use the PowerShell entry with equivalent behavior:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `
@@ -226,6 +212,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
   -VenueFolder ieee_tsg `
   -Top 10
 ```
+
+If you have a private PowerLit JSON corpus and need to refresh or extend the index, set `POWERLIT_JSON_ROOT` and run `Build-PowerLitIndex.py`.
 
 ### `powerlit-power-systems-literature-reading`
 
@@ -238,7 +226,7 @@ Use this to read one or a small set of selected papers and return a Chinese rese
 - key findings
 - how the paper responds to the user's research question
 
-When the full paper is readable, the skill states the evidence state and ties arguments, mechanisms, design, findings, and research implications to paper sections or results. When PowerLit is available, the theoretical contribution section also positions the paper within its research direction, identifies its method family, and compares its unique value against same-family methods. When only title, abstract, or metadata are available, it marks the summary as abstract/metadata limited and does not invent DOI, results, baselines, page numbers, or findings. For power-system papers, `theoretical mechanism` may mean physical mechanism, mathematical model, optimization/control logic, statistical mechanism, or an engineering causal chain.
+When the full paper is readable, the skill states the evidence state and ties arguments, mechanisms, design, findings, and research implications to paper sections or results. When nearby literature is available, the theoretical contribution section also positions the paper within its research direction, identifies its method family, and compares its unique value against same-family methods. When only title, abstract, or metadata are available, it marks the summary as abstract/metadata limited and does not invent DOI, results, baselines, page numbers, or findings. For power-system papers, `theoretical mechanism` may mean physical mechanism, mathematical model, optimization/control logic, statistical mechanism, or an engineering causal chain.
 
 ### `powerlit-power-systems-prewriting-review`
 
@@ -251,7 +239,7 @@ It returns one of:
 - `NO-GO`
 - `RETARGET`
 
-It checks real-innovation repositioning, the multi-act engineering story and physics intuition, innovation chain, model correctness, evidence readiness, claim boundary, PowerLit nearby-work risk, and venue fit. It first answers what story the project should actually tell, then decides whether writing can proceed; the story unfolds through engineering scene, physical contradiction, mechanism intuition, technical object, evidence, and boundary. Mathematical derivation supports the model, mechanism, intuition, or boundary instead of replacing the power-system story. It also scores scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility from 1 to 10 against current research progress, gives an overall score, and names the maximum defect.
+It checks minimum research object positioning, real-innovation repositioning, the multi-act engineering story and physics intuition, innovation chain, model correctness, evidence readiness, claim boundary, nearby-work risk, and venue fit. It first narrows the problem to the best-matching subfield object—for example analytic AC probabilistic power flow, distribution state estimation, protection coordination, or a specific object inside typhoon risk assessment—then answers what story the project should actually tell. The story unfolds through engineering scene, physical contradiction, mechanism intuition, technical object, evidence, and boundary. Mathematical derivation supports the model, mechanism, intuition, or boundary instead of replacing the power-system story. It also scores scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility from 1 to 10 against current research progress, gives an overall score, and names the maximum defect.
 
 ### `powerlit-power-systems-paper-writing`
 
@@ -276,7 +264,7 @@ Use this for full research papers. The skill keeps one stable public entrypoint 
 - `references/worked-examples.md` for per-venue before→after rewrite examples (optional)
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md` for optional deeper examples
 
-Use it for titles/keywords, abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing. Before a full paper, title, abstract, introduction, contribution statement, or major rewrite, it searches project files and available PowerLit/literature neighbors, first clarifies the real industry or engineering pain point, then lists file-search-confirmed innovation points that answer that pain point, technical-level research significance, literature-near novelty risk, and feasible paper titles, then asks the user to confirm before manuscript drafting. During drafting, it checks whether the title is concise and innovation-bearing, keywords are precise and capped at five, the abstract enters the topic quickly, the introduction uses recent high-level literature, case studies are designed around the innovation with comparisons and sensitivity analysis, and conclusions remain evidence-bound.
+Use it for titles/keywords, abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing. Before a full paper, title, abstract, introduction, contribution statement, or major rewrite, it searches project files and nearby literature, confirms pain points, innovation points, and feasible titles, then asks you to confirm before manuscript drafting.
 
 ### `ieee-power-engineering-letter-writing`
 
@@ -290,7 +278,7 @@ Use this for IEEE power-systems Letters under official IEEE PES page-budget rule
 
 ### `powerlit-power-systems-paper-review`
 
-Use this for strict review under CSEE, AEPS, TPWRS, TSG, and IEEE Letter standards. Review priority is publishability, substantive innovation, closed logic chain, model and mathematical correctness, evidence sufficiency, title/keyword and section quality, conclusion support, venue fit, language, and format.
+Use this for strict review under CSEE, AEPS, TPWRS, TSG, and IEEE Letter standards. It returns **local review advice** (submit / minor / major / do not submit) and a prioritized fix list.
 
 ---
 
@@ -313,7 +301,8 @@ powerlit-power-systems-writing-skills/
 ├── README.en.md
 ├── LICENSE
 ├── scripts/
-│   └── Validate-PowerLitSkillRepo.ps1
+│   ├── Validate-PowerLitSkillRepo.ps1
+│   └── Run-SkillRegression.py
 ├── skills/
 │   ├── powerlit-power-systems-literature-intelligence/
 │   ├── powerlit-power-systems-literature-reading/
@@ -367,19 +356,19 @@ python evaluation/retrieval/run_retrieval_eval.py
 
 CI runs repository lint, unit tests, and retrieval evaluation on both `ubuntu-latest` and `windows-latest`.
 
+Behavior regression (requires an agent run) is orchestrated by the semi-automated runner and logged to `evaluation/results.tsv`:
+
+```powershell
+python scripts/Run-SkillRegression.py list                 # list all regression cases
+python scripts/Run-SkillRegression.py show --id <case-id>  # fetch prompt for a skilled agent run
+python scripts/Run-SkillRegression.py record --id <case-id> --mode full_test --verdict pass --note "..."
+python scripts/Run-SkillRegression.py status               # coverage and dry_run ratio alerts
+```
+
 ---
 
-## PowerLit Corpus Boundary
+## About PowerLit
 
-This repository stores only skill instructions, venue signals, scripts, and behavior fixtures. It does not store original PowerLit corpus records, PDFs, or private literature data.
-
-The skills read local PowerLit JSON only when that corpus is accessible. If the corpus is unavailable, they enter fallback mode and do not fabricate citations, nearby papers, or corpus-style conclusions. Retrieved papers may be used as local analytical evidence and writing references, but source text must not be copied into generated output.
+This repository distributes skills and a **built-in literature index** (~14k records), not original PDFs. Retrieved papers support citation planning and argument structure—they are **not copied into your manuscript**. You can extend the index with a private corpus if needed.
 
 ---
-
-## Limitations
-
-- Without PowerLit access, the skills can provide conservative structure, logic, and language work, but cannot claim to have completed nearby-literature gating.
-- Full JSON corpus search can be slow; build the SQLite FTS index for frequent use.
-- Target papers can be used as references for structure, rhythm, and argument patterns, not as text to copy.
-- `submission-ready` should only be used after evidence, model logic, and venue fit pass the local review gate.

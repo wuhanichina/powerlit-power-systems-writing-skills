@@ -9,11 +9,11 @@
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
-[![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-语料边界)
+[![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#关于-powerlit)
 
-这个仓库提供一组面向电力系统论文的技能，兼容 Codex 和 Claude（Claude Code / Cowork），覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
+这个仓库提供一组面向电力系统论文的技能，兼容 Codex、Claude（Claude Code / Cowork）和 Cursor 等 Agent Skills 运行时，覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
 
-它不是普通润色工具。PowerLit 可访问时，技能先检索近邻论文和引用证据，锁定论点边界，再按目标期刊的段落功能、论证节奏和证据呈现方式写正文；投稿前还会用本地审稿 skill 反向检查，形成“写作 -> 审稿 -> 修复”的闭环。
+它不是普通润色工具。安装后自带近 **1.4 万篇** PowerLit 索引，技能会先检索近邻论文、规划引用与论点边界，再按目标期刊的段落功能、论证节奏和证据呈现方式写正文；投稿前还会用本地审稿 skill 反向检查，形成「写作 → 审稿 → 修复」的闭环。
 
 适配期刊和文体：
 
@@ -23,7 +23,7 @@
 - IEEE Transactions on Smart Grid
 - IEEE 电力系统 Letter 和短技术通信
 
-[🚀 安装](#装上就能用) · [🧰 能做什么](#能做什么) · [🎯 常见任务入口](#常见任务入口) · [🧠 核心机制](#核心机制) · [🧩 技能入口](#技能入口) · [✅ 验证](#验证) · [🗓️ 更新记录](#版本更新记录) · [📝 版本说明](CHANGELOG.md) · [🔒 语料边界](#powerlit-语料边界)
+[🚀 安装](#装上就能用) · [🧰 能做什么](#能做什么) · [🎯 常见任务入口](#常见任务入口) · [🧠 核心机制](#核心机制) · [🧩 技能入口](#技能入口) · [✅ 验证](#验证) · [🗓️ 更新记录](#版本更新记录) · [📝 版本说明](CHANGELOG.md) · [🔒 关于 PowerLit](#关于-powerlit)
 
 ## 版本更新记录
 
@@ -45,7 +45,7 @@
 
 ## 装上就能用
 
-这套技能同时兼容 Codex 和 Claude（Claude Code / Cowork）。技能本体是标准的 `SKILL.md` + `references/` + Python 脚本，与运行平台无关；下面两种安装方式可任选，互不冲突。
+这套技能同时兼容 Codex、Claude 和 Cursor 等运行时。技能本体是标准的 `SKILL.md` + `references/` + Python 脚本；下面任选一种安装方式即可。
 
 ### Codex
 
@@ -96,11 +96,11 @@ cp -r powerlit-power-systems-writing-skills/skills/* ~/.claude/skills/
 技能演化后，仓库版本与已安装副本可能漂移。每个 `SKILL.md` 的 frontmatter 带有 `version:` 字段（日期戳）；判断和同步方法：
 
 ```powershell
-# 对比仓库与已装副本的版本（以 Codex 为例）
-Select-String -Path "skills\*\SKILL.md", "$env:USERPROFILE\.codex\skills\*\SKILL.md" -Pattern "^version:"
+# 对比仓库与已装副本的版本
+Select-String -Path "skills\*\SKILL.md", "$env:USERPROFILE\.cursor\skills\*\SKILL.md" -Pattern "^version:"
 
-# 同步：直接覆盖已装副本
-Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
+# 同步到 Cursor（或把路径换成 .codex/skills / .claude/skills）
+Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 ```
 
 若通过 skill-installer 安装，重跑一次安装命令即可获得最新版本。
@@ -124,10 +124,10 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
 ```
 
 ```text
-按 IEEE TSG 审稿人的标准严格检查这篇论文是否够录用。
+按 IEEE TSG 标准严格审查这篇稿件，给出本地审稿建议和必须修复项。
 ```
 
-没有按钮、没有面板、没有手工翻 JSON。你给 idea、草稿、模型、结果或证据包，skill 负责把它们转换成期刊可审的论文表达。
+你给 idea、草稿、模型、结果或证据包，skill 负责把它们转换成期刊可审的论文表达。
 
 ---
 
@@ -140,7 +140,7 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
 | 📖 文献精读总结 | `powerlit-power-systems-literature-reading` | 核心论点、理论机制、理论贡献、研究设计、关键发现、研究问题回应 | 精读单篇或少量指定文献 |
 | 📝 完整论文写作 | `powerlit-power-systems-paper-writing` | 摘要、引言、方法、算例、结论、图表标题和结果段 | CSEE、AEPS、TPWRS、TSG 正文写作 |
 | ✉️ IEEE Letter 写作 | `ieee-power-engineering-letter-writing` | 一个硬论点、紧凑技术核心和最小决定性证据 | 符合官方页数规则的 IEEE PES Letter |
-| 🧪 投稿前审稿 | `powerlit-power-systems-paper-review` | 按严重程度排序的拒稿风险和必须修复项 | 投稿前自查、返修前定位致命问题 |
+| 🧪 投稿前审稿 | `powerlit-power-systems-paper-review` | 本地审稿建议 + 按严重程度排序的问题清单 | 投稿前自查、返修前定位致命问题 |
 | 📊 图表与结果段 | `powerlit-power-systems-paper-writing` | 自洽 caption、正文解释句、MATLAB 结果到论文段落 | 处理 figure、table、case study、ablation、sensitivity |
 | ✨ 轻量润色 | `powerlit-power-systems-paper-writing` | 保留原技术含义的最小必要修改 | 去 AI 味、术语统一、压缩、扩写、翻译、逻辑修理 |
 
@@ -157,7 +157,7 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
 | 算例结果段 | MATLAB 或结果表、基线、指标、场景 | `根据这些 case33bw 结果写算例分析段，不要泛称有效性。` | 说明系统、指标方向、对比、机理和边界的结果段。 |
 | 图表标题 | 图表内容、坐标轴或列名、期刊 | `为这张电压越限概率图写 IEEE TSG caption，并给正文解释句。` | 自洽图题和一段与电网含义绑定的正文解释。 |
 | 轻量润色 | 原段落、目标期刊、保留与删除约束 | `轻量润色这段中文，不新增结论和引用，只去掉 AI 味和空泛句。` | 先给改后文本，只做必要术语、逻辑和风格修理。 |
-| 投稿前审稿 | 稿件或章节、期刊、证据包 | `按中国电机工程学报标准严格审查这篇论文是否够录用。` | 按严重程度排序的审稿问题和必须修复项。 |
+| 投稿前审稿 | 稿件或章节、期刊、证据包 | `按中国电机工程学报标准严格审查这篇稿件，给出本地审稿建议和必须修复项。` | 本地审稿建议（直接投稿 / 小修 / 大修 / 不建议投稿）与按优先级排列的修改清单。 |
 
 ---
 
@@ -165,11 +165,11 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
 
 ### 🔎 PowerLit 证据门控
 
-PowerLit 可访问时，技能会先检索近邻论文，确认最近竞争工作、可引用证据和 novelty 风险。新颖性、贡献、对比优势和语料风格结论都必须有检索依据；没有依据时，skill 会缩窄论点或明确阻断。
+文献检索 skill 自带 SQLite 索引（约 1.4 万条，安装即用）。写作与预审会先查近邻论文，再定引用、新颖性和论点边界——你只需描述研究对象，检索由 skill 脚本完成。
 
 ### 🧭 最小研究对象门
 
-预审和重大写作前，技能会先识别论文所属的最小研究对象和小同行问题域，再定义痛点、创新点、文献对照和故事主线。找到新的窄研究对象或输出对象本身可以是创新，但不能把解析方法、状态估计、概率潮流、保护配合等细分对象的贡献包装成宽泛的新能源运行、规划或调度背景。
+预审和重大写作前，技能会先识别论文所属的最小研究对象和小同行问题域，再定义痛点、创新点与故事主线，避免把细分技术贡献包装成宽泛行业背景。
 
 ### 🧭 项目论点到论文论点的翻译
 
@@ -187,7 +187,7 @@ PowerLit 可访问时，技能会先检索近邻论文，确认最近竞争工�
 
 ### 🧩 期刊 profile 路由
 
-完整论文保持一个稳定入口 `powerlit-power-systems-paper-writing`，再通过 reference 文件处理 CSEE、AEPS、TPWRS、TSG 的差异。Letter 单独拆出，因为 Letter 不是完整论文的压缩版。
+完整论文保持一个入口 `powerlit-power-systems-paper-writing`，通过 reference 适配 CSEE、AEPS、TPWRS、TSG。**期刊未定时默认按 TPWRS 证据标准路由，首稿输出中文技术正文**（需要英文 IEEE 版时再转换）。Letter 单独成 skill——它是独立文体，不是缩略版长文。
 
 ### 🧪 写作到审稿闭环
 
@@ -203,27 +203,9 @@ PowerLit 可访问时，技能会先检索近邻论文，确认最近竞争工�
 
 ### `powerlit-power-systems-literature-intelligence`
 
-用于需要 PowerLit 支撑的文献任务，包括创新性检查、近邻竞争工作分析、引用包、引言支撑和文献覆盖审计。
+用于创新性检查、近邻竞争工作分析、引用包、引言支撑和文献覆盖审计。**安装即带 SQLite 索引**（约 1.4 万条），无需自备语料即可检索。
 
-PowerLit JSON 根目录解析顺序：
-
-1. 用户显式提供的路径或脚本参数
-2. `POWERLIT_JSON_ROOT`
-3. `POWERLIT_LITERATURE_JSON`
-
-高频应用默认优先使用文献检索 skill 内置的 SQLite FTS 缓存：`skills/powerlit-power-systems-literature-intelligence/assets/powerlit-index`。标准 skill 安装会复制该目录，因此没有私有原始语料时也能使用索引检索。
-
-跨平台主入口是 Python 脚本，Codex、Claude（Linux 环境）和任何带 Python3 的环境都可直接调用。
-
-索引构建（Python，跨平台）：
-
-```bash
-python skills/powerlit-power-systems-literature-intelligence/scripts/Build-PowerLitIndex.py \
-  --venue-folder ieee_tsg \
-  --venue-folder ieee_tpwrs
-```
-
-快速检索（Python，跨平台，推荐主路径）：
+快速检索（Python，跨平台，主路径）：
 
 ```bash
 python skills/powerlit-power-systems-literature-intelligence/scripts/Search-PowerLitIndex.py \
@@ -232,7 +214,7 @@ python skills/powerlit-power-systems-literature-intelligence/scripts/Search-Powe
   --top 10
 ```
 
-Windows PowerShell 备选入口会优先使用仓库本地缓存，缓存缺失时才回退到环境变量索引或主库 `rg` 预筛：
+Windows 用户可用 PowerShell 入口，行为等价：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File `
@@ -241,6 +223,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
   -VenueFolder ieee_tsg `
   -Top 10
 ```
+
+若你有私有 PowerLit JSON 语料并需要增量更新索引，可配置 `POWERLIT_JSON_ROOT` 后运行 `Build-PowerLitIndex.py`。
 
 ### `powerlit-power-systems-literature-reading`
 
@@ -291,7 +275,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `references/worked-examples.md`（按期刊的 before→after 改写正例，可选深入）
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md`（可选深入例子）
 
-适用于标题/关键词、摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。完整论文、标题、摘要、引言、贡献表述或重大改写前，会先检索项目文件和可用的 PowerLit/文献近邻，先厘清真实存在的行业/工程痛点，再列出文件检索后确认且对应痛点的创新点、技术层面的研究意义、文献近邻风险和可行论文标题，请使用者确认后再进入正文写作。写作时会按章节质量门槛检查标题是否科学简洁并突出创新、关键词是否精准且不超过 5 个、摘要是否快速进入主题、引言是否结合近五年 EI 以上高水平文献、算例是否围绕创新点设计并包含对比和灵敏度分析、结论是否有证据支撑且不夸大。
+适用于标题/关键词、摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。完整论文、标题、摘要、引言或重大改写前，会先检索项目文件与近邻文献，确认痛点、创新点、可行标题，再请你确认后进入正文写作。
 
 ### `ieee-power-engineering-letter-writing`
 
@@ -305,7 +289,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 
 ### `powerlit-power-systems-paper-review`
 
-用于按照 CSEE、AEPS、TPWRS、TSG 和 IEEE Letter 标准严格审稿。审查优先级是可录用性、创新实质、逻辑链闭合、模型与数学正确性、证据充分性、标题关键词与章节质量、结论支撑、期刊匹配、措辞和格式。
+用于按照 CSEE、AEPS、TPWRS、TSG 和 IEEE Letter 标准严格审稿，输出**本地审稿建议**（直接投稿 / 小修 / 大修 / 不建议投稿）和按优先级排列的修改清单。
 
 ---
 
@@ -394,17 +378,8 @@ python scripts/Run-SkillRegression.py status               # 覆盖率与 dry_ru
 
 ---
 
-## PowerLit 语料边界
+## 关于 PowerLit
 
-本仓库只保存技能说明、期刊信号、脚本和行为夹具。它不保存原始 PowerLit 语料、PDF 或私有论文记录。
-
-技能只在可访问 PowerLit JSON 语料库时读取本地语料；语料不可用时进入 fallback 模式，不编造引用、近邻文献或语料风格结论。检索到的论文只能作为本地分析证据和写作参照，不能把原文复制进输出。
+本仓库分发的是技能与**内置文献索引**（约 1.4 万条），不含原始 PDF。检索结果用于规划引用与论证结构，**不会把原文抄进你的稿件**。若你有私有语料库，也可自行扩展索引。
 
 ---
-
-## 限制
-
-- PowerLit 不可访问时，skill 只能做结构、逻辑和语言层面的保守写作，不能声称完成近邻文献门控。
-- 全量 JSON 语料检索可能较慢；高频使用建议先构建 SQLite FTS 索引。
-- 期刊论文只能作为结构、节奏和论证方式参照，不能复制原文句子。
-- `submission-ready` 只能在证据、模型、逻辑和期刊匹配都通过本地审稿门槛后使用。
