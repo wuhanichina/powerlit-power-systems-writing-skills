@@ -1,5 +1,24 @@
 # 版本说明
 
+## 2026-07-03 - 索引年份回填、检查点视觉标记与半自动回归 runner
+
+本版本来自一次达尔文式全量评估（9 维评分 + 带技能/无技能 A/B 实测）后的三项修复：
+
+主要变化：
+
+- **索引 year 字段修复**：`powerlit_index_common.py` 新增 `derive_year`（记录字段 → DOI 家族模式（IEEE/Elsevier/MPCE/AEPS/PCSEE/PST）→ 正文头部年份），`Build-PowerLitIndex.py` 建库时落 year；新增 `Backfill-PowerLitIndexYear.py` 对已分发的 SQLite 分片原地回填（本次回填 14146/14148 条，检索结果现在带年份），"prefer recent papers" 与"近五年文献"纪律从此可执行。
+- **检查点视觉标记（darwin HL-1）**：`paper-writing` 的预审门（step 3）、写作前确认（step 4）、审稿闭环（step 16），`prewriting-review` 的四态决策（step 12）与 NO-GO 硬规则，`letter-writing` 的近邻门（step 4），统一加 🔴 CHECKPOINT / 🛑 STOP 显性标记。
+- **paper-writing SKILL.md 去重**：开篇痛点门收敛为 Hard Rules 单一表述（Section Rules 只留指针）；写作前确认门收敛为 step 4 单一表述（硬规则改为指针）；corpus 工件清单与 step 12 内部起草图合并，消除整段重复列表。判断标准不变。
+- **frontmatter 版本戳**：六个 `SKILL.md` 增加 `version:` 日期字段；README 新增"更新已安装的副本"一节（版本对比 + 覆盖同步命令）与通用 runtime（Cursor 等）安装路径表。
+- **半自动回归 runner**：新增 `scripts/Run-SkillRegression.py`（list/show/record/status），把 test-prompts、写作审稿闭环、重建 benchmark 统一编排；判定追加到 `evaluation/results.tsv`（棘轮日志，进版本管理）；`status` 在 dry_run 比例 > 30% 时告警。新增回归用例 `letter-first-sentence-pain-point`（来自本次 A/B 实测：无技能 baseline 以趋势暖场开局，带技能版首句携带对象+失效条件+冲突）并记录首条 full_test 判定。
+- 新增单元测试 `tests/test_skill_regression_runner.py`（runner 行为 + `derive_year` 各 DOI 家族），pytest 由 19 项增至 24 项。
+
+验证记录：
+
+- `scripts\Validate-PowerLitSkillRepo.ps1` 通过（含 PowerLit search smoke）。
+- `python -m pytest` 24 项全部通过。
+- 回填后抽查：TPWRS/AEPS/CSEE 分片年份分布合理，无越界年份，DOI 与 year 无不一致样本。
+
 ## Unreleased - PowerLit corpus-derived progression and anti-repetition discipline
 
 This update strengthens the full-paper writing path so PowerLit is used as a writing-learning source, not only as a citation or novelty source.

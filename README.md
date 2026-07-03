@@ -75,6 +75,31 @@ cp -r powerlit-power-systems-writing-skills/skills/* ~/.claude/skills/
 
 检索脚本在 Claude 的 Linux 环境下用 Python 入口（见[核心机制](#核心机制)），无需 PowerShell。
 
+### 其他兼容 Agent Skills 的运行时（Cursor 等）
+
+任何支持 Agent Skills 标准（`SKILL.md` frontmatter + `references/` + `scripts/`）的运行时都可以直接使用：把 `skills/<name>/` 目录复制或软链到该运行时的技能目录即可。常见路径：
+
+| 运行时 | 技能目录 |
+|---|---|
+| Codex | `~/.codex/skills/` |
+| Claude Code / Cowork | `~/.claude/skills/` |
+| Cursor | `~/.cursor/skills/`（或项目级技能目录；Cursor 也能发现 `~/.codex/skills/` 下已安装的技能） |
+| 其他 | 参考该运行时的 skills 文档，放入其技能发现目录 |
+
+### 更新已安装的副本
+
+技能演化后，仓库版本与已安装副本可能漂移。每个 `SKILL.md` 的 frontmatter 带有 `version:` 字段（日期戳）；判断和同步方法：
+
+```powershell
+# 对比仓库与已装副本的版本（以 Codex 为例）
+Select-String -Path "skills\*\SKILL.md", "$env:USERPROFILE\.codex\skills\*\SKILL.md" -Pattern "^version:"
+
+# 同步：直接覆盖已装副本
+Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
+```
+
+若通过 skill-installer 安装，重跑一次安装命令即可获得最新版本。
+
 ### 装好后直接说话
 
 ```text
@@ -298,7 +323,8 @@ powerlit-power-systems-writing-skills/
 ├── README.en.md
 ├── LICENSE
 ├── scripts/
-│   └── Validate-PowerLitSkillRepo.ps1
+│   ├── Validate-PowerLitSkillRepo.ps1
+│   └── Run-SkillRegression.py
 ├── skills/
 │   ├── powerlit-power-systems-literature-intelligence/
 │   ├── powerlit-power-systems-literature-reading/
@@ -351,6 +377,15 @@ python evaluation/retrieval/run_retrieval_eval.py
 ```
 
 CI 会在 `ubuntu-latest` 和 `windows-latest` 上分别运行 repository lint、unit tests 和 retrieval evaluation。
+
+行为回归（需要 agent 实跑）由半自动 runner 编排并记录到 `evaluation/results.tsv`：
+
+```powershell
+python scripts/Run-SkillRegression.py list                 # 列出全部回归用例
+python scripts/Run-SkillRegression.py show --id <case-id>  # 取出 prompt 交给带技能的 agent 执行
+python scripts/Run-SkillRegression.py record --id <case-id> --mode full_test --verdict pass --note "..."
+python scripts/Run-SkillRegression.py status               # 覆盖率与 dry_run 比例告警
+```
 
 ---
 

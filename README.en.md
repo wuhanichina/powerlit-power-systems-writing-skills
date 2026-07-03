@@ -61,6 +61,28 @@ cp -r powerlit-power-systems-writing-skills/skills/* ~/.claude/skills/
 
 The retrieval scripts run under Claude's Linux environment via the Python entry points (see [Core Mechanisms](#core-mechanisms)); no PowerShell required.
 
+### Other Agent-Skills-compatible runtimes (Cursor, etc.)
+
+Any runtime that supports the Agent Skills standard (`SKILL.md` frontmatter + `references/` + `scripts/`) can use these skills directly: copy or symlink each `skills/<name>/` directory into that runtime's skills directory. Common paths:
+
+| Runtime | Skills directory |
+|---|---|
+| Codex | `~/.codex/skills/` |
+| Claude Code / Cowork | `~/.claude/skills/` |
+| Cursor | `~/.cursor/skills/` (or the project-level skills directory; Cursor also discovers skills installed under `~/.codex/skills/`) |
+| Others | see that runtime's skills documentation and use its discovery directory |
+
+### Updating installed copies
+
+Installed copies can drift from the repository as the skills evolve. Each `SKILL.md` frontmatter carries a `version:` date stamp; compare and sync with:
+
+```powershell
+Select-String -Path "skills\*\SKILL.md", "$env:USERPROFILE\.codex\skills\*\SKILL.md" -Pattern "^version:"
+Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.codex\skills\"
+```
+
+If you installed via the skill installer, rerun the install command to pick up the latest version.
+
 ### Then talk to the skills directly
 
 ```text

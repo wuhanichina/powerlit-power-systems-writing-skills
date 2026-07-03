@@ -155,6 +155,53 @@ def title_from_content_head(content: str) -> Optional[str]:
     return None
 
 
+_MONTH_YEAR_RE = re.compile(
+    r"(?:JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)"
+    r"[\s,]+((?:19|20)\d{2})",
+    re.IGNORECASE,
+)
+_CJK_YEAR_RE = re.compile(r"((?:19|20)\d{2})\s*年")
+_DOI_DOTTED_YEAR_RE = re.compile(r"[./]((?:19|20)\d{2})[.]")
+_DOI_ANY_YEAR_RE = re.compile(r"(?<!\d)((?:19|20)\d{2})(?!\d)")
+_AEPS_DOI_RE = re.compile(r"aeps((?:19|20)\d{2})\d+", re.IGNORECASE)
+_PCSEE_DOI_RE = re.compile(r"pcsee[.]?(\d{2})\d{4}", re.IGNORECASE)
+
+
+def _valid_year(value: str) -> bool:
+    return bool(re.fullmatch(r"(?:19|20)\d{2}", value))
+
+
+def derive_year(record_year: object = None, doi: str = "", content_head: str = "") -> str:
+    """Best-effort publication year: record field first, then DOI patterns, then content header."""
+    if record_year is not None:
+        text = str(record_year).strip()
+        if _valid_year(text):
+            return text
+
+    doi = doi or ""
+    match = _AEPS_DOI_RE.search(doi)
+    if match:
+        return match.group(1)
+    match = _PCSEE_DOI_RE.search(doi)
+    if match:
+        return f"20{match.group(1)}"
+    match = _DOI_DOTTED_YEAR_RE.search(doi)
+    if match:
+        return match.group(1)
+    match = _DOI_ANY_YEAR_RE.search(doi)
+    if match:
+        return match.group(1)
+
+    head = (content_head or "")[:4000]
+    match = _MONTH_YEAR_RE.search(head)
+    if match:
+        return match.group(1)
+    match = _CJK_YEAR_RE.search(head)
+    if match:
+        return match.group(1)
+    return ""
+
+
 def iter_json_files(root: Path, include_analysis: bool = False) -> Iterable[Path]:
     for path in root.rglob("*.json"):
         if not include_analysis and path.name.endswith("-analysis.json"):
@@ -213,7 +260,7 @@ def make_index_record(path: Path, root: Path, venue_folder: str, head_chars: int
         "title_source": title_source,
         "source_title": source_title,
         "doi": str(record.get("doi") or ""),
-        "year": record.get("year"),
+        "year": derive_year(record.get("year"), str(record.get("doi") or ""), content_head),
         "content_head": content_head,
         "size_bytes": stat.st_size,
         "mtime": int(stat.st_mtime),

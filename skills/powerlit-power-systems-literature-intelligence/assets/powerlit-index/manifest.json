@@ -1,12 +1,10 @@
 {
   "schema_version": 2,
   "cache_version": "2026.06",
-  "generated_at": "2026-06-18T06:55:53.548430Z",
+  "generated_at": "2026-07-03T08:39:39.770795Z",
   "corpus_snapshot_date": "2026-06-16",
   "analyzer_version": "powerlit-index-portable-v1",
-  "total_records": 14148,
-  "failed_records": 0,
-  "elapsed_ms": 6738,
+  "include_analysis": false,
   "venues": {
     "applied_energy": {
       "sqlite_file": "applied_energy.sqlite",
@@ -69,45 +67,48 @@
       "failed_records": 0
     }
   },
+  "total_records": 14148,
+  "failed_records": 0,
+  "elapsed_ms": 16,
   "shards": {
     "applied_energy.sqlite": {
-      "sha256": "6e36e7905ce617b289c254e091db22c5c2ae66b6eba9732444b3a980560a071a",
+      "sha256": "f9efb018b168473f6eb459cf98b076374a861fdc6a88cdbf9d59e50509c61c5e",
       "records": 2
     },
     "energy.sqlite": {
-      "sha256": "f765db3b72536ae823e913420ba05cfacfe8b3312aab23a39b6131dbfa6fb1d6",
+      "sha256": "1ad7856f58979b16ec8b71de621340b2369f137c797db76529e7520f7b5efa63",
       "records": 1
     },
     "ieee_tpwrd.sqlite": {
-      "sha256": "b581e50d803c44d2bb47a144d12b7956214e7e2d77ee15a25ee45c3f993c6248",
+      "sha256": "c5a5c30e7e41a2cfbf932491f6202732b057923eb7516252ffbdf0d01035680d",
       "records": 1
     },
     "ieee_tpwrs.sqlite": {
-      "sha256": "65c4d1f02202d5011fdac99ea0d85ea9b52cc3abd857629bfafa45d764c4d54f",
+      "sha256": "93f451021489ca38ef932845f8fc376e848a60ea2a337365a3d089c5c8b479af",
       "records": 7139
     },
     "ieee_tsg.sqlite": {
-      "sha256": "e2c852a7311629442035558060897f0e55d17e160d5e46810623b5da1ccc6b9d",
+      "sha256": "60003091dd4f8e3f5afd184e2394c966619d7693c661d7e09a520feb117e5c1a",
       "records": 5638
     },
     "ijepes.sqlite": {
-      "sha256": "862bda03ec65da1dd6d541aa7470f5e3e78f182ec4d07108f890afcbcabbcc66",
+      "sha256": "804ce169ae4d1cb01d761ff5e6633dc24a1d3411f9c9363e6f0b4d50343cd1e0",
       "records": 2
     },
     "mpce.sqlite": {
-      "sha256": "a97e3e3bcd831d830f0b700ba1fcf5d2685e9f439b16c33d2501334a427c7010",
+      "sha256": "1bf098f85fdaa87c7f1995d75c46bcdc8d1a74b538a294736964e42c82f01e0c",
       "records": 1
     },
     "venue_5fa2986a16a0.sqlite": {
-      "sha256": "a77e43a7fcafaf18c7b8e0015a41e63656a6c3c22b91e761e344663f6fefa56f",
+      "sha256": "4495e1a508d17e86f6ce34df032850f40a90d722df9117c9eba95d34e2786131",
       "records": 538
     },
     "venue_c62427ef1b1b.sqlite": {
-      "sha256": "354631eea95e48c713f7f86235f31c7eebc07393e74e5f540c39790ea12ab94e",
+      "sha256": "83ec55d5201bd56b805077bb0182335568200333e6a497d401ecdfb3a5f35613",
       "records": 24
     },
     "venue_cf71f77aed85.sqlite": {
-      "sha256": "0661ea3176c417f7b04e68b96d46203f3d342bb07351ccc660ed709a3c682e84",
+      "sha256": "427c0fabbab3f9f5eecaf4b3864ba19553860a14ccc932183c42a4e531d24f87",
       "records": 802
     }
   }

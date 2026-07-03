@@ -8,5 +8,10 @@
     "id": "letter-prior-work-threat",
     "prompt": "Use $ieee-power-engineering-letter-writing to assess whether a proposed Letter on a sensitivity index is still publishable if PowerLit finds a prior Letter with the same problem, mechanism, and evidence object.",
     "expected": "The response refuses simple rephrasing and recommends narrowing the claim, changing the technical object, retargeting, or not submitting; it must not present the Letter as review-ready."
+  },
+  {
+    "id": "letter-first-sentence-pain-point",
+    "prompt": "Use $ieee-power-engineering-letter-writing to write the Abstract and the opening Introduction paragraph for a Letter whose evidence is: LinDistFlow-based volt/var droop gain tuning assumes reactive-power dominance, but on feeder ends with R/X > 2 the voltage-active-power coupling exceeds the reactive coupling, causing a sustained 0.018 p.u. voltage-limit violation on a 12-node real feeder that a coupling-corrected gain removes; the claim is bounded to high-R/X feeder-end nodes under single-phase injection.",
+    "expected": "The first sentence of both the abstract and the introduction must itself carry the concrete object, the failing condition (R/X > 2 feeder ends), and the unresolved conflict; a trend/importance/definition warm-up opener such as 'The rapid growth of rooftop PV...' fails this case (observed as the unskilled-baseline failure mode). The boundary must stay limited to high-R/X feeder ends and single-phase injection, with no invented citations."
   }
 ]

@@ -14,6 +14,18 @@
 - `method-canon/web-canon-seed.md` — method canon 种子。
 - `behavior/independent-reviewer-prompt.md` — 独立审稿行为提示。
 - `internal-readiness-progress.md`、`darwin-luban-audit.md` — 维护记录与审计笔记。
+- `results.tsv` — 回归判定日志（棘轮记录）。由 `scripts/Run-SkillRegression.py record` 追加，记录每个回归用例的最近判定（`full_test`/`dry_run`、pass/fail、依据）。进版本管理：它是技能演化的证据链，技能修订应以"之前失败的用例现在是否通过"来评判。
+
+## 回归执行方式
+
+回归用例本身需要 agent 执行，流程半自动：
+
+```bash
+python scripts/Run-SkillRegression.py list                 # 列出全部用例（test-prompts + 闭环 + 重建）
+python scripts/Run-SkillRegression.py show --id <case-id>  # 取出 prompt，交给带技能的 agent 跑
+python scripts/Run-SkillRegression.py record --id <case-id> --mode full_test --verdict pass --note "..."
+python scripts/Run-SkillRegression.py status               # 覆盖率、最近判定、dry_run 比例告警（>30% 时效果分不可信）
+```
 
 ## 不进版本管理：本地运行产物
 

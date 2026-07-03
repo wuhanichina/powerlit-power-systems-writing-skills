@@ -1,5 +1,6 @@
 ---
 name: ieee-power-engineering-letter-writing
+version: 2026.07.03
 description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Power Engineering Letters and TPWRS/TSG short Letters under the official IEEE PES Letter page-budget rules. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, reviewer-comment revision, and anti-full-paper cleanup.
 ---
 # IEEE Power Engineering Letter Writing
@@ -27,7 +28,7 @@ Official IEEE PES Letter page-budget rule, checked 2026-06-18: original submissi
    - resolve PowerLit from user path, `POWERLIT_JSON_ROOT` or `POWERLIT_LITERATURE_JSON`;
    - if accessible, identify the nearest Letters/full papers and the one contrast the Letter must win;
    - if inaccessible, state fallback mode once and keep the Letter narrow without inventing citations.
-4. Apply the near-neighbor gate:
+4. 🔴 CHECKPOINT: apply the near-neighbor gate:
    - if PowerLit finds a close Letter or full paper with the same problem, mechanism, and evidence object, do not proceed by rephrasing;
    - narrow the claim, change the technical object, retarget as a full paper, or recommend against submission;
    - if the nearest papers are broad background only, keep novelty language narrow.

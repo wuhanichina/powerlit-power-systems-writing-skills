@@ -1,0 +1,2 @@
+timestamp	commit	source	case_id	eval_mode	verdict	note
+2026-07-03T08:34:33Z	74cb5b2	skills/ieee-power-engineering-letter-writing/test-prompts.json	letter-first-sentence-pain-point	full_test	pass	2026-07-03 A/B subagent run: with-skill first sentences carry object+condition+conflict; clean baseline opened with trend warm-up (prohibited)

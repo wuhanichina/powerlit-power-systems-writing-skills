@@ -1,5 +1,6 @@
 ---
 name: powerlit-power-systems-literature-intelligence
+version: 2026.07.03
 description: Retrieve and synthesize nearby power-system papers from a configurable local PowerLit JSON corpus for novelty checks, closest-competitor analysis, citation packs, introduction support, and review coverage audits. Use when PowerLit literature access, citation evidence, or corpus-backed innovation judgment is requested.
 ---
 # PowerLit Power-Systems Literature Intelligence

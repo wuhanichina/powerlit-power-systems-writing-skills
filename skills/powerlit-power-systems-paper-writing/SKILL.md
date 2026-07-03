@@ -1,5 +1,6 @@
 ---
 name: powerlit-power-systems-paper-writing
+version: 2026.07.03
 description: Draft, rewrite, or revise full-length power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, method/model sections, case studies, figure/table captions, result paragraphs, conclusions, terminology cleanup, reviewer-comment revision, venue adaptation, and PowerLit-grounded citation planning.
 ---
 # PowerLit Power-Systems Paper Writing
@@ -28,8 +29,8 @@ The numbered workflow below names references at the step where they apply; the t
 
 1. Load `references/research-object-gate.md` and identify the research object before venue adaptation: power-system object, problem type, technical object, evidence object, and adjacent non-objects. If any item is unclear, state the assumption or blocker before drafting.
 2. Identify the target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG. If the user does not specify a venue, use the research-object gate and routing defaults first; if still unclear, default to IEEE TPWRS and write the first manuscript draft in Chinese while still applying TPWRS logic, evidence standards, and claim boundaries. Produce IEEE English only when the user asks for English, translation, polishing, or final venue-language conversion.
-3. If the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not turn an unsupported paper into fluent manuscript prose.
-4. Load `references/pre-drafting-confirmation.md` before full-paper drafting, major rewriting, title design, abstract, introduction, contribution, or venue-positioning work. Search the supplied project files first, then use PowerLit or literature retrieval when available to help judge whether the pain point is real, whether the innovation answers it, and how the title should be positioned. Before drafting, return a short confirmation brief that lists the real industry or engineering pain point, file-search-confirmed innovation points, technical-level research significance, and feasible paper titles, then ask the user to confirm the pain-point/innovation/title choice unless the user has already confirmed them or explicitly asked you to proceed with your best choice.
+3. 🔴 CHECKPOINT: if the idea, model, or evidence package has not passed prewriting review, use `powerlit-power-systems-prewriting-review` first. Do not turn an unsupported paper into fluent manuscript prose, and do not polish a NO-GO idea past this gate.
+4. Load `references/pre-drafting-confirmation.md` before full-paper drafting, major rewriting, title design, abstract, introduction, contribution, or venue-positioning work. Search the supplied project files first, then use PowerLit or literature retrieval when available to help judge whether the pain point is real, whether the innovation answers it, and how the title should be positioned. Before drafting, return a short confirmation brief that lists the real industry or engineering pain point, file-search-confirmed innovation points, technical-level research significance, and feasible paper titles. 🔴 CHECKPOINT · 🛑 STOP: ask the user to confirm the pain-point/innovation/title choice and do not continue into full manuscript prose in the same response, unless the user has already confirmed them or explicitly asked you to proceed with your best choice.
 5. Lock the paper object before drafting:
    - grid or market object;
    - technical problem;
@@ -82,7 +83,7 @@ The numbered workflow below names references at the step where they apply; the t
    - **Conditional (run only when the trigger is present):** reviewer-feedback integration pass when revising after comments; formula physical-intuition pass when the section contains equations; engineering-math balance pass when derivation is present; the figure/table evidence check in `references/figures-tables-results.md` for captions, tables, and result paragraphs.
    If budget is tight, the always-run mechanical + structural groups are the non-negotiable minimum.
 15. If an internal readiness target is requested, apply `references/internal-readiness-writing.md` before review closure. Do not claim full-manuscript readiness when the evidence packet only supports a section-level result.
-16. Run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
+16. 🔴 CHECKPOINT: run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
 ## Power-System Story Order
 
@@ -120,21 +121,7 @@ When PowerLit is accessible, do not draft citation-sensitive, venue-sensitive, o
 3. Evidence-strength use: inspect accepted venue-near papers to learn which systems, baselines, metrics, sensitivities, ablations, solver settings, and boundary cases are manuscript-facing for the same claim class.
 4. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, conclusion boundary, and the sentence-function progression that prevents padding and duplicate claims.
 
-First build or consume:
-
-- background citations;
-- method-family citations;
-- gap citations;
-- closest-competitor citations;
-- PowerLit evidence-strength profile;
-- corpus style exemplars;
-- corpus progression pattern;
-- corpus terminology map;
-- corpus case-evidence plan;
-- template-ready figure plan;
-- corpus main-body pattern;
-- citation-to-sentence plan;
-- claim boundary after comparison.
+First build or consume the corpus artifacts named in the internal drafting map (step 12): the four citation packs (background, method-family, gap, closest-competitor), the PowerLit evidence-strength profile, the corpus style exemplars, the corpus progression pattern, the corpus terminology map, the corpus case-evidence plan, the template-ready figure plan, the corpus main-body pattern, the citation-to-sentence plan, and the claim boundary after comparison.
 
 If PowerLit is unavailable, state fallback mode once and continue only with supplied references, citation slots, or the static venue profiles. Never invent titles, DOIs, years, venues, paper-specific claims, or corpus-derived style statistics.
 
@@ -145,8 +132,8 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 ## Section Rules
 
 - Title/keywords, abstract, introduction, case analysis, and conclusion: use `references/manuscript-section-quality.md`. If no title is supplied, draft one; keep keywords precise and at most five; make the abstract quickly state background, purpose, method, result, and significance; make the introduction move from background to a key scientific or engineering problem with recent high-level literature support; make case analysis test the innovation with baselines, sensitivity, and figure/table interpretation; keep conclusions evidence-supported and concise.
-- Abstract: one compact problem sentence, one contribution sentence, one to three technical-action sentences, one evidence sentence, optional boundary sentence. Apply the full-paper tier of the opening pain-point gate in `references/introduction-scalpel.md`: a trend/context opener is allowed, but the concrete object, its operating condition, and the unresolved conflict must arrive within the abstract's opening movement, not be deferred beyond it.
-- Introduction: use `references/introduction-scalpel.md`; move from a concrete power-system object to a precise unresolved technical reason. Apply the full-paper tier of the opening pain-point gate: the first paragraph may open with a trend but must reach the concrete object and conflict before it ends; do not let the pain point slip to a later paragraph.
+- Abstract: one compact problem sentence, one contribution sentence, one to three technical-action sentences, one evidence sentence, optional boundary sentence. The opening pain-point hard rule below applies to the abstract's opening movement.
+- Introduction: use `references/introduction-scalpel.md`; move from a concrete power-system object to a precise unresolved technical reason. The opening pain-point hard rule below applies to the first paragraph; do not let the pain point slip to a later paragraph.
 - Method/model: use `references/method-model.md`; define variables, sets, assumptions, physical meaning, constraints, transformations, and algorithmic steps in the venue's expected order. Key equations need physical intuition, not only symbol definitions. If an uncommon mathematical theory is introduced, give only the prerequisite concepts needed later, tie them to the power-system object, and then return to the physical mechanism.
 - Case study/results: use power-system evidence objects, not generic SOTA language. State system, operating scenario, baselines, metrics, solver/protocol, sensitivity, and boundary where relevant.
 - Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
@@ -170,7 +157,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not bypass the project-template figure plan. If `01_IDEA/figure_plan.md` or a strict `save_figure` exporter is present, create or update the PowerLit-informed case/figure plan before formal figure export, SOTA comparison plots, sensitivity plots, or manuscript claims that depend on figures.
 - Do not import body-section elements from near-neighbor papers unless the current project supports them. A proof, convergence claim, communication model, privacy mechanism, runtime protocol, or sensitivity study is required only when the current claim and evidence boundary require it.
 - Do not polish a NO-GO idea into manuscript prose.
-- Do not begin a full-paper draft, major rewrite, title, abstract, introduction, contribution, or venue-positioning task until the paper's real industry or engineering pain point, corresponding innovation point, technical-level research significance, and title direction have been confirmed from project-file evidence and, when available, literature retrieval. If they are unclear, list the pain-point candidates, confirmed innovation candidates, technical significance, and feasible titles first, then ask the user to choose or approve before drafting.
+- Do not begin a full-paper draft, major rewrite, title, abstract, introduction, contribution, or venue-positioning task before the pre-drafting confirmation checkpoint in step 4 is satisfied: pain point, innovation, significance, and title direction confirmed from project-file evidence (plus literature retrieval when available), or the user has explicitly authorized best-judgment drafting.
 - Do not let a target-venue profile change the manuscript's research object. A venue can change rhythm, section emphasis, evidence granularity, and register; it cannot add dispatch/operation/planning, smart-grid/data/cyber, formulation/guarantee, or broad engineering-implementation claims without supplied evidence for that shift.
 - Do not copy project `claims.md` wording into the paper as the headline contribution. Project claims are often rigid evidence controls; translate them into a venue-fit paper claim before drafting.
 - Do not lead manuscript paragraphs with defensive boundary language such as "需要强调的是", "本文不把...", "本文不主张...", or "not intended to replace..." unless the target text is explicitly a limitations paragraph. Translate the boundary into a positive technical subject plus a stated scope.

@@ -1,5 +1,6 @@
 ---
 name: powerlit-power-systems-prewriting-review
+version: 2026.07.03
 description: Gate power-system paper ideas or drafts before formal writing for 中国电机工程学报, 电力系统自动化, IEEE TPWRS, IEEE TSG, and IEEE power-system Letters. Use to decide GO, CONDITIONAL GO, NO-GO, or RETARGET based on innovation chain, model correctness, evidence readiness, and venue fit before invoking a writing skill.
 ---
 # PowerLit Power-Systems Prewriting Review
@@ -48,7 +49,7 @@ Do not let mathematical derivation become the story by default. Mathematics shou
    - write the story as acts, not as a derivation sequence;
    - identify which mathematical parts are necessary support and which should stay subordinate;
    - reject stories that are elegant mathematically but not anchored in the supplied engineering object or evidence.
-12. Give one of four decisions:
+12. 🔴 CHECKPOINT · 🛑 STOP: give one of four decisions and wait for the user before any writing skill is invoked:
    - `GO`: enter writing.
    - `CONDITIONAL GO`: enter writing only with narrowed claims or specified missing checks.
    - `NO-GO`: do not write yet; repair model, evidence, or positioning first.
@@ -84,7 +85,7 @@ Include a `PowerLit evidence` item that states access status, closest competitor
 
 ## Hard Rule
 
-If the innovation chain, model correctness, or evidence support is not ready, say so directly. Do not offer a writing plan that would hide the weakness in better prose.
+🛑 STOP on NO-GO: if the innovation chain, model correctness, or evidence support is not ready, say so directly and do not proceed into drafting. Do not offer a writing plan that would hide the weakness in better prose.
 
 Scores are diagnostic readiness scores, not publication probabilities or editor judgments. Do not inflate scores to make the user feel ready; scores must be anchored to supplied material, PowerLit/literature evidence when available, and current research progress.
 
