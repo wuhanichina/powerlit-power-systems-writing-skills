@@ -154,8 +154,9 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
 
     assert "pre-drafting-innovation-title-confirmation" in prompts
     assert "pre-drafting-pain-point-significance" in prompts
-    assert "文件检索后确认" in readme
-    assert "真实存在的行业/工程痛点" in readme
+    assert "pre-drafting-confirmation.md" in readme
+    assert "确认痛点、创新点、可行标题" in readme
+    assert "再请你确认后进入正文写作" in readme
 
 
 def test_section_quality_gates_cover_title_abstract_intro_case_conclusion():
@@ -183,7 +184,8 @@ def test_section_quality_gates_cover_title_abstract_intro_case_conclusion():
 
     assert "manuscript-section-quality-gate" in writing_prompts
     assert "section-quality-review" in review_prompts
-    assert "标题关键词与章节质量" in readme
+    assert "manuscript-section-quality.md" in readme
+    assert "标题/关键词、摘要、引言" in readme
 
 
 def test_prewriting_scorecard_rates_readiness_and_maximum_defect():
