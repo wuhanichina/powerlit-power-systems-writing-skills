@@ -5,8 +5,10 @@
 > **Lock the evidence boundary first, then write a power-systems paper that can survive review.**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Skill Version](https://img.shields.io/badge/Skill%20Version-2026.07.03-blueviolet)](#release-notes)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
+[![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
 [![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-corpus-boundary)
 
 This repository provides a set of power-systems research-writing skills, compatible with both Codex and Claude (Claude Code / Cowork): prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
@@ -21,7 +23,16 @@ Supported venues and formats:
 - IEEE Transactions on Smart Grid
 - IEEE power-systems Letters and short technical communications
 
-[🚀 Install](#install-and-use) · [🧰 What It Does](#what-it-does) · [🎯 Common Entrypoints](#common-entrypoints) · [🧠 Core Mechanisms](#core-mechanisms) · [🧩 Skills](#skills) · [✅ Validation](#validation) · [📝 Changelog](CHANGELOG.md) · [🔒 Corpus Boundary](#powerlit-corpus-boundary)
+[🚀 Install](#install-and-use) · [🧰 What It Does](#what-it-does) · [🎯 Common Entrypoints](#common-entrypoints) · [🧠 Core Mechanisms](#core-mechanisms) · [🧩 Skills](#skills) · [✅ Validation](#validation) · [🗓️ Release Notes](#release-notes) · [📝 Changelog](CHANGELOG.md) · [🔒 Corpus Boundary](#powerlit-corpus-boundary)
+
+## Release Notes
+
+Current skill version: **2026.07.03** (the `version:` field in each `SKILL.md` frontmatter). After installing, compare the repository copy with your local install using `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'`.
+
+- **2026-07-03 (2026.07.03)**: index year repair — `derive_year` infers publication years from DOI/content headers, bundled SQLite shards backfilled (14146/14148 records), search results now include `year`; key gates marked with 🔴 CHECKPOINT / 🛑 STOP; `paper-writing` deduplicated; all six skills carry `version:` in frontmatter; README adds Cursor and other Agent-Skills runtime install/sync guidance; semi-automated regression runner (`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`) plus a Letter opening pain-point A/B regression case.
+- 2026-06-30: cross-skill section-quality checklist alignment; independent-reviewer stance for write-review closure; removed orphan `baseline-comparison.md`.
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 ---
 

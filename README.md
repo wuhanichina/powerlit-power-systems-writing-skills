@@ -5,8 +5,10 @@
 > **先锁定证据边界，再写能经得起审稿的电力系统论文。**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Skill Version](https://img.shields.io/badge/Skill%20Version-2026.07.03-blueviolet)](#版本更新记录)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
+[![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
 [![PowerLit](https://img.shields.io/badge/PowerLit-Evidence%20Grounded-orange)](#powerlit-语料边界)
 
 这个仓库提供一组面向电力系统论文的技能，兼容 Codex 和 Claude（Claude Code / Cowork），覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
@@ -25,6 +27,9 @@
 
 ## 版本更新记录
 
+当前技能版本：**2026.07.03**（六个 `SKILL.md` frontmatter 的 `version:` 字段）。安装后可用 `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'` 对比仓库与本地副本是否一致。
+
+- **2026-07-03（2026.07.03）**：索引 year 字段修复——`derive_year` 从 DOI/正文推断年份， bundled SQLite 分片回填 14146/14148 条，检索结果现带 `year`；关键检查点加 🔴 CHECKPOINT / 🛑 STOP 视觉标记；`paper-writing` 去重瘦身；六个技能 frontmatter 增加 `version:`；README 补充 Cursor 等通用 runtime 安装与同步说明；新增半自动回归 runner（`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`）与 Letter 开篇痛点 A/B 回归用例。
 - 2026-06-30：结构完整性收口——写作侧与审稿侧 section 质量清单互相对齐以防跨技能漂移；写作闭环复审改为独立审稿人姿态（接入 `evaluation/behavior/independent-reviewer-prompt.md`）以消除自评偏置；删除未被任何流程加载的孤儿参考文件 `baseline-comparison.md`。
 - 2026-06-30：打磨写作技能可实施性——新增参考文件加载分层（常见任务不再全量加载）、把交付前的十余个 pass 收敛为四组并与 `prose-quality-gates.md` 去重、明确内部标签“计划要/正文删”规则、期刊路由改为对象优先（TPWRS 仅作兜底）、新增按期刊的 before→after 正例库与公式直觉句模板、跨章节主线一致性检查和翻译保边界规则。
 - 2026-06-30：新增预审阶段的最小研究对象门，先锁定小同行问题域，再判断痛点、创新点、文献对照和工程故事，避免把窄对象贡献扩写成宽泛行业背景。
