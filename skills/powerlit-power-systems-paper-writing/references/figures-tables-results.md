@@ -18,6 +18,56 @@ If any item is missing, write only what the evidence supports and mark the missi
 
 Evidence description should carry the reproducibility facts that make the result interpretable. Put them where the reader naturally looks: case setup before comparisons, table notes for parameter or solver settings, captions for scenario/metric context, and result prose for the specific baseline or boundary being discussed. Do not move a fact into a caption or result paragraph only to make the text look complete; include it when it changes how the reader should interpret the number, trend, or comparison.
 
+## PowerLit Neighbor Evidence Plan
+
+When PowerLit is available and the task involves case analysis, figures, tables, result paragraphs, or a full paper, inspect venue-near and problem-near papers before choosing what to show. Build an internal `figure/table argument map`:
+
+- visual type: setup diagram, topology map, time-series profile, uncertainty distribution, convergence curve, baseline comparison table, sensitivity sweep, ablation result, runtime/scalability table, boundary/failure case, or spatial/topological risk map;
+- evidence question: what the visual lets a reviewer decide;
+- supported claim: which contribution, mechanism, comparison, reproducibility fact, or boundary the visual supports;
+- minimum visible facts: system, scenario, baseline, metric, unit, sample size, solver/protocol, parameter setting, or confidence level;
+- text role: whether the result paragraph should report an ordering, explain a mechanism, identify a tradeoff, justify a parameter, or close a boundary.
+
+Use neighboring papers to learn the expected evidence functions for the claim class. Do not imitate their exact figure set, labels, colors, or captions. Do not invent unavailable figures. If the current project lacks a figure/table function that near-neighbor papers treat as central, either mark the missing visual as a blocker, ask for the result, or narrow the claim.
+
+Good case-analysis design usually contains a balanced evidence chain:
+
+- setup evidence: test system, data, scenario, assumptions, or operating condition;
+- main comparison: proposed method against fair baselines on the primary metric;
+- mechanism evidence: why the improvement, failure, concentration, or tradeoff occurs;
+- sensitivity or ablation: which parameter, module, or assumption controls the claim;
+- boundary evidence: where the method stops, weakens, or should not be generalized;
+- computation/reproducibility evidence when claiming tractability, scalability, online use, or repeatability.
+
+Only keep the functions relevant to the paper's actual claim. A diagnostic or screening paper may need attribution and boundary figures more than dominance tables. A dispatch/control paper may need operating trajectories and constraint-violation metrics. A formulation paper may need relaxation gap, convergence, and feasibility evidence.
+
+## Project-Template Figure Plan Bridge
+
+When the project follows the MATLAB lite template or contains `01_IDEA/figure_plan.md`, `.cursor/rules/04-case-figure-and-metric-plan.mdc`, `result/<case>/figures/`, or `ProjectName_utils.plotting.save_figure`, use PowerLit before plotting to fill or revise the template figure plan. Do not start from the plots that are easiest to draw.
+
+The PowerLit-derived case and figure plan should be template-ready. For each claim and case, provide:
+
+- `claim`: the claim id from `01_IDEA/claims.md` or the current claim boundary;
+- `evidenceRole`: one of `scenario-setup`, `physical-reproduction`, `sota-comparison`, or `sensitivity-ablation`;
+- `sciQuestion`: the reviewable scientific or engineering question answered by the figure;
+- `physicsReproduction`: the actual measurement, trusted simulation, analytical reference, benchmark behavior, known physical constraint, or operating pattern that the proposed model must reproduce;
+- `metric`: definition, unit, direction, and why PowerLit near-neighbor papers or the problem family treat it as a recognized quantity;
+- `figureType`: figure/table type learned from near-neighbor evidence practice and matched to the current data shape;
+- `dataFiles`: expected `result/<case>/...` source files or a missing-data blocker;
+- `visualEncoding`: axes, groups, colors/line styles, normalization, and whether uncertainty or residuals must be shown;
+- `templateMetadata`: fields needed by `save_figure`, including `claimId`, `sciQuestion`, `physicsReproduction`, `evidenceRole`, `dataFiles`, `dataDescription`, `visualEncoding`, `targetLayout`, `command`, `keyParams`, and `randomSeed`.
+
+Respect the template evidence-role order per claim:
+
+1. `scenario-setup` orients the case.
+2. `physical-reproduction` shows the proposed model reproduces real or trusted-reference physical behavior.
+3. `sota-comparison` compares against closest baselines at matched conditions.
+4. `sensitivity-ablation` tests parameters, modules, runtime, scale, or boundary.
+
+Do not plan `sota-comparison` or `sensitivity-ablation` figures before a `physical-reproduction` figure exists or is explicitly marked as a blocker for the same claim. If PowerLit neighbors usually compare parameter ranges, step sizes, defaults, normalization, or x-axis organization, report those choices in the plan before proposing a local sweep. If the current project uses different parameters or ranges, state the reason in the plan so it can be copied into `01_IDEA/figure_plan.md`, the manifest, or the caption draft.
+
+Output boundary: PowerLit proposes the plan; the project template enforces the export. The plan should name missing computations rather than fabricate figure metadata, result files, or reference behavior.
+
 ## Latest Evidence Selection
 
 When the user does not name a specific run, use the latest coherent data and validation result as the manuscript evidence surface.

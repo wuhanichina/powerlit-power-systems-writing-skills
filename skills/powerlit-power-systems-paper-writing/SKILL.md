@@ -16,7 +16,7 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
 
 Do not load every reference for every task. Load by tier; loading the whole `references/` set on a small task wastes budget and dilutes attention.
 
-- **Tier 0 — always, for any full-paper draft or major rewrite:** `research-object-gate.md`, `venue-profiles.md` plus exactly one venue file (`csee.md`+`csee-precision.md` / `aeps.md` / `tpwrs.md` / `tsg.md`), `manuscript-section-quality.md`, `prose-quality-gates.md`, `reader-experience-pass.md`.
+- **Tier 0 — always, for any full-paper draft or major rewrite:** `research-object-gate.md`, `venue-profiles.md` plus exactly one venue file (`csee.md`+`csee-precision.md` / `aeps.md` / `tpwrs.md` / `tsg.md`), `manuscript-section-quality.md`, `prose-quality-gates.md`, `lexicon.md`, `reader-experience-pass.md`.
 - **Tier 1 — load by the part you are writing:** `introduction-scalpel.md` (title/abstract/introduction/related work); `method-model.md` (method/model/derivation); `case-conclusion.md` + `figures-tables-results.md` (case study/results/figures/conclusion); `pre-drafting-confirmation.md` (full paper, title, abstract, introduction, contribution, venue positioning, or major rewrite); `project-claim-translation.md` (only when project claim/evidence files exist); `review-closed-loop.md` (before delivering any draft called submission-ready).
 - **Tier 2 — PowerLit-dependent, load only when PowerLit is accessible AND the task is citation/novelty/venue-evidence sensitive:** `corpus-grounded-drafting.md`, `powerlit-evidence-strength.md`, and `published-paper-reconstruction.md` (skill-maintenance benchmarks only).
 - **Tier 3 — optional deep dives, load only when a Tier-0 consolidated gate is insufficient:** `publishable-prose.md`, `rhythm.md`, `lexicon.md`, `anti-ai-style.md`, `worked-examples.md` (paired before→after rewrites per venue), and `internal-readiness-writing.md` (only when an internal-readiness target is requested).
@@ -53,7 +53,7 @@ The numbered workflow below names references at the step where they apply; the t
    - case study, numerical results, experiment, simulation, conclusion, or closing section: `references/case-conclusion.md`;
    - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
    - internal readiness debugging or readiness-bearing evaluation: `references/internal-readiness-writing.md`;
-   - light editing, translation, compression, expansion, logic checking, reviewer-comment revision, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`;
+   - light editing, translation, compression, expansion, logic checking, reviewer-comment revision, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`; also load `references/lexicon.md` for terminology cleanup, translation, venue adaptation, or any task where professional term consistency is part of the request;
    - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
    - optional deep wording examples only when the consolidated gate is insufficient: `references/publishable-prose.md`, `references/rhythm.md`, `references/lexicon.md`, `references/anti-ai-style.md`, and `references/worked-examples.md` (paired before→after rewrites per venue).
@@ -67,6 +67,10 @@ The numbered workflow below names references at the step where they apply; the t
    - closest competitors or fallback status;
    - PowerLit evidence-strength profile for the same venue, claim class, and technical object when PowerLit is available;
    - corpus style exemplars when the task needs venue rhythm or section shaping;
+   - corpus terminology map when the task is terminology-sensitive, citation-sensitive, venue-sensitive, translated, or full-paper scale;
+   - corpus case-evidence plan when writing case analysis, figures/tables, result paragraphs, or full-paper evidence sections;
+   - template-ready figure plan when the project contains `01_IDEA/figure_plan.md`, `result/<case>/figures/`, or `save_figure` metadata gates;
+   - corpus main-body pattern when writing method/model, formulation, algorithm, case-analysis, or full-paper body sections;
    - citation-to-sentence plan when literature evidence is needed;
    - gap-to-contribution-to-evidence map;
    - section budget so standard material does not hide the contribution.
@@ -114,7 +118,7 @@ When PowerLit is accessible, do not draft citation-sensitive, venue-sensitive, o
 1. Canon use: use verified and accepted method-canon entries to identify foundational papers, method-family anchors, and evidence-bar exemplars.
 2. Evidence use: retrieve nearby papers for novelty, citation function, and closest-competitor boundaries.
 3. Evidence-strength use: inspect accepted venue-near papers to learn which systems, baselines, metrics, sensitivities, ablations, solver settings, and boundary cases are manuscript-facing for the same claim class.
-4. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, and conclusion boundary.
+4. Writing use: inspect venue-near exemplars for section order, paragraph function, sentence rhythm, contribution placement, evidence presentation, conclusion boundary, and the sentence-function progression that prevents padding and duplicate claims.
 
 First build or consume:
 
@@ -124,6 +128,11 @@ First build or consume:
 - closest-competitor citations;
 - PowerLit evidence-strength profile;
 - corpus style exemplars;
+- corpus progression pattern;
+- corpus terminology map;
+- corpus case-evidence plan;
+- template-ready figure plan;
+- corpus main-body pattern;
 - citation-to-sentence plan;
 - claim boundary after comparison.
 
@@ -141,8 +150,13 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Method/model: use `references/method-model.md`; define variables, sets, assumptions, physical meaning, constraints, transformations, and algorithmic steps in the venue's expected order. Key equations need physical intuition, not only symbol definitions. If an uncommon mathematical theory is introduced, give only the prerequisite concepts needed later, tie them to the power-system object, and then return to the physical mechanism.
 - Case study/results: use power-system evidence objects, not generic SOTA language. State system, operating scenario, baselines, metrics, solver/protocol, sensitivity, and boundary where relevant.
 - Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
+- Case-evidence learning: when PowerLit is available, use the corpus case-evidence plan to decide which figure/table functions and result-paragraph moves are expected for the same claim class. Missing central evidence should become a blocker or claim narrowing, not fluent prose.
+- Project-template linkage: when a project uses `01_IDEA/figure_plan.md` or `ProjectName_utils.plotting.save_figure`, use PowerLit to produce a template-ready case/figure plan before plotting or writing figure-dependent case prose. Include `claim`, `evidenceRole`, `sciQuestion`, `physicsReproduction`, metric definition, figure type, data files, visual encoding, and `save_figure` metadata fields.
+- Main body: use the corpus main-body pattern to learn accepted-paper ordering for method/model exposition, equation interpretation, transitions, reproducibility placement, and result-discussion rhythm. Preserve the current project's equations, variables, and evidence boundary.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
 - Paragraphs: apply the reader-burden rule in `references/prose-quality-gates.md`: judgment first, reason after it, one idea per paragraph, and every sentence supporting the same point.
+- Progression: when PowerLit is available, draft paragraph movement from the corpus-derived sentence-function pattern. Each sentence must add one new payload; adjacent sentences may not repeat the same motivation, contribution, effectiveness claim, or boundary in different words.
+- Terminology: use `references/lexicon.md` and the PowerLit-derived terminology map. Use one canonical term for one technical object, define abbreviations once, preserve Chinese-English term pairs when translating, and scan the final text for alias drift.
 - Reader experience: apply `references/reader-experience-pass.md` before delivery. Repair high-impact `[writing]` burdens; keep `[topic-hard]` density only when definitions, transitions, physical intuition, or boundary language make the passage linearly followable.
 
 ## Hard Rules
@@ -150,6 +164,11 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not let the abstract or introduction stall on context. A trend, importance, or definition opener is allowed only as a pivot: the concrete power-system object, its operating condition, and the unresolved conflict must arrive within the opening paragraph, per the full-paper tier of the opening pain-point gate in `references/introduction-scalpel.md`. (IEEE Letters are stricter: the conflict must be in the first sentence — see the Letter skill.)
 - Do not keep a sentence that carries none of: object/constraint definition, variable/assumption relation, mechanism/causal link, evidence interpretation, or specific contrast. Apply the sentence-deletion test in `references/prose-quality-gates.md` before delivery.
 - Do not deliver a sentence whose payload could survive in fewer words. Apply the sentence-tightening test in `references/prose-quality-gates.md`: cut lead-in filler, stacked hedges, nominalization padding, empty intensifiers, and circular phrasing, while keeping conditions that bound a claim.
+- Do not let adjacent sentences carry the same function. Apply the progression and non-repetition gate in `references/prose-quality-gates.md`: one sentence adds one new payload, and corpus-derived writing patterns are sentence-function sequences, not extra prose to imitate.
+- Do not rotate professional terms for variety. Build and obey a corpus-informed terminology map: one canonical term per object, one abbreviation after first definition, no internal run-code labels in manuscript prose, and no broader corpus term that changes the project's claim boundary.
+- Do not invent a case-study evidence chain from prose. Use PowerLit near-neighbor case sections to learn expected figure/table functions and result arguments, then keep only the functions supported by current project outputs.
+- Do not bypass the project-template figure plan. If `01_IDEA/figure_plan.md` or a strict `save_figure` exporter is present, create or update the PowerLit-informed case/figure plan before formal figure export, SOTA comparison plots, sensitivity plots, or manuscript claims that depend on figures.
+- Do not import body-section elements from near-neighbor papers unless the current project supports them. A proof, convergence claim, communication model, privacy mechanism, runtime protocol, or sensitivity study is required only when the current claim and evidence boundary require it.
 - Do not polish a NO-GO idea into manuscript prose.
 - Do not begin a full-paper draft, major rewrite, title, abstract, introduction, contribution, or venue-positioning task until the paper's real industry or engineering pain point, corresponding innovation point, technical-level research significance, and title direction have been confirmed from project-file evidence and, when available, literature retrieval. If they are unclear, list the pain-point candidates, confirmed innovation candidates, technical significance, and feasible titles first, then ask the user to choose or approve before drafting.
 - Do not let a target-venue profile change the manuscript's research object. A venue can change rhythm, section emphasis, evidence granularity, and register; it cannot add dispatch/operation/planning, smart-grid/data/cyber, formulation/guarantee, or broad engineering-implementation claims without supplied evidence for that shift.
@@ -180,6 +199,8 @@ When the target venue is not specified, return a Chinese technical draft first u
 When rewriting paper prose, return the revised manuscript text first. Add a short note only when it clarifies unsupported claims, missing results, missing references, or terminology choices. Do not include a long self-review checklist in the manuscript-facing answer unless requested.
 
 For planning or pre-drafting tasks, return the venue-grounded writing plan and explicitly mark which parts require PowerLit evidence, supplied references, or additional experiments.
+
+For case-analysis or figure-planning tasks in template-based projects, return the template-ready case/figure plan first. Use the columns and metadata expected by `01_IDEA/figure_plan.md` and `save_figure`; only then draft captions, plotting tasks, or result paragraphs.
 
 For full-paper drafting, major rewriting, title design, abstract, introduction, contribution, or venue-positioning tasks where the pain point, innovation, technical significance, or title is not already confirmed, return `写作前确认` first: real industry or engineering pain point, file-search-confirmed innovation points mapped to that pain point, technical-level research significance, literature-near novelty risk or fallback status, feasible title candidates, and the specific confirmation needed from the user. Do not continue into full manuscript prose in that same response unless the user explicitly authorizes best-judgment drafting.
 

@@ -7,13 +7,14 @@ Use this reference before delivery for manuscript prose in any target venue. It 
 Run these checks after the technical draft is complete:
 
 1. `Reader-burden cut` (deletion-level): each paragraph should carry one technical function; remove throat-clearing, policy padding, and repeated claims. Enforce this with the sentence-deletion test below, not by feel. This pass owns padding and redundancy only. Structural reading burden — symbol drift, undefined abbreviations, formula density, ordering, missing definitions, and cross-reference searching (the `[writing]`/`[topic-hard]` classes) — is owned by `reader-experience-pass.md`; do not duplicate that classification here.
-2. `Rhythm pass`: vary sentence length only to improve traceability; keep technical subjects visible and avoid stacked abstractions.
-3. `Lexicon pass`: replace generic academic verbs with domain actions such as formulate, constrain, estimate, screen, certify, allocate, or dispatch when the evidence supports them.
-4. `Boundary-posture pass`: state the positive technical scope first; move limitations to scoped boundary sentences instead of opening with defensive disclaimers.
-5. `Physical-story pass`: check that the paragraph moves from the power-system object and operating conflict to the mathematical or algorithmic object, not from abstract theory to after-the-fact engineering decoration.
-6. `Reviewer-comment integration pass`: when editing after review, remove rebuttal-shaped prose from the manuscript body. The reviewer's concern should appear only as a clearer assumption, physical mechanism, comparison, evidence boundary, or scoped conclusion.
-7. `Engineering-math balance pass`: keep derivation depth proportional to the venue and claim. Do not add complete proof-style exposition when a physical interpretation, validity condition, and evidence link would be the publishable engineering explanation.
-8. `Working-language firewall`: remove internal drafting labels from manuscript prose, including `closest competitor`, `claim boundary`, `citation pack`, `evidence-strength profile`, `gap-to-contribution map`, `PowerLit evidence`, and similar process labels. This firewall applies only to manuscript-facing prose. In prewriting, planning, and `写作前确认` responses these labels are the intended user-facing diagnostic structure and must be kept, not removed.
+2. `Progression and non-repetition pass`: every retained sentence must add one new payload to the local argument. Adjacent sentences must not restate the same motivation, contribution, effectiveness claim, or boundary in different words.
+3. `Rhythm pass`: vary sentence length only to improve traceability; keep technical subjects visible and avoid stacked abstractions.
+4. `Lexicon pass`: replace generic academic verbs with domain actions such as formulate, constrain, estimate, screen, certify, allocate, or dispatch when the evidence supports them.
+5. `Boundary-posture pass`: state the positive technical scope first; move limitations to scoped boundary sentences instead of opening with defensive disclaimers.
+6. `Physical-story pass`: check that the paragraph moves from the power-system object and operating conflict to the mathematical or algorithmic object, not from abstract theory to after-the-fact engineering decoration.
+7. `Reviewer-comment integration pass`: when editing after review, remove rebuttal-shaped prose from the manuscript body. The reviewer's concern should appear only as a clearer assumption, physical mechanism, comparison, evidence boundary, or scoped conclusion.
+8. `Engineering-math balance pass`: keep derivation depth proportional to the venue and claim. Do not add complete proof-style exposition when a physical interpretation, validity condition, and evidence link would be the publishable engineering explanation.
+9. `Working-language firewall`: remove internal drafting labels from manuscript prose, including `closest competitor`, `claim boundary`, `citation pack`, `evidence-strength profile`, `gap-to-contribution map`, `PowerLit evidence`, and similar process labels. This firewall applies only to manuscript-facing prose. In prewriting, planning, and `写作前确认` responses these labels are the intended user-facing diagnostic structure and must be kept, not removed.
 
 ## Sentence-Deletion Test (mandatory, all venues)
 
@@ -72,6 +73,45 @@ After tightening, the sentence should read as: subject (technical object) + acti
 ### Boundary
 
 Tightening must not delete a real qualifier that bounds a claim. "在台风条件下" or "under N-1 contingencies" is payload, not padding. Cut hedges and filler, never the conditions that keep a claim honest.
+
+## Progression And Non-Repetition Gate (mandatory, all venues)
+
+After deletion and tightening, read each paragraph as a sequence of sentence functions. The paragraph passes only if each sentence changes the argument state.
+
+### One sentence, one new payload
+
+Assign one primary function to every sentence:
+
+- object or condition;
+- unresolved conflict;
+- prior-method limitation;
+- model or algorithm action;
+- mechanism or causal relation;
+- evidence interpretation;
+- comparison;
+- scoped boundary.
+
+A sentence may contain a condition or qualifier, but it should not try to motivate, define, claim, and defend at the same time. If it carries several unrelated functions, split or rewrite around the function needed at that location. If it carries no new function, delete it.
+
+### No adjacent duplicate function
+
+Two adjacent sentences fail when they:
+
+- repeat the same motivation with different adjectives;
+- restate the same contribution as "method", "framework", "strategy", and "approach";
+- describe effectiveness twice without adding a new metric, baseline, system, or condition;
+- give a limitation and then repeat the same limitation as a boundary sentence;
+- use a transition sentence whose only payload is that the next sentence will continue the topic.
+
+Keep the sentence with the stronger technical subject. Merge any unique condition, metric, or boundary from the weaker sentence into it.
+
+### Adjective replacement rule
+
+Adjectives and adverbs such as important, significant, effective, robust, accurate, comprehensive, novel, valuable, greatly, and clearly are not payload. Keep them only when the same sentence gives the measured metric, comparison target, operating condition, or reviewable mechanism that makes the modifier true. Otherwise delete the modifier or replace it with the measurable content.
+
+### Corpus consistency check
+
+When PowerLit exemplars were used, compare the paragraph against the internal `Corpus progression pattern`, not against source wording. The draft should preserve the learned movement of functions while using the current manuscript's own object, variables, evidence, and boundary. If the paragraph has more sentences than the learned function sequence requires, delete or merge until every sentence advances a distinct step.
 
 ## Chinese Register Gate
 

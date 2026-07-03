@@ -110,6 +110,27 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "corpus style exemplars") {
         Add-Failure "paper-writing skill must require corpus style exemplars for venue-sensitive writing"
     }
+    if ($paperSkillText -notmatch "corpus progression pattern") {
+        Add-Failure "paper-writing skill must require corpus-derived progression patterns"
+    }
+    if ($paperSkillText -notmatch "corpus terminology map") {
+        Add-Failure "paper-writing skill must require a corpus-informed terminology map"
+    }
+    if ($paperSkillText -notmatch "corpus case-evidence plan") {
+        Add-Failure "paper-writing skill must require corpus case-evidence plans"
+    }
+    if ($paperSkillText -notmatch "template-ready figure plan") {
+        Add-Failure "paper-writing skill must require template-ready figure plans"
+    }
+    if ($paperSkillText -notmatch "01_IDEA/figure_plan\.md" -or $paperSkillText -notmatch "save_figure") {
+        Add-Failure "paper-writing skill must bridge PowerLit figure planning to the project-template figure plan and save_figure gate"
+    }
+    if ($paperSkillText -notmatch "corpus main-body pattern") {
+        Add-Failure "paper-writing skill must require corpus main-body patterns"
+    }
+    if ($paperSkillText -notmatch "references/lexicon\.md") {
+        Add-Failure "paper-writing skill must load references/lexicon.md for terminology consistency"
+    }
     if ($paperSkillText -notmatch "references/published-paper-reconstruction\.md") {
         Add-Failure "paper-writing skill must load references/published-paper-reconstruction.md for reconstruction benchmarks"
     }
@@ -233,8 +254,46 @@ if (Test-Path -LiteralPath $methodModelReference) {
     if ($methodModelText -notmatch "uncommon mathematical theory") {
         Add-Failure "method-model.md must guide uncommon mathematical theory introduction"
     }
+    if ($methodModelText -notmatch "Corpus-Derived Main-Body Construction") {
+        Add-Failure "method-model.md must include corpus-derived main-body construction"
+    }
 } else {
     Add-Failure "Missing method-model.md"
+}
+
+$caseConclusionReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\case-conclusion.md"
+if (Test-Path -LiteralPath $caseConclusionReference) {
+    $caseConclusionText = Read-Utf8 -Path $caseConclusionReference
+    if ($caseConclusionText -notmatch "Neighbor Case-Study Learning") {
+        Add-Failure "case-conclusion.md must include neighbor case-study learning"
+    }
+    if ($caseConclusionText -notmatch "figure/table roles") {
+        Add-Failure "case-conclusion.md must require figure/table role extraction"
+    }
+} else {
+    Add-Failure "Missing case-conclusion.md"
+}
+
+$figuresTablesResultsReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\figures-tables-results.md"
+if (Test-Path -LiteralPath $figuresTablesResultsReference) {
+    $figuresTablesResultsText = Read-Utf8 -Path $figuresTablesResultsReference
+    if ($figuresTablesResultsText -notmatch "PowerLit Neighbor Evidence Plan") {
+        Add-Failure "figures-tables-results.md must include PowerLit neighbor evidence planning"
+    }
+    if ($figuresTablesResultsText -notmatch "figure/table argument map") {
+        Add-Failure "figures-tables-results.md must require figure/table argument maps"
+    }
+    if ($figuresTablesResultsText -notmatch "Project-Template Figure Plan Bridge") {
+        Add-Failure "figures-tables-results.md must include the project-template figure plan bridge"
+    }
+    if ($figuresTablesResultsText -notmatch "01_IDEA/figure_plan\.md" -or $figuresTablesResultsText -notmatch "save_figure") {
+        Add-Failure "figures-tables-results.md must reference the template figure plan and save_figure metadata gate"
+    }
+    if ($figuresTablesResultsText -notmatch "physicsReproduction" -or $figuresTablesResultsText -notmatch "sciQuestion") {
+        Add-Failure "figures-tables-results.md must include template figure metadata fields"
+    }
+} else {
+    Add-Failure "Missing figures-tables-results.md"
 }
 
 $corpusDrafting = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\corpus-grounded-drafting.md"
@@ -242,6 +301,24 @@ if (Test-Path -LiteralPath $corpusDrafting) {
     $corpusDraftingText = Read-Utf8 -Path $corpusDrafting
     if ($corpusDraftingText -notmatch "Writing-Time Corpus Reference") {
         Add-Failure "corpus-grounded-drafting.md must include Writing-Time Corpus Reference"
+    }
+    if ($corpusDraftingText -notmatch "Corpus Pattern Extraction Pass") {
+        Add-Failure "corpus-grounded-drafting.md must include corpus pattern extraction"
+    }
+    if ($corpusDraftingText -notmatch "sentence_payload_sequence") {
+        Add-Failure "corpus-grounded-drafting.md must extract sentence payload sequences"
+    }
+    if ($corpusDraftingText -notmatch "Terminology Learning Pass") {
+        Add-Failure "corpus-grounded-drafting.md must include terminology learning from PowerLit"
+    }
+    if ($corpusDraftingText -notmatch "Corpus terminology map") {
+        Add-Failure "corpus-grounded-drafting.md must require a corpus terminology map"
+    }
+    if ($corpusDraftingText -notmatch "Case-Evidence and Main-Body Learning Pass") {
+        Add-Failure "corpus-grounded-drafting.md must include case-evidence and main-body learning"
+    }
+    if ($corpusDraftingText -notmatch "Corpus case-evidence plan" -or $corpusDraftingText -notmatch "Corpus main-body pattern") {
+        Add-Failure "corpus-grounded-drafting.md must define case-evidence and main-body internal artifacts"
     }
     if ($corpusDraftingText -notmatch "Do not copy") {
         Add-Failure "corpus-grounded-drafting.md must include a do-not-copy boundary"
@@ -399,8 +476,30 @@ if (Test-Path -LiteralPath $proseQualityGates) {
     if ($proseQualityText -notmatch "Engineering-math balance pass") {
         Add-Failure "prose-quality-gates.md must include engineering-math balance pass"
     }
+    if ($proseQualityText -notmatch "Progression And Non-Repetition Gate") {
+        Add-Failure "prose-quality-gates.md must include progression and non-repetition gate"
+    }
+    if ($proseQualityText -notmatch "Adjective replacement rule") {
+        Add-Failure "prose-quality-gates.md must include adjective replacement rule"
+    }
 } else {
     Add-Failure "Missing prose-quality-gates.md"
+}
+
+$lexiconReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\lexicon.md"
+if (Test-Path -LiteralPath $lexiconReference) {
+    $lexiconText = Read-Utf8 -Path $lexiconReference
+    if ($lexiconText -notmatch "Corpus-Derived Terminology Consistency") {
+        Add-Failure "lexicon.md must include corpus-derived terminology consistency rules"
+    }
+    if ($lexiconText -notmatch "forbidden aliases") {
+        Add-Failure "lexicon.md must require forbidden aliases for terminology drift control"
+    }
+    if ($lexiconText -notmatch "alias drift") {
+        Add-Failure "lexicon.md must require final alias drift scanning"
+    }
+} else {
+    Add-Failure "Missing lexicon.md"
 }
 
 $taskPromptsReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\task-prompts.md"

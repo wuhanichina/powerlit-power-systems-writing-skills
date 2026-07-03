@@ -1,5 +1,18 @@
 # 版本说明
 
+## Unreleased - PowerLit corpus-derived progression and anti-repetition discipline
+
+This update strengthens the full-paper writing path so PowerLit is used as a writing-learning source, not only as a citation or novelty source.
+
+Main changes:
+- `corpus-grounded-drafting.md` now requires a `Corpus Pattern Extraction Pass` that abstracts venue-near papers into section moves, paragraph functions, sentence payload sequences, evidence sentence shapes, and boundary sentence shapes.
+- `corpus-grounded-drafting.md` and `lexicon.md` now require a PowerLit-derived terminology map: canonical terms, abbreviations, Chinese-English pairs, forbidden aliases, source scope, and final alias-drift scanning.
+- `corpus-grounded-drafting.md`, `figures-tables-results.md`, `case-conclusion.md`, and `method-model.md` now require corpus-derived case-evidence and main-body learning: neighboring papers are used to learn figure/table functions, supported arguments, result-paragraph moves, method-section order, equation exposition, transitions, and reproducibility placement.
+- `figures-tables-results.md` now bridges PowerLit evidence planning to the MATLAB lite-template figure workflow: when `01_IDEA/figure_plan.md` or `save_figure` metadata gates exist, PowerLit must produce a template-ready case/figure plan before plotting or writing figure-dependent case prose.
+- `prose-quality-gates.md` now adds a mandatory `Progression And Non-Repetition Gate`: each sentence must add one new payload, adjacent sentences must not repeat the same motivation/contribution/effectiveness/boundary function, and adjectives must be replaced by measurable or reviewable content.
+- `powerlit-power-systems-paper-writing/SKILL.md` now routes PowerLit writing use through a `corpus progression pattern`, `corpus terminology map`, `corpus case-evidence plan`, `template-ready figure plan`, and `corpus main-body pattern`, making corpus learning part of generation rather than a late style polish.
+- `scripts/Validate-PowerLitSkillRepo.ps1` now checks that these corpus-learning, template-figure-plan, case-evidence, main-body, terminology-consistency, and anti-repetition rules remain wired.
+
 ## 2026-06-30 - 跨章节清单对齐、独立审稿姿态与孤儿文件清理
 
 本版本是上一版可实施性打磨的结构性收口，聚焦跨技能一致性、复审客观性与死代码清理，不改变写作或审稿的实质判断标准。

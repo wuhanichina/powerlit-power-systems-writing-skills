@@ -26,6 +26,20 @@ The method section is where the paper's claim becomes a technical object. Write 
 
 Avoid generic section announcements such as "This section introduces the proposed method." Start with the system object or formulation.
 
+## Corpus-Derived Main-Body Construction
+
+When PowerLit is available for a method/model, case-study, or full-paper task, learn the main-body construction from venue-near papers in the same problem family before drafting. Extract:
+
+- section ordering: where accepted papers place system model, assumptions, problem formulation, reformulation, algorithm, implementation, case setup, and result discussion;
+- equation role: whether equations define the physical model, introduce a constraint, transform the problem, prove a property, or support an algorithm step;
+- paragraph role: what each method paragraph adds to the technical object;
+- transition role: how the paper moves from operating conflict to model, from model to algorithm, and from algorithm to evidence;
+- reproducibility placement: where data, scenario, solver, tolerance, runtime protocol, and baseline settings are stated.
+
+Use the extracted pattern as a body-writing plan, not as a template. The current project's equations, variables, evidence, and claim boundary decide what can be written. If a near-neighbor method section has a proof, convergence statement, complexity analysis, communication model, privacy mechanism, or runtime protocol that the current project does not support, do not import that body element. Treat it as a missing-evidence or missing-model blocker only if the current claim requires it.
+
+The body should read as a sequence of technical commitments: define the object, state assumptions, formulate relations, explain transformations, give the solution procedure, then show evidence. Do not hide a weak technical object behind fluent section prose.
+
 ## Reproducibility as Exposition
 
 Do not treat reproducibility information as an appendix-style checklist that is added after the method is already written. Place each fact where a reader needs it to understand or trust the technical object.

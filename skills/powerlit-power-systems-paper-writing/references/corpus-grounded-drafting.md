@@ -53,6 +53,60 @@ Use 3 to 5 retrieved exemplars when possible. Prefer papers from the target venu
 
 Do not copy sentences, phrases, abstracts, or paragraph templates from the corpus. Extract functions and patterns, then write new prose around the current manuscript's own model, variables, results, and claim boundary.
 
+## Corpus Pattern Extraction Pass
+
+PowerLit exemplars should be learned as abstract writing moves, not as source text. Before drafting venue-sensitive prose, extract a compact pattern note from 3 to 5 venue-near papers:
+
+- `section_move`: how the section advances from object, condition, conflict, method action, mechanism, evidence, and boundary;
+- `paragraph_function`: the single job of each paragraph, such as motivating a conflict, narrowing a literature gap, defining a model object, interpreting a table, or bounding a conclusion;
+- `sentence_payload_sequence`: the new payload added by each sentence. Adjacent sentences should not perform the same job in different words;
+- `grammatical_subject`: what accepted papers put in subject position: grid object, variable, constraint, uncertainty source, model component, baseline, metric, or result;
+- `contrast_operator`: how contrast is introduced, and whether it is tied to a named prior method, operating condition, metric, or modeling limitation;
+- `evidence_sentence_shape`: how system, scenario, baseline, metric, and interpretation appear in one or two load-bearing sentences;
+- `boundary_sentence_shape`: how the paper states demonstrated scope without defensive hedging or inflated significance language.
+
+Then draft from the extracted functions only. A useful pattern looks like `object/condition -> unresolved conflict -> existing-method limitation -> proposed technical action -> mechanism -> evidence/boundary`. It is not a sentence template and it must not preserve the source paper's wording, order quirks, or distinctive phrasing.
+
+For each paragraph, build a one-line progression plan before writing. The plan must contain no duplicate payload. If two planned sentences both say "the method is useful", "the gap is important", "the result verifies effectiveness", or "the paper contributes", merge them into one technical sentence with the object, condition, metric, or contrast named.
+
+High-quality corpus prose is usually concise because every sentence changes the reader's state. Learn that discipline first. Do not learn decorative habits, broad motivation, author-specific rhetoric, or repeated contribution wording even if they appear in an accepted paper.
+
+## Terminology Learning Pass
+
+PowerLit should also teach technical terminology. Before drafting or rewriting terminology-sensitive prose, extract a `Corpus terminology map` from venue-near papers and method-family anchors:
+
+- `canonical_term`: the term used for the same power-system object, problem class, method family, mathematical object, metric, baseline, protocol, scenario, or boundary;
+- `allowed_abbreviation`: abbreviation introduced once after the full term, with the venue's capitalization and hyphenation;
+- `cn_en_pair`: Chinese-English pair when drafting in Chinese under IEEE logic or translating between Chinese and English;
+- `source_scope`: whether the term comes from the project evidence, a PowerLit in-corpus exemplar, an accepted method-canon entry, or a user-supplied reference;
+- `forbidden_aliases`: near-synonyms that should not be used for the same object in this manuscript;
+- `scope_note`: the condition under which the term is valid, so a narrow screening method is not renamed as broad assessment, operation, planning, control, or validation.
+
+Use one canonical term for one technical object. Do not use multiple names for the same object merely to avoid repetition. Do not let one term refer to two different objects. Project equations, data files, claims, and result tables decide the actual object; PowerLit decides the venue-normal wording for that object. If the corpus uses inconsistent terms, choose the term dominant in the target venue and closest problem family, then keep the manuscript consistent.
+
+Do not coin a new term when an accepted venue term already names the object. Do not import a corpus term that changes the project's meaning. Internal experiment codes, run tags, or shorthand labels are not manuscript terms; translate them into academic scenario descriptions while preserving reproducibility details.
+
+## Case-Evidence and Main-Body Learning Pass
+
+For case-study, result-discussion, method/model, or full-paper drafting, use PowerLit neighbors to learn what the manuscript body is expected to prove and how accepted papers make that proof visible.
+
+Extract a compact `Corpus case-evidence plan` from 3 to 5 venue-near and problem-near papers:
+
+- `figure_table_inventory`: what kinds of figures and tables appear, such as test-system setup, baseline comparison, temporal profile, distribution/histogram, convergence curve, sensitivity sweep, ablation table, runtime/scalability table, boundary/failure case, or spatial/topological visualization;
+- `evidence_question`: the reviewable question answered by each figure or table;
+- `supported_argument`: which contribution, mechanism, baseline contrast, robustness/boundary statement, or reproducibility claim the visual supports;
+- `minimum_visible_facts`: system, scenario, baseline, metric, unit, sample count, solver/protocol, or parameter setting needed for the reader to interpret the visual;
+- `result_paragraph_move`: how the accepted paper moves from observed number or shape to mechanism and claim boundary.
+
+Also extract a `Corpus main-body pattern`:
+
+- method-section order: where accepted papers introduce operating object, assumptions, variables, formulation, transformation, algorithm, and reproducibility details;
+- equation-exposition style: whether equations are followed by physical intuition, validity conditions, proof sketches, or implementation notes;
+- transition functions: how the paper moves from problem formulation to method, from method to case setup, and from result tables to conclusion;
+- body-level evidence rhythm: how many distinct results are used to support the central claim and which result functions are not optional for the claim class.
+
+Use these patterns to decide what the current paper should show, not to invent missing figures or results. If neighbors routinely include a baseline, sensitivity, ablation, runtime, or boundary case that the current evidence lacks, mark it as a missing-evidence blocker or narrow the claim. Do not create a figure/table plan that is disconnected from available project outputs.
+
 ## Evidence-Strength Learning Pass
 
 Before drafting a full paper, readiness-targeted manuscript, review response, or major case-study section, use PowerLit to learn the evidence bar for the same venue and claim class. Load `powerlit-evidence-strength.md` and build an internal evidence-strength profile from accepted papers before writing.
@@ -81,6 +135,10 @@ Before drafting a citation-sensitive section, build these internal artifacts:
 - `Closest competitors`: papers overlapping in problem, mechanism, model, data, or evidence. Do not select papers merely because they share a keyword.
 - `Evidence-strength profile`: verified method-canon anchor first, then venue-near accepted-paper evidence bar for the same claim class, including manuscript-facing quantities and missing-evidence blockers.
 - `Corpus style exemplars`: venue-near papers used for section shape, paragraph function, rhythm, evidence presentation, and boundary language. Keep this as internal guidance unless the user asks for a style audit.
+- `Corpus progression pattern`: abstract sentence-function sequence learned from venue-near papers, with duplicate payloads removed before drafting.
+- `Corpus terminology map`: canonical terms, allowed abbreviations, Chinese-English pairs, forbidden aliases, and scope notes for the current paper object.
+- `Corpus case-evidence plan`: figure/table functions, evidence questions, supported arguments, minimum visible facts, and result-paragraph moves learned from neighboring papers.
+- `Corpus main-body pattern`: accepted-paper ordering for method/model exposition, equation interpretation, transitions, and body-level evidence rhythm.
 - `Citation-to-sentence plan`: each citation supports one sentence-level function: background, method family, limitation, closest contrast, or evidence precedent.
 - `Claim boundary`: what the paper may claim after comparison, and what it must not claim.
 - `Gap-to-contribution-to-evidence map`: every kept gap motivates one deliverable, and every deliverable has a result, derivation, theorem, or stated assumption.

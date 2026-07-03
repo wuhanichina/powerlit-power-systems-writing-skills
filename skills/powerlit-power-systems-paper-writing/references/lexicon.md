@@ -37,6 +37,26 @@ Prefer:
 
 - operating constraints, security constraints, voltage violations, frequency nadir, reserve requirements, uncertainty set, chance constraints, distributionally robust optimization, tractability, scalability, relaxation gap, optimality gap, feasibility certificate.
 
+## Corpus-Derived Terminology Consistency
+
+For full-paper drafts, major rewrites, venue adaptation, translation, and terminology cleanup, build an internal terminology ledger before final prose:
+
+- `canonical term`: the single manuscript-facing name for the object;
+- `term class`: power-system object, problem type, method family, mathematical object, variable, metric, baseline, protocol, scenario, evidence object, or boundary;
+- `first-use form`: full term, abbreviation, and Chinese-English pair when needed;
+- `allowed short form`: the only shortened form allowed after definition;
+- `forbidden aliases`: near-synonyms, internal run codes, or broader terms that would make the object drift;
+- `source`: project definition, equation/table label, PowerLit venue-near usage, method-canon anchor, or user-supplied reference.
+
+Consistency rules:
+
+- Use one canonical term for one object. Do not rotate between synonyms for stylistic variety.
+- Do not use one term for two different objects. If "risk assessment" and "risk screening" mean different stages, define both; if they mean the same object, choose one.
+- The project object controls meaning; PowerLit controls venue-normal wording. Never adopt a corpus term that broadens a screening, diagnostic, certificate, estimation, or boundary-characterization paper into a broader planning, dispatch, control, or validation claim.
+- Introduce abbreviations once. After definition, use the same abbreviation and capitalization throughout.
+- Replace internal labels such as run tags, case nicknames, and experiment codes with academic scenario descriptions, while preserving the reproducible setup in methods, tables, or captions.
+- Before delivery, scan the revised text for alias drift. If multiple names remain for the same object, merge them into the canonical term unless the difference is explicitly defined.
+
 ## Avoid
 
 Avoid or replace these unless the manuscript truly justifies them:

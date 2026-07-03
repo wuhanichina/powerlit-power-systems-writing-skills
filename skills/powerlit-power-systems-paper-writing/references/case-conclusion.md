@@ -39,6 +39,19 @@ When a result is important enough to discuss, write toward these functions natur
 
 This is a writing move, not a mandatory paragraph template. If the table already makes the numerical ranking obvious, spend the prose on why the ranking occurs and what claim it supports. If the evidence is mixed, let the discussion explain the tradeoff instead of smoothing it into uniform dominance.
 
+## Neighbor Case-Study Learning
+
+When PowerLit is available, learn the case-study evidence chain from near-neighbor papers before drafting the section. Extract:
+
+- case-section order: setup, baseline definition, main comparison, mechanism/result explanation, sensitivity or ablation, boundary/failure case, and conclusion link;
+- figure/table roles: what each visual proves, not only what it plots;
+- result-paragraph functions: whether the paragraph reports a ranking, explains a physical mechanism, compares against literature/baseline expectation, diagnoses a failure mode, or bounds the claim;
+- missing-evidence signals: evidence functions that accepted neighbors use for the same claim class but the current project has not yet produced.
+
+Use this extraction to organize the current evidence surface. The goal is not to make the section longer; it is to ensure that every visual and paragraph has a reviewable job. If a neighbor-style result function is absent from the project outputs, do not fill it with prose. Mark it as a blocker, ask for the computation, or narrow the manuscript claim.
+
+Case-analysis learning must remain object-preserving. A neighboring dispatch paper may teach how to compare baselines and constraints, but it must not turn a screening, diagnostic, certificate, topology, or uncertainty paper into a dispatch paper. The current paper's innovation point decides which result functions are central.
+
 ## 中国电机工程学报
 
 ### Case / Results
