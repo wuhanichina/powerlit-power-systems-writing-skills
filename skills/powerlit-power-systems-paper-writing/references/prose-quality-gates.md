@@ -11,10 +11,11 @@ Run these checks after the technical draft is complete:
 3. `Rhythm pass`: vary sentence length only to improve traceability; keep technical subjects visible and avoid stacked abstractions.
 4. `Lexicon pass`: replace generic academic verbs with domain actions such as formulate, constrain, estimate, screen, certify, allocate, or dispatch when the evidence supports them.
 5. `Boundary-posture pass`: state the positive technical scope first; move limitations to scoped boundary sentences instead of opening with defensive disclaimers.
-6. `Physical-story pass`: check that the paragraph moves from the power-system object and operating conflict to the mathematical or algorithmic object, not from abstract theory to after-the-fact engineering decoration.
-7. `Reviewer-comment integration pass`: when editing after review, remove rebuttal-shaped prose from the manuscript body. The reviewer's concern should appear only as a clearer assumption, physical mechanism, comparison, evidence boundary, or scoped conclusion.
-8. `Engineering-math balance pass`: keep derivation depth proportional to the venue and claim. Do not add complete proof-style exposition when a physical interpretation, validity condition, and evidence link would be the publishable engineering explanation.
-9. `Working-language firewall`: remove internal drafting labels from manuscript prose, including `closest competitor`, `claim boundary`, `citation pack`, `evidence-strength profile`, `gap-to-contribution map`, `PowerLit evidence`, and similar process labels. This firewall applies only to manuscript-facing prose. In prewriting, planning, and `写作前确认` responses these labels are the intended user-facing diagnostic structure and must be kept, not removed.
+6. `Non-binary manuscript framing pass`: do not write manuscript prose as a binary opposition such as "the evidence supports A but does not support B", "本文支持...但不支持...", or "X is valid while Y is invalid" unless the section is explicitly a limitation, ablation failure, or review response. Convert evidence boundaries into positive technical scope, conditional applicability, observed phenomena, boundary evidence, or future-work needs.
+7. `Physical-story pass`: check that the paragraph moves from the power-system object and operating conflict to the mathematical or algorithmic object, not from abstract theory to after-the-fact engineering decoration.
+8. `Reviewer-comment integration pass`: when editing after review, remove rebuttal-shaped prose from the manuscript body. The reviewer's concern should appear only as a clearer assumption, physical mechanism, comparison, evidence boundary, or scoped conclusion.
+9. `Engineering-math balance pass`: keep derivation depth proportional to the venue and claim. Do not add complete proof-style exposition when a physical interpretation, validity condition, and evidence link would be the publishable engineering explanation.
+10. `Working-language firewall`: remove internal drafting labels from manuscript prose, including `closest competitor`, `claim boundary`, `citation pack`, `evidence-strength profile`, `gap-to-contribution map`, `PowerLit evidence`, and similar process labels. This firewall applies only to manuscript-facing prose. In prewriting, planning, and `写作前确认` responses these labels are the intended user-facing diagnostic structure and must be kept, not removed.
 
 ## Sentence-Deletion Test (mandatory, all venues)
 
@@ -112,6 +113,34 @@ Adjectives and adverbs such as important, significant, effective, robust, accura
 ### Corpus consistency check
 
 When PowerLit exemplars were used, compare the paragraph against the internal `Corpus progression pattern`, not against source wording. The draft should preserve the learned movement of functions while using the current manuscript's own object, variables, evidence, and boundary. If the paragraph has more sentences than the learned function sequence requires, delete or merge until every sentence advances a distinct step.
+
+## Non-Binary Manuscript Framing Gate (mandatory, manuscript prose)
+
+Formal paper text should not inherit prewriting or gate language as a binary opposition. The manuscript must tell the strongest bounded technical story, not list what the project can and cannot claim.
+
+### Failing pattern
+
+Reject manuscript-facing sentences that use these patterns as the main contribution or result wording:
+
+- "the evidence supports X but does not support Y";
+- "本文支持/验证了...，但不支持...";
+- "X can be claimed, while Y cannot be claimed";
+- "the method is not A, not B, and not C" outside a dedicated limitation paragraph;
+- "only X is supported" when the sentence could instead name X's technical scope, mechanism, condition, and manuscript role.
+
+These patterns may appear in internal notes, review verdicts, rebuttal planning, or explicit limitations sections. They should not carry the title, abstract, contribution list, introduction close, result topic sentence, or conclusion.
+
+### Rewrite pattern
+
+Convert binary boundaries into one of these manuscript-safe forms:
+
+- **positive technical scope:** "The method converts [conditioned input] into [technical output] for [bounded use]."
+- **conditional applicability:** "Under [event set/assumption/model boundary], the result characterizes [mechanism or decision]."
+- **observed phenomenon:** "The retained cases reveal [phenomenon], which motivates [model choice or diagnostic]."
+- **boundary evidence:** "The comparison positions the method as [scoped role] rather than [broader role]."
+- **future-work need:** "Extending the claim to [broader object] requires [specific experiment/data/proof]."
+
+Keep the boundary, but do not make the boundary the sentence's main subject unless the section is explicitly about limitations. In ordinary manuscript prose, lead with the power-system object, mechanism, method action, or evidence role.
 
 ## Chinese Register Gate
 

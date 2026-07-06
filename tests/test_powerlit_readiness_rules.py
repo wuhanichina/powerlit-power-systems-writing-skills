@@ -179,6 +179,7 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
 def test_section_quality_gates_cover_title_abstract_intro_case_conclusion():
     writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
     writing_gate = read_text("skills/powerlit-power-systems-paper-writing/references/manuscript-section-quality.md")
+    prose_gate = read_text("skills/powerlit-power-systems-paper-writing/references/prose-quality-gates.md")
     review_skill = read_text("skills/powerlit-power-systems-paper-review/SKILL.md")
     review_gate = read_text("skills/powerlit-power-systems-paper-review/references/section-quality-review.md")
     writing_prompts = read_text("skills/powerlit-power-systems-paper-writing/test-prompts.json")
@@ -191,6 +192,17 @@ def test_section_quality_gates_cover_title_abstract_intro_case_conclusion():
     assert "recent high-level literature" in writing_gate
     assert "parameter sensitivity, ablation, or boundary tests" in writing_gate
     assert "avoid both exaggeration and excessive self-weakening" in writing_gate
+    assert "binary opposition" in writing_gate
+    assert "supported vs unsupported" in writing_gate
+    assert "non-binary framing" in writing_gate
+    assert "non-binary manuscript framing pass" in writing_skill
+    assert "Non-Binary Manuscript Framing Gate" in prose_gate
+    assert "positive technical scope" in prose_gate
+    assert "conditional applicability" in prose_gate
+    assert "observed phenomenon" in prose_gate
+    assert "boundary evidence" in prose_gate
+    assert "future-work need" in prose_gate
+    assert "title, abstract, contribution list, introduction close, result topic sentence, or conclusion" in prose_gate
 
     assert "references/section-quality-review.md" in review_skill
     assert "标题关键词与章节质量" in review_skill

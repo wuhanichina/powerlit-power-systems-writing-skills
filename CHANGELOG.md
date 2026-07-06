@@ -8,6 +8,7 @@
 - `pre-drafting-confirmation.md` 新增 `Innovation Level Ladder` 和 `Professional Problem Statement`，要求写作前确认主创新层级，并把项目内部名称、case/run 标签、claim 编号、脚本名等转换成专业电力系统问题表述。
 - `innovation-chain.md` 和 `insight-discovery.md` 同步要求创新链分层：发现/猜想验证、方法贡献、工程问题贡献必须分别说明，不能混成一个泛泛的“创新点”。
 - 新增 `Evidence Maturity And Manuscript Use`：创新挖掘和写作前确认阶段避免“支持/不支持”二元表述，改用主线创新、条件性贡献、现象线索、边界证据和待补证据分级。
+- 正文写作同步新增非二元表达门：标题、摘要、引言、贡献点、结果主题句和结论不能写成“支持/不支持”的对立式清单，应转换为正向技术范围、条件性适用、现象线索、边界证据或后续证据需求。
 - `paper-writing/SKILL.md` 的写作前确认 checkpoint 增加 `innovation level ladder` 和 `professional problem statement`，没有用户确认时继续阻断正式论文正文。
 - 新增回归 prompt 和验证脚本检查，防止后续修改丢失创新层级与内部项目名净化规则。
 

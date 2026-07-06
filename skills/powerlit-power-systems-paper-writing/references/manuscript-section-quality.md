@@ -45,6 +45,8 @@ Required movement:
 
 The abstract must highlight innovation and practical value without overclaiming. It should not read as a section-by-section task list, and it should not contain claims that are absent from the case analysis.
 
+The abstract must not frame the paper as a binary opposition. Avoid sentences whose main payload is "this paper supports X but not Y" or "we do not claim A/B/C". If a boundary is needed, state the positive technical scope and attach the condition or evidence boundary.
+
 ## Introduction
 
 Authority: `introduction-scalpel.md` (cutting order, venue paragraph flow, gap-to-contribution map). This subsection is only the acceptance checklist; do not restate the scalpel's how-to here.
@@ -58,7 +60,8 @@ The introduction must:
 - use recent high-level literature, preferably EI-indexed or above and mainly from the last five years, to summarize the research state when available;
 - group literature by method family or technical limitation rather than listing papers one by one;
 - state the paper's basic idea and relative advantage compared with existing approaches;
-- make transitions natural from background -> existing methods -> unresolved technical reason -> proposed technical object -> evidence boundary.
+- make transitions natural from background -> existing methods -> unresolved technical reason -> proposed technical object -> evidence boundary;
+- avoid binary contribution framing. The close of the introduction should state what technical object the paper constructs, what mechanism or decision it clarifies, and under which evidence boundary it is evaluated; it should not read like a list of supported and unsupported claims.
 
 If PowerLit is available, use it to retrieve recent venue-near or method-near papers before writing citation-sensitive introduction claims. If recent high-level literature is unavailable or not supplied, state the fallback and leave citation slots instead of inventing references.
 
@@ -82,6 +85,8 @@ A complete case-analysis plan or section should state:
 
 The prose should explain mechanism and engineering meaning, not only repeat numbers. If data are incomplete, sources uncertain, baselines absent, or sensitivity missing, mark those as writing blockers or claim boundaries.
 
+Result paragraphs should not make "supported vs unsupported" the topic sentence. Present the evidence as mainline result, conditional result, observed phenomenon, boundary evidence, or future-work need. Use limitation wording only after the positive result role is clear.
+
 ## Conclusion
 
 Authority: `case-conclusion.md` (venue-specific conclusion length and close patterns). This subsection is only the acceptance checklist.
@@ -96,6 +101,8 @@ The conclusion should be short and evidence-bound:
 
 Do not introduce new contributions, new numbers, or untested deployment implications in the conclusion.
 
+Do not close the paper with a binary inventory of what was supported and unsupported. The conclusion should restate the mainline technical contribution, conditional scope, and most important boundary in a constructive form; future work should name the specific evidence needed to broaden the claim.
+
 ## Spine Consistency
 
 The paper spine is one sentence naming the technical object, the unresolved conflict, the central action, and the evidence boundary (defined in `introduction-scalpel.md`). Before delivery, verify the spine is consistent across the five load-bearing locations: title, abstract, introduction contribution, result discussion, and conclusion.
@@ -104,6 +111,7 @@ Check that all five share:
 
 - the same name for the technical object — no silent rename (e.g. 反演 in the title but 估计 in the abstract; "screening index" in the contribution but "predictor" in the results);
 - the same central claim verb and scope — screening vs prediction, identification vs calibration, reduction vs elimination, support vs guarantee;
-- the same evidence boundary — a limit stated in the conclusion must also bound the abstract and introduction claims, not appear only at the end.
+- the same evidence boundary — a limit stated in the conclusion must also bound the abstract and introduction claims, not appear only at the end;
+- the same non-binary framing — boundaries should appear as scoped technical conditions across title/abstract/introduction/results/conclusion, not as late-stage "not supported" corrections.
 
 If a location drifts, repair it back to the spine rather than weakening the spine. If two locations genuinely need different scope (for example a broader introduction motivation narrowing to a specific contribution), make the narrowing explicit so it does not read as a contradiction. This is a cross-section consistency check, not an instruction to repeat one sentence five times.

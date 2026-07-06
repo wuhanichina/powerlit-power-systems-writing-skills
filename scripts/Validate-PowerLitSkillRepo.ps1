@@ -107,6 +107,9 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "supports/does not support" -or $paperSkillText -notmatch "mainline innovation" -or $paperSkillText -notmatch "conditional contribution") {
         Add-Failure "paper-writing skill must avoid binary innovation wording in pre-drafting confirmation"
     }
+    if ($paperSkillText -notmatch "non-binary manuscript framing pass" -or $paperSkillText -notmatch "formal manuscript prose as binary opposition") {
+        Add-Failure "paper-writing skill must avoid binary opposition in formal manuscript prose"
+    }
     if ($paperSkillText -notmatch "real industry or engineering pain point" -or $paperSkillText -notmatch "technical-level research significance") {
         Add-Failure "paper-writing skill must confirm pain point and technical-level research significance before drafting"
     }
@@ -273,8 +276,25 @@ if (Test-Path -LiteralPath $manuscriptSectionQuality) {
             Add-Failure "manuscript-section-quality.md missing token: $requiredSectionToken"
         }
     }
+    foreach ($requiredNonBinarySectionToken in @("binary opposition", "supported vs unsupported", "non-binary framing")) {
+        if ($manuscriptSectionQualityText -notmatch [regex]::Escape($requiredNonBinarySectionToken)) {
+            Add-Failure "manuscript-section-quality.md missing non-binary manuscript token: $requiredNonBinarySectionToken"
+        }
+    }
 } else {
     Add-Failure "Missing manuscript-section-quality.md"
+}
+
+$proseQualityGates = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\prose-quality-gates.md"
+if (Test-Path -LiteralPath $proseQualityGates) {
+    $proseQualityGatesText = Read-Utf8 -Path $proseQualityGates
+    foreach ($requiredNonBinaryProseToken in @("Non-Binary Manuscript Framing Gate", "positive technical scope", "conditional applicability", "observed phenomenon", "boundary evidence", "future-work need")) {
+        if ($proseQualityGatesText -notmatch [regex]::Escape($requiredNonBinaryProseToken)) {
+            Add-Failure "prose-quality-gates.md missing non-binary manuscript token: $requiredNonBinaryProseToken"
+        }
+    }
+} else {
+    Add-Failure "Missing prose-quality-gates.md"
 }
 
 $methodModelReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\method-model.md"
