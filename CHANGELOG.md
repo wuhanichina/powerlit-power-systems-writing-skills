@@ -1,5 +1,16 @@
 # 版本说明
 
+## 2026-07-06 - 写作前创新层级确认与专业问题表述
+
+本次更新把用户确认前置到更细的创新层级：正式写作前必须先讨论工程背景和痛点，再区分“发现或验证了什么猜想/机制”、“提出了什么方法”和“解决了什么工程问题”。只有这些层级与证据边界讲清楚后，才能进入正文写作。
+
+主要变化：
+- `pre-drafting-confirmation.md` 新增 `Innovation Level Ladder` 和 `Professional Problem Statement`，要求写作前确认主创新层级，并把项目内部名称、case/run 标签、claim 编号、脚本名等转换成专业电力系统问题表述。
+- `innovation-chain.md` 和 `insight-discovery.md` 同步要求创新链分层：发现/猜想验证、方法贡献、工程问题贡献必须分别说明，不能混成一个泛泛的“创新点”。
+- 新增 `Evidence Maturity And Manuscript Use`：创新挖掘和写作前确认阶段避免“支持/不支持”二元表述，改用主线创新、条件性贡献、现象线索、边界证据和待补证据分级。
+- `paper-writing/SKILL.md` 的写作前确认 checkpoint 增加 `innovation level ladder` 和 `professional problem statement`，没有用户确认时继续阻断正式论文正文。
+- 新增回归 prompt 和验证脚本检查，防止后续修改丢失创新层级与内部项目名净化规则。
+
 ## 2026-07-03 - 索引年份回填、检查点视觉标记与半自动回归 runner
 
 本版本来自一次达尔文式全量评估（9 维评分 + 带技能/无技能 A/B 实测）后的三项修复：

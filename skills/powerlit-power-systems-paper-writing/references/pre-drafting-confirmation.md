@@ -39,6 +39,41 @@ Before discussing innovation with the user, clarify the current real industry or
 
 The innovation point must be paired with this pain point. A candidate innovation that does not answer the pain point should be downgraded, moved to a secondary contribution, or dropped.
 
+## Innovation Level Ladder
+
+Before formal manuscript writing, discuss the innovation level with the user and keep the levels separate:
+
+- **Discovery or conjecture verification:** what phenomenon, mechanism, failure mode, boundary condition, counterexample, or engineering conjecture the work discovers, verifies, or falsifies.
+- **Method-level contribution:** what model, formulation, constraint, estimator, control law, algorithm, certificate, validation protocol, or measurement procedure the work proposes.
+- **Engineering-problem contribution:** what real operating, planning, protection, risk, observability, feasibility, coordination, computation, or implementation problem becomes better handled because of the discovery and method.
+
+Do not collapse these levels into a single generic "innovation point". A strong confirmation brief should show whether the paper's main contribution is a discovered/verified insight, a new method, an engineering solution, or a defensible combination of these. If the evidence is mature at only one level, state the usable level and keep the other levels as boundary, discussion, or future-work material.
+
+The user-facing discussion must clarify the engineering background and innovation before writing begins. Ask the user to confirm whether the engineering pain point is correctly stated, which innovation level is primary, which levels are secondary, and which unsupported framings should be dropped.
+
+## Evidence Maturity And Manuscript Use
+
+For innovation discovery and pre-drafting confirmation, do not present the result as a binary "supports X / does not support Y" judgment. That wording is too blunt for innovation mining and can make partial findings look like failures.
+
+Classify each candidate by evidence maturity and manuscript use:
+
+- **Mainline innovation:** mature enough for the title, abstract, contribution list, introduction, and conclusion.
+- **Conditional contribution:** usable only with a stated scenario, data window, assumption, event set, model boundary, or metric definition.
+- **Observed phenomenon:** interesting and technically relevant, but not stable enough to carry the paper's main claim.
+- **Boundary evidence:** useful for narrowing the paper, explaining why a stronger framing is not chosen, or motivating future experiments.
+- **Uncovered evidence need:** not yet tested or not present in the available samples; use only as future work or a required next experiment.
+
+Write user-facing confirmation language as "the current evidence is best used as..." rather than "the project supports/does not support...". Reserve strict support/blocker wording for internal review gates, fatal overclaim checks, and explicit readiness decisions.
+
+## Professional Problem Statement
+
+When describing the problem, use common professional power-system terms rather than internal project vocabulary:
+
+- translate project names, run labels, claim IDs, cache names, script names, branch names, and experiment nicknames into the actual system object, scenario, method class, metric, or evidence object;
+- keep reproducibility identifiers in notes or evidence references when needed, but do not make them the manuscript-facing problem name;
+- avoid acronyms or shorthand that are only meaningful inside the project unless they are standard in the field or defined as the paper's method name after confirmation;
+- state the engineering pain point as a recognizable technical problem, not as "the problem in ProjectName", "case X", "claim Y", or a local workflow gap.
+
 ## Literature Support
 
 Use `powerlit-power-systems-literature-intelligence` when available to support the decision:
@@ -57,10 +92,12 @@ Before drafting, return a compact `写作前确认` brief unless the user alread
 
 1. `文件检索后确认的创新点`: list one to three candidates. For each, state:
    - corresponding real industry or engineering pain point;
+   - innovation level: discovery/conjecture verification, method-level contribution, engineering-problem contribution, or a supported combination;
+   - evidence maturity and manuscript use: mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need;
    - technical object;
    - physical or engineering mechanism;
    - supporting project files or result artifacts;
-   - evidence state: supported, conditional, unsupported, or future;
+   - how to phrase the candidate without binary "supports/does not support" wording;
    - overclaim risk or weaker framing to drop.
 2. `文献检索辅助判断`: closest competitors, novelty threat, title-positioning implication, or fallback limitation.
 3. `技术层面研究意义`: list concise technical significance items, not broad social value:
@@ -73,6 +110,8 @@ Before drafting, return a compact `写作前确认` brief unless the user alread
    - at least one evidence-boundary or venue-conservative title when evidence is incomplete;
    - avoid title wording that claims superiority, real-time deployment, full risk propagation, or broad robustness unless evidence supports it.
 5. `需要使用者确认`: ask the user to approve the pain point, innovation point, research-significance emphasis, and title direction, or to select one candidate.
+   - explicitly ask which innovation level should be the main paper story;
+   - explicitly ask whether the professional problem statement removes internal project names while preserving the real technical meaning.
 
 Do not continue into full manuscript drafting in the same response unless the user explicitly says to proceed with the recommended option or asks for best-judgment drafting.
 

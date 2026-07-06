@@ -136,6 +136,8 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
     assert "references/pre-drafting-confirmation.md" in skill
     assert "写作前确认" in skill
     assert "file-search-confirmed innovation points" in skill
+    assert "innovation level ladder" in skill
+    assert "professional problem statement" in skill
     assert "real industry or engineering pain point" in skill
     assert "technical-level research significance" in skill
     assert "feasible paper titles" in skill
@@ -144,9 +146,24 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
 
     assert "Pre-Drafting Innovation and Title Confirmation" in reference
     assert "Pain Point First" in reference
+    assert "Innovation Level Ladder" in reference
+    assert "Evidence Maturity And Manuscript Use" in reference
+    assert "Discovery or conjecture verification" in reference
+    assert "Method-level contribution" in reference
+    assert "Engineering-problem contribution" in reference
+    assert "Mainline innovation" in reference
+    assert "Conditional contribution" in reference
+    assert "Observed phenomenon" in reference
+    assert "Boundary evidence" in reference
+    assert "Uncovered evidence need" in reference
+    assert 'binary "supports X / does not support Y"' in reference
+    assert "Professional Problem Statement" in reference
     assert "Search project files before writing" in reference
     assert "文件检索后确认的创新点" in reference
     assert "corresponding real industry or engineering pain point" in reference
+    assert "innovation level: discovery/conjecture verification" in reference
+    assert "evidence maturity and manuscript use" in reference
+    assert 'without binary "supports/does not support" wording' in reference
     assert "技术层面研究意义" in reference
     assert "文献检索辅助判断" in reference
     assert "可行论文标题" in reference
@@ -211,6 +228,40 @@ def test_prewriting_scorecard_rates_readiness_and_maximum_defect():
 
     assert "scorecard-and-maximum-defect" in prompts
     assert "科学性、行业痛点把握准确性、正确性、合理性、创新性和工程可行性" in readme
+
+
+def test_prewriting_separates_innovation_levels_and_professional_problem_names():
+    insight = read_text("skills/powerlit-power-systems-prewriting-review/references/insight-discovery.md")
+    chain = read_text("skills/powerlit-power-systems-prewriting-review/references/innovation-chain.md")
+    prompts = read_text("skills/powerlit-power-systems-prewriting-review/test-prompts.json")
+
+    assert "innovation level separation" in insight
+    assert "discovery or conjecture verification" in insight
+    assert "method-level contribution" in insight
+    assert "engineering-problem contribution" in insight
+    assert "mainline innovation" in insight
+    assert "conditional contribution" in insight
+    assert "observed phenomenon" in insight
+    assert "boundary evidence" in insight
+    assert "uncovered evidence need" in insight
+    assert "internal project names" in insight
+    assert "innovation-level ladder" in insight
+
+    assert "Innovation level" in chain
+    assert "Evidence maturity" in chain
+    assert "discovery or conjecture verification" in chain
+    assert "method-level contribution" in chain
+    assert "engineering-problem contribution" in chain
+    assert "Non-Binary Innovation Framing" in chain
+    assert "mainline innovation" in chain
+    assert "conditional contribution" in chain
+    assert "observed phenomenon" in chain
+    assert "boundary evidence" in chain
+    assert "uncovered evidence need" in chain
+    assert "Professional Problem Naming" in chain
+    assert "internal project names" in chain
+
+    assert "innovation-level-ladder-professional-problem" in prompts
 
 
 def test_independent_reviewer_prompt_is_portable_and_readiness_based():

@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-prewriting-review
-version: 2026.07.03
+version: 2026.07.06
 description: Gate power-system paper ideas or drafts before formal writing for 中国电机工程学报, 电力系统自动化, IEEE TPWRS, IEEE TSG, and IEEE power-system Letters. Use to decide GO, CONDITIONAL GO, NO-GO, or RETARGET based on innovation chain, model correctness, evidence readiness, and venue fit before invoking a writing skill.
 ---
 # PowerLit Power-Systems Prewriting Review

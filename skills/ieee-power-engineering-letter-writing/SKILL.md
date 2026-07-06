@@ -1,6 +1,6 @@
 ---
 name: ieee-power-engineering-letter-writing
-version: 2026.07.03
+version: 2026.07.06
 description: Write, rewrite, or revise IEEE power-system Letters such as IEEE Power Engineering Letters and TPWRS/TSG short Letters under the official IEEE PES Letter page-budget rules. Use for letter abstracts, introductions, compact formulations, counterexample/analytical notes, case-study compression, reviewer-comment revision, and anti-full-paper cleanup.
 ---
 # IEEE Power Engineering Letter Writing

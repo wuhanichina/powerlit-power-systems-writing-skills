@@ -62,7 +62,12 @@
   {
     "id": "pre-drafting-pain-point-significance",
     "prompt": "请用 $powerlit-power-systems-paper-writing 写作前先和我确认当前真实存在的行业/工程痛点问题，再说明创新点如何对应痛点，并列出本文技术层面的研究意义，最后再给可行标题。",
-    "expected": "The response must use pre-drafting-confirmation.md to identify the real industry or engineering pain point before innovation, map each innovation candidate to that pain point, list technical-level research significance rather than broad social value, provide feasible title candidates, and ask the user to confirm before drafting."
+    "expected": "The response must use pre-drafting-confirmation.md to identify the real industry or engineering pain point before innovation, map each innovation candidate to that pain point, classify whether the primary innovation level is discovery/conjecture verification, method-level contribution, engineering-problem contribution, or a supported combination, list technical-level research significance rather than broad social value, provide feasible title candidates, and ask the user to confirm before drafting."
+  },
+  {
+    "id": "pre-drafting-professional-problem-statement",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 写作前帮我梳理创新点。不要把项目内部名称、case 名、claim 编号或脚本名写进论文问题描述里；请先用专业术语说明工程背景、痛点、发现/验证了什么、提出了什么方法、解决了什么工程问题，然后等我确认。",
+    "expected": "The response must return a pre-drafting confirmation brief, translate internal project names, case nicknames, claim IDs, script names, and run labels into professional power-system problem wording, separate discovery or conjecture verification from method-level contribution and engineering-problem contribution, classify candidates by evidence maturity and manuscript use rather than binary supports/does-not-support wording, clarify the engineering background and pain point, and stop for user confirmation before manuscript prose."
   },
   {
     "id": "manuscript-section-quality-gate",

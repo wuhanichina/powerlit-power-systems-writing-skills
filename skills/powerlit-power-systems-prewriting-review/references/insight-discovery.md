@@ -12,6 +12,7 @@ Translate a rough research idea into structures that can become a power-systems 
 - problem reconstruction;
 - physical mechanism before mathematical structure;
 - real-innovation repositioning;
+- innovation level separation: discovery or conjecture verification, method-level contribution, and engineering-problem contribution;
 - multi-act engineering story logic;
 - physical intuition;
 - theory migration;
@@ -34,10 +35,15 @@ Before looking for abstract theory, identify the minimum research object and rec
 Then choose the real innovation:
 
 - allow "a newly posed narrow research object" to be the real innovation when it is supported by variables, baselines, and evidence;
+- separate what the work discovered or verified from what method it proposes and what engineering problem it solves;
 - prefer a physical mechanism, certificate, estimator, constraint, control logic, validation protocol, or boundary condition over a broad "framework";
 - demote pure derivation, equation rearrangement, and metric improvement unless they expose a real power-system mechanism;
 - keep only one main story when several candidate innovations compete;
 - mark unsupported but promising stories as candidate stories, not manuscript claims.
+
+Avoid binary "supports/does not support" wording when the user is asking to discover, reposition, or discuss innovation. Classify candidates by manuscript use instead: mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need. This keeps partial findings useful without turning them into yes/no failures.
+
+Describe the engineering background and problem with professional terms. Do not make internal project names, run labels, case nicknames, claim IDs, branch names, or local workflow terms part of the problem statement. Translate them into standard power-system objects, scenarios, metrics, and method families before discussing innovation with the user.
 
 ## Multi-Act Engineering Story
 
@@ -90,6 +96,8 @@ For insight-discovery mode, return:
 1. `最小研究对象定位`: minimum research object, small peer group, closest problem family, broad background, and non-objects.
 2. `问题重构`: the system object, map, and property being studied.
 3. `真实创新点重定位`: strongest writable innovation, weaker framings to drop, and whether the current best story is supported or only a candidate.
+   - include an innovation-level ladder: discovery/conjecture verification, method-level contribution, engineering-problem contribution, and which one should be primary.
+   - classify each candidate by manuscript use rather than binary support wording.
 4. `多幕工程故事与物理直觉`: Act I engineering scene, Act II physical contradiction, Act III mechanism and intuition, Act IV technical object and supporting mathematics, Act V evidence, Act VI boundary.
 5. `可迁移结构`: candidate theory or modeling frames, each with an honesty label.
 6. `反直觉线索`: where the result may depart from common modeling intuition, with an honesty label.

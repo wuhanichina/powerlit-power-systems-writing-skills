@@ -15,6 +15,11 @@
     "expected": "The response must load minimum-research-object.md, identify the minimum research object as analytical AC probabilistic load flow or a narrower voltage-state inverse PLF object, define the pain point inside analytical PLF, avoid expanding the story to operation, planning, or dispatch unless evidence supports it, and allow the newly identified narrow research object or output object itself to be a candidate innovation."
   },
   {
+    "id": "innovation-level-ladder-professional-problem",
+    "prompt": "请用 $powerlit-power-systems-prewriting-review 帮我判断一个项目能不能写论文。要求先把工程背景和痛点讲清楚，再分层说明实际创新：发现或验证了什么猜想、提出了什么方法、解决了什么工程问题。不要把项目内部名称、run 标签、claim 编号或脚本名当成论文里的专业问题名称。",
+    "expected": "The response must load insight-discovery.md or innovation-chain.md as appropriate, state the engineering background and pain point in professional power-system terms, separate discovery or conjecture verification from method-level contribution and engineering-problem contribution, translate internal project names, run labels, claim IDs, and script names into field-standard objects or evidence references, classify candidates as mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need instead of using binary support wording, and withhold GO if the usable innovation level is unclear."
+  },
+  {
     "id": "scorecard-and-maximum-defect",
     "prompt": "请用 $powerlit-power-systems-prewriting-review 对这个电力系统论文 idea 做预审。结合现有研究进展，从科学性、行业痛点把握准确性、正确性、合理性、创新性、工程可行性等维度按 1-10 分给出分项评分和总体评分，并指出最大缺陷。",
     "expected": "The response must load prewriting-scorecard.md, use PowerLit or state fallback for research-progress calibration, provide 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility, give an overall score, and name one maximum defect with evidence and repair action."
