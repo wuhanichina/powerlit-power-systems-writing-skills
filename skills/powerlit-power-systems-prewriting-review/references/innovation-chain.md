@@ -11,6 +11,7 @@ A draft can enter writing only when the innovation chain closes inside the minim
 | Technical object | What is newly constructed: model, constraint, reformulation, algorithm, control law, estimator, certificate, counterexample, or validation protocol? |
 | Innovation level | Is the primary contribution a discovery or conjecture verification, a method-level contribution, an engineering-problem contribution, or a supported combination? |
 | Evidence maturity | Should each candidate be used as a mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need? |
+| Value position | What theoretical value and engineering value does this chain create beyond a metric gain, and how does PowerLit near-neighbor literature position that value? |
 | Mechanism | Why should this object resolve the gap? |
 | Evidence | Which theorem, case, baseline, metric, sensitivity, or boundary test supports it? |
 | Boundary | Under what assumptions does the claim hold? |
@@ -38,6 +39,7 @@ Stop or retarget when:
 - the contribution is "A+B+C framework" with no new coupling mechanism;
 - the response mixes discovery, method, and engineering benefit into one vague innovation label without saying which level is supported;
 - the response reduces innovation discovery to binary "supports X / does not support Y" wording instead of assigning each candidate a manuscript use;
+- the response treats a metric gain as the theoretical value, instead of using metrics as evidence for a higher-level mechanism, boundary, validation, certificate, or engineering decision value;
 - the method solves a narrower or different problem from the introduction;
 - the case study verifies only feasibility, not the claimed innovation;
 - the claim depends on assumptions introduced only after the result.

@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-paper-review
-version: 2026.07.06
+version: 2026.07.07
 description: Strictly review power-system manuscripts for 中国电机工程学报, 电力系统自动化, IEEE TPWRS, IEEE TSG, and IEEE power-system Letters. Use for acceptability judgments, reject-risk diagnosis, innovation and logic-chain review, model/math/equation checks, case-study sufficiency, conclusion support, venue fit, and reviewer-style revision advice.
 ---
 # PowerLit Power-System Paper Review

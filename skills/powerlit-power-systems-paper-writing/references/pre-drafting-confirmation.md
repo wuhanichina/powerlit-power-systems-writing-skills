@@ -65,6 +65,19 @@ Classify each candidate by evidence maturity and manuscript use:
 
 Write user-facing confirmation language as "the current evidence is best used as..." rather than "the project supports/does not support...". Reserve strict support/blocker wording for internal review gates, fatal overclaim checks, and explicit readiness decisions.
 
+## PowerLit Theoretical And Engineering Value Positioning
+
+Before formal writing, use project evidence and PowerLit near-neighbor literature to position the paper's theoretical value and engineering value at a level above individual metric changes.
+
+Do not reduce theoretical value to "metric A improves by X". Metrics demonstrate value; they do not define it. Ask what larger role the work plays in the closest problem family, method family, and target-venue literature:
+
+- **Theoretical value positioning:** whether the work poses a new research object, verifies a conjecture, clarifies a mechanism, reveals a boundary condition, transfers a theory to a power-system object, links two model families, constructs an identifiability or feasibility certificate, defines a validation protocol, exposes a counterexample, or reframes an existing method class.
+- **Engineering value positioning:** whether the work improves an operating, planning, protection, risk, observability, feasibility, computation, coordination, resilience, or decision-support problem in a way that a power-system practitioner can recognize.
+- **Metric-level evidence:** which result, baseline, sensitivity, ablation, or boundary case demonstrates the above value, without letting the metric become the contribution itself.
+- **Corpus-near role:** whether PowerLit near-neighbor papers make this value look like a mainline theoretical contribution, conditional engineering contribution, boundary clarification, validation contribution, or future-work hypothesis.
+
+The confirmation discussion should explicitly tell the user what theoretical claim is plausible, what engineering decision or interpretation becomes better supported, and what should remain only metric-level evidence. If PowerLit is unavailable, state that the positioning is project-evidence-only and must be refreshed when the corpus is accessible.
+
 ## Professional Problem Statement
 
 When describing the problem, use common professional power-system terms rather than internal project vocabulary:
@@ -94,6 +107,9 @@ Before drafting, return a compact `写作前确认` brief unless the user alread
    - corresponding real industry or engineering pain point;
    - innovation level: discovery/conjecture verification, method-level contribution, engineering-problem contribution, or a supported combination;
    - evidence maturity and manuscript use: mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need;
+   - PowerLit-backed theoretical value positioning: closest problem family, corpus-near theoretical role, and whether the value is mainline, conditional, boundary-level, or still a hypothesis;
+   - engineering value positioning: the operating, planning, protection, risk, observability, feasibility, computation, coordination, resilience, or decision-support problem that becomes better handled;
+   - metric-level evidence: the result or comparison that demonstrates the value without defining the contribution;
    - technical object;
    - physical or engineering mechanism;
    - supporting project files or result artifacts;

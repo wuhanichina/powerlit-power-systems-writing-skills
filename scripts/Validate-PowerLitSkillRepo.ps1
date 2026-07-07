@@ -113,6 +113,9 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "real industry or engineering pain point" -or $paperSkillText -notmatch "technical-level research significance") {
         Add-Failure "paper-writing skill must confirm pain point and technical-level research significance before drafting"
     }
+    if ($paperSkillText -notmatch "theoretical value positioning" -or $paperSkillText -notmatch "engineering value positioning" -or $paperSkillText -notmatch "metric-level evidence") {
+        Add-Failure "paper-writing skill must confirm theoretical and engineering value positioning above metric-level evidence before drafting"
+    }
     if ($paperSkillText -notmatch "references/review-closed-loop\.md") {
         Add-Failure "paper-writing skill must load references/review-closed-loop.md"
     }
@@ -225,6 +228,11 @@ if (Test-Path -LiteralPath $preDraftingConfirmation) {
             Add-Failure "pre-drafting-confirmation.md missing innovation-level/professional-wording token: $requiredPreDraftingToken"
         }
     }
+    foreach ($requiredValuePositioningToken in @("PowerLit Theoretical And Engineering Value Positioning", "theoretical value positioning", "engineering value positioning", "metric-level evidence", "Metrics demonstrate value; they do not define it", "Corpus-near role")) {
+        if ($preDraftingConfirmationText -notmatch [regex]::Escape($requiredValuePositioningToken)) {
+            Add-Failure "pre-drafting-confirmation.md missing theoretical/engineering value-positioning token: $requiredValuePositioningToken"
+        }
+    }
     if ($preDraftingConfirmationText -notmatch "binary `"supports X / does not support Y`"" -or $preDraftingConfirmationText -notmatch "the current evidence is best used as") {
         Add-Failure "pre-drafting-confirmation.md must avoid binary support language for innovation mining"
     }
@@ -244,7 +252,7 @@ if (Test-Path -LiteralPath $preDraftingConfirmation) {
 $prewritingInnovationChain = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\innovation-chain.md"
 if (Test-Path -LiteralPath $prewritingInnovationChain) {
     $prewritingInnovationChainText = Read-Utf8 -Path $prewritingInnovationChain
-    foreach ($requiredInnovationChainToken in @("Innovation level", "Evidence maturity", "discovery or conjecture verification", "method-level contribution", "engineering-problem contribution", "Non-Binary Innovation Framing", "mainline innovation", "conditional contribution", "observed phenomenon", "boundary evidence", "uncovered evidence need", "Professional Problem Naming")) {
+    foreach ($requiredInnovationChainToken in @("Innovation level", "Evidence maturity", "Value position", "theoretical value", "engineering value", "metric gain", "discovery or conjecture verification", "method-level contribution", "engineering-problem contribution", "Non-Binary Innovation Framing", "mainline innovation", "conditional contribution", "observed phenomenon", "boundary evidence", "uncovered evidence need", "Professional Problem Naming")) {
         if ($prewritingInnovationChainText -notmatch [regex]::Escape($requiredInnovationChainToken)) {
             Add-Failure "innovation-chain.md missing innovation-level/professional-wording token: $requiredInnovationChainToken"
         }
@@ -256,7 +264,7 @@ if (Test-Path -LiteralPath $prewritingInnovationChain) {
 $prewritingInsightDiscovery = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\insight-discovery.md"
 if (Test-Path -LiteralPath $prewritingInsightDiscovery) {
     $prewritingInsightDiscoveryText = Read-Utf8 -Path $prewritingInsightDiscovery
-    foreach ($requiredInsightToken in @("innovation level separation", "discovery or conjecture verification", "method-level contribution", "engineering-problem contribution", "mainline innovation", "conditional contribution", "observed phenomenon", "boundary evidence", "uncovered evidence need", "internal project names")) {
+    foreach ($requiredInsightToken in @("innovation level separation", "discovery or conjecture verification", "method-level contribution", "engineering-problem contribution", "mainline innovation", "conditional contribution", "observed phenomenon", "boundary evidence", "uncovered evidence need", "internal project names", "Higher-Level Value Positioning", "theoretical value", "engineering value", "metric gain", "metric-level evidence")) {
         if ($prewritingInsightDiscoveryText -notmatch [regex]::Escape($requiredInsightToken)) {
             Add-Failure "insight-discovery.md missing innovation-level/professional-wording token: $requiredInsightToken"
         }

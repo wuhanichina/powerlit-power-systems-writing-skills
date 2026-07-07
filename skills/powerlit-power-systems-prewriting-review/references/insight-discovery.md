@@ -45,6 +45,16 @@ Avoid binary "supports/does not support" wording when the user is asking to disc
 
 Describe the engineering background and problem with professional terms. Do not make internal project names, run labels, case nicknames, claim IDs, branch names, or local workflow terms part of the problem statement. Translate them into standard power-system objects, scenarios, metrics, and method families before discussing innovation with the user.
 
+## Higher-Level Value Positioning
+
+Before choosing the story, search for value above the metric layer. Use PowerLit near-neighbor literature when available to ask what role this work could play in the closest problem family and method family:
+
+- theoretical value: a newly posed research object, conjecture verification, mechanism clarification, boundary condition, theory migration, model-family bridge, identifiability or feasibility certificate, validation protocol, counterexample, or method-class reframing;
+- engineering value: an operating, planning, protection, risk, observability, feasibility, computation, coordination, resilience, or decision-support problem that becomes better handled;
+- metric-level evidence: the result, baseline, sensitivity, ablation, or boundary case that demonstrates the value without replacing it.
+
+Do not stop at "one metric is better". If the current evidence only shows a metric gain, label the higher-level value as a hypothesis or boundary evidence and state what additional mechanism, comparison, or scenario would be needed to upgrade it.
+
 ## Multi-Act Engineering Story
 
 Write the story in acts so the reader follows engineering causality instead of equation order:

@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-literature-reading
-version: 2026.07.06
+version: 2026.07.07
 description: Read and summarize supplied or retrieved power-system research papers in Chinese, with a fixed structure covering core argument, theoretical or physical mechanism, PowerLit-informed theoretical contribution, research design, key findings, and how the paper responds to the user's research question. Use when the user asks to read, digest, summarize, 精读, 拆解, or extract research implications from one or a small set of papers.
 ---
 

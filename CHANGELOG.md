@@ -1,5 +1,15 @@
 # 版本说明
 
+## 2026-07-07 - PowerLit theoretical and engineering value positioning
+
+This update raises the pre-drafting innovation discussion above individual metrics. Before formal manuscript writing, the skill must use project evidence and PowerLit near-neighbor literature to position the paper's theoretical value and engineering value in the closest problem family and method family. Metric improvements, baselines, sensitivities, and boundary cases are evidence for that value; they do not define the contribution by themselves.
+
+Main changes:
+- `pre-drafting-confirmation.md` adds `PowerLit Theoretical And Engineering Value Positioning`, separating theoretical value positioning, engineering value positioning, metric-level evidence, and corpus-near role.
+- `insight-discovery.md` adds `Higher-Level Value Positioning` so early idea mining searches for new research objects, mechanism clarification, boundary conditions, theory migration, model-family bridges, certificates, validation protocols, counterexamples, or method-class reframing before settling on a story.
+- `innovation-chain.md` adds `Value position` and treats metric-only contribution framing as a weak chain.
+- `paper-writing` and `prewriting-review` now require PowerLit-backed value positioning before user confirmation and formal drafting.
+- Unit tests and `Validate-PowerLitSkillRepo.ps1` now enforce this behavior.
 ## 2026-07-06 - 写作前创新层级确认与专业问题表述
 
 本次更新把用户确认前置到更细的创新层级：正式写作前必须先讨论工程背景和痛点，再区分“发现或验证了什么猜想/机制”、“提出了什么方法”和“解决了什么工程问题”。只有这些层级与证据边界讲清楚后，才能进入正文写作。

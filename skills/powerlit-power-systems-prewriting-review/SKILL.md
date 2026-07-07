@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-prewriting-review
-version: 2026.07.06
+version: 2026.07.07
 description: Gate power-system paper ideas or drafts before formal writing for 中国电机工程学报, 电力系统自动化, IEEE TPWRS, IEEE TSG, and IEEE power-system Letters. Use to decide GO, CONDITIONAL GO, NO-GO, or RETARGET based on innovation chain, model correctness, evidence readiness, and venue fit before invoking a writing skill.
 ---
 # PowerLit Power-Systems Prewriting Review
@@ -45,6 +45,7 @@ Do not let mathematical derivation become the story by default. Mathematics shou
 11. Run a real-innovation repositioning pass:
    - separate the project's strongest supported physical mechanism from weaker packaging, metric-only, or derivation-only framings;
    - verify that the selected innovation answers the minimum research object rather than a broader borrowed background;
+   - use PowerLit near-neighbor literature when available to locate the paper's theoretical value positioning and engineering value positioning above metric-level evidence;
    - state the paper's main story in power-system language before naming equations or algorithms;
    - write the story as acts, not as a derivation sequence;
    - identify which mathematical parts are necessary support and which should stay subordinate;
@@ -65,7 +66,8 @@ Include a `PowerLit evidence` item that states access status, closest competitor
 2. `一句话判断`: concise reason.
 3. `最小研究对象定位`: state the minimum research object, small peer problem domain, matching pain point, broad backgrounds or adjacent objects to avoid, and whether the innovation comes from identifying a new narrow research object.
 4. `真实创新点重定位`: name the strongest writable innovation inside the minimum research object, the weaker framings to drop, the closest novelty threat, and the exact physical object that should carry the paper.
-5. `多幕工程故事与物理直觉`: write the story as acts before derivations. Use:
+5. `理论价值与工程价值定位`: use PowerLit-backed theoretical value positioning and engineering value positioning to state the corpus-near theoretical role, the engineering decision or interpretation improved, and the metric-level evidence that demonstrates rather than defines the value.
+6. `多幕工程故事与物理直觉`: write the story as acts before derivations. Use:
    - Act I: engineering scene and why the problem matters;
    - Act II: physical contradiction, missing coupling, or failed intuition;
    - Act III: mechanism and physical intuition behind the proposed idea;
@@ -73,15 +75,15 @@ Include a `PowerLit evidence` item that states access status, closest competitor
    - Act V: evidence that isolates the mechanism;
    - Act VI: boundary, assumptions, and what must not be claimed.
    For each act, state the `math role`: model definition, mechanism explanation, intuition extraction, boundary proof, metric construction, or none. Do not make equation order the narrative order.
-6. `洞见发掘`: include only when insight-discovery mode was used; state problem reconstruction, transferable structures, counterintuitive leads, honesty labels, and candidate technical objects.
-7. `创新链`: problem, gap, technical object, mechanism, evidence, boundary.
-8. `模型与正确性`: what is sound, what is undefined, what may be physically or mathematically wrong.
-9. `算例支撑`: which claims are supported, unsupported, or overclaimed.
-10. `目标期刊匹配`: whether the current package fits the venue.
-11. `分项评分与总体评分`: 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, engineering feasibility, plus an overall score and a short evidence-based explanation for each dimension.
-12. `最大缺陷` / `maximum defect`: the single most damaging defect, why it matters, and what evidence or repair would most improve the score.
-13. `进入写作前必须补齐`: short action list.
-14. `写作边界`: if writing is allowed, state exactly what claims the writing skill may make.
+7. `洞见发掘`: include only when insight-discovery mode was used; state problem reconstruction, transferable structures, counterintuitive leads, honesty labels, and candidate technical objects.
+8. `创新链`: problem, gap, technical object, value position, mechanism, evidence, boundary.
+9. `模型与正确性`: what is sound, what is undefined, what may be physically or mathematically wrong.
+10. `算例支撑`: which claims are supported, unsupported, or overclaimed.
+11. `目标期刊匹配`: whether the current package fits the venue.
+12. `分项评分与总体评分`: 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, engineering feasibility, plus an overall score and a short evidence-based explanation for each dimension.
+13. `最大缺陷` / `maximum defect`: the single most damaging defect, why it matters, and what evidence or repair would most improve the score.
+14. `进入写作前必须补齐`: short action list.
+15. `写作边界`: if writing is allowed, state exactly what claims the writing skill may make.
 
 ## Hard Rule
 

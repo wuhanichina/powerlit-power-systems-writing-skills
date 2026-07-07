@@ -140,6 +140,10 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
     assert "professional problem statement" in skill
     assert "real industry or engineering pain point" in skill
     assert "technical-level research significance" in skill
+    assert "PowerLit-backed theoretical and engineering value positioning" in skill
+    assert "theoretical value positioning" in skill
+    assert "engineering value positioning" in skill
+    assert "metric-level evidence" in skill
     assert "feasible paper titles" in skill
     assert "ask the user to confirm" in skill
     assert "Do not begin a full-paper draft" in skill
@@ -148,6 +152,11 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
     assert "Pain Point First" in reference
     assert "Innovation Level Ladder" in reference
     assert "Evidence Maturity And Manuscript Use" in reference
+    assert "PowerLit Theoretical And Engineering Value Positioning" in reference
+    assert "theoretical value positioning" in reference
+    assert "engineering value positioning" in reference
+    assert "Metric-level evidence" in reference
+    assert "Metrics demonstrate value; they do not define it" in reference
     assert "Discovery or conjecture verification" in reference
     assert "Method-level contribution" in reference
     assert "Engineering-problem contribution" in reference
@@ -163,6 +172,9 @@ def test_paper_writing_confirms_innovation_and_title_before_drafting():
     assert "corresponding real industry or engineering pain point" in reference
     assert "innovation level: discovery/conjecture verification" in reference
     assert "evidence maturity and manuscript use" in reference
+    assert "PowerLit-backed theoretical value positioning" in reference
+    assert "engineering value positioning" in reference
+    assert "metric-level evidence" in reference
     assert 'without binary "supports/does not support" wording' in reference
     assert "技术层面研究意义" in reference
     assert "文献检索辅助判断" in reference
@@ -258,9 +270,18 @@ def test_prewriting_separates_innovation_levels_and_professional_problem_names()
     assert "uncovered evidence need" in insight
     assert "internal project names" in insight
     assert "innovation-level ladder" in insight
+    assert "Higher-Level Value Positioning" in insight
+    assert "theoretical value" in insight
+    assert "engineering value" in insight
+    assert "metric gain" in insight
+    assert "metric-level evidence" in insight
 
     assert "Innovation level" in chain
     assert "Evidence maturity" in chain
+    assert "Value position" in chain
+    assert "theoretical value" in chain
+    assert "engineering value" in chain
+    assert "metric gain" in chain
     assert "discovery or conjecture verification" in chain
     assert "method-level contribution" in chain
     assert "engineering-problem contribution" in chain
