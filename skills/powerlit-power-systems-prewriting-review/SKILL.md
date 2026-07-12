@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-prewriting-review
-version: 2026.07.07
+version: 2026.07.12
 description: Gate power-system paper ideas or drafts before formal writing for 中国电机工程学报, 电力系统自动化, IEEE TPWRS, IEEE TSG, and IEEE power-system Letters. Use to decide GO, CONDITIONAL GO, NO-GO, or RETARGET based on innovation chain, model correctness, evidence readiness, and venue fit before invoking a writing skill.
 ---
 # PowerLit Power-Systems Prewriting Review
@@ -39,10 +39,11 @@ Do not let mathematical derivation become the story by default. Mathematics shou
 5. If the user is asking for early brainstorming, innovation discovery, idea reframing, real-innovation repositioning, physical storytelling, multi-act engineering story design, theoretical migration, or insight generation, load `references/insight-discovery.md` first. Generate candidate structures, label them as `known theory`, `structural analogy`, or `research hypothesis`, then return to the innovation-chain gate before any writing decision.
 6. Load `references/preflight-gates.md`.
 7. Load `references/innovation-chain.md` to test problem -> gap -> technical object -> mechanism -> evidence -> boundary.
-8. Load `references/model-evidence-readiness.md` to check formulation correctness and case support.
-9. Load `references/venue-fit.md` to decide whether the target journal is realistic.
-10. Load `references/prewriting-scorecard.md` to score scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility on a 1-10 scale against current research progress.
-11. Run a real-innovation repositioning pass:
+8. Load `references/innovation-narrative-assessment.md`. Diagnose the four innovation axes (research object, discovery/mechanism, technical object, and engineering decision loop), assign `zero-to-one` / `one-to-hundred` as magnitude rather than a whole-paper slogan, and name one primary route.
+9. Load `references/model-evidence-readiness.md` to check formulation correctness and case support.
+10. Load `references/venue-fit.md` to decide whether the target journal is realistic.
+11. Load `references/prewriting-scorecard.md` to score scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility on a 1-10 scale against current research progress.
+12. Run a real-innovation repositioning pass:
    - separate the project's strongest supported physical mechanism from weaker packaging, metric-only, or derivation-only framings;
    - verify that the selected innovation answers the minimum research object rather than a broader borrowed background;
    - use PowerLit near-neighbor literature when available to locate the paper's theoretical value positioning and engineering value positioning above metric-level evidence;
@@ -50,7 +51,7 @@ Do not let mathematical derivation become the story by default. Mathematics shou
    - write the story as acts, not as a derivation sequence;
    - identify which mathematical parts are necessary support and which should stay subordinate;
    - reject stories that are elegant mathematically but not anchored in the supplied engineering object or evidence.
-12. 🔴 CHECKPOINT · 🛑 STOP: give one of four decisions and wait for the user before any writing skill is invoked:
+13. 🔴 CHECKPOINT · 🛑 STOP: give one of four decisions and wait for the user before any writing skill is invoked:
    - `GO`: enter writing.
    - `CONDITIONAL GO`: enter writing only with narrowed claims or specified missing checks.
    - `NO-GO`: do not write yet; repair model, evidence, or positioning first.
@@ -76,14 +77,15 @@ Include a `PowerLit evidence` item that states access status, closest competitor
    - Act VI: boundary, assumptions, and what must not be claimed.
    For each act, state the `math role`: model definition, mechanism explanation, intuition extraction, boundary proof, metric construction, or none. Do not make equation order the narrative order.
 7. `洞见发掘`: include only when insight-discovery mode was used; state problem reconstruction, transferable structures, counterintuitive leads, honesty labels, and candidate technical objects.
-8. `创新链`: problem, gap, technical object, value position, mechanism, evidence, boundary.
-9. `模型与正确性`: what is sound, what is undefined, what may be physically or mathematically wrong.
-10. `算例支撑`: which claims are supported, unsupported, or overclaimed.
-11. `目标期刊匹配`: whether the current package fits the venue.
-12. `分项评分与总体评分`: 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, engineering feasibility, plus an overall score and a short evidence-based explanation for each dimension.
-13. `最大缺陷` / `maximum defect`: the single most damaging defect, why it matters, and what evidence or repair would most improve the score.
-14. `进入写作前必须补齐`: short action list.
-15. `写作边界`: if writing is allowed, state exactly what claims the writing skill may make.
+8. `创新四轴与叙事路由`: primary/secondary axes, novelty magnitude, technical-object type, narrative arc, lifecycle stage, manuscript use, required evidence roles, and a handoff-ready route record.
+9. `创新链`: problem, gap, technical object, value position, mechanism, evidence, boundary.
+10. `模型与正确性`: what is sound, what is undefined, what may be physically or mathematically wrong.
+11. `算例支撑`: which claims are supported, unsupported, or overclaimed.
+12. `目标期刊匹配`: whether the current package fits the venue.
+13. `分项评分与总体评分`: 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, engineering feasibility, plus an overall score and a short evidence-based explanation for each dimension.
+14. `最大缺陷` / `maximum defect`: the single most damaging defect, why it matters, and what evidence or repair would most improve the score.
+15. `进入写作前必须补齐`: short action list.
+16. `写作边界`: if writing is allowed, state exactly what claims the writing skill may make.
 
 ## Hard Rule
 

@@ -39,6 +39,13 @@ When a result is important enough to discuss, write toward these functions natur
 
 This is a writing move, not a mandatory paragraph template. If the table already makes the numerical ranking obvious, spend the prose on why the ranking occurs and what claim it supports. If the evidence is mixed, let the discussion explain the tradeoff instead of smoothing it into uniform dominance.
 
+For every main figure, enforce the Figure-first chain in
+`figures-tables-results.md`: actual condition and plot data → trend → key feature
+→ quantitative difference → mechanism status → answered problem → bounded
+advantage/tradeoff → engineering implication → boundary. A paragraph that only
+rephrases the caption, enumerates curves, or says that the method is effective
+fails even when the figure is visually clear.
+
 ## Neighbor Case-Study Learning
 
 When PowerLit is available, learn the case-study evidence chain from near-neighbor papers before drafting the section. Extract:

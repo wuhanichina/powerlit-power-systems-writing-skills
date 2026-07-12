@@ -1,0 +1,26 @@
+[
+  {
+    "id": "figure-first-trend-mechanism-advantage",
+    "kind": "figure_first",
+    "prompt": "Plot data show voltage-error reduction grows with loading until 1.15 p.u., then saturates; the proposed method separates from a matched baseline only above 1.05 p.u. The ablation removes that separation. Write the result explanation.",
+    "expected": "State condition, trend, saturation and separation thresholds, quantitative difference if supplied, ablation-linked mechanism, answered problem, bounded advantage above 1.05 p.u., engineering implication, and untested boundary without inventing values."
+  },
+  {
+    "id": "figure-first-no-physical-reproduction-no-sota",
+    "kind": "figure_first",
+    "prompt": "A SOTA comparison plot exists, but there is no measured or trusted-reference physical-reproduction result for the claim.",
+    "expected": "Block the SOTA advantage paragraph and require physical reproduction or claim narrowing before superiority language."
+  },
+  {
+    "id": "figure-first-pure-caption-translation-fails",
+    "kind": "figure_first",
+    "prompt": "The draft says only: the blue curve increases and the red curve decreases, showing effectiveness.",
+    "expected": "Reject pure visual restatement; require actual plot-data linkage, key feature, quantitative comparison, mechanism status, answered problem, advantage/tradeoff, implication, and boundary."
+  },
+  {
+    "id": "figure-first-expected-trend-reversal",
+    "kind": "figure_first",
+    "prompt": "The figure plan expected monotonic improvement, but current plot data reverse after the threshold.",
+    "expected": "Treat the reversal as observed boundary evidence; do not copy the planned trend into prose; update claim, figure interpretation, and consistency state."
+  }
+]

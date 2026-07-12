@@ -9,6 +9,8 @@ A draft can enter writing only when the innovation chain closes inside the minim
 | Problem | What problem is being solved inside the smallest matching research object or method family? |
 | Gap | Which existing method class in that same object fails, and why? |
 | Technical object | What is newly constructed: model, constraint, reformulation, algorithm, control law, estimator, certificate, counterexample, or validation protocol? |
+| Innovation axes | Which of research object, discovery/mechanism, technical object, and engineering decision loop are present, and which one is primary? |
+| Novelty magnitude | Is each active axis `zero-to-one`, `one-to-hundred`, or `mixed`, and what evidence burden follows? |
 | Innovation level | Is the primary contribution a discovery or conjecture verification, a method-level contribution, an engineering-problem contribution, or a supported combination? |
 | Evidence maturity | Should each candidate be used as a mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need? |
 | Value position | What theoretical value and engineering value does this chain create beyond a metric gain, and how does PowerLit near-neighbor literature position that value? |
@@ -55,6 +57,24 @@ In prewriting and innovation-mining outputs, avoid binary support language as th
 - uncovered evidence need.
 
 Strict support or blocker language is allowed only when the user explicitly asks for a review verdict, readiness decision, or fatal overclaim check.
+
+## Four-Axis Closure
+
+Load `innovation-narrative-assessment.md` and close the chain on four separate
+axes. `zero-to-one` and `one-to-hundred` modify an axis; they do not replace the
+axis or become an unsupported whole-paper slogan.
+
+- research-object axis: existence, distinctness, definition, and boundary;
+- discovery/mechanism axis: observation, competing explanation, intervention,
+  mechanism isolation, and scope;
+- technical-object axis: model/formulation, control strategy,
+  algorithm/solution, theory/guarantee, or data/case protocol;
+- engineering-decision-loop axis: observable, decision, action, consequence,
+  and the evidence connecting them.
+
+A `zero-to-one` primary axis cannot close through a performance leaderboard
+alone. A `one-to-hundred` technical-object claim cannot close without strong
+fair baselines, matched conditions, ablation, and failure boundaries.
 
 ## Professional Problem Naming
 

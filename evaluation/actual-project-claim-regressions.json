@@ -61,5 +61,20 @@
     "review_feedback_use": "If review flags global dominance or ignores the N_new=168 reversal, rewrite the claim around small-sample/overall stability and state full-refit as a strong large-sample comparator.",
     "round1_expected_review": "Major issue if the draft claims Bayes dominates full refit across all sample sizes and systems.",
     "round2_expected_repair": "State Bayes as robust under data-scarce edge updates while reporting the larger-sample full-refit boundary."
+  },
+  {
+    "id": "project-profile-drift-after-revision",
+    "project": "project://profile-drift-fixture",
+    "source_paths": [
+      "project://profile-drift-fixture/02_PAPER/config/paper-profile.yaml",
+      "project://profile-drift-fixture/01_IDEA/claims.md",
+      "project://profile-drift-fixture/02_PAPER/submission_consistency.md"
+    ],
+    "rigid_claim_symptom": "The confirmed profile records a conditional mechanism-first contribution, but the revised abstract and conclusion call it a universally superior algorithm and a new research field object.",
+    "review_failure_if_used_verbatim": "The manuscript silently changes innovation axis, narrative arc, evidence boundary, and evidence verbs after review.",
+    "paper_claim_translation": "Restore the confirmed mechanism-first conditional claim or explicitly reopen the profile confirmation with new evidence.",
+    "review_feedback_use": "Treat reviewer-driven claim expansion as profile drift; update the profile only after the new claim passes prewriting and evidence gates.",
+    "round1_expected_review": "Major issue or submission block for inconsistent technical object, scope, and evidence strength across profile, abstract, results, and conclusion.",
+    "round2_expected_repair": "Align all load-bearing sections to the confirmed mechanism and bounded evidence, or create a new confirmed profile version with traceable justification."
   }
 ]

@@ -119,6 +119,11 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "references/review-closed-loop\.md") {
         Add-Failure "paper-writing skill must load references/review-closed-loop.md"
     }
+    foreach ($requiredRoutingReference in @("references/innovation-narrative-router.md", "references/case-design-contracts.md", "references/innovation-exemplar-doi-map.md", "references/submission-consistency-check.md", "references/revision-response.md")) {
+        if ($paperSkillText -notmatch [regex]::Escape($requiredRoutingReference)) {
+            Add-Failure "paper-writing skill missing required workflow reference: $requiredRoutingReference"
+        }
+    }
     if ($paperSkillText -notmatch "corpus style exemplars") {
         Add-Failure "paper-writing skill must require corpus style exemplars for venue-sensitive writing"
     }
@@ -259,6 +264,62 @@ if (Test-Path -LiteralPath $prewritingInnovationChain) {
     }
 } else {
     Add-Failure "Missing innovation-chain.md"
+}
+
+$innovationAssessment = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\innovation-narrative-assessment.md"
+$innovationRouter = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\innovation-narrative-router.md"
+$caseContracts = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\case-design-contracts.md"
+$innovationDoiMap = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\innovation-exemplar-doi-map.md"
+$submissionConsistency = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\submission-consistency-check.md"
+$revisionResponse = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\revision-response.md"
+$handoffContract = Join-Path $repoRoot "contracts\project-template-handoff.schema.yaml"
+foreach ($requiredWorkflowFile in @($innovationAssessment, $innovationRouter, $caseContracts, $innovationDoiMap, $submissionConsistency, $revisionResponse, $handoffContract)) {
+    if (-not (Test-Path -LiteralPath $requiredWorkflowFile -PathType Leaf)) {
+        Add-Failure "Missing innovation/handoff workflow file: $requiredWorkflowFile"
+    }
+}
+if (Test-Path -LiteralPath $innovationDoiMap) {
+    $doiMapText = Read-Utf8 -Path $innovationDoiMap
+    foreach ($token in @("New Research Object", "New Variable or Scenario", "New Method", "New Discovery or Observation", "New Mechanism", "New Framework or Decision Loop", "10.1109/TPWRS.2017.2692268", "10.1109/TSG.2019.2935736", "retrieval index, not a citation list")) {
+        if ($doiMapText -notmatch [regex]::Escape($token)) { Add-Failure "innovation DOI map missing token: $token" }
+    }
+}
+if (Test-Path -LiteralPath $innovationAssessment) {
+    $assessmentText = Read-Utf8 -Path $innovationAssessment
+    foreach ($token in @("Research object", "Discovery / mechanism", "Technical object", "Engineering decision loop", "zero-to-one", "one-to-hundred")) {
+        if ($assessmentText -notmatch [regex]::Escape($token)) { Add-Failure "innovation assessment missing token: $token" }
+    }
+}
+$figureFirstReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\figures-tables-results.md"
+if (Test-Path -LiteralPath $figureFirstReference) {
+    $figureFirstText = Read-Utf8 -Path $figureFirstReference
+    foreach ($token in @("expectedTrend", "keyFeatureToInspect", "mechanismToTest", "advantageCriterion", "boundaryTest", "Quantitative difference", "Engineering implication")) {
+        if ($figureFirstText -notmatch [regex]::Escape($token)) { Add-Failure "Figure-first workflow missing token: $token" }
+    }
+}
+$evidenceVerbReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\prose-quality-gates.md"
+if (Test-Path -LiteralPath $evidenceVerbReference) {
+    if ((Read-Utf8 -Path $evidenceVerbReference) -notmatch "Power-System Evidence-to-Verb Ladder") {
+        Add-Failure "prose-quality-gates.md must define the evidence-to-verb ladder"
+    }
+}
+
+foreach ($fixtureName in @("innovation-narrative-cases.json", "figure-first-evidence-cases.json")) {
+    $fixturePath = Join-Path $repoRoot "evaluation\$fixtureName"
+    if (-not (Test-Path -LiteralPath $fixturePath -PathType Leaf)) {
+        Add-Failure "Missing workflow regression fixture: $fixtureName"
+        continue
+    }
+    try {
+        $fixtureData = Read-Utf8 -Path $fixturePath | ConvertFrom-Json
+        foreach ($case in @($fixtureData)) {
+            if (-not $case.id -or -not $case.prompt -or -not $case.expected) {
+                Add-Failure "$fixtureName cases must contain id, prompt, and expected"
+            }
+        }
+    } catch {
+        Add-Failure "${fixturePath}: invalid JSON: $($_.Exception.Message)"
+    }
 }
 
 $prewritingInsightDiscovery = Join-Path $repoRoot "skills\powerlit-power-systems-prewriting-review\references\insight-discovery.md"

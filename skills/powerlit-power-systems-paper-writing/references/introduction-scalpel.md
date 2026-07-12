@@ -149,6 +149,15 @@ Actual innovations should be stated as objects:
 - theory/guarantee: criterion, proof, convergence, feasibility, stability, conservativeness, or bound.
 - data/case system: real data, benchmark system, engineering case, scenario design, or validation protocol.
 
+These five categories describe the **technical-object type** only. They do not
+replace the four-axis innovation profile in `innovation-narrative-router.md`.
+Before drafting, also decide whether the primary contribution is a new research
+object, discovery/mechanism, technical object, or engineering decision loop.
+Apply `zero-to-one` / `one-to-hundred` as magnitude on that axis. This prevents
+a new variable, discovery, or decision mechanism from being flattened into
+"new algorithm", and prevents an incremental formulation from being narrated
+as a foundational breakthrough.
+
 ## Gap-to-Contribution Map
 
 Before writing the final introduction, make this map as a support for the spine, not as a separate checklist:

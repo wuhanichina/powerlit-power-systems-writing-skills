@@ -88,5 +88,30 @@
     "id": "mandatory-reader-experience-pass",
     "prompt": "请用 $powerlit-power-systems-paper-writing 改写一段技术上基本正确但读起来很费劲的中文方法段。段落中存在缩写未定义、连续公式缺少物理解释、同一电压分布量前后符号不一致、以及结果边界先防守后说明的问题。目标期刊为中国电机工程学报。",
     "expected": "The response must apply reader-experience-pass.md as a mandatory final gate: repair high-impact [writing] burdens before returning manuscript prose, preserve necessary technical density as [topic-hard] only when definitions and physical intuition make it linearly followable, and refuse submission-ready wording if the pass still fails."
+  },
+  {
+    "id": "innovation-router-zero-to-one-vs-incremental",
+    "prompt": "请先判断本文主创新轴与0→1/1→100幅度，再设计引言、方法、算例和结论。若是新研究对象，不要写成性能榜单；若是成熟任务的新方法，不要包装成基础突破。",
+    "expected": "The response loads innovation-narrative-router.md and case-design-contracts.md, diagnoses the four axes, selects one primary route, applies zero-to-one or one-to-hundred as evidence magnitude, and returns different narrative and case contracts without promotional labels."
+  },
+  {
+    "id": "figure-first-plot-data-explanation",
+    "prompt": "请根据当前 plot-data CSV、figure manifest 和 figure plan 写逐图结果解释。必须先写趋势和关键点，再分析机理，然后说明图回答了什么问题、本文方法在哪些条件下有优势，并给工程启示和边界。",
+    "expected": "The response verifies the current data/manifest surface and covers condition, trend, key feature, quantitative difference, mechanism status, answered problem, bounded advantage or tradeoff, engineering implication, and boundary; it does not restate the caption or copy expectedTrend as observation."
+  },
+  {
+    "id": "submission-consistency-profile-drift",
+    "prompt": "请在投稿前检查 paper profile、claims、正文、run manifest、figure manifest 和返修记录的一致性，重点找主线、数字、图号、术语、占位符、图文闭环、证据动词和 profile 漂移。",
+    "expected": "The response loads submission-consistency-check.md, reports exact issue locations and linked claims/figures, blocks unsupported strong verbs or profile drift, and produces PASS, CONDITIONAL PASS, or BLOCK without choosing favorable conflicting numbers."
+  },
+  {
+    "id": "revision-three-deliverables",
+    "prompt": "请处理这轮审稿意见：先判断每条意见的真实缺口并修正文稿，再生成编辑说明、逐条回复和修改清单；需要新算例的意见要关联 claim 和 figure。",
+    "expected": "The response loads revision-response.md, diagnoses each comment as mechanism/assumption/model/comparison/evidence/boundary/wording, repairs the natural manuscript location first, then returns editor note, point-by-point responses, and list of changes with evidence and status links."
+  },
+  {
+    "id": "innovation-route-doi-exemplar-retrieval",
+    "prompt": "请先判断论文属于新对象、新变量/场景、新方法、新发现、新机制还是新框架，再从 PowerLit 直接检索该类型的经典 DOI 论文，学习其引言、方法、算例和结果讨论框架，但不要复制原句。",
+    "expected": "The response loads innovation-exemplar-doi-map.md, retrieves only the selected route's DOI seeds, verifies the PowerLit records, supplements them with minimum-object-near papers, extracts clean-room section and evidence functions, and does not treat the seed list as automatic citations or copy source wording."
   }
 ]

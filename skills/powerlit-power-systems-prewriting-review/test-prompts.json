@@ -23,5 +23,10 @@
     "id": "scorecard-and-maximum-defect",
     "prompt": "请用 $powerlit-power-systems-prewriting-review 对这个电力系统论文 idea 做预审。结合现有研究进展，从科学性、行业痛点把握准确性、正确性、合理性、创新性、工程可行性等维度按 1-10 分给出分项评分和总体评分，并指出最大缺陷。",
     "expected": "The response must load prewriting-scorecard.md, use PowerLit or state fallback for research-progress calibration, provide 1-10 scores for scientificity, industry pain-point accuracy, correctness, reasonableness, innovation, and engineering feasibility, give an overall score, and name one maximum defect with evidence and repair action."
+  },
+  {
+    "id": "four-axis-innovation-narrative-assessment",
+    "prompt": "请对这个论文 idea 做创新四轴诊断：研究对象、发现/机理、技术对象、工程决策闭环。分别判断0→1还是1→100，选一个主轴，给出叙事路由、生命周期、算例证据和GO门。",
+    "expected": "The response loads innovation-narrative-assessment.md, diagnoses all four axes, assigns novelty magnitude per active axis, selects one primary route, returns a handoff-ready route record and required evidence roles, and withholds GO when the route or falsifying case contract is incomplete."
   }
 ]

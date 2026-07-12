@@ -1,0 +1,26 @@
+[
+  {
+    "id": "zero-to-one-object-not-leaderboard",
+    "kind": "innovation_narrative",
+    "prompt": "A paper defines a previously unmodeled voltage-distribution inverse object and has existence, identifiability, counterexample, and boundary evidence, but only one baseline. Diagnose and route the paper.",
+    "expected": "Route research-object as the primary axis with zero-to-one magnitude; lead with definition, existence, distinctness, identifiability, counterexample, and boundary rather than a SOTA leaderboard; treat broad superiority as blocked."
+  },
+  {
+    "id": "one-to-hundred-method-not-breakthrough",
+    "kind": "innovation_narrative",
+    "prompt": "An established AC OPF task receives a faster decomposition method with matched-baseline, ablation, repeated runtime, and failure-condition evidence. Diagnose and route the paper.",
+    "expected": "Route technical-object/new-method as one-to-hundred; require fair matched comparison, ablation, stability, scale, and tradeoff; do not describe the work as discovering a new research object."
+  },
+  {
+    "id": "new-scenario-mechanism-route",
+    "kind": "innovation_narrative",
+    "prompt": "A typhoon-conditioned topology/source-load scenario introduces a threshold reversal in feeder risk. Plan the narrative and cases.",
+    "expected": "Use the new variable/scenario contract with controlled baseline, trend, threshold, mechanism-linked intermediate quantity, decision consequence, counterfactual, and boundary."
+  },
+  {
+    "id": "profile-drift-detection",
+    "kind": "innovation_narrative",
+    "prompt": "The profile locks mechanism-first and conditional scope, but the abstract claims a universally superior algorithm and the conclusion calls the work a new field object.",
+    "expected": "Block submission for profile drift in innovation axis, narrative arc, evidence boundary, and evidence verbs; repair abstract and conclusion to the confirmed profile or reopen confirmation."
+  }
+]

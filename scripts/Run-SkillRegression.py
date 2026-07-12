@@ -86,6 +86,23 @@ def collect_cases() -> list[dict]:
                     "pass_criteria": item.get("pass_criteria", ""),
                 }
             )
+    for fixture_name, fixture_kind in (
+        ("innovation-narrative-cases.json", "innovation_narrative"),
+        ("figure-first-evidence-cases.json", "figure_first"),
+    ):
+        fixture_file = REPO_ROOT / "evaluation" / fixture_name
+        if not fixture_file.is_file():
+            continue
+        for item in load_json(fixture_file):
+            cases.append(
+                {
+                    "id": item["id"],
+                    "source": f"evaluation/{fixture_name}",
+                    "kind": item.get("kind", fixture_kind),
+                    "prompt": item.get("prompt", ""),
+                    "expected": item.get("expected", ""),
+                }
+            )
     return cases
 
 

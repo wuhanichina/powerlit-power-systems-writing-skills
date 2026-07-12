@@ -309,3 +309,93 @@ def test_independent_reviewer_prompt_is_portable_and_readiness_based():
     assert ("\\" + "One" + "Drive") not in prompt
     legacy_verdict = "直接录用" + " / 小修 / 大修 / 拒稿"
     assert legacy_verdict not in prompt
+
+
+def test_innovation_router_case_contracts_and_handoff_are_wired():
+    prewriting_skill = read_text("skills/powerlit-power-systems-prewriting-review/SKILL.md")
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    assessment = read_text(
+        "skills/powerlit-power-systems-prewriting-review/references/innovation-narrative-assessment.md"
+    )
+    router = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/innovation-narrative-router.md"
+    )
+    contracts = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/case-design-contracts.md"
+    )
+    doi_map = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/innovation-exemplar-doi-map.md"
+    )
+    handoff = read_text("contracts/project-template-handoff.schema.yaml")
+
+    assert "innovation-narrative-assessment.md" in prewriting_skill
+    assert "innovation-narrative-router.md" in writing_skill
+    assert "case-design-contracts.md" in writing_skill
+    for token in (
+        "Research object",
+        "Discovery / mechanism",
+        "Technical object",
+        "Engineering decision loop",
+        "zero-to-one",
+        "one-to-hundred",
+    ):
+        assert token in assessment
+    for route in (
+        "New research object",
+        "New variable / scenario",
+        "New method",
+        "New discovery",
+        "New mechanism",
+        "New framework",
+    ):
+        assert route in router
+    assert "A `zero-to-one` primary axis cannot close through a performance leaderboard" in read_text(
+        "skills/powerlit-power-systems-prewriting-review/references/innovation-chain.md"
+    )
+    assert "strongest matched baselines" in contracts
+    assert "innovation-exemplar-doi-map.md" in writing_skill
+    for doi in (
+        "10.1109/TPWRS.2017.2692268",
+        "10.1109/TPWRS.2016.2641463",
+        "10.1109/TPWRS.2012.2205021",
+        "10.1109/TPWRS.2015.2402640",
+        "10.1109/TPWRS.2023.3326137",
+        "10.1109/TSG.2019.2935736",
+    ):
+        assert doi in doi_map
+    assert "The DOI map is a retrieval index, not a citation list" in doi_map
+    assert 'version: "2026.07.12"' in handoff
+
+
+def test_figure_first_consistency_and_revision_workflows_are_wired():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    figures = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/figures-tables-results.md"
+    )
+    prose = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/prose-quality-gates.md"
+    )
+    consistency = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/submission-consistency-check.md"
+    )
+    revision = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/revision-response.md"
+    )
+
+    assert "submission-consistency-check.md" in writing_skill
+    assert "revision-response.md" in writing_skill
+    for token in (
+        "expectedTrend",
+        "keyFeatureToInspect",
+        "mechanismToTest",
+        "advantageCriterion",
+        "boundaryTest",
+        "Quantitative difference",
+        "Engineering implication",
+    ):
+        assert token in figures
+    assert "Power-System Evidence-to-Verb Ladder" in prose
+    assert "spine drift" in consistency and "profile drift" in consistency
+    assert "Editor note / cover letter" in revision
+    assert "Point-by-point response" in revision
+    assert "List of changes" in revision

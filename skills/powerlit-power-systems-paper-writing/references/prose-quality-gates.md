@@ -16,6 +16,28 @@ Run these checks after the technical draft is complete:
 8. `Reviewer-comment integration pass`: when editing after review, remove rebuttal-shaped prose from the manuscript body. The reviewer's concern should appear only as a clearer assumption, physical mechanism, comparison, evidence boundary, or scoped conclusion.
 9. `Engineering-math balance pass`: keep derivation depth proportional to the venue and claim. Do not add complete proof-style exposition when a physical interpretation, validity condition, and evidence link would be the publishable engineering explanation.
 10. `Working-language firewall`: remove internal drafting labels from manuscript prose, including `closest competitor`, `claim boundary`, `citation pack`, `evidence-strength profile`, `gap-to-contribution map`, `PowerLit evidence`, and similar process labels. This firewall applies only to manuscript-facing prose. In prewriting, planning, and `写作前确认` responses these labels are the intended user-facing diagnostic structure and must be kept, not removed.
+11. `Evidence-verb calibration`: select the strongest verb licensed by the
+    evidence ladder below; a stronger verb requires stronger evidence, not more
+    confident prose.
+
+## Power-System Evidence-to-Verb Ladder
+
+| Evidence available | Licensed verbs | Do not upgrade to |
+| --- | --- | --- |
+| Definition or formulation only | defines, formulates, represents, incorporates | proves, guarantees, validates |
+| Analytic derivation under stated assumptions | derives, establishes under, characterizes, bounds | universally proves, guarantees outside assumptions |
+| Formal proof/certificate | proves, guarantees, certifies, establishes | demonstrates field performance |
+| One coherent simulation or benchmark | shows in the tested case, reproduces, yields, is consistent with | proves, validates generally, ensures deployment |
+| Multi-case/repeated simulation with fair baselines | demonstrates across tested cases, consistently reduces under, outperforms under matched conditions | establishes universal superiority, guarantees robustness |
+| Ablation/intervention/mechanism isolation | attributes, isolates, indicates that the gain arises from | proves causality outside the intervention design |
+| Statistical association | is associated with, correlates with, predicts within the evaluated data | causes, explains mechanistically |
+| Field/operational data with protocol | observes in, validates against measured data, demonstrates for the monitored system | validates all systems, guarantees operation |
+
+`significantly` is licensed only by an explicit statistical test or a clearly
+defined engineering-significance threshold. `Robust`, `scalable`, `real-time`,
+and `deployable` require tests of perturbation, scale, timing, and deployment
+conditions respectively. If evidence types conflict, use the weaker verb and
+state the tested scope.
 
 ## Sentence-Deletion Test (mandatory, all venues)
 

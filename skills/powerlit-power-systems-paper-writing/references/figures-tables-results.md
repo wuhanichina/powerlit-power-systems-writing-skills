@@ -55,6 +55,17 @@ The PowerLit-derived case and figure plan should be template-ready. For each cla
 - `figureType`: figure/table type learned from near-neighbor evidence practice and matched to the current data shape;
 - `dataFiles`: expected `result/<case>/...` source files or a missing-data blocker;
 - `visualEncoding`: axes, groups, colors/line styles, normalization, and whether uncertainty or residuals must be shown;
+- `figurePlanId` and `contractVersion`: stable links to the project plan and
+  versioned handoff contract;
+- `expectedTrend`: the pre-result trend whose presence or absence tests the claim;
+- `keyFeatureToInspect`: threshold, reversal, peak, separation, concentration,
+  crossing, tail, spatial cluster, or residual pattern that deserves attention;
+- `mechanismToTest`: the intermediate physical/model quantity that should
+  explain the visual pattern;
+- `advantageCriterion`: the exact baseline-relative or decision-relative
+  condition that would constitute an advantage;
+- `boundaryTest`: the condition under which the trend or advantage should
+  weaken, reverse, or become inconclusive;
 - `templateMetadata`: fields needed by `save_figure`, including `claimId`, `sciQuestion`, `physicsReproduction`, `evidenceRole`, `dataFiles`, `dataDescription`, `visualEncoding`, `targetLayout`, `command`, `keyParams`, and `randomSeed`.
 
 Respect the template evidence-role order per claim:
@@ -67,6 +78,11 @@ Respect the template evidence-role order per claim:
 Do not plan `sota-comparison` or `sensitivity-ablation` figures before a `physical-reproduction` figure exists or is explicitly marked as a blocker for the same claim. If PowerLit neighbors usually compare parameter ranges, step sizes, defaults, normalization, or x-axis organization, report those choices in the plan before proposing a local sweep. If the current project uses different parameters or ranges, state the reason in the plan so it can be copied into `01_IDEA/figure_plan.md`, the manifest, or the caption draft.
 
 Output boundary: PowerLit proposes the plan; the project template enforces the export. The plan should name missing computations rather than fabricate figure metadata, result files, or reference behavior.
+
+Planning fields are hypotheses, not observed results. Keep
+`expectedTrend`, `keyFeatureToInspect`, `mechanismToTest`,
+`advantageCriterion`, and `boundaryTest` in `figure_plan.md`; factual manifests
+record only their plan reference and the exported data/artifacts.
 
 ## Latest Evidence Selection
 
@@ -104,13 +120,33 @@ Table x. [Metric or quantity] for [system/scenario] under [methods or settings].
 
 ## Result Paragraph Rules
 
-Each result paragraph should carry one message:
+Each main figure must be explained from the current plot-data file and matching
+manifest/check report, in this order:
 
-1. State the result judgment first.
-2. Give the key number, direction, or ordering.
-3. Explain the mechanism in power-system terms.
-4. State the comparison baseline.
-5. Close the boundary if the result is conditional.
+1. **Condition:** system, scenario, x-variable/range, compared objects, metric,
+   unit, and direction.
+2. **Trend:** what rises, falls, concentrates, separates, crosses, saturates, or
+   reverses over the plotted range.
+3. **Key feature:** the threshold, extremum, crossing, spatial cluster, tail, or
+   regime change that carries the figure's message.
+4. **Quantitative difference:** the decisive value, range, slope, gap, error, or
+   ordering against the named baseline. Do not invent precision not present in
+   the plot data.
+5. **Mechanism:** why the trend and key feature arise in power-system or model
+   terms, preferably through an intermediate quantity, constraint, coupling, or
+   ablation. Label a mechanism as a hypothesis when the figure cannot isolate it.
+6. **Problem answered:** which scientific or engineering question the observed
+   pattern resolves.
+7. **Method advantage:** where the method has an advantage under the predeclared
+   `advantageCriterion`; mixed or absent advantage must be written as a tradeoff
+   or boundary, not smoothed into superiority.
+8. **Engineering implication:** what planning, operation, control, protection,
+   market, risk, or diagnostic decision changes.
+9. **Boundary:** where the interpretation weakens, reverses, or remains untested.
+
+This is a coverage and reasoning order, not a requirement to write nine
+sentences. Combine adjacent functions when one load-bearing sentence can carry
+them without losing the evidence chain.
 
 Prefer:
 
@@ -160,6 +196,13 @@ Figures are for shape, mechanism, or trend.
 - Explain the trend or separation that the reader should see.
 - Tie the visual change to voltage, flow, reserve, uncertainty, topology, load, DER, market, or resilience meaning.
 - Do not claim statistical significance, robustness, or generalization unless the evidence includes the required repetitions or scenario spread.
+- Do not describe a figure from its caption, image impression, or expected
+  trend alone when plot data exist. Match `figurePlanId`, `claimId`, data file,
+  manifest timestamp, and current run before writing.
+- A "pure figure translation" fails when it only lists axes, colors, and visible
+  changes. It passes only when trend, key feature, quantitative difference,
+  mechanism status, answered problem, advantage/tradeoff, implication, and
+  boundary are covered.
 
 ## Sensitivity and Ablation
 
@@ -178,3 +221,8 @@ Before finalizing, check that:
 - metric direction and units are clear;
 - comparison baselines are named;
 - conclusion strength matches the evidence.
+- every main figure has a matching current plot-data/manifest surface and the
+  condition → trend → key feature → quantitative difference → mechanism →
+  problem → advantage → implication → boundary coverage;
+- expected planning trends are not reported as observations unless confirmed by
+  actual plot data.

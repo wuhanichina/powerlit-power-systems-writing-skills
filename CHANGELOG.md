@@ -1,5 +1,23 @@
 # 版本说明
 
+## 2026-07-12 - Innovation routing and project-template handoff
+
+- Added a four-axis innovation assessment and narrative router; `zero-to-one`
+  and `one-to-hundred` now select evidence burdens instead of acting as
+  promotional paper labels.
+- Added six case-design contracts for new objects, variables/scenarios,
+  methods, discoveries, mechanisms, and frameworks.
+- Added a verified PowerLit DOI seed map for all six routes so agents can
+  retrieve structural exemplars directly while preserving the no-copy and
+  relevance gates.
+- Added Figure-first planning and actual-data interpretation through trend,
+  key feature, quantitative difference, mechanism, problem, bounded advantage,
+  engineering implication, and boundary.
+- Added evidence-to-verb calibration, submission consistency checking, and a
+  three-deliverable revision-response workflow.
+- Added a canonical versioned project-template handoff schema and expanded
+  regression fixtures, validation, and pytest coverage.
+
 ## 2026-07-07 - PowerLit theoretical and engineering value positioning
 
 This update raises the pre-drafting innovation discussion above individual metrics. Before formal manuscript writing, the skill must use project evidence and PowerLit near-neighbor literature to position the paper's theoretical value and engineering value in the closest problem family and method family. Metric improvements, baselines, sensitivities, and boundary cases are evidence for that value; they do not define the contribution by themselves.

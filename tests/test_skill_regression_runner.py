@@ -42,6 +42,8 @@ def test_runner_list_covers_all_regression_sources():
     assert "test_prompt" in kinds
     assert "write_review_closure" in kinds
     assert "reconstruction_benchmark" in kinds
+    assert "innovation_narrative" in kinds
+    assert "figure_first" in kinds
     # every skill's test-prompts.json contributes at least one case
     sources = {line.split("\t")[2] for line in lines}
     prompt_files = set(
@@ -61,6 +63,14 @@ def test_runner_show_returns_case_payload():
 def test_runner_show_unknown_id_fails():
     result = run_runner("show", "--id", "no-such-case")
     assert result.returncode == 2
+
+
+def test_runner_show_returns_new_routing_fixture():
+    result = run_runner("show", "--id", "zero-to-one-object-not-leaderboard")
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["kind"] == "innovation_narrative"
+    assert "leaderboard" in payload["expected"]
 
 
 def test_runner_record_appends_valid_row(tmp_path, monkeypatch):

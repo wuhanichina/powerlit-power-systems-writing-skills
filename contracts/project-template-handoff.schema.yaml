@@ -1,0 +1,166 @@
+contract:
+  name: powerlit-project-template-handoff
+  version: "2026.07.12"
+  compatibility: "1.x"
+  canonical_owner: powerlit-power-systems-writing
+
+enums:
+  innovation_axis:
+    - research-object
+    - discovery-mechanism
+    - technical-object
+    - engineering-decision-loop
+  novelty_mode:
+    - zero-to-one
+    - one-to-hundred
+    - mixed
+  technical_object_type:
+    - model-formulation
+    - control-strategy
+    - algorithm-solution
+    - theory-guarantee
+    - data-case-system
+  narrative_arc:
+    - discovery-first
+    - mechanism-first
+    - method-first
+    - engineering-first
+    - validation-first
+    - boundary-diagnosis
+    - mixed
+  lifecycle_stage:
+    - zero-to-one-explore
+    - zero-to-one-first-run
+    - one-to-hundred-evidence
+    - one-to-hundred-submission
+  manuscript_use:
+    - mainline
+    - conditional
+    - observed-phenomenon
+    - boundary
+    - future-work
+  evidence_role:
+    - scenario-setup
+    - physical-reproduction
+    - sota-comparison
+    - sensitivity-ablation
+  evidence_state:
+    - unverified
+    - theory-supported
+    - numerical-supported
+    - implementation-supported
+    - review-pending
+    - insufficient
+    - excluded
+    - archived
+  revision_gap:
+    - mechanism
+    - assumption
+    - model
+    - comparison
+    - evidence
+    - boundary
+    - wording
+  revision_status:
+    - open
+    - manuscript-patched
+    - requires-new-case
+    - response-drafted
+    - verified
+    - closed
+
+paper_profile:
+  required:
+    - contractVersion
+    - targetVenue
+    - workingLanguage
+    - minimumResearchObject
+    - paperSpine
+    - primaryInnovationAxis
+    - noveltyMode
+    - technicalObjectType
+    - narrativeArc
+    - lifecycleStage
+    - evidenceBoundary
+  optional:
+    - secondaryInnovationAxes
+    - manuscriptUse
+    - canonicalTerms
+    - keyQuantities
+    - venuePolicySkillVersion
+    - venuePolicyCheckedAt
+    - lastConfirmedBrief
+    - lastConsistencyVerdict
+
+claim_handoff:
+  required:
+    - claimId
+    - evidenceId
+    - primaryInnovationAxis
+    - noveltyMode
+    - technicalObjectType
+    - manuscriptUse
+    - lifecycleStage
+    - evidenceState
+    - evidenceBoundary
+
+figure_handoff:
+  required:
+    - contractVersion
+    - figurePlanId
+    - claimId
+    - evidenceRole
+    - sciQuestion
+    - physicsReproduction
+    - metric
+    - dataFiles
+    - visualEncoding
+  planning_only:
+    - expectedTrend
+    - keyFeatureToInspect
+    - mechanismToTest
+    - advantageCriterion
+    - boundaryTest
+  manifest_only:
+    - script
+    - command
+    - keyParams
+    - randomSeed
+    - outputFiles
+    - timestamp
+
+revision_handoff:
+  required:
+    - commentId
+    - reviewerConcern
+    - realGap
+    - manuscriptLocation
+    - repairStatus
+  optional:
+    - claimIds
+    - figureIds
+    - requiredEvidence
+    - responseLocation
+    - responseText
+
+load_order:
+  - ProjectName_note.md
+  - ProjectName_changelog.md
+  - 02_PAPER/config/paper-profile.yaml
+  - 02_PAPER/config/author-profile.yaml
+  - 01_IDEA/story.md
+  - 01_IDEA/claims.md
+  - 01_IDEA/derivation.md
+  - 01_IDEA/symbols.md
+  - 01_IDEA/evidence_map.md
+  - 01_IDEA/research_trace.yaml
+  - 01_IDEA/figure_plan.md
+  - result/<case>/run_manifest.json
+  - result/<case>/figures/figure_manifest.jsonl
+  - 02_PAPER/revision/
+
+rules:
+  - "The skill owns classification, narrative policy, evidence-to-claim mapping, and prose."
+  - "The project template owns persistent state, executable cases, plot export, manifests, and revision logs."
+  - "Planning interpretation fields must not be copied into factual manifests as observed results."
+  - "Author exemplars provide structural patterns only; source sentences must not be copied."

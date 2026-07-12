@@ -61,5 +61,19 @@
     "review_prompt": "Use $powerlit-power-systems-paper-review to review the produced caption and result paragraph. Check whether the caption is self-contained, the result paragraph interprets the metric in grid-operational terms, and the conclusion boundary matches the supplied evidence.",
     "pass_criteria": "No unsupported robustness, privacy, scalability, or real-time claim; metric direction and baseline are clear; the figure/table is interpreted in text; and the result maps to a bounded manuscript claim.",
     "repair_required_when": "The output uses generic performance language, hides the baseline or metric direction, claims broader deployment value than the plot supports, or describes local script/log details instead of manuscript-facing evidence."
+  },
+  {
+    "id": "figure-first-mechanism-advantage-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing with an actual plot-data table and matching manifest to explain one main figure through trend, key feature, quantitative difference, mechanism, answered problem, bounded advantage, engineering implication, and boundary.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to verify that the result paragraph is not a caption restatement, that every observed claim comes from the current plot data, and that mechanism and advantage are appropriately bounded.",
+    "pass_criteria": "The paragraph covers the Figure-first evidence chain, names any mechanism hypothesis as such, and does not copy expected planning trends into observations.",
+    "repair_required_when": "The paragraph only describes colors/axes, says effective or superior generically, omits the key trend or threshold, or infers a mechanism not isolated by evidence."
+  },
+  {
+    "id": "revision-consistency-loop",
+    "write_prompt": "Use $powerlit-power-systems-paper-writing to diagnose reviewer comments, repair the manuscript, create an editor note, point-by-point response, and list of changes, then run the submission consistency check.",
+    "review_prompt": "Use $powerlit-power-systems-paper-review to check that each comment's real gap was repaired in the manuscript, evidence and locations are verifiable, claims did not drift from the profile, and the response does not substitute rhetoric for evidence.",
+    "pass_criteria": "All response items link to verified manuscript/evidence changes, strong verbs match evidence, and unresolved blockers remain open rather than being declared closed.",
+    "repair_required_when": "A response is defensive but the manuscript is unpatched, a new case lacks a claim/figure contract, or consistency checks find stale numbers, figures, terms, placeholders, or profile drift."
   }
 ]

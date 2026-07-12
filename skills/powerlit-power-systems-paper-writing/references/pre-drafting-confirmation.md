@@ -51,6 +51,24 @@ Do not collapse these levels into a single generic "innovation point". A strong 
 
 The user-facing discussion must clarify the engineering background and innovation before writing begins. Ask the user to confirm whether the engineering pain point is correctly stated, which innovation level is primary, which levels are secondary, and which unsupported framings should be dropped.
 
+## Four-Axis Route Lock
+
+Load `innovation-narrative-router.md`. In addition to the level ladder, diagnose
+research object, discovery/mechanism, technical object, and engineering decision
+loop. Select one primary axis, assign `zero-to-one` / `one-to-hundred` as its
+novelty magnitude, and lock:
+
+- `contractVersion`, minimum research object, target venue, and working language;
+- primary and secondary innovation axes;
+- technical-object type and narrative arc;
+- lifecycle stage and manuscript-use class;
+- selected case contract and required evidence roles;
+- evidence boundary and claim-narrowing trigger.
+
+If `02_PAPER/config/paper-profile.yaml` exists, return these as a proposed
+write-back after confirmation. Do not keep a second hidden project profile in
+the skill.
+
 ## Evidence Maturity And Manuscript Use
 
 For innovation discovery and pre-drafting confirmation, do not present the result as a binary "supports X / does not support Y" judgment. That wording is too blunt for innovation mining and can make partial findings look like failures.
@@ -128,6 +146,11 @@ Before drafting, return a compact `写作前确认` brief unless the user alread
 5. `需要使用者确认`: ask the user to approve the pain point, innovation point, research-significance emphasis, and title direction, or to select one candidate.
    - explicitly ask which innovation level should be the main paper story;
    - explicitly ask whether the professional problem statement removes internal project names while preserving the real technical meaning.
+6. `框架稿 V0`: before full prose, provide a skeletal title direction, one
+   spine sentence, abstract sentence functions, introduction paragraph
+   functions, method blocks, case-evidence sequence, and bounded conclusion.
+   V0 contains no invented number, citation, or result and must visibly follow
+   the confirmed narrative route and case contract.
 
 Do not continue into full manuscript drafting in the same response unless the user explicitly says to proceed with the recommended option or asks for best-judgment drafting.
 
@@ -160,5 +183,6 @@ After the user confirms, lock:
 - framings to drop;
 - literature-near novelty boundary;
 - evidence boundary that must appear in abstract, introduction, result discussion, and conclusion.
+- handoff-ready route record and framework V0.
 
 If confirmation is impossible because project files conflict or the literature threat is too strong, return a narrowed decision brief instead of drafting.

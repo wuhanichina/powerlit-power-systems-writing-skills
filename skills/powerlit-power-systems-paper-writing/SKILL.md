@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-paper-writing
-version: 2026.07.07
+version: 2026.07.12
 description: Draft, rewrite, or revise full-length power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, method/model sections, case studies, figure/table captions, result paragraphs, conclusions, terminology cleanup, reviewer-comment revision, venue adaptation, and PowerLit-grounded citation planning.
 ---
 # PowerLit Power-Systems Paper Writing
@@ -18,10 +18,10 @@ Do not use this skill as the standalone acceptability or reject-risk reviewer. U
 Do not load every reference for every task. Load by tier; loading the whole `references/` set on a small task wastes budget and dilutes attention.
 
 - **Tier 0 — always, for any full-paper draft or major rewrite:** `research-object-gate.md`, `venue-profiles.md` plus exactly one venue file (`csee.md`+`csee-precision.md` / `aeps.md` / `tpwrs.md` / `tsg.md`), `manuscript-section-quality.md`, `prose-quality-gates.md`, `lexicon.md`, `reader-experience-pass.md`.
-- **Tier 1 — load by the part you are writing:** `introduction-scalpel.md` (title/abstract/introduction/related work); `method-model.md` (method/model/derivation); `case-conclusion.md` + `figures-tables-results.md` (case study/results/figures/conclusion); `pre-drafting-confirmation.md` (full paper, title, abstract, introduction, contribution, venue positioning, or major rewrite); `project-claim-translation.md` (only when project claim/evidence files exist); `review-closed-loop.md` (before delivering any draft called submission-ready).
+- **Tier 1 — load by the part you are writing:** `innovation-narrative-router.md` + `case-design-contracts.md` + `references/innovation-exemplar-doi-map.md` (full paper, major rewrite, case design, or innovation-sensitive planning; retrieve only the selected route's DOI seeds); `introduction-scalpel.md` (title/abstract/introduction/related work); `method-model.md` (method/model/derivation); `case-conclusion.md` + `figures-tables-results.md` (case study/results/figures/conclusion); `pre-drafting-confirmation.md` (full paper, title, abstract, introduction, contribution, venue positioning, or major rewrite); `project-claim-translation.md` (only when project claim/evidence files exist); `submission-consistency-check.md` + `review-closed-loop.md` (before delivering any draft called submission-ready).
 - **Tier 2 — PowerLit-dependent, load only when PowerLit is accessible AND the task is citation/novelty/venue-evidence sensitive:** `corpus-grounded-drafting.md`, `powerlit-evidence-strength.md`, and `published-paper-reconstruction.md` (skill-maintenance benchmarks only).
 - **Tier 3 — optional deep dives, load only when a Tier-0 consolidated gate is insufficient:** `publishable-prose.md`, `rhythm.md`, `lexicon.md`, `anti-ai-style.md`, `worked-examples.md` (paired before→after rewrites per venue), and `internal-readiness-writing.md` (only when an internal-readiness target is requested).
-- **Light editing / translation / caption / single result paragraph:** skip the bulk. Load only `task-prompts.md` plus the one relevant section reference plus `prose-quality-gates.md`.
+- **Light editing / translation / caption / single result paragraph:** skip the bulk. Load only `task-prompts.md` plus the one relevant section reference plus `prose-quality-gates.md`. For reviewer comments or revision letters, also load `revision-response.md`.
 
 The numbered workflow below names references at the step where they apply; the tiers say which of those are mandatory versus on-demand.
 
@@ -37,6 +37,7 @@ The numbered workflow below names references at the step where they apply; the t
    - model, formulation, control law, estimator, algorithm, or mechanism;
    - evidence package;
    - claim boundary.
+   Also load `references/innovation-narrative-router.md` and lock one primary innovation axis, novelty magnitude, technical-object type, narrative arc, lifecycle stage, and manuscript-use class. Load `references/case-design-contracts.md` for full-paper or case-design work. If a project-template profile exists, use `contracts/project-template-handoff.schema.yaml` and return confirmed write-back values; do not duplicate MATLAB execution policy in the skill.
 6. Apply the venue as a style, structure, and evidence constraint without changing the research object. Do not convert a manuscript into a venue's common topic unless that topic is already present in the supplied title, method, variables, equations, and evidence. Keep the original technical object and adapt its wording to the venue's rhythm and evidence bar.
 7. Resolve the current evidence surface before drafting from project outputs. Unless the user names a specific run, use the latest coherent data and validation result: prefer the newest completed `RunMetadata`, result CSV/MAT files, validation/check reports, and figure manifest records that refer to existing files from the same run. Do not quote stale manifest entries, older `latest` files, or historical figures when a newer result table or validation report is present.
 8. Load `references/project-claim-translation.md`. Treat project `claims.md`, research notes, evidence maps, and gate files as evidence boundaries, not as final manuscript claims.
@@ -55,12 +56,14 @@ The numbered workflow below names references at the step where they apply; the t
    - figure captions, table titles, MATLAB-result summaries, result paragraphs, sensitivity analysis, or ablation discussion: `references/figures-tables-results.md`;
    - internal readiness debugging or readiness-bearing evaluation: `references/internal-readiness-writing.md`;
    - light editing, translation, compression, expansion, logic checking, reviewer-comment revision, terminology cleanup, or anti-AI cleanup: `references/task-prompts.md`; also load `references/lexicon.md` for terminology cleanup, translation, venue adaptation, or any task where professional term consistency is part of the request;
+   - reviewer comments, editor decisions, response letters, or revision packages: `references/revision-response.md`;
    - final prose pass: `references/prose-quality-gates.md` and mandatory `references/reader-experience-pass.md`;
    - review closure before delivery: `references/review-closed-loop.md`;
    - optional deep wording examples only when the consolidated gate is insufficient: `references/publishable-prose.md`, `references/rhythm.md`, `references/lexicon.md`, `references/anti-ai-style.md`, and `references/worked-examples.md` (paired before→after rewrites per venue).
 12. Build the internal drafting map before writing:
    - research-object map: power-system object, problem type, technical object, evidence object, and non-object constraints;
    - pre-drafting confirmation: confirmed industry or engineering pain point, corresponding innovation points, innovation level ladder, evidence maturity and manuscript use, PowerLit-backed theoretical value positioning, engineering value positioning, metric-level evidence as subordinate demonstration, professional problem statement, technical-level research significance, title candidates, user-confirmed or assumed selection, and literature-near novelty risk;
+   - innovation route: four-axis diagnosis, primary axis, `zero-to-one` / `one-to-hundred` magnitude, technical-object type, narrative arc, lifecycle stage, selected case contract, required evidence roles, and claim-narrowing trigger;
    - paper spine: one sentence naming the technical object, unresolved conflict, central action, and evidence boundary that should quietly align the title, abstract, introduction, result discussion, and conclusion;
    - project claim translation: source claim, review failure risk, paper claim candidate, and boundary sentence;
    - reviewer-feedback integration when revising after comments: reviewer concern, real technical gap, physical mechanism, manuscript location, and evidence or formula used;
@@ -83,7 +86,7 @@ The numbered workflow below names references at the step where they apply; the t
    - **Conditional (run only when the trigger is present):** reviewer-feedback integration pass when revising after comments; formula physical-intuition pass when the section contains equations; engineering-math balance pass when derivation is present; the figure/table evidence check in `references/figures-tables-results.md` for captions, tables, and result paragraphs.
    If budget is tight, the always-run mechanical + structural groups are the non-negotiable minimum.
 15. If an internal readiness target is requested, apply `references/internal-readiness-writing.md` before review closure. Do not claim full-manuscript readiness when the evidence packet only supports a section-level result.
-16. 🔴 CHECKPOINT: run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If the review finds a fatal flaw, a major logic/model/evidence problem, or a target-venue mismatch, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
+16. 🔴 CHECKPOINT: for a submission-ready claim, run `references/submission-consistency-check.md`, then run the review-closure gate in `references/review-closed-loop.md`. Use `powerlit-power-systems-paper-review` standards on the produced manuscript or section. If either check blocks, repair the draft before returning it. If repair is impossible because evidence or model details are missing, return the best bounded draft plus a short blocker note instead of presenting it as submission-ready.
 
 ## Power-System Story Order
 
@@ -97,6 +100,10 @@ Prefer this order over generic AI, ML, or optimization paper templates:
 6. Evidence: benchmark system, field/system data, comparative method, sensitivity, ablation where meaningful, and boundary cases.
 
 When revising after reviewer comments, first translate each comment into a missing physical link, unsupported evidence relation, unclear model assumption, or overbroad claim. Then repair the manuscript at the natural location in the problem-method-evidence story. Do not insert standalone defensive paragraphs whose main function is to answer the reviewer.
+
+Return the revision package as editor note, point-by-point response, and list of
+changes. When template revision artifacts exist, update their status and links;
+close a comment only after the manuscript location and evidence are verified.
 
 Mathematics should grow out of the power-system picture. Equations, lemmas, and proofs are useful only when they clarify the grid object, operating constraint, feasibility boundary, uncertainty mechanism, or computational property that the paper needs. For most engineering journals, do not turn the section into a complete mathematical proof unless the venue and claim require it.
 
@@ -139,6 +146,7 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Figures/tables: use `references/figures-tables-results.md`; each caption must name the evidence object, system/scenario, metric, and comparison dimension when needed.
 - Case-evidence learning: when PowerLit is available, use the corpus case-evidence plan to decide which figure/table functions and result-paragraph moves are expected for the same claim class. Missing central evidence should become a blocker or claim narrowing, not fluent prose.
 - Project-template linkage: when a project uses `01_IDEA/figure_plan.md` or `ProjectName_utils.plotting.save_figure`, use PowerLit to produce a template-ready case/figure plan before plotting or writing figure-dependent case prose. Include `claim`, `evidenceRole`, `sciQuestion`, `physicsReproduction`, metric definition, figure type, data files, visual encoding, and `save_figure` metadata fields.
+- Handoff contract: when `02_PAPER/config/paper-profile.yaml` or `contracts/project-template-handoff.schema.yaml` exists, read the profile before story/claim drafting, preserve its `contractVersion`, and write only confirmed route/plan/check values back to template artifacts. The template remains the source for run and figure facts.
 - Main body: use the corpus main-body pattern to learn accepted-paper ordering for method/model exposition, equation interpretation, transitions, reproducibility placement, and result-discussion rhythm. Preserve the current project's equations, variables, and evidence boundary.
 - Conclusion: state what was demonstrated and where the method's boundary remains. Avoid broad future-impact claims.
 - Paragraphs: apply the reader-burden rule in `references/prose-quality-gates.md`: judgment first, reason after it, one idea per paragraph, and every sentence supporting the same point.
@@ -159,6 +167,8 @@ For skill maintenance, use `references/published-paper-reconstruction.md` to run
 - Do not polish a NO-GO idea into manuscript prose.
 - Do not begin a full-paper draft, major rewrite, title, abstract, introduction, contribution, or venue-positioning task before the pre-drafting confirmation checkpoint in step 4 is satisfied: pain point, innovation, significance, and title direction confirmed from project-file evidence (plus literature retrieval when available), or the user has explicitly authorized best-judgment drafting.
 - Do not treat innovation as a single undifferentiated label before drafting. Separate discovery or conjecture verification, method-level contribution, and engineering-problem contribution; identify which level is primary and get user confirmation before formal manuscript prose.
+- Do not use `zero-to-one` or `one-to-hundred` as promotional labels. They are evidence-design magnitudes applied to the four innovation axes: zero-to-one requires existence/distinctness, mechanism isolation, counterexample, boundary, and replication; one-to-hundred requires strong fair baselines, matched budgets, ablation, stability, scale where claimed, and failure conditions.
+- Do not expose author names as prose templates or copy distinctive source sentences. Corpus and author studies may contribute only clean-room argument functions.
 - Do not use binary "supports/does not support" wording as the main language for innovation discovery or pre-drafting confirmation. Use evidence-maturity and manuscript-use categories such as mainline innovation, conditional contribution, observed phenomenon, boundary evidence, and uncovered evidence need. Keep strict support/blocker wording for review gates, readiness decisions, or fatal overclaim checks.
 - Do not write formal manuscript prose as binary opposition. Title, abstract, introduction, contribution list, result topic sentences, and conclusion should not be carried by "supports X / does not support Y" or "本文不..." inventories. Translate boundaries into positive technical scope, conditional applicability, observed phenomena, boundary evidence, or future-work needs.
 - Do not put internal project names, run labels, claim IDs, local case nicknames, branch names, cache names, or workflow labels into the manuscript-facing problem statement. Translate them into common professional terms for the system object, scenario, method family, metric, and evidence object.

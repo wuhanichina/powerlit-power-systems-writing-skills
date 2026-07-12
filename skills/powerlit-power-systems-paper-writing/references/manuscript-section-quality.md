@@ -81,9 +81,17 @@ A complete case-analysis plan or section should state:
 - parameter sensitivity, ablation, or boundary tests when parameters, modules, or assumptions affect the conclusion;
 - case scale and analysis depth sufficient for the venue and claim class;
 - figure and table interpretation one by one, with each visual tied to a claim, mechanism, or boundary;
+- Figure-first coverage from the matching current plot data and manifest:
+  condition, trend, key feature, quantitative difference, mechanism status,
+  answered problem, bounded advantage/tradeoff, engineering implication, and
+  boundary;
 - reproducibility details such as solver, tolerance, runtime, preprocessing, or hardware when they affect the claim.
 
 The prose should explain mechanism and engineering meaning, not only repeat numbers. If data are incomplete, sources uncertain, baselines absent, or sensitivity missing, mark those as writing blockers or claim boundaries.
+
+Reject prose that merely restates a caption, lists curve colors, or declares
+"effective" without showing where the observed trend answers the paper's
+problem and where the method's advantage holds.
 
 Result paragraphs should not make "supported vs unsupported" the topic sentence. Present the evidence as mainline result, conditional result, observed phenomenon, boundary evidence, or future-work need. Use limitation wording only after the positive result role is clear.
 

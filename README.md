@@ -5,7 +5,7 @@
 > **先锁定证据边界，再写能经得起审稿的电力系统论文。**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Skill Version](https://img.shields.io/badge/Skill%20Version-2026.07.07-blueviolet)](#版本更新记录)
+[![Writing Skill Version](https://img.shields.io/badge/Writing%20Skill-2026.07.12-blueviolet)](#版本更新记录)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
@@ -27,8 +27,12 @@
 
 ## 版本更新记录
 
-当前技能版本：**2026.07.07**（六个 `SKILL.md` frontmatter 的 `version:` 字段）。安装后可用 `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'` 对比仓库与本地副本是否一致。
+当前 paper-writing 与 prewriting-review 版本：**2026.07.12**。各技能
+`SKILL.md` 独立携带 `version:`，安装后可用
+`Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'`
+对比仓库与本地副本是否一致。
 
+- **2026-07-12**：新增创新四轴与 0→1/1→100 叙事路由、六类算例契约、Figure-first 趋势—机理—优势解释链、证据动词阶梯、投稿一致性终检、三件套返修工作流，以及与 MATLAB 项目模板之间的版本化 handoff contract。
 - **2026-07-07**: writing-before-confirmation now requires PowerLit-backed theoretical value positioning and engineering value positioning above metric-level evidence, so a paper is framed by its corpus-near theoretical role, engineering decision value, and evidence boundary rather than by a single metric.
 - **2026-07-06**：写作前确认新增创新层级门——正式写作前先和用户确认工程背景、真实痛点、发现/猜想验证、方法贡献和工程问题贡献，并把项目内部名称、case/run 标签、claim 编号、脚本名转换成专业电力系统问题表述；创新挖掘和正式正文写作都避免“支持/不支持”二元口径，改用主线创新、条件性贡献、现象线索、边界证据和待补证据分级。
 - **2026-07-03（2026.07.03）**：索引 year 字段修复——`derive_year` 从 DOI/正文推断年份， bundled SQLite 分片回填 14146/14148 条，检索结果现带 `year`；关键检查点加 🔴 CHECKPOINT / 🛑 STOP 视觉标记；`paper-writing` 去重瘦身；六个技能 frontmatter 增加 `version:`；README 补充 Cursor 等通用 runtime 安装与同步说明；新增半自动回归 runner（`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`）与 Letter 开篇痛点 A/B 回归用例。
@@ -144,6 +148,8 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 | ✉️ IEEE Letter 写作 | `ieee-power-engineering-letter-writing` | 一个硬论点、紧凑技术核心和最小决定性证据 | 符合官方页数规则的 IEEE PES Letter |
 | 🧪 投稿前审稿 | `powerlit-power-systems-paper-review` | 本地审稿建议 + 按严重程度排序的问题清单 | 投稿前自查、返修前定位致命问题 |
 | 📊 图表与结果段 | `powerlit-power-systems-paper-writing` | 自洽 caption、正文解释句、MATLAB 结果到论文段落 | 处理 figure、table、case study、ablation、sensitivity |
+| 🧭 创新叙事路由 | `prewriting-review` + `paper-writing` | 四轴诊断、0→1/1→100 路由、六类算例契约 | 新对象、新变量/场景、新方法、新发现、新机制、新框架 |
+| 🔁 投稿与返修 | `powerlit-power-systems-paper-writing` | 一致性报告、编辑说明、逐条回复、修改清单 | 投稿终检、major/minor revision |
 | ✨ 轻量润色 | `powerlit-power-systems-paper-writing` | 保留原技术含义的最小必要修改 | 去 AI 味、术语统一、压缩、扩写、翻译、逻辑修理 |
 
 ---
@@ -186,6 +192,24 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 ### 🧱 物理叙事优先
 
 按审稿意见改稿时，技能先把意见转成物理机理、模型假设、证据比较或结论边界上的真实缺口，再把修改自然融入正文。正文不写成逐条防御或“叠甲”，数学也服务于工程图景和可审稿性，而不是把工科论文改成完整证明。
+
+### 🧭 创新四轴与 Figure-first
+
+创新按研究对象、发现/机理、技术对象和工程决策闭环四轴诊断，
+`0→1 / 1→100` 只表示证据幅度。六类创新分别触发不同算例契约。主图
+正文从实际 plot data 与 manifest 出发，依次覆盖条件、趋势、关键点、
+定量差异、机理、问题、优势或权衡、工程启示和边界。
+
+`innovation-exemplar-doi-map.md` 为六类创新各登记了可从 PowerLit 直接
+检索的 DOI 种子。Skill 先从这些论文提取章节功能、论证顺序和算例证据
+结构，再用当前项目的近邻论文替换或补充；DOI 种子不是自动引用清单，
+也不得复制原句。
+
+### 🔗 项目模板 handoff
+
+`contracts/project-template-handoff.schema.yaml` 定义 Skill 与项目模板的
+共享字段。Skill 负责创新诊断、叙事、证据措辞、终检和返修推理；模板
+负责 paper profile、MATLAB 运行、图导出、manifest 和返修状态工件。
 
 ### 🧩 期刊 profile 路由
 

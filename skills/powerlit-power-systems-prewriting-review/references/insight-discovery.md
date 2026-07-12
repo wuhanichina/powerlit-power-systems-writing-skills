@@ -19,6 +19,8 @@ Translate a rough research idea into structures that can become a power-systems 
 - counterintuitive mechanism;
 - possible technical object;
 - evidence path and claim boundary.
+- four-axis innovation profile and novelty magnitude;
+- narrative route and case-contract hypothesis.
 
 ## Physics-First Repositioning
 
@@ -40,6 +42,14 @@ Then choose the real innovation:
 - demote pure derivation, equation rearrangement, and metric improvement unless they expose a real power-system mechanism;
 - keep only one main story when several candidate innovations compete;
 - mark unsupported but promising stories as candidate stories, not manuscript claims.
+
+After generating candidates, classify each through
+`innovation-narrative-assessment.md`: research object, discovery/mechanism,
+technical object, and engineering decision loop. Assign `zero-to-one` or
+`one-to-hundred` per active axis. Prefer one primary axis. The six useful
+candidate forms are new research object, new variable/scenario, new method, new
+discovery, new mechanism, and new framework; they require different evidence
+chains and must not be merged into generic novelty language.
 
 Avoid binary "supports/does not support" wording when the user is asking to discover, reposition, or discuss innovation. Classify candidates by manuscript use instead: mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need. This keeps partial findings useful without turning them into yes/no failures.
 
@@ -113,6 +123,8 @@ For insight-discovery mode, return:
 6. `反直觉线索`: where the result may depart from common modeling intuition, with an honesty label.
 7. `候选技术对象`: model, constraint, estimator, certificate, algorithm, counterexample, validation protocol, or mechanism.
 8. `证据路径`: theorem, simulation, baseline, sensitivity, ablation, field data, or boundary test needed.
-9. `回到创新链`: a short problem -> gap -> technical object -> mechanism -> evidence -> boundary sketch, with unknown links explicitly marked.
+9. `创新四轴与幅度`: primary/secondary axes, `zero-to-one` /
+   `one-to-hundred`, manuscript use, and selected narrative route.
+10. `回到创新链`: a short problem -> gap -> technical object -> mechanism -> evidence -> boundary sketch, with unknown links explicitly marked.
 
 If the chain has unknown links after discovery, the prewriting decision cannot be `GO`.

@@ -71,6 +71,31 @@ For each paragraph, build a one-line progression plan before writing. The plan m
 
 High-quality corpus prose is usually concise because every sentence changes the reader's state. Learn that discipline first. Do not learn decorative habits, broad motivation, author-specific rhetoric, or repeated contribution wording even if they appear in an accepted paper.
 
+## Innovation-Conditioned Exemplar Selection
+
+Before extracting structure, filter candidates by:
+
+`target venue + minimum research object + primary innovation axis + technical-object type + novelty magnitude`.
+
+Use problem-near papers when an exact match is sparse, but record which
+dimension was relaxed. A zero-to-one object or discovery paper should teach
+definition, existence, counterexample, mechanism isolation, and boundary
+functions. A one-to-hundred method paper should teach fair comparison, ablation,
+stability, scale, and failure-condition functions. Do not learn leaderboard
+structure for a new-object paper or foundational rhetoric for an incremental
+method paper.
+
+Author identity is not a filter target and must not become a visible template.
+Extract only argument functions, evidence order, and paragraph roles; do not
+retain source sentences or distinctive phrasing.
+
+For the six innovation routes, use `innovation-exemplar-doi-map.md` as a
+high-precision first retrieval pass. Retrieve only the selected route's DOI
+seeds, verify their PowerLit records, and then search for papers closer to the
+current minimum research object. A seed that is structurally useful but
+technically remote may inform paragraph or evidence functions, but it must not
+be presented as a closest competitor or inserted as a citation.
+
 ## Terminology Learning Pass
 
 PowerLit should also teach technical terminology. Before drafting or rewriting terminology-sensitive prose, extract a `Corpus terminology map` from venue-near papers and method-family anchors:
