@@ -41,6 +41,58 @@ Good case-analysis design usually contains a balanced evidence chain:
 
 Only keep the functions relevant to the paper's actual claim. A diagnostic or screening paper may need attribution and boundary figures more than dominance tables. A dispatch/control paper may need operating trajectories and constraint-violation metrics. A formulation paper may need relaxation gap, convergence, and feasibility evidence.
 
+## Causal Attribution Discipline
+
+Do not infer a mechanism merely because a result is compatible with it.
+
+- State the pre-result physical or model expectation in the figure plan.
+- Identify all factors that could independently produce the same pattern.
+- Isolate the claimed factor with a matched baseline, one-factor sweep, ablation, stratification, intervention, or counterfactual comparison.
+- Do not use one composite case to attribute the same feature simultaneously to location, capacity, uncertainty source, nonlinear effect, and method component.
+- Separate the observed pattern from the mechanism status. Use `isolated`, `consistent with`, or `hypothesized` according to the evidence.
+- If the plot shows only the final outcome, treat the mechanism as an interpretation and name the intermediate quantity or additional test needed for causal attribution.
+
+The prose order should be expectation -> observation -> quantitative comparison -> mechanism status -> claim consequence. A result may contradict the expectation; report the contradiction and revise the mechanism rather than forcing the planned story.
+
+## Case-Section Figure Storyboard
+
+Design the case section's figures as one ordered engineering story before writing any result prose. A reader who looks only at the figures, their captions, and their order should be able to recover the paper's problem, mechanism, and bounded result. The per-figure rules above make each figure defensible; this storyboard makes the figure set legible as a whole.
+
+Map the figure set onto the story acts using the existing `evidenceRole` vocabulary rather than a second taxonomy:
+
+| Act | What the reader must see | Typical evidenceRole | Failure if missing |
+| --- | --- | --- | --- |
+| Engineering scene | the system, operating condition, and the quantity at stake | `scenario-setup` | the reader cannot tell what physical situation is being tested |
+| Physical contradiction | the conventional treatment failing under that condition | `scenario-setup` or `sota-comparison` | the paper looks like an improvement without a problem |
+| Mechanism | the intermediate physical or model quantity that explains both the failure and the fix | `physical-reproduction` | the mechanism exists only as a prose assertion |
+| Technical object at work | the proposed object against a matched baseline on the decision-relevant metric | `sota-comparison` | the claim rests on aggregate numbers the reader cannot inspect |
+| Boundary | where the effect weakens, reverses, or stops being tested | `sensitivity-ablation` | the scope must be taken on trust |
+
+One principal figure per act is the target. If two figures carry the same act, merge them or move one to supplementary material. If an act has no figure and none is planned, the story is prose-dependent at that step: design the figure or record the gap.
+
+### Make the mechanism visible, not narrated
+
+- Plot the intermediate quantity, not only the endpoint outcome. A mechanism asserted in prose but absent from every figure stays `consistent with` at best.
+- Put the threshold, limit, crossing, or violation boundary on the axes as a line, band, or marked point. Do not describe in text a feature the reader cannot locate in the figure.
+- Show with/without, before/after, and proposed/baseline on shared axes and shared units so the difference is read rather than computed.
+- Keep axes, units, scaling, and color meaning identical across figures the reader is expected to compare.
+- One message per panel. Use panels (a), (b), (c) for one causal progression, not for unrelated results grouped to save space.
+- Prefer physical and operational units on the axes over normalized scores when the claim is about grid behavior.
+
+### Figures-Only Read Test
+
+Before writing result prose, read the planned or exported figures in order, with captions only:
+
+1. Can a qualified power-system reader name the system, operating condition, and quantity at stake?
+2. Is the unresolved conflict visible as a failure, gap, violation, or mismatch rather than asserted?
+3. Is the mechanism visible through an intermediate quantity, an intervention, or a matched contrast?
+4. Are the baseline, metric direction, and matched condition readable from the figure and caption?
+5. Is the boundary visible as a condition where the effect weakens, reverses, or was not tested?
+
+If a step fails, repair the figure set first: add the missing act, plot the intermediate quantity, annotate the threshold, unify the axes, or merge redundant figures. Do not repair a figure-set gap by writing a longer result paragraph.
+
+When the test passes, the result paragraph's job changes: it points at what the figure already shows and states the consequence, instead of carrying the mechanism alone. This is the intended division of labour with the result-paragraph coverage order below — the storyboard decides what the figures must show, the coverage order decides what the prose must add.
+
 ## Project-Template Figure Plan Bridge
 
 When the project follows the MATLAB lite template or contains `01_IDEA/figure_plan.md`, `.cursor/rules/04-case-figure-and-metric-plan.mdc`, `result/<case>/figures/`, or `ProjectName_utils.plotting.save_figure`, use PowerLit before plotting to fill or revise the template figure plan. Do not start from the plots that are easiest to draw.
@@ -66,6 +118,11 @@ The PowerLit-derived case and figure plan should be template-ready. For each cla
   condition that would constitute an advantage;
 - `boundaryTest`: the condition under which the trend or advantage should
   weaken, reverse, or become inconclusive;
+- `storyboardAct`: which case-section storyboard act this figure carries —
+  engineering scene, physical contradiction, mechanism, technical object at
+  work, or boundary;
+- `figureOnlyReadable`: whether this act survives the figures-only read test
+  from the figure and caption alone, or still depends on result prose;
 - `templateMetadata`: fields needed by `save_figure`, including `claimId`, `sciQuestion`, `physicsReproduction`, `evidenceRole`, `dataFiles`, `dataDescription`, `visualEncoding`, `targetLayout`, `command`, `keyParams`, and `randomSeed`.
 
 Respect the template evidence-role order per claim:
@@ -134,7 +191,9 @@ manifest/check report, in this order:
    the plot data.
 5. **Mechanism:** why the trend and key feature arise in power-system or model
    terms, preferably through an intermediate quantity, constraint, coupling, or
-   ablation. Label a mechanism as a hypothesis when the figure cannot isolate it.
+   ablation. Label a mechanism as `isolated`, `consistent with`, or a hypothesis
+   according to the causal evidence; a compatible outcome alone does not isolate
+   its cause.
 6. **Problem answered:** which scientific or engineering question the observed
    pattern resolves.
 7. **Method advantage:** where the method has an advantage under the predeclared
@@ -226,3 +285,10 @@ Before finalizing, check that:
   problem → advantage → implication → boundary coverage;
 - expected planning trends are not reported as observations unless confirmed by
   actual plot data.
+- causal explanations identify and control competing factors, or are explicitly
+  labeled as consistency/hypothesis rather than isolated mechanism evidence.
+- the figure set passes the figures-only read test: read in order with captions
+  alone, it carries the engineering scene, the physical contradiction, the
+  mechanism through an intermediate quantity, the matched comparison, and the
+  boundary. A missing act is repaired by designing or exporting the figure, or
+  recorded as a gap — never by lengthening the result prose.

@@ -32,7 +32,19 @@ Check and report exact locations for:
 8. figure-explanation closure: actual plot data, trend, key point, quantitative
    difference, mechanism, problem, advantage, implication, and boundary;
 9. evidence-verb calibration against `prose-quality-gates.md`;
-10. profile drift in innovation axis, novelty magnitude, narrative arc,
+10. equation, section, figure, and table numbering; first mention; and every
+    cross-reference, including rejection of formula references that point
+    forward to equations not yet introduced;
+11. citation numbering after paragraph movement when the venue orders
+    references by first appearance;
+12. terminology-replacement closure across prose, symbols, subscripts,
+    captions, legends, and Chinese-English titles, plus zero unintended residue
+    of obsolete aliases;
+13. malformed formula text, control characters, broken LaTeX commands, and
+    suspicious fragments such as `rac{` after conversion or replacement;
+14. promise-to-landing closure from abstract and contribution through body
+    development, equation/model location, evidence, and conclusion;
+15. profile drift in innovation axis, novelty magnitude, narrative arc,
     lifecycle stage, target venue, and evidence boundary.
 
 ## Verdict

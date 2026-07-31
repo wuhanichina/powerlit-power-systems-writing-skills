@@ -1,6 +1,6 @@
 interface:
   display_name: "PowerLit Power-System Writing"
-  short_description: "PowerLit-grounded writing for CSEE, AEPS, TPWRS, and TSG full papers."
-  default_prompt: "Use $powerlit-power-systems-paper-writing to rewrite this power-system manuscript for the target journal with PowerLit-grounded venue evidence."
+  short_description: "Engineering- and physics-first power-system paper writing."
+  default_prompt: "Use $powerlit-power-systems-paper-writing to center this manuscript on the engineering need and physical logic, confirm its evidence advantage, and adapt it to the target journal."
 policy:
   allow_implicit_invocation: true

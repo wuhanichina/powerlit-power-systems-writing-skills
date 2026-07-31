@@ -50,6 +50,8 @@ Flag a major method-writing issue when:
 - a relaxation, certificate, or feasibility condition is given without saying what physical infeasibility or operating boundary it detects;
 - signs, units, or per-unit conventions are plausible but not connected to injection/flow/voltage direction;
 - the equation's limiting case would reveal the mechanism, but the manuscript never uses it.
+- a key equation appears before the physical or engineering reason for introducing it;
+- the equation is interpreted locally but the manuscript never explains what it enables or requires in the next model, algorithm, or evidence step.
 
 For voltage-domain inverse PLF, the review should expect the paper to explain that the quadratic power-flow moment kernel maps voltage means and covariances to power moments, that identifiability concerns observable voltage co-fluctuation directions, and that an SDP certificate is evidence relative to the stated relaxation model and constraint set. The manuscript must distinguish original-problem feasibility, SDP-relaxation feasibility, infeasibility at the chosen relaxation order, and any rank or representing-measure condition needed to lift the certificate back to the original physical model.
 
@@ -89,6 +91,14 @@ Flag a major writing or method-presentation issue when:
 - mathematical detail is used to mask an unsupported claim that should instead be bounded or tested.
 
 Accept mathematical density when each derivation step has a visible role: defining the model, preserving or relaxing a physical constraint, proving a property claimed by the paper, enabling an algorithm, or explaining a case-study diagnostic.
+
+Require the `why before -> what it means after -> how it connects` chain for key equation groups. The explanation should be woven into the technical sequence rather than written as detached answer-defense prose.
+
+Check placement discipline:
+
+- keep case-specific constants in the case setup or parameter table unless they define the formal method or validity condition;
+- keep solver version, initialization, hardware, and iteration traces in the reproducibility or computational-performance location unless a method-level claim depends on them;
+- flag a method section whose general technical relation is obscured by implementation inventory.
 
 ## Complexity and Simplification
 

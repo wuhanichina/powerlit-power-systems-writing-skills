@@ -1,20 +1,39 @@
 # Pre-Drafting Innovation and Title Confirmation
 
-Use this before full-paper drafting, major rewriting, title design, abstract, introduction, contribution, or venue-positioning work.
+Use this before a new full-paper draft, title design, abstract, introduction, contribution, venue-positioning work, or a rewrite that may change the research object, engineering pain point, primary innovation, relative evidence-advantage positioning, title direction, or target venue.
 
-The goal is to prevent a fluent draft from being built around the wrong contribution or a weak title. First confirm the real industry or engineering pain point, then confirm the innovation that answers it, then write.
+The goal is to prevent a fluent draft from being built around the wrong engineering problem, mechanism, contribution, evidence advantage, or title. First establish the real industry or engineering need and physical mechanism, then position the innovation and relative evidence advantage, and only then calibrate final claim strength.
+
+## Navigation
+
+- When This Gate Applies
+- Evidence Search Order
+- Pain Point First
+- Innovation Level Ladder
+- Four-Axis Route Lock
+- Evidence Maturity And Manuscript Use
+- PowerLit Theoretical And Engineering Value Positioning
+- Relative Evidence Advantage
+- Professional Problem Statement
+- Literature Support
+- Confirmation Brief
+- Title Quality Rules
+- Confirmation Pass Outcome
 
 ## When This Gate Applies
 
 Apply this gate when:
 
-- the user asks for a full paper, abstract, introduction, contribution list, title, venue positioning, or major rewrite;
+- the user asks for a new full paper, abstract, introduction, contribution list, title, or venue positioning;
+- a rewrite may change the research object, engineering pain point, primary innovation, relative evidence-advantage positioning, title direction, or target venue;
 - the current title is missing, tentative, stale, or inconsistent with the method/evidence;
 - the industry or engineering pain point is vague, assumed, stale, or disconnected from the proposed method;
 - the innovation point is broad, project-management-shaped, defensive, copied from `claims.md`, or not mapped to a pain point;
 - the closest literature threat could change the title, claim, or contribution emphasis.
 
-Do not force this gate for pure light editing, translation, caption writing, or a small result paragraph when the supplied text already fixes the title and innovation boundary.
+Do not force this gate for pure light editing, translation, caption writing, or a small result paragraph when the supplied text already fixes the title and innovation direction.
+
+Route directly to `chinese-major-revision.md` without the full `写作前确认` STOP when the supplied Chinese manuscript already fixes the technical object, main innovation direction, title/venue direction, equations, and evidence surface, and the requested work is direct major revision, structural repair, physical-intuition completion, causal repair, terminology cleanup, multi-version fusion, or author-style calibration. If the user authorizes direct editing, execute the revision. If the user asks for diagnosis first, return the source-authority map and change map. Escalate back to this gate only when the revision must change the research object, engineering pain point, primary innovation, relative evidence-advantage positioning, title direction, or target venue.
 
 ## Evidence Search Order
 
@@ -96,6 +115,20 @@ Do not reduce theoretical value to "metric A improves by X". Metrics demonstrate
 
 The confirmation discussion should explicitly tell the user what theoretical claim is plausible, what engineering decision or interpretation becomes better supported, and what should remain only metric-level evidence. If PowerLit is unavailable, state that the positioning is project-evidence-only and must be refreshed when the corpus is accessible.
 
+## Relative Evidence Advantage
+
+Confirm what the current evidence establishes more clearly, more directly, or under more decision-relevant conditions than the nearest methods. Evidence advantage is not limited to winning one metric and must not be invented when the project has none.
+
+Assess:
+
+- **comparison object:** the closest method, engineering practice, theoretical baseline, or evidence convention;
+- **matched condition:** the same system, scenario, information input, computational budget, uncertainty condition, or decision requirement;
+- **advantage type:** mechanism isolation, physical reproduction, diagnostic resolution, feasibility or identifiability certificate, boundary clarification, robustness under tested perturbations, computational tractability, decision relevance, or metric improvement;
+- **decisive evidence:** the equation, proof, figure, table, ablation, sensitivity, counterexample, field comparison, or reproducible result that makes the advantage reviewable;
+- **scope:** the conditions under which the advantage is established.
+
+State the advantage positively in the confirmation brief. Keep the scope as final claim-strength calibration rather than leading the paper with a list of exclusions. If the strongest baseline remains better on the headline metric, look for a non-substitutable mechanism, diagnostic, boundary, certificate, or engineering-decision advantage supported by evidence; if none exists, mark an uncovered evidence need instead of manufacturing superiority.
+
 ## Professional Problem Statement
 
 When describing the problem, use common professional power-system terms rather than internal project vocabulary:
@@ -119,7 +152,7 @@ If PowerLit or literature retrieval is unavailable, state fallback mode and rely
 
 ## Confirmation Brief
 
-Before drafting, return a compact `写作前确认` brief unless the user already confirmed both innovation and title direction:
+Before drafting, when this gate applies, return a compact `写作前确认` brief unless the user already confirmed both innovation and title direction:
 
 1. `文件检索后确认的创新点`: list one to three candidates. For each, state:
    - corresponding real industry or engineering pain point;
@@ -127,13 +160,14 @@ Before drafting, return a compact `写作前确认` brief unless the user alread
    - evidence maturity and manuscript use: mainline innovation, conditional contribution, observed phenomenon, boundary evidence, or uncovered evidence need;
    - PowerLit-backed theoretical value positioning: closest problem family, corpus-near theoretical role, and whether the value is mainline, conditional, boundary-level, or still a hypothesis;
    - engineering value positioning: the operating, planning, protection, risk, observability, feasibility, computation, coordination, resilience, or decision-support problem that becomes better handled;
+   - relative evidence advantage: the nearest comparison, matched condition, advantage type, decisive evidence, and calibrated scope;
    - metric-level evidence: the result or comparison that demonstrates the value without defining the contribution;
    - technical object;
    - physical or engineering mechanism;
    - supporting project files or result artifacts;
    - how to phrase the candidate without binary "supports/does not support" wording;
    - overclaim risk or weaker framing to drop.
-2. `文献检索辅助判断`: closest competitors, novelty threat, title-positioning implication, or fallback limitation.
+2. `文献检索辅助判断`: closest competitors, novelty threat, relative evidence-advantage positioning, title-positioning implication, or fallback limitation.
 3. `技术层面研究意义`: list concise technical significance items, not broad social value:
    - what mechanism, model, estimator, constraint, certificate, algorithm, validation protocol, or evidence boundary becomes clearer;
    - what operational, planning, protection, risk, observability, feasibility, or computation decision is technically better supported;
@@ -141,7 +175,7 @@ Before drafting, return a compact `写作前确认` brief unless the user alread
 4. `可行论文标题`: give three to five title candidates:
    - recommended title first;
    - at least one mechanism-focused title;
-   - at least one evidence-boundary or venue-conservative title when evidence is incomplete;
+   - at least one evidence-matched, venue-conservative title when the evidence surface is incomplete;
    - avoid title wording that claims superiority, real-time deployment, full risk propagation, or broad robustness unless evidence supports it.
 5. `需要使用者确认`: ask the user to approve the pain point, innovation point, research-significance emphasis, and title direction, or to select one candidate.
    - explicitly ask which innovation level should be the main paper story;
@@ -177,12 +211,14 @@ After the user confirms, lock:
 
 - confirmed title or title direction;
 - confirmed real industry or engineering pain point;
+- confirmed physical or engineering mechanism;
 - confirmed main innovation;
 - confirmed technical-level research significance;
+- confirmed theoretical value, engineering value, and relative evidence advantage;
 - subordinate innovations to keep;
 - framings to drop;
 - literature-near novelty boundary;
-- evidence boundary that must appear in abstract, introduction, result discussion, and conclusion.
+- final claim-strength calibration: record each condition or limitation only where it is needed to keep an affected claim accurate; do not force boundary language into every load-bearing section or make it the opening subject of the abstract, introduction, result discussion, or conclusion;
 - handoff-ready route record and framework V0.
 
 If confirmation is impossible because project files conflict or the literature threat is too strong, return a narrowed decision brief instead of drafting.

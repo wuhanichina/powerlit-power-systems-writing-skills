@@ -22,6 +22,11 @@ Reject risk is high when:
 - the method claims scalability but no larger system or runtime analysis is shown;
 - figures and tables are described but not interpreted;
 - numerical gains are reported without explaining their operational meaning.
+- a composite case attributes one observed pattern to several competing factors without a matched baseline, ablation, one-factor sweep, stratification, intervention, or counterfactual;
+- a mechanism is stated as causal when the evidence only shows an outcome consistent with that mechanism;
+- the expected trend is copied from the case plan and reported as if it were an observation.
+
+For each central mechanism claim, separate `expectation`, `observation`, `quantitative comparison`, `mechanism status`, and `claim consequence`. Accept `isolated` only when competing causes are controlled. Otherwise require `consistent with` or hypothesis wording and identify the missing intermediate quantity or control.
 
 ## Venue Expectations
 

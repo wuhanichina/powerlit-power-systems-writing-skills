@@ -17,6 +17,14 @@ baseline where applicable, metric with unit and direction, required evidence
 roles, lifecycle stage, boundary test, and result that would narrow the claim.
 No SOTA advantage may be written before physical reproduction is established.
 
+Map the required evidence roles onto the case-section figure storyboard acts in
+`figures-tables-results.md` before plotting: engineering scene, physical
+contradiction, mechanism, technical object at work, and boundary. Each contract
+makes one act load-bearing — the counterexample act for a new research object,
+the intermediate-quantity act for a new mechanism, the matched-comparison act
+for a new method — and that act must be visible in a figure rather than only in
+prose.
+
 ## Six Contracts
 
 ### New research object

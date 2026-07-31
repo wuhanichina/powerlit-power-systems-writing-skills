@@ -2,10 +2,10 @@
 
 # ⚡ PowerLit 电力系统论文写作与审稿技能
 
-> **先锁定证据边界，再写能经得起审稿的电力系统论文。**
+> **面向工程需求，讲清物理直觉与技术逻辑，确认证据优势，写能经得起审稿的电力系统论文。**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Writing Skill Version](https://img.shields.io/badge/Writing%20Skill-2026.07.12-blueviolet)](#版本更新记录)
+[![Writing Skill Version](https://img.shields.io/badge/Writing%20Skill-2026.07.31-blueviolet)](#版本更新记录)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
@@ -13,7 +13,7 @@
 
 这个仓库提供一组面向电力系统论文的技能，兼容 Codex、Claude（Claude Code / Cowork）和 Cursor 等 Agent Skills 运行时，覆盖选题预审、PowerLit 文献智能、单篇文献精读总结、完整论文写作、IEEE Letter 写作和投稿前严格审稿。
 
-它不是普通润色工具。安装后自带近 **1.4 万篇** PowerLit 索引，技能会先检索近邻论文、规划引用与论点边界，再按目标期刊的段落功能、论证节奏和证据呈现方式写正文；投稿前还会用本地审稿 skill 反向检查，形成「写作 → 审稿 → 修复」的闭环。
+它不是普通润色工具。安装后自带近 **1.4 万篇** PowerLit 索引。技能从工程需求与物理矛盾出发，先梳理研究对象、作用机理和完整论证逻辑，再用近邻文献与项目结果确认理论价值、工程价值和证据优势，并按目标期刊的段落功能、论证节奏与证据呈现方式组织正文。证据边界保留为结论强度的校准项，而不是正文叙事的起点；投稿前再用本地审稿 skill 反向检查，形成「写作 → 审稿 → 修复」的闭环。
 
 适配期刊和文体：
 
@@ -27,13 +27,15 @@
 
 ## 版本更新记录
 
-当前 paper-writing 与 prewriting-review 版本：**2026.07.12**。各技能
+当前 paper-writing 与 paper-review 版本：**2026.07.31**；prewriting-review 版本：**2026.07.12**。各技能
 `SKILL.md` 独立携带 `version:`，安装后可用
 `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'`
 对比仓库与本地副本是否一致。
 
+- **2026-07-31**：物理解释纳入 no-invention 边界（`model-derivable` / `consistent-with-model` / 交付备注中的未验证解读），新增模型不一致阻断项；算例分析新增图表分镜与「只看图」检验，要求图序列自身讲清工程场景、物理矛盾、机理中间量、匹配对比与边界；新增贡献显著性门（洞见类型、非平凡结论、读者决策变化、最大残余缺陷），中文大修路线不再豁免该门；交付门重排为五组，技术检查常开且不得与语言润色交换预算；审稿闭环改为必须加载五个审稿参考并产出本地审稿建议、致命项清单与专家级阅读体验；AEPS 验证收束句按语料实测结果按节作用域保留而非删除。
+- **2026-07-31**：写作入口调整为工程需求、物理/工程直觉、技术逻辑与证据优势优先，证据边界退回结论强度校准项；同时把两轮真实中文论文大修经验沉淀为 `chinese-major-revision.md`，新增多版本稿件 source-authority map、摘要/贡献到正文与证据的 promise-to-landing 闭环、公式 `why → meaning → connection` 物理叙事、算例因果隔离，以及公式前引/编号/术语/引用/LaTeX 乱码终检。
 - **2026-07-12**：新增创新四轴与 0→1/1→100 叙事路由、六类算例契约、Figure-first 趋势—机理—优势解释链、证据动词阶梯、投稿一致性终检、三件套返修工作流，以及与 MATLAB 项目模板之间的版本化 handoff contract。
-- **2026-07-07**: writing-before-confirmation now requires PowerLit-backed theoretical value positioning and engineering value positioning above metric-level evidence, so a paper is framed by its corpus-near theoretical role, engineering decision value, and evidence boundary rather than by a single metric.
+- **2026-07-07**：写作前确认新增 PowerLit 支撑的理论价值与工程价值定位——先从工程需求与物理机制说明论文解决什么问题，再对照近邻文献确认理论、工程与证据优势；指标只作为从属证据，证据边界用于校准结论强度，不再主导论文故事。
 - **2026-07-06**：写作前确认新增创新层级门——正式写作前先和用户确认工程背景、真实痛点、发现/猜想验证、方法贡献和工程问题贡献，并把项目内部名称、case/run 标签、claim 编号、脚本名转换成专业电力系统问题表述；创新挖掘和正式正文写作都避免“支持/不支持”二元口径，改用主线创新、条件性贡献、现象线索、边界证据和待补证据分级。
 - **2026-07-03（2026.07.03）**：索引 year 字段修复——`derive_year` 从 DOI/正文推断年份， bundled SQLite 分片回填 14146/14148 条，检索结果现带 `year`；关键检查点加 🔴 CHECKPOINT / 🛑 STOP 视觉标记；`paper-writing` 去重瘦身；六个技能 frontmatter 增加 `version:`；README 补充 Cursor 等通用 runtime 安装与同步说明；新增半自动回归 runner（`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`）与 Letter 开篇痛点 A/B 回归用例。
 - 2026-06-30：结构完整性收口——写作侧与审稿侧 section 质量清单互相对齐以防跨技能漂移；写作闭环复审改为独立审稿人姿态（接入 `evaluation/behavior/independent-reviewer-prompt.md`）以消除自评偏置；删除未被任何流程加载的孤儿参考文件 `baseline-comparison.md`。
@@ -118,7 +120,7 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 ```
 
 ```text
-把这段引言改成 TPWRS 风格，先锁定论点边界和近邻文献。
+把这段引言改成 TPWRS 风格，围绕工程需求讲清物理矛盾，并结合近邻文献确认本文的证据优势。
 ```
 
 ```text
@@ -160,7 +162,7 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 |---|---|---|---|
 | 写作前决策 | idea、模型、证据状态、目标期刊 | `请判断这个台风配电网风险评估 idea 是否能进入中国电机工程学报写作。` | `GO`、`CONDITIONAL GO`、`NO-GO` 或 `RETARGET`，并给出具体修复项。 |
 | 文献精读总结 | PDF、题名/DOI、摘要或 PowerLit 记录；最好附自己的研究问题 | `请精读这篇 TPWRS 论文，并说明它如何回应我的研究问题：台风天气下源荷不确定性如何影响静态安全风险。` | 中文六块总结：核心论点、理论机制、理论贡献、研究设计、关键发现、研究问题回应。 |
-| 引言重写 | 目标期刊、草稿、证据边界、引用状态 | `把这段引言改成 TPWRS 风格，先锁定论点边界和近邻文献。` | 缩窄或阻断无支撑论点后的论文正文。 |
+| 引言重写 | 工程问题、目标期刊、草稿、主要证据、引用状态 | `把这段引言改成 TPWRS 风格，围绕工程需求讲清物理矛盾，并结合近邻文献确认本文的证据优势。` | 工程对象、物理逻辑、方法动作与证据优势连贯的论文正文。 |
 | 方法模型段 | 方程、假设、变量、算法、期刊 | `把这个 DRO AC OPF 方法部分改成 TPWRS 写法，重点检查假设、公式和可解性论点。` | 以 formulation 为中心的方法段，包含变量、约束、重构、算法和边界。 |
 | 算例结果段 | MATLAB 或结果表、基线、指标、场景 | `根据这些 case33bw 结果写算例分析段，不要泛称有效性。` | 说明系统、指标方向、对比、机理和边界的结果段。 |
 | 图表标题 | 图表内容、坐标轴或列名、期刊 | `为这张电压越限概率图写 IEEE TSG caption，并给正文解释句。` | 自洽图题和一段与电网含义绑定的正文解释。 |
@@ -171,9 +173,9 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 
 ## 核心机制
 
-### 🔎 PowerLit 证据门控
+### 🔎 PowerLit 近邻定位与证据优势
 
-文献检索 skill 自带 SQLite 索引（约 1.4 万条，安装即用）。写作与预审会先查近邻论文，再定引用、新颖性和论点边界——你只需描述研究对象，检索由 skill 脚本完成。
+文献检索 skill 自带 SQLite 索引（约 1.4 万条，安装即用）。写作与预审通过近邻论文判断工程痛点是否真实、现有方法为何不足、本文在理论与工程上增加了什么，以及已有证据能形成什么优势。论点边界只在最后用于校准结论强度——你只需描述研究对象，检索由 skill 脚本完成。
 
 ### 🧭 最小研究对象门
 
@@ -184,14 +186,14 @@ Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.cursor\skills\"
 `claims.md`、`evidence_map.md`、研究笔记和 gate 报告只作为证据边界，不会被机械复制进论文。正式写作必须经过：
 
 ```text
-源论点 -> 证据状态 -> 审稿风险 -> 论文论点 -> 边界句
+源论点 -> 工程需求 -> 物理机制 -> 证据优势 -> 论文论点 -> 适用范围
 ```
 
-这一步防止把项目口号直接写成期刊贡献。
+这一步先把项目材料重组为完整的工程与物理逻辑，再用证据范围校准结论强度，避免把项目口号直接写成期刊贡献。
 
-### 🧱 物理叙事优先
+### 🧱 物理与工程叙事优先
 
-按审稿意见改稿时，技能先把意见转成物理机理、模型假设、证据比较或结论边界上的真实缺口，再把修改自然融入正文。正文不写成逐条防御或“叠甲”，数学也服务于工程图景和可审稿性，而不是把工科论文改成完整证明。
+无论初稿还是返修，技能都先回答工程现场中发生了什么、物理矛盾为何出现、方法改变了哪一条作用链，以及算例如何验证这一判断，再把数学模型、算法与证据自然织入正文。论文首先要让同行读者获得完整的工程图景、物理直觉和线性逻辑；审稿意见也被转化为这些链条中的真实缺口，而不是写成逐条防御或“叠甲”。
 
 ### 🧭 创新四轴与 Figure-first
 
@@ -285,6 +287,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `references/venue-profiles.md`
 - `references/pre-drafting-confirmation.md`
 - `references/manuscript-section-quality.md`
+- `references/chinese-major-revision.md`
 - `references/corpus-grounded-drafting.md`
 - `references/csee.md`
 - `references/csee-precision.md`
@@ -301,7 +304,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File `
 - `references/worked-examples.md`（按期刊的 before→after 改写正例，可选深入）
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md`（可选深入例子）
 
-适用于标题/关键词、摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。完整论文、标题、摘要、引言或重大改写前，会先检索项目文件与近邻文献，确认痛点、创新点、可行标题，再请你确认后进入正文写作。
+适用于标题/关键词、摘要、引言、方法与模型、算例、结论、图表标题、结果段落、期刊适配、术语清理和去 AI 味润色。完整论文、标题、摘要、引言或重大改写前，会先检索项目文件与近邻文献，确认痛点、创新点、可行标题，再请你确认后进入正文写作。中文大修或多版本融合时，额外区分技术事实来源与作者风格来源，并执行主张落点、物理叙事、因果隔离和机械闭环检查。
 
 ### `ieee-power-engineering-letter-writing`
 

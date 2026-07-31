@@ -20,6 +20,26 @@ Run this gate as an independent reviewer, not as the author of the draft. Adopt 
 
 ## Review Standard
 
+### Required review references
+
+Naming the review skill is not enough to run it. Load these files from `powerlit-power-systems-paper-review/references/` before judging the draft, and judge against their content rather than a remembered summary:
+
+- `innovation-logic.md` for the innovation test, weak-innovation patterns, and reject-risk introduction patterns;
+- `model-math.md` for physical correctness, hidden structural assumptions, decorative or unused formulas, algorithm completeness, and complexity that hides a simple idea;
+- `evidence-case-conclusion.md` for case sufficiency, causal decomposition, and conclusion support;
+- `expert-reader-experience.md` for the reader verdict, including the difference between `text-internal` failures and `external-check-needed` items;
+- `decision-rubric.md` for readiness levels, paper-type expectations, and fallback or metric-reuse blockers.
+
+### Required internal verdict
+
+Produce these three items internally before deciding whether the draft may be returned as manuscript-ready. They are not shown to the user unless asked, but a closure run without them has not happened:
+
+1. `本地审稿建议`: `建议直接投稿`, `建议小修后投稿`, `建议大修后重审`, or `不建议投稿`.
+2. `致命项清单`: every fatal or major issue with its manuscript location, or an explicit empty list.
+3. `专家级阅读体验`: `PASS`, `CONDITIONAL PASS`, or `FAIL`, with the burden class that drove the verdict.
+
+### Standards
+
 Apply the standards of `powerlit-power-systems-paper-review`:
 
 - technical problem is real and venue-relevant;
@@ -35,7 +55,7 @@ Apply the standards of `powerlit-power-systems-paper-review`:
 - final prose does not hide unsupported claims behind polished wording;
 - final prose does not convert valid claim boundaries into defensive "not a replacement" posture.
 
-When the task targets internal readiness, also apply `internal-readiness-writing.md` and `decision-rubric.md`. The closure gate must repair or block any draft whose core readiness dimension would fall below the requested readiness state.
+When the task targets internal readiness, also apply `internal-readiness-writing.md`. The closure gate must repair or block any draft whose core readiness dimension would fall below the requested readiness state.
 
 ## Pass Criteria
 
@@ -53,6 +73,10 @@ The draft fails the closure gate if the internal review would identify any of th
 - introduction motivates one problem while the method or section solves another;
 - method claims a property that is not derived, tested, or bounded;
 - method formulas are syntactically defined but lack the physical intuition needed to understand what grid quantity, coupling, or feasibility property they represent;
+- a physical-intuition sentence asserts a mechanism, causal direction, or limiting-case result that the supplied model, data, or references do not support, or an unverified interpretation was delivered without a note;
+- a model inconsistency in units, dimensions, sign conventions, symbol reuse, or an invoked theorem's assumptions was written around instead of reported as a blocker;
+- the case-section figure set fails the figures-only read test in `figures-tables-results.md`: read in order with captions alone, an act of the engineering story is missing and is carried only by result prose;
+- the contribution significance gate in `manuscript-section-quality.md` cannot be answered from the draft: no non-trivial claim, no primary insight type, or no changed reader consequence;
 - reviewer comments are handled as standalone defensive disclaimers, apology-like hedges, or isolated rebuttal sentences instead of repairs to the manuscript's physical story;
 - an engineering section becomes proof-heavy or theory-heavy while leaving the physical picture, engineering background, or operating interpretation unclear;
 - case/conclusion claims unsupported superiority, scalability, robustness, privacy, or engineering deployability;

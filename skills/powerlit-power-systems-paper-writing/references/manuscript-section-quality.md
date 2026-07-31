@@ -47,6 +47,8 @@ The abstract must highlight innovation and practical value without overclaiming.
 
 The abstract must not frame the paper as a binary opposition. Avoid sentences whose main payload is "this paper supports X but not Y" or "we do not claim A/B/C". If a boundary is needed, state the positive technical scope and attach the condition or evidence boundary.
 
+Every named mechanism, framework property, or technical concept in the abstract must have a recoverable body landing. Solver versions, initialization details, representative-day counts, parameter-sweep inventories, and other implementation facts normally belong in the case or reproducibility section rather than in the abstract. Retain a numerical result only when its comparison object, metric direction, and tested scope remain visible.
+
 ## Introduction
 
 Authority: `introduction-scalpel.md` (cutting order, venue paragraph flow, gap-to-contribution map). This subsection is only the acceptance checklist; do not restate the scalpel's how-to here.
@@ -62,6 +64,8 @@ The introduction must:
 - state the paper's basic idea and relative advantage compared with existing approaches;
 - make transitions natural from background -> existing methods -> unresolved technical reason -> proposed technical object -> evidence boundary;
 - avoid binary contribution framing. The close of the introduction should state what technical object the paper constructs, what mechanism or decision it clarifies, and under which evidence boundary it is evaluated; it should not read like a list of supported and unsupported claims.
+- write each contribution as a technical object plus its mechanism, property, or engineering consequence; do not use a solver setting, data split, case inventory, parameter scan, or implementation procedure as the contribution itself;
+- keep the contribution order aligned with the body development and the evidence order, while avoiding sentence-level repetition.
 
 If PowerLit is available, use it to retrieve recent venue-near or method-near papers before writing citation-sensitive introduction claims. If recent high-level literature is unavailable or not supplied, state the fallback and leave citation slots instead of inventing references.
 
@@ -85,6 +89,10 @@ A complete case-analysis plan or section should state:
   condition, trend, key feature, quantitative difference, mechanism status,
   answered problem, bounded advantage/tradeoff, engineering implication, and
   boundary;
+- a figure set that passes the figures-only read test in
+  `figures-tables-results.md`: read in order with captions alone, the figures
+  carry the engineering scene, the physical contradiction, the mechanism, the
+  matched comparison, and the boundary;
 - reproducibility details such as solver, tolerance, runtime, preprocessing, or hardware when they affect the claim.
 
 The prose should explain mechanism and engineering meaning, not only repeat numbers. If data are incomplete, sources uncertain, baselines absent, or sensitivity missing, mark those as writing blockers or claim boundaries.
@@ -111,6 +119,23 @@ Do not introduce new contributions, new numbers, or untested deployment implicat
 
 Do not close the paper with a binary inventory of what was supported and unsupported. The conclusion should restate the mainline technical contribution, conditional scope, and most important boundary in a constructive form; future work should name the specific evidence needed to broaden the claim.
 
+## Promise-to-Landing Matrix
+
+For a full-paper draft or major rewrite, build an internal matrix before prose revision:
+
+| Promise | First appearance | Body development | Model/equation landing | Evidence location | Conclusion closure |
+| --- | --- | --- | --- | --- | --- |
+| mechanism, theory, method, framework property, or engineering effect | title, abstract, or introduction contribution | section/subsection where it is explained | relation, constraint, proposition, algorithm step, or explicit technical argument | figure, table, baseline, ablation, sensitivity, proof, or boundary test | supported finding and scope |
+
+Apply these rules:
+
+- Every abstract concept and contribution item needs a body development location.
+- A claimed mechanism needs more than a repeated sentence: require a model relation or explicit analysis and then mechanism-relevant evidence.
+- A contribution may map to several pieces of evidence, but each principal figure or table should have one primary promise.
+- If a promised object has no supported landing, add the missing supported development, narrow the promise, or delete it.
+- Keep abstract movement, contribution order, body section order, principal-result order, and conclusion order functionally aligned. Do not force identical wording.
+- Treat delayed resolution as a reader burden: a later section cannot silently repair an undefined or unsupported promise made earlier.
+
 ## Spine Consistency
 
 The paper spine is one sentence naming the technical object, the unresolved conflict, the central action, and the evidence boundary (defined in `introduction-scalpel.md`). Before delivery, verify the spine is consistent across the five load-bearing locations: title, abstract, introduction contribution, result discussion, and conclusion.
@@ -123,3 +148,18 @@ Check that all five share:
 - the same non-binary framing — boundaries should appear as scoped technical conditions across title/abstract/introduction/results/conclusion, not as late-stage "not supported" corrections.
 
 If a location drifts, repair it back to the spine rather than weakening the spine. If two locations genuinely need different scope (for example a broader introduction motivation narrowing to a specific contribution), make the narrowing explicit so it does not read as a contradiction. This is a cross-section consistency check, not an instruction to repeat one sentence five times.
+
+## Contribution Significance Gate
+
+Run this before delivery for any full paper or major rewrite. A manuscript can pass every prose, structure, and evidence gate and still be a correct paper that no reader needs. The other gates remove defects; this one asks whether anything worth reading survives.
+
+Answer four questions from the draft text alone, not from drafting memory or project context:
+
+1. `Primary insight type`: which of theory migration, counterintuitive behavior, invariant, reduction, or boundary does the paper actually deliver? The discovery moves are defined in `powerlit-power-systems-prewriting-review/references/insight-discovery.md`; do not re-derive them here. If the honest answer is an incremental improvement on an established task, say so in the paper's own claim wording instead of borrowing mechanism or discovery language.
+2. `Non-trivial claim`: name the one sentence a qualified reader could not have written before this paper. If every result sentence would be predicted by a specialist from the method description alone, the paper reports an implementation, not a finding. Narrow the claim to what is genuinely new, or report the gap.
+3. `Reader consequence`: which decision, model choice, parameter setting, or belief of the target reader changes. Venue-relevant importance is not the same as a changed conclusion, and a metric table is not by itself a consequence.
+4. `Largest remaining defect`: the single weakest link a strict reviewer would attack first, and where the manuscript addresses, bounds, or acknowledges it.
+
+If questions 1 to 3 cannot be answered from the draft, this is a story defect, not a wording defect. Repair the framing, narrow the paper to its real finding, or return the blocker. Do not resolve it by strengthening adjectives, adding contribution bullets, or expanding the case section.
+
+This gate is an internal check. Its labels stay out of manuscript prose under the working-language firewall in `prose-quality-gates.md`; the manuscript shows the insight, it does not announce which insight type it is.

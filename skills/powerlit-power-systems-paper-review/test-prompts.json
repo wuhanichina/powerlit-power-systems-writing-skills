@@ -18,5 +18,10 @@
     "id": "section-quality-review",
     "prompt": "请用 $powerlit-power-systems-paper-review 按标题关键词、摘要、引言、算例分析和结论逐项审查一篇中国电机工程学报草稿。重点看标题是否突出创新、关键词是否不超过5个、引言是否有近五年 EI 以上文献综述、算例是否围绕创新点并有对比和灵敏度分析、结论是否有算例支撑且不夸大。",
     "expected": "The review must load section-quality-review.md and include 标题关键词与章节质量 in the output, checking title/keywords, abstract, introduction, case analysis, and conclusion with severity-ranked issues and evidence-bound repair actions."
+  },
+  {
+    "id": "major-revision-landing-physics-causality-review",
+    "prompt": "请审查一篇完成大修的中文电力系统论文：摘要声称揭示机理，但正文只重复该句；关键公式前没有物理动机，公式后只有符号定义；一个复合算例把现象同时归因于三个因素；部分公式向后引用且术语替换不完整。",
+    "expected": "The review builds a promise-to-landing map, flags the unlanded mechanism, applies the why-before/meaning-after/connection check, rejects causal attribution without controls, and reports formula-forward-reference and terminology-residue defects with anchored repair actions."
   }
 ]

@@ -21,7 +21,9 @@ Prefer:
 - "计及..."
 - "构建...优化模型/控制策略"
 - "设计...求解流程"
-- "验证了所提方法的有效性/可行性"
+- "最后，基于...验证了所提...的有效性/可行性/正确性"
+
+The validation summary sentence is a genuine AEPS convention, not padding: measured on the bundled PowerLit index, 214 of 538 AEPS abstracts (39.8%) contain "验证了…有效性/可行性/正确性/优越性/准确性", and 198 of those sit in the abstract's last sentence. The corpus form always carries the case system or validation platform and the object being validated — `基于RT-LAB半实物平台`, `在PSCAD/EMTDC平台`, `IEEE 39节点系统`, `数字仿真及现场试验数据` plus `所提方法/模型/控制策略`. Use it in the abstract's closing sentence and in `结语`; do not let it become the payload of a case-study result paragraph or a figure interpretation, where the metric, comparison, and condition are what the reader needs. See the venue-licensed closing summary rule in `prose-quality-gates.md`.
 
 Avoid:
 

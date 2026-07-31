@@ -113,5 +113,35 @@
     "id": "innovation-route-doi-exemplar-retrieval",
     "prompt": "请先判断论文属于新对象、新变量/场景、新方法、新发现、新机制还是新框架，再从 PowerLit 直接检索该类型的经典 DOI 论文，学习其引言、方法、算例和结果讨论框架，但不要复制原句。",
     "expected": "The response loads innovation-exemplar-doi-map.md, retrieves only the selected route's DOI seeds, verifies the PowerLit records, supplements them with minimum-object-near papers, extracts clean-room section and evidence functions, and does not treat the seed list as automatic citations or copy source wording."
+  },
+  {
+    "id": "chinese-major-revision-source-authority",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 融合两版中国电机工程学报稿件：当前修改稿控制技术口径、公式和结果，作者自写版只作为语言风格参考；两版使用了不同的技术框架。请先说明融合原则，再完成摘要—贡献—正文—算例—结论的大修。",
+    "expected": "The response loads chinese-major-revision.md, builds a source-authority map, borrows only clean-room writing functions from the author sample, keeps current equations/results/claim boundaries authoritative, refuses to mix the two technical frameworks, and closes a promise-to-landing matrix across abstract, contributions, body, evidence, and conclusion."
+  },
+  {
+    "id": "chinese-major-revision-physics-causality-closure",
+    "prompt": "请大修一篇公式很多、算例因果归因混乱的中文电力系统论文。公式前缺物理动机、公式后只有符号解释，算例把同一现象同时归因于位置、容量和非线性；改完后还要检查公式前引、编号、术语、引用顺序和 LaTeX 乱码。",
+    "expected": "The response treats this as an existing-object Chinese major revision, loads chinese-major-revision.md, does not stop for the full 写作前确认 brief, applies the why-before, what-it-means-after, and how-it-connects sequence, separates competing causal factors through controls or labels the mechanism as consistency/hypothesis, and runs deterministic closure for equation forward references, numbering, terminology residue, citation order, and malformed LaTeX."
+  },
+  {
+    "id": "existing-object-major-revision-route",
+    "prompt": "请直接大修这篇中文电力系统论文。技术对象、主创新方向、标题与目标期刊、公式和算例证据都已确定；本轮只做结构重排、物理直觉补全、因果链修复、术语统一和作者风格校准，不要重新做完整的写作前确认。若修改中发现必须改变论文主线，再单独指出。",
+    "expected": "The response selects the existing-object Chinese major-revision route, loads chinese-major-revision.md, skips the full 写作前确认 STOP, returns the revised manuscript first, and escalates to full confirmation only if the research object, engineering pain point, primary innovation, relative evidence-advantage positioning, title direction, or target venue must change."
+  },
+  {
+    "id": "case-figure-storyboard-tells-the-story-alone",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 写这篇 TPWRS 稿件的算例分析。现有图只有两张：图1 是所提方法与三个基线的指标柱状图，图2 是求解收敛曲线。结论声称所提方法之所以更好，是因为它捕捉到了线路末端电压—有功耦合。请先给出算例分析的图表方案，再写结果段。",
+    "expected": "The response must run the case-section figure storyboard before writing result prose and report that the figure set fails the figures-only read test: the engineering scene, the physical contradiction (such as the baseline failing under the high R/X feeder-end condition implied by the claimed coupling, stated as a condition to test rather than an established fact), and the mechanism act are all missing, and the convergence curve carries no act of the engineering story. It must propose the missing figures — a scenario-setup figure, a baseline-failure figure, and a figure plotting the voltage-active-power coupling as an intermediate quantity with the relevant operating limit annotated where applicable — instead of compensating with a longer result paragraph. It must not assert the coupling mechanism as established from a metric bar chart alone; that reading stays consistent-with-model until the intermediate quantity is plotted."
+  },
+  {
+    "id": "significance-gate-blocks-correct-but-pointless-draft",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 完成这篇稿件的定稿检查并给出可投稿版本。稿件技术正确、公式无误、算例齐全、语言干净：在 IEEE 118 节点系统上，把已有机组组合模型的求解器参数换成新的热启动设置，求解时间平均下降 12%，其余结论与既有文献一致。",
+    "expected": "The response must run the contribution significance gate and return a story-level blocker rather than a submission-ready draft: the primary insight type is at best an incremental improvement on an established task, the non-trivial claim cannot be named because a specialist would predict the result from the method description, and no target-reader decision changes. It must either narrow the paper to its real finding with honest claim wording or report the blocker, and it must not repair the gap by strengthening adjectives, adding contribution bullets, or expanding the case section."
+  },
+  {
+    "id": "mechanism-honesty-and-model-consistency-blocker",
+    "prompt": "请用 $powerlit-power-systems-paper-writing 为这组公式补写物理直觉段落，并润色成中国电机工程学报的正文语言。公式中支路潮流用了标称电压基准而节点注入用了实际电压基准，符号 S 同时表示视在功率和灵敏度矩阵；作者希望段落解释「电压跌落主要由无功注入沿馈线传播导致」。",
+    "expected": "The response must stop on the model-consistency blocker instead of writing fluent physical intuition: it names the mismatched per-unit bases and the reused symbol S with their locations and the minimum information needed to resolve them, and does not silently pick the interpretation that makes the paragraph work. For the requested reactive-propagation explanation it must apply the mechanism-status discipline: write only what the supplied model supports, label the causal reading as consistent-with-model or as an unverified interpretation in the delivery note, and refuse to assert the propagation mechanism as model-derivable."
   }
 ]

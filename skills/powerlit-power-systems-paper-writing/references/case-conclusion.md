@@ -39,12 +39,22 @@ When a result is important enough to discuss, write toward these functions natur
 
 This is a writing move, not a mandatory paragraph template. If the table already makes the numerical ranking obvious, spend the prose on why the ranking occurs and what claim it supports. If the evidence is mixed, let the discussion explain the tradeoff instead of smoothing it into uniform dominance.
 
+Before writing result prose, design the figure set as one ordered engineering
+story using the case-section figure storyboard in `figures-tables-results.md`.
+The figures, read in order with captions alone, should carry the engineering
+scene, the physical contradiction, the mechanism through an intermediate
+quantity, the matched comparison, and the boundary. A missing act is a figure
+problem: design or export the figure, or record the gap. Do not repair it by
+lengthening the result paragraph.
+
 For every main figure, enforce the Figure-first chain in
 `figures-tables-results.md`: actual condition and plot data → trend → key feature
 → quantitative difference → mechanism status → answered problem → bounded
 advantage/tradeoff → engineering implication → boundary. A paragraph that only
 rephrases the caption, enumerates curves, or says that the method is effective
-fails even when the figure is visually clear.
+fails even when the figure is visually clear. When the storyboard passes, the
+prose points at what the figure already shows instead of carrying the mechanism
+alone.
 
 ## Neighbor Case-Study Learning
 
@@ -101,7 +111,7 @@ Use a tighter, object-preserving validation chain:
 3. Metrics and comparison.
 4. Result tied to the submitted technical object.
 5. Parameter or scenario effect.
-6. Method effectiveness.
+6. Method effectiveness stated through the reported metric, scenario, and technical object rather than as a bare effectiveness assertion.
 
 Common headings include `算例分析`, `仿真验证`, `实验验证`, with subsections such as `算例设置`.
 

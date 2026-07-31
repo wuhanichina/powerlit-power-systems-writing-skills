@@ -52,6 +52,15 @@ Do not treat reproducibility information as an appendix-style checklist that is 
 
 The prose should make the study reproducible by being locally informative, not by dumping every parameter into the main text. Routine constants may remain in tables, appendices, or supplementary material when the venue allows it, but any fact needed to judge the paper's claim belongs near the claim it supports.
 
+## Parameter and Implementation Placement
+
+Keep the method general enough to expose the reusable technical relation.
+
+- Write model equations with symbols and validity conditions. Move case-specific confidence levels, duration assumptions, capacity caps, damping values, convergence tolerances, and similar settings to the case setup or parameter table unless a value is part of the method definition or theorem condition.
+- Keep a parameter in the method when changing it changes the formal method, feasibility relation, convergence claim, or scope. Otherwise define the symbol in the method and report the selected value with the evidence setup.
+- Put software, solver version, hardware, initialization, iteration traces, and wall-clock protocol in the reproducibility or computational-performance location where they support a tractability, scalability, convergence, or repeatability claim.
+- Do not let implementation inventory interrupt the model's physical and mathematical progression.
+
 ## Physical Story Before Mathematics
 
 For power-system engineering papers, the physical picture is the primary logic and mathematics is the disciplined language used to express it. Before adding equations, propositions, or proof fragments, state the grid object, operating conflict, coupling mechanism, and engineering consequence that make the mathematics necessary.
@@ -110,6 +119,30 @@ For inverse probabilistic load flow, the physical intuition must be explicit:
 - Voltage-covariance identifiability asks which co-fluctuation directions can be observed from the supplied power moments; null-space directions should not be interpreted as meaningful voltage variance.
 - An SDP feasibility certificate should be stated as evidence relative to the given relaxation model and constraint set. Distinguish original-problem feasibility, SDP-relaxation feasibility, infeasibility at the chosen relaxation order, and any rank or representing-measure condition needed to lift the certificate back to the original physical model.
 
+## Mechanism Honesty
+
+A physical-intuition sentence is a technical claim, not decoration. Before writing one, decide which status it has and keep that status honest:
+
+- `model-derivable`: the cause-effect direction, term structure, or limiting behavior follows from the supplied equations, assumptions, data, or a cited result. Write it as a plain technical statement.
+- `consistent-with-model`: the reading is compatible with the supplied model but was not derived from it. State the observable relation and the condition, and do not assert a causal direction the model does not fix.
+- `unverified interpretation`: the explanation comes from general power-system reasoning rather than this manuscript's equations, results, or references. Write the safest version that the model does support, and list the interpretation in the delivery note for author confirmation.
+
+Do not upgrade a status to make a paragraph read more confidently. Do not invent a physical mechanism, cause-effect direction, propagation path, identifiability reading, dominance argument, or limiting-case degeneration that the supplied model, data, or literature does not support. This is the same no-invention boundary that applies to numbers, baselines, and citations; a fabricated mechanism is harder for a reviewer to detect than a fabricated number and does more damage when it survives.
+
+Report unverified interpretations in the short delivery note, never as hedging inside manuscript prose. The manuscript keeps a clean technical sentence; the note tells the author which physical readings still need confirmation.
+
+## Why, Meaning, and Connection
+
+For each key equation group and each major section transition, close three layers:
+
+1. `Why before`: state the physical observation, scale separation, engineering constraint, or information limitation that makes the mathematical description necessary.
+2. `What it means after`: after local symbol definitions, explain the grid quantity, propagation channel, sensitivity, feasibility boundary, resource cost, or diagnostic relation expressed by the equation.
+3. `How it connects`: state what the result enables or requires next in the model, algorithm, case design, or conclusion.
+
+Do not isolate these layers as answer-defense commentary. Weave them into the technical sequence with the grid object as subject and a direct causal relation. Avoid detachable prose such as "The reason for using X is...", "It should be noted that the physical meaning is...", or a paragraph whose only content is "the role of this equation." A cold opening such as `设...为` or `在...点线性化，有` is acceptable only when the physical reason is already locally recoverable.
+
+At chapter scale, use the same progression: inherit one unresolved relation from the preceding section, resolve it here, and name what the result makes possible next. In a case section, state the mechanism-based expectation before comparing the observed result.
+
 ## Model-Algorithm Consistency
 
 Whenever the method uses a relaxation, convexification, penalty, discretization, decomposition, or surrogate model, the manuscript must state the relationship between the original problem and what is actually solved.
@@ -134,6 +167,19 @@ Penalty relationship template:
 - For augmented Lagrangian methods, state primal feasibility and dual update conditions separately from objective bounds.
 - For exact penalties, state the regularity and threshold conditions that make a finite penalty parameter exact.
 - Do not claim that a finite penalty parameter produces a feasible upper bound for the original problem unless the manuscript proves both feasibility and the objective-bound relation.
+
+## Model Consistency Blocker
+
+Writing cannot repair a model defect. If the supplied material shows any of the following, stop and report it instead of writing fluent physical intuition around it:
+
+- units, dimensions, or per-unit bases that do not balance across an equation;
+- a sign convention or direction that contradicts the stated physical effect;
+- a variable used before definition, or one symbol carrying two different physical quantities;
+- an assumption required by an invoked theorem, exactness condition, or relaxation that the manuscript neither states nor satisfies;
+- a stated mechanism that the equation cannot produce;
+- an equation whose limiting case contradicts a known result the manuscript itself relies on.
+
+Name the exact location, the observed inconsistency, and the minimum information needed to resolve it. Do not silently correct the author's model, and do not choose the interpretation that makes the surrounding prose work. A polished physical story built on an inconsistent model is a worse outcome than a blocked draft, because it moves the defect past the point where a reviewer can see it.
 
 ## Standard Parts vs Claimed Novelty
 
@@ -241,10 +287,14 @@ Before finalizing, verify:
 - Every variable in an equation is defined close to first use.
 - Objective and constraints are not buried inside prose.
 - The physical meaning of key equations and constraints is stated through grid objects, cause-effect direction, units/signs, limiting cases, or operational diagnosis.
+- Every physical-intuition statement has a defensible status: `model-derivable`, `consistent-with-model`, or an `unverified interpretation` reported in the delivery note. No mechanism, causal direction, or degeneration result is asserted beyond what the model, data, or references support.
+- No model inconsistency was written around: units and dimensions balance, sign conventions match the stated effect, symbols are unique, and every invoked theorem's assumptions are stated. Any unresolved inconsistency is reported as a blocker instead of absorbed into prose.
 - Algorithm steps correspond to specific model difficulties.
 - Approximation, relaxation, or linearization has a stated validity condition or boundary.
 - Every relaxation, reformulation, decomposition, or surrogate states its relationship to the original problem (equivalence, bound, or gap) and the condition under which it holds.
 - Mathematical depth matches the venue: enough derivation for reviewability, not proof-heavy exposition that displaces the engineering mechanism.
 - Any uncommon theory is introduced only to the extent needed by the later model and is connected to the physical object before it is used.
 - Solver and platform details are placed in the method only when method-level claims depend on them.
+- Key equation groups close the `why before -> what it means after -> how it connects` sequence without detached answer-defense prose.
+- Case-specific constants and implementation settings are separated from general model relations unless they define the method or its validity.
 - The venue's expected granularity is respected without changing the research object: broader mechanism for 中国电机工程学报, leaner object-preserving formulation for 电力系统自动化, assumption-explicit formulation for TPWRS, and supplied smart-grid mechanism for TSG.

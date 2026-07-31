@@ -63,6 +63,12 @@ If a sentence carries none of these, it is padding. Delete it or merge its only 
 - forward-reference filler: "下面将详细介绍", "in what follows, we discuss" (let the structure do this);
 - summary sentences that only repeat the previous sentence in different words.
 
+### Venue-licensed closing summary
+
+One pattern needs section-level scope rather than deletion on sight. In Chinese venues the validation summary sentence — "最后，基于 [系统/平台] 验证了所提 [对象] 的 [有效性/可行性/正确性/优越性/准确性]" — is a real convention in the abstract's final sentence and in `结语`/`结论`. Measured on the bundled PowerLit index, 39.8% of 电力系统自动化 abstracts (214/538) contain this pattern and 92.5% of those instances are the abstract's last sentence; in 中国电机工程学报 it is 5.2% (42/802). Keep it where the venue uses it, and keep the corpus form: name the case system or validation platform and the object being validated.
+
+It remains padding, and must be cut, when it is the payload of a case-study result paragraph, a figure or table interpretation, or a contribution item — locations where the metric, comparison, and condition are what the reader came for. A bare "所提方法具有良好的效果" with no system, platform, or object attached fails in every location.
+
 ### Borderline rule
 
 A sentence that carries a payload but also drags padding should be cut down to the payload, not deleted whole. A sentence whose only function is to announce what the paper "aims to" or "tries to" do should be rewritten as the direct technical action.
@@ -164,6 +170,10 @@ Convert binary boundaries into one of these manuscript-safe forms:
 
 Keep the boundary, but do not make the boundary the sentence's main subject unless the section is explicitly about limitations. In ordinary manuscript prose, lead with the power-system object, mechanism, method action, or evidence role.
 
+### Scope preservation
+
+Removing defensive posture must not widen a claim. After the rewrite, the tested system, scenario, event set, assumption, information condition, or metric definition that bounded the original sentence must still be recoverable somewhere a reader will reach before relying on the claim — the same sentence, the adjacent sentence, or the section that owns that condition. If a rewrite can only be made confident by dropping the condition, keep the condition and accept the longer sentence. Turning "本文不主张替代 X" into an unconditional capability sentence is a failure of this gate, not a success of the boundary-posture pass.
+
 ## Chinese Register Gate
 
 For CSEE and AEPS prose:
@@ -171,7 +181,11 @@ For CSEE and AEPS prose:
 - remove `声称` and `宣称` from manuscript claims;
 - remove quotation marks used only for emphasis, concept packaging, or self-conscious terminology;
 - replace em-dash explanation chains with commas, semicolons, parentheses, or direct enumeration;
+- keep a colon for a displayed equation, genuine list, or deliberate parallel mechanism statement; rewrite colons that merely introduce a complete causal explanation, rhetorical question, or ordinary continuation;
+- scan translation-shaped constructions such as an unnecessary passive, `成为...的函数`, `位于不同层面`, distant `其`, and stacked prepositions; replace them only when a direct power-systems subject and verb preserve the precise mathematical meaning;
 - keep dense engineering nouns only when the sentence also names the grid object, variable, constraint, metric, or mechanism.
+
+For major Chinese revision, apply the fuller source-authority, defensive-posture, punctuation, and translation-shape procedure in `chinese-major-revision.md`. Treat manuscript-specific terminology replacements as entries in that paper's terminology ledger, not as universal bans.
 
 ## English AI-Tells Gate
 
@@ -184,3 +198,5 @@ For IEEE prose:
 ## No-Invention Boundary
 
 Prose cleanup must not add citations, methods, numerical results, baselines, solver settings, or conclusions. If the clean sentence would require a missing fact, leave a gap note instead of filling it.
+
+The same boundary covers physical explanation. Do not add or strengthen a physical mechanism, cause-effect direction, propagation path, identifiability reading, dominance argument, or limiting-case degeneration that the supplied model, data, or references do not support. A mechanism invented during polishing is harder to detect than an invented number and survives review more often. Keep the status discipline in `method-model.md`: `model-derivable`, `consistent-with-model`, or an `unverified interpretation` reported in the delivery note.

@@ -34,6 +34,9 @@ High-risk patterns:
 - method described as a task list;
 - innovation or practical value asserted without support;
 - claims not later supported by case analysis or derivation.
+- a named mechanism, framework property, or technical concept with no explicit body development, model/equation landing, or evidence location;
+- case-specific solver details or experiment inventory displacing the technical contribution;
+- a numerical result with no comparison object, metric direction, or tested scope.
 
 ## Introduction
 
@@ -47,6 +50,8 @@ The introduction should:
 - group literature by method family and limitation rather than listing papers one by one;
 - state the paper's basic idea and relative advantage;
 - transition naturally from background to research state, unresolved issue, proposed idea, and evidence boundary.
+- express each contribution as a technical object plus mechanism, property, or engineering consequence rather than an experiment or implementation list;
+- keep contribution order aligned with the body development and principal evidence.
 
 If the manuscript claims a high-level venue but relies mainly on outdated, low-level, or unrelated references for the active gap, mark this as a major introduction/reference risk. If the reviewer cannot verify the literature from supplied or retrieved sources, label it as external-check-needed rather than inventing missing literature.
 
@@ -77,3 +82,17 @@ Check whether the conclusion:
 - gives reasonable future work only when it follows from a real boundary.
 
 Overbroad deployment, robustness, generality, or scalability claims should be downgraded unless directly supported.
+
+## Promise-to-Landing and Spine Review
+
+Build a reviewer-side promise-to-landing map for every major abstract concept and introduction contribution:
+
+- first promise;
+- body development;
+- model, equation, proposition, or algorithm landing;
+- figure, table, proof, ablation, sensitivity, or boundary evidence;
+- conclusion closure.
+
+Flag a major issue when a claimed mechanism is repeated across sections but never technically developed or tested. Flag delayed resolution when a later section silently supplies a definition or boundary needed to understand an earlier promise.
+
+Check functional order across abstract, contribution list, body sections, principal results, and conclusion. The wording need not repeat, but the technical object, mechanism, and claim scope must not change.

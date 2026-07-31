@@ -2,10 +2,10 @@
 
 # ⚡ PowerLit Power Systems Writing and Review Skills
 
-> **Lock the evidence boundary first, then write a power-systems paper that can survive review.**
+> **Start from engineering needs, make the physical logic intuitive, confirm the evidence advantage, and write a power-systems paper that can survive review.**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Skill Version](https://img.shields.io/badge/Skill%20Version-2026.07.03-blueviolet)](#release-notes)
+[![Writing Skill Version](https://img.shields.io/badge/Writing%20Skill-2026.07.31-blueviolet)](#release-notes)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
@@ -13,7 +13,7 @@
 
 This repository provides a set of power-systems research-writing skills for Codex, Claude (Claude Code / Cowork), and Cursor: prewriting review, PowerLit literature intelligence, structured paper reading, full-paper drafting, IEEE Letter writing, and strict pre-submission review.
 
-It is not a generic polishing tool. Each install ships a **~14k-paper SQLite index** so the skills can retrieve nearby work, plan citations, and lock claim boundaries before drafting in the target venue's section shape, paragraph function, and evidence style. Before submission, the review skill closes the loop with a local reviewer gate.
+It is not a generic polishing tool. Each install ships a **~14k-paper SQLite index**. The skills start from the engineering need and physical conflict, build the research object, mechanism intuition, and complete argument, then use nearby literature and project results to confirm theoretical, engineering, and evidence advantages before drafting in the target venue's section shape and evidence style. Evidence boundaries calibrate conclusion strength rather than lead the story. Before submission, the review skill closes the loop with a local reviewer gate.
 
 Supported venues and formats:
 
@@ -27,8 +27,10 @@ Supported venues and formats:
 
 ## Release Notes
 
-Current skill version: **2026.07.03** (the `version:` field in each `SKILL.md` frontmatter). After installing, compare the repository copy with your local install using `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'`.
+Current paper-writing and paper-review version: **2026.07.31**; current prewriting-review version: **2026.07.12**. Each `SKILL.md` carries its own `version:` field. After installing, compare the repository copy with your local install using `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'`.
 
+- **2026-07-31**: put physical explanation under the no-invention boundary with explicit mechanism status (`model-derivable`, `consistent-with-model`, or an unverified interpretation reported in the delivery note), added a model-consistency blocker, added a case-section figure storyboard with a figures-only read test so the figures carry the engineering story on their own, added a contribution significance gate that treats a correct paper without a non-trivial claim as a story defect, reordered the delivery gates into five groups with always-run technical checks, made review closure name its references and produce an internal verdict, and scoped the AEPS validation closing sentence by corpus measurement instead of deleting it.
+- **2026-07-31**: reframed writing around engineering needs, physical/engineering intuition, technical logic, and evidence advantage, with evidence boundaries reserved for claim-strength calibration; also integrated field-tested Chinese major-revision practice through source-authority mapping, promise-to-landing closure, equation-level `why → meaning → connection`, causal isolation, and deterministic consistency checks.
 - **2026-07-03 (2026.07.03)**: index year repair — `derive_year` infers publication years from DOI/content headers, bundled SQLite shards backfilled (14146/14148 records), search results now include `year`; key gates marked with 🔴 CHECKPOINT / 🛑 STOP; `paper-writing` deduplicated; all six skills carry `version:` in frontmatter; README adds Cursor and other Agent-Skills runtime install/sync guidance; semi-automated regression runner (`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`) plus a Letter opening pain-point A/B regression case.
 - 2026-06-30: cross-skill section-quality checklist alignment; independent-reviewer stance for write-review closure; removed orphan `baseline-comparison.md`.
 
@@ -101,7 +103,7 @@ Use powerlit-power-systems-prewriting-review to decide whether this typhoon dist
 ```
 
 ```text
-Rewrite this introduction in TPWRS style. Start by locking the claim boundary and nearby literature.
+Rewrite this introduction in TPWRS style around the engineering need and physical conflict, then use nearby literature to establish the evidence advantage.
 ```
 
 ```text
@@ -141,7 +143,7 @@ Provide an idea, draft, model, result table, or evidence packet—the skills tur
 |---|---|---|---|
 | Prewriting decision | Idea, model, evidence state, target venue | `Decide whether this typhoon distribution-network risk assessment idea can enter Proceedings of the CSEE writing.` | `GO`, `CONDITIONAL GO`, `NO-GO`, or `RETARGET`, plus concrete repairs. |
 | Structured paper reading | PDF, title/DOI, abstract, or PowerLit record; preferably with the user's research question | `Read this TPWRS paper and explain how it responds to my research question: how typhoon-driven source-load uncertainty affects static-security risk.` | Chinese six-part note: core argument, mechanism, contribution, research design, key findings, and research-question response. |
-| Introduction rewrite | Target venue, draft, evidence boundary, citation state | `Rewrite this introduction in TPWRS style. First lock the claim boundary and nearby literature.` | Manuscript text after unsupported claims are narrowed or blocked. |
+| Introduction rewrite | Engineering problem, target venue, draft, main evidence, citation state | `Rewrite this introduction in TPWRS style around the engineering need and physical conflict, then use nearby literature to establish the evidence advantage.` | Manuscript prose with a coherent engineering object, physical logic, method action, and evidence advantage. |
 | Method/model section | Equations, assumptions, variables, algorithm, venue | `Rewrite this DRO AC OPF method section for TPWRS, focusing on assumptions, formulation, and solvability claims.` | A formulation-centered method section with variables, constraints, reformulation, algorithm, and boundaries. |
 | Case-study results | MATLAB outputs or result tables, baselines, metrics, scenarios | `Use these case33bw results to write the case-study analysis paragraph. Do not make a generic effectiveness claim.` | A result paragraph tied to system, metric direction, comparison, mechanism, and boundary. |
 | Figure/table caption | Figure content, axes or columns, venue | `Write an IEEE TSG caption for this voltage violation probability plot and add one explanatory sentence for the body text.` | A self-contained caption and body explanation tied to grid meaning. |
@@ -152,9 +154,9 @@ Provide an idea, draft, model, result table, or evidence packet—the skills tur
 
 ## Core Mechanisms
 
-### 🔎 PowerLit Evidence Gate
+### 🔎 PowerLit Positioning And Evidence Advantage
 
-The literature skill ships with a SQLite index (~14k records, ready after install). Writing and prewriting skills search nearby work first, then set citations, novelty, and claim boundaries—you describe the research object; retrieval runs through the skill scripts.
+The literature skill ships with a SQLite index (~14k records, ready after install). Writing and prewriting use nearby work to test whether the engineering pain point is real, explain why existing methods remain insufficient, and identify the paper's theoretical, engineering, and evidence advantages. Claim boundaries calibrate conclusion strength at the end—you describe the research object; retrieval runs through the skill scripts.
 
 ### 🧭 Minimum Research Object Gate
 
@@ -165,14 +167,14 @@ Before prewriting and major drafting, the skills identify the paper's minimum re
 `claims.md`, `evidence_map.md`, research notes, and gate reports are evidence boundaries, not manuscript-ready prose. Formal writing passes through:
 
 ```text
-source claim -> evidence state -> review risk -> paper claim -> boundary sentence
+source claim -> engineering need -> physical mechanism -> evidence advantage -> paper claim -> applicability
 ```
 
-This prevents project slogans from becoming unsupported venue claims.
+This first rebuilds project material into a complete engineering and physical argument, then calibrates conclusion strength against the evidence scope.
 
-### 🧱 Physical Story First
+### 🧱 Physical And Engineering Story First
 
-When revising after reviewer comments, the skills first translate each comment into a real gap in physical mechanism, model assumption, evidence comparison, or conclusion boundary, then integrate the repair into the natural manuscript location. The body text should not read like point-by-point defense, and mathematics should serve the engineering picture and reviewability instead of turning the paper into a complete proof exercise.
+For both first drafts and revisions, the skills first establish the engineering scene, physical conflict, mechanism changed by the method, and evidence that tests the mechanism. Mathematics, algorithms, and results are then woven into that linear story. Reviewer comments become missing links in the engineering or physical argument rather than point-by-point defensive prose.
 
 ### 🧩 Venue Profile Routing
 
@@ -248,6 +250,7 @@ Use this for full research papers. The skill keeps one stable public entrypoint 
 - `references/venue-profiles.md`
 - `references/pre-drafting-confirmation.md`
 - `references/manuscript-section-quality.md`
+- `references/chinese-major-revision.md`
 - `references/corpus-grounded-drafting.md`
 - `references/csee.md`
 - `references/csee-precision.md`
@@ -264,7 +267,7 @@ Use this for full research papers. The skill keeps one stable public entrypoint 
 - `references/worked-examples.md` for per-venue before→after rewrite examples (optional)
 - `references/publishable-prose.md` / `references/rhythm.md` / `references/lexicon.md` / `references/anti-ai-style.md` for optional deeper examples
 
-Use it for titles/keywords, abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing. Before a full paper, title, abstract, introduction, contribution statement, or major rewrite, it searches project files and nearby literature, confirms pain points, innovation points, and feasible titles, then asks you to confirm before manuscript drafting.
+Use it for titles/keywords, abstracts, introductions, methods and models, case studies, conclusions, captions, result paragraphs, venue adaptation, terminology cleanup, and anti-AI-style editing. Before a full paper, title, abstract, introduction, contribution statement, or major rewrite, it searches project files and nearby literature, confirms pain points, innovation points, and feasible titles, then asks you to confirm before manuscript drafting. Chinese major revisions and multi-version fusion additionally separate technical authority from style authority and close claim landings, equation-level physical narration, causal attribution, and mechanical references.
 
 ### `ieee-power-engineering-letter-writing`
 

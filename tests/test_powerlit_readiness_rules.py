@@ -45,6 +45,7 @@ def test_rule_sources_registers_official_and_heuristic_rules():
         "ieee_pes_letter_initial_revision_page_limit",
         "socp_exactness_claim_template",
         "application_paper_not_auto_reject",
+        "chinese_major_revision_practice",
     ):
         assert token in registry
 
@@ -399,3 +400,301 @@ def test_figure_first_consistency_and_revision_workflows_are_wired():
     assert "Editor note / cover letter" in revision
     assert "Point-by-point response" in revision
     assert "List of changes" in revision
+
+
+def test_chinese_major_revision_practice_is_wired_across_writing_and_review():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    practice = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/chinese-major-revision.md"
+    )
+    section_gate = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/manuscript-section-quality.md"
+    )
+    method = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/method-model.md"
+    )
+    figures = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/figures-tables-results.md"
+    )
+    consistency = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/submission-consistency-check.md"
+    )
+    review_sections = read_text(
+        "skills/powerlit-power-systems-paper-review/references/section-quality-review.md"
+    )
+    review_method = read_text(
+        "skills/powerlit-power-systems-paper-review/references/model-math.md"
+    )
+    review_evidence = read_text(
+        "skills/powerlit-power-systems-paper-review/references/evidence-case-conclusion.md"
+    )
+    writing_prompts = read_text(
+        "skills/powerlit-power-systems-paper-writing/test-prompts.json"
+    )
+    review_prompts = read_text(
+        "skills/powerlit-power-systems-paper-review/test-prompts.json"
+    )
+
+    assert "references/chinese-major-revision.md" in writing_skill
+    assert "revision authority map" in writing_skill
+    assert "promise-to-landing matrix" in writing_skill
+
+    for token in (
+        "Build a Source-Authority Map",
+        "Portability Boundary",
+        "technical framework",
+        "clean-room writing functions",
+        "Lock Promises and Body Landings",
+        "why -> what it means -> how it connects",
+        "Separate Observation From Causal Explanation",
+        "Colon discipline",
+        "formula references that point forward",
+        "malformed LaTeX",
+    ):
+        assert token in practice
+
+    assert "Promise-to-Landing Matrix" in section_gate
+    assert "Why, Meaning, and Connection" in method
+    assert "Parameter and Implementation Placement" in method
+    assert "Causal Attribution Discipline" in figures
+    assert "citation numbering after paragraph movement" in consistency
+    assert "malformed formula text" in consistency
+
+    assert "Promise-to-Landing and Spine Review" in review_sections
+    assert "why before -> what it means after -> how it connects" in review_method
+    assert "competing factors" in review_evidence
+
+    assert "chinese-major-revision-source-authority" in writing_prompts
+    assert "chinese-major-revision-physics-causality-closure" in writing_prompts
+    assert "existing-object-major-revision-route" in writing_prompts
+    assert "major-revision-landing-physics-causality-review" in review_prompts
+
+
+def test_existing_object_major_revision_bypasses_full_confirmation():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    pre_drafting = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/pre-drafting-confirmation.md"
+    )
+    writing_prompts = read_text(
+        "skills/powerlit-power-systems-paper-writing/test-prompts.json"
+    )
+
+    for token in (
+        "Select exactly one revision-entry route",
+        "Existing-object Chinese major-revision route",
+        "do not run or stop for the full `写作前确认` brief by default",
+        "Do not apply this STOP by default",
+        "Escalation rule",
+    ):
+        assert token in writing_skill
+
+    assert (
+        "Route directly to `chinese-major-revision.md` without the full "
+        "`写作前确认` STOP"
+    ) in pre_drafting
+    assert "Escalate back to this gate only when the revision must change" in pre_drafting
+    assert "existing-object-major-revision-route" in writing_prompts
+    assert "skips the full 写作前确认 STOP" in writing_prompts
+
+
+def test_writing_entrypoint_is_engineering_and_physics_first():
+    readme = read_text("README.md")
+    readme_en = read_text("README.en.md")
+    changelog = read_text("CHANGELOG.md")
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    pre_drafting = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/pre-drafting-confirmation.md"
+    )
+    openai_yaml = read_text(
+        "skills/powerlit-power-systems-paper-writing/agents/openai.yaml"
+    )
+
+    assert "面向工程需求，讲清物理直觉与技术逻辑，确认证据优势" in readme
+    assert "先锁定证据边界，再写" not in readme
+    assert "证据边界保留为结论强度的校准项，而不是正文叙事的起点" in readme
+    assert "2026-07-07**：写作前确认新增 PowerLit 支撑的理论价值与工程价值定位" in readme
+    assert "writing-before-confirmation now requires" not in readme
+    assert "## 2026-07-07 - PowerLit 理论价值与工程价值定位" in changelog
+    assert (
+        "## 2026-07-07 - PowerLit theoretical and engineering value positioning"
+        not in changelog
+    )
+
+    assert "Start from engineering needs" in readme_en
+    assert "Evidence boundaries calibrate conclusion strength rather than lead the story" in readme_en
+    assert "当前 paper-writing 与 paper-review 版本：**2026.07.31**" in readme
+    assert "Current paper-writing and paper-review version: **2026.07.31**" in readme_en
+
+    assert "real power-system engineering need" in writing_skill
+    assert "complete physical and engineering intuition" in writing_skill
+    assert "linear technical logic" in writing_skill
+    assert "relative evidence advantage" in writing_skill
+    assert "evidence boundary as final claim-strength calibration" in writing_skill
+
+    assert "## Relative Evidence Advantage" in pre_drafting
+    assert "relative evidence advantage:" in pre_drafting
+    assert "final claim-strength calibration" in pre_drafting
+    assert "do not force boundary language into every load-bearing section" in pre_drafting
+    assert (
+        "evidence boundary that must appear in abstract, introduction, result "
+        "discussion, and conclusion"
+    ) not in pre_drafting
+
+    assert "Engineering- and physics-first power-system paper writing." in openai_yaml
+    assert "confirm its evidence advantage" in openai_yaml
+
+
+def test_mechanism_honesty_and_model_consistency_are_enforced():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    method_model = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/method-model.md"
+    )
+    prose_gates = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/prose-quality-gates.md"
+    )
+    task_prompts = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/task-prompts.md"
+    )
+
+    assert "## Mechanism Honesty" in method_model
+    assert "## Model Consistency Blocker" in method_model
+    for status in ("`model-derivable`", "`consistent-with-model`", "`unverified interpretation`"):
+        assert status in method_model
+    assert "Do not silently correct the author's model" in method_model
+
+    # the no-invention boundary must cover physical explanation, not only numbers
+    assert "The same boundary covers physical explanation." in prose_gates
+    assert "Do not add or strengthen a physical mechanism" in prose_gates
+    assert "Do not add or strengthen a physical mechanism during a small task" in task_prompts
+
+    assert "mechanism-honesty status pass" in writing_skill
+    assert "model-consistency blocker" in writing_skill
+    assert "Do not invent physical content either." in writing_skill
+    assert "unverified physical interpretations" in writing_skill
+
+
+def test_case_figures_must_carry_the_engineering_story_alone():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    figures = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/figures-tables-results.md"
+    )
+    case_conclusion = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/case-conclusion.md"
+    )
+    case_contracts = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/case-design-contracts.md"
+    )
+    section_quality = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/manuscript-section-quality.md"
+    )
+
+    assert "## Case-Section Figure Storyboard" in figures
+    assert "### Figures-Only Read Test" in figures
+    assert "### Make the mechanism visible, not narrated" in figures
+    # storyboard acts must reuse the existing evidenceRole vocabulary
+    for role in ("`scenario-setup`", "`physical-reproduction`", "`sota-comparison`", "`sensitivity-ablation`"):
+        assert role in figures
+    assert "storyboardAct" in figures
+    assert "figureOnlyReadable" in figures
+    # a missing act is a figure defect, never a prose-length defect
+    assert "Do not repair a figure-set gap by writing a longer result paragraph." in figures
+    assert "never by lengthening the result paragraph" in writing_skill
+
+    assert "case-section figure storyboard" in case_conclusion
+    assert "figures-only read test" in section_quality
+    assert "figure storyboard acts" in case_contracts
+
+    assert "figures-only read test" in writing_skill
+    assert "figure storyboard:" in writing_skill
+
+
+def test_contribution_significance_gate_blocks_correct_but_pointless_drafts():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    section_quality = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/manuscript-section-quality.md"
+    )
+    introduction = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/introduction-scalpel.md"
+    )
+
+    assert "## Contribution Significance Gate" in section_quality
+    for token in (
+        "`Primary insight type`",
+        "`Non-trivial claim`",
+        "`Reader consequence`",
+        "`Largest remaining defect`",
+    ):
+        assert token in section_quality
+    assert "story defect, not a wording defect" in section_quality
+    # the gate reuses the prewriting discovery moves instead of redefining them
+    assert "insight-discovery.md" in section_quality
+    assert "insight-discovery.md" in introduction
+
+    assert "contribution significance gate" in writing_skill
+    # the Chinese major-revision route may skip the STOP but not the delivery gate
+    assert "This route skips the pre-drafting STOP, not the delivery gates" in writing_skill
+
+
+def test_delivery_gates_prefer_technical_checks_under_budget_pressure():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    prose_gates = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/prose-quality-gates.md"
+    )
+
+    assert "five groups" in writing_skill
+    assert "**Technical (always when the draft contains the trigger material):**" in writing_skill
+    assert "drop the rhythm and lexicon passes first" in writing_skill
+    assert "Never trade a physical-intuition" in writing_skill
+    # every core pass named in the gate list must exist in its single source
+    for pass_name in (
+        "progression and non-repetition pass",
+        "boundary-posture pass with its scope-preservation rule",
+        "evidence-verb calibration",
+    ):
+        assert pass_name in writing_skill
+    assert "### Scope preservation" in prose_gates
+    assert "Removing defensive posture must not widen a claim." in prose_gates
+
+
+def test_review_closure_names_the_standards_it_applies():
+    writing_skill = read_text("skills/powerlit-power-systems-paper-writing/SKILL.md")
+    closure = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/review-closed-loop.md"
+    )
+
+    assert "### Required review references" in closure
+    assert "### Required internal verdict" in closure
+    for reference in (
+        "innovation-logic.md",
+        "model-math.md",
+        "evidence-case-conclusion.md",
+        "expert-reader-experience.md",
+        "decision-rubric.md",
+    ):
+        assert reference in closure
+        assert reference in writing_skill
+    for verdict in ("本地审稿建议", "致命项清单", "专家级阅读体验"):
+        assert verdict in closure
+        assert verdict in writing_skill
+    assert "A closure run without those three items has not happened." in writing_skill
+
+
+def test_aeps_validation_closing_sentence_is_scoped_not_banned():
+    aeps = read_text("skills/powerlit-power-systems-paper-writing/references/aeps.md")
+    prose_gates = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/prose-quality-gates.md"
+    )
+    case_conclusion = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/case-conclusion.md"
+    )
+
+    # measured on the bundled index via evaluation/measure_validation_closing_stats.py:
+    # 214/538 AEPS abstracts (39.8%), 198 of them closing sentences
+    assert "验证了" in aeps
+    assert "39.8%" in aeps
+    assert "prose-quality-gates.md" in aeps
+    assert "### Venue-licensed closing summary" in prose_gates
+    assert "It remains padding, and must be cut, when it is the payload" in prose_gates
+    # the conclusion chain must not accept a bare effectiveness claim
+    assert "6. Method effectiveness." not in case_conclusion
+    assert "rather than as a bare effectiveness assertion" in case_conclusion

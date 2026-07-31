@@ -4,7 +4,7 @@ Use this reference when the user asks for a small writing operation rather than 
 
 ## Before Any Small Task
 
-Lock four items before editing:
+Lock four items before editing, plus item 5 when the task is a reviewer response:
 
 1. Target venue: 中国电机工程学报, 电力系统自动化, IEEE TPWRS, or IEEE TSG.
 2. Engineering object: grid, device, market, uncertainty source, control layer, resilience setting, or data source.
@@ -12,7 +12,7 @@ Lock four items before editing:
 4. Evidence boundary: supplied result, equation, citation, case system, or explicit missing item.
 5. Reviewer comment or revision target, if the task is a response-to-reviewer rewrite.
 
-If one item is missing, proceed only when the task is pure wording cleanup. Do not add unsupported results, citations, baselines, deployment claims, robustness claims, privacy claims, scalability claims, or real-time claims.
+If one item is missing, proceed only when the task is pure wording cleanup, and do not touch physical explanation or claim strength in that state. Do not add unsupported results, citations, baselines, deployment claims, robustness claims, privacy claims, scalability claims, or real-time claims. Do not add or strengthen a physical mechanism during a small task; the no-invention boundary in `prose-quality-gates.md` covers mechanism as well as numbers.
 
 ## Light Edit Contract
 

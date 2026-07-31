@@ -12,6 +12,8 @@ Flag language that weakens professionalism:
 - defensive claim posture: "需要强调的是，本文不...", "本文不主张...", "not intended to replace...", or comparison paragraphs that make retreat the main subject;
 - reviewer-response leakage: "针对审稿人意见", "为回应上述质疑", "as suggested by the reviewer", or other manuscript-body phrasing that exposes the revision process instead of repairing the technical narrative;
 - Chinese manuscript register failures: `声称/宣称` in authorial prose, quotation marks used only for concept emphasis, or em-dash chains used to dramatize explanation rather than state the technical relation;
+- Chinese colon overuse: a colon introducing an ordinary causal explanation, rhetorical question, or continuation rather than an equation, genuine list, or deliberate parallel mechanism statement;
+- translation-shaped Chinese that hides the technical subject, including unnecessary passives, `成为...的函数` for a simple varying relation, `位于不同层面` without naming the affected quantities, distant `其`, or stacked prepositions;
 - casual expressions or policy slogans without technical content.
 
 Prefer technical subjects:
@@ -31,6 +33,9 @@ Check:
 - heading hierarchy is complete and numbered consistently;
 - method, case, and conclusion titles reflect the venue;
 - no section hides a key contribution under a generic label such as "Analysis" or "Discussion".
+- equation, section, figure, and table numbering and references are continuous and valid;
+- formula references do not point forward to equations not yet introduced, while ordinary section-level navigation is distinguished from formula-definition order;
+- structural edits have not left obsolete terms, symbols, citation order, or malformed LaTeX fragments.
 
 ## Abstract Review
 

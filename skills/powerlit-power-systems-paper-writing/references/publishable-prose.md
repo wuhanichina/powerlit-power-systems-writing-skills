@@ -75,7 +75,7 @@ Example:
 
 ## Precision Pass
 
-Before final output, run three passes internally:
+Before final output, run four passes internally:
 
 1. Claim pass: every claim maps to a formula, assumption, theorem, case result, or stated boundary.
 2. Boundary-posture pass: no manuscript paragraph leads with defensive "not a replacement" language when a positive technical subject is available.

@@ -1,5 +1,82 @@
 # 版本说明
 
+## 2026-07-31 - Mechanism honesty, figure-led case story, and contribution significance
+
+- Extended the no-invention boundary to physical explanation. Every
+  physical-intuition statement now carries a status — `model-derivable`,
+  `consistent-with-model`, or an `unverified interpretation` reported in the
+  delivery note — in `method-model.md`, `prose-quality-gates.md`,
+  `task-prompts.md`, and the writing hard rules. A fabricated mechanism is
+  harder for a reviewer to detect than a fabricated number.
+- Added a model-consistency blocker: unbalanced units or per-unit bases,
+  contradictory sign conventions, reused symbols, and unstated theorem
+  assumptions are reported with their locations instead of being written around
+  with fluent prose.
+- Added the case-section figure storyboard and the figures-only read test in
+  `figures-tables-results.md`. The case figures, read in order with captions
+  alone, must carry the engineering scene, the physical contradiction, the
+  mechanism through a plotted intermediate quantity, the matched comparison, and
+  the boundary. A missing act is repaired by designing the figure, never by
+  lengthening the result paragraph. Added `storyboardAct` and
+  `figureOnlyReadable` to the figure plan, plus visual rules for annotated
+  thresholds, shared axes, and one message per panel.
+- Added the contribution significance gate to `manuscript-section-quality.md`:
+  primary insight type, the non-trivial claim, the changed reader consequence,
+  and the largest remaining defect. A draft that passes every prose and evidence
+  gate without a non-trivial claim is a story defect, not a finished paper. The
+  Chinese major-revision route skips the pre-drafting STOP but not this gate.
+- Reordered the delivery gates into five groups and made the technical group
+  always-run. Under budget pressure the rhythm and lexicon passes drop first;
+  physical-intuition, mechanism-honesty, model-consistency, figure-storyboard,
+  and causal-attribution checks may never be traded for prose polish.
+- Made review closure executable: `review-closed-loop.md` now names the five
+  review references it loads and requires an internal `本地审稿建议`,
+  `致命项清单`, and `专家级阅读体验` verdict.
+- Added a scope-preservation rule so removing defensive posture cannot widen a
+  claim, and promoted `method-model.md` and `figures-tables-results.md` to Tier 0
+  whenever the draft contains equations or figures.
+- Scoped the AEPS validation closing sentence with corpus evidence instead of
+  treating it as padding: 214 of 538 AEPS abstracts in the bundled index (39.8%)
+  use "验证了…有效性/可行性/正确性/优越性/准确性", 198 of them as the closing
+  sentence, versus 5.2% in CSEE. The counting rule and numbers are reproducible
+  via `evaluation/measure_validation_closing_stats.py`. It stays licensed in the
+  abstract's last sentence and `结语` with the validation platform and object
+  attached, and stays prohibited as the payload of a result paragraph or figure
+  interpretation.
+
+## 2026-07-31 - Chinese major-revision practice from real manuscript work
+
+- Reframed the public writing entry point around engineering needs, complete
+  physical/engineering intuition, linear technical logic, and evidence
+  advantage. Evidence boundaries now calibrate final claim strength instead of
+  leading the manuscript story.
+- Added an explicit route split: existing-object Chinese major revisions run
+  directly through `chinese-major-revision.md`, while only new papers or
+  rewrites that change the research object, pain point, primary innovation,
+  evidence positioning, title, or venue trigger the full pre-drafting STOP.
+- Closed the engineering-first reframing inside
+  `pre-drafting-confirmation.md` by adding relative evidence advantage and by
+  treating evidence boundaries as local claim-strength calibration rather than
+  mandatory lead language in every load-bearing section.
+- Added `chinese-major-revision.md` as an on-demand workflow for Chinese major
+  revisions, multi-version manuscript fusion, author-style calibration, and
+  structural/terminology cleanup.
+- Added a source-authority map that separates current technical truth,
+  author-written style evidence, literature evidence, reviewer input, and venue
+  constraints; style transfer may not import a conflicting technical framework.
+- Added promise-to-landing closure from abstract and contributions through body
+  development, equations/models, evidence, and conclusion.
+- Strengthened method exposition with `why before -> what it means after -> how
+  it connects`, plus placement rules for case parameters and implementation
+  details.
+- Added causal-attribution discipline for composite cases and synchronized the
+  same checks into the strict review skill.
+- Expanded submission consistency to cover forward equation references,
+  numbering, citation order, terminology residue, symbol/caption propagation,
+  and malformed LaTeX or control-character damage.
+- Added writing/review regression prompts, repository validation tokens, and
+  pytest coverage for the new workflow.
+
 ## 2026-07-12 - Innovation routing and project-template handoff
 
 - Added a four-axis innovation assessment and narrative router; `zero-to-one`
@@ -18,16 +95,16 @@
 - Added a canonical versioned project-template handoff schema and expanded
   regression fixtures, validation, and pytest coverage.
 
-## 2026-07-07 - PowerLit theoretical and engineering value positioning
+## 2026-07-07 - PowerLit 理论价值与工程价值定位
 
-This update raises the pre-drafting innovation discussion above individual metrics. Before formal manuscript writing, the skill must use project evidence and PowerLit near-neighbor literature to position the paper's theoretical value and engineering value in the closest problem family and method family. Metric improvements, baselines, sensitivities, and boundary cases are evidence for that value; they do not define the contribution by themselves.
+本次更新把写作前的创新讨论从单项指标提升到论文价值定位。正式写作前，技能必须结合项目证据与 PowerLit 近邻文献，在最接近的问题族和方法族中说明论文的理论价值、工程价值与相对证据优势。指标改进、基线对比、灵敏度和边界算例用于支撑这些价值，但不能单独定义论文贡献。
 
-Main changes:
-- `pre-drafting-confirmation.md` adds `PowerLit Theoretical And Engineering Value Positioning`, separating theoretical value positioning, engineering value positioning, metric-level evidence, and corpus-near role.
-- `insight-discovery.md` adds `Higher-Level Value Positioning` so early idea mining searches for new research objects, mechanism clarification, boundary conditions, theory migration, model-family bridges, certificates, validation protocols, counterexamples, or method-class reframing before settling on a story.
-- `innovation-chain.md` adds `Value position` and treats metric-only contribution framing as a weak chain.
-- `paper-writing` and `prewriting-review` now require PowerLit-backed value positioning before user confirmation and formal drafting.
-- Unit tests and `Validate-PowerLitSkillRepo.ps1` now enforce this behavior.
+主要变化：
+- `pre-drafting-confirmation.md` 新增 `PowerLit Theoretical And Engineering Value Positioning`，区分理论价值定位、工程价值定位、指标级证据和近邻文献中的角色，并把相对证据优势纳入确认项。
+- `insight-discovery.md` 新增 `Higher-Level Value Positioning`，使早期创新挖掘先检查新研究对象、机理澄清、边界条件、理论迁移、模型族桥接、证书、验证协议、反例或方法类别重构，再确定论文故事。
+- `innovation-chain.md` 新增 `Value position`，并把仅靠指标描述贡献视为薄弱创新链。
+- `paper-writing` 与 `prewriting-review` 在用户确认和正式写作前，均要求完成 PowerLit 支撑的价值定位。
+- 单元测试与 `Validate-PowerLitSkillRepo.ps1` 同步固化上述行为。
 ## 2026-07-06 - 写作前创新层级确认与专业问题表述
 
 本次更新把用户确认前置到更细的创新层级：正式写作前必须先讨论工程背景和痛点，再区分“发现或验证了什么猜想/机制”、“提出了什么方法”和“解决了什么工程问题”。只有这些层级与证据边界讲清楚后，才能进入正文写作。

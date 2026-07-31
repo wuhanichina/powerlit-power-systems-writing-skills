@@ -26,7 +26,9 @@ Before drafting, reduce the paper to one internal spine sentence:
 
 `For [power-system object] under [operating condition], this paper [technical action] so that [unresolved conflict] can be addressed within [evidence boundary].`
 
-Do not print this sentence as a label. Use it to decide what the introduction keeps, delays, or deletes. The title should expose the same technical object or action when possible; the abstract should compress the same line; the contribution statement should unfold it; the result discussion and conclusion should return to what this line promised. If a background paragraph, citation group, or contribution candidate cannot attach to the spine, it is probably context noise or a different paper.
+Alongside the spine, name the paper's primary insight type — theory migration, counterintuitive behavior, invariant, reduction, or boundary — using the discovery moves in `powerlit-power-systems-prewriting-review/references/insight-discovery.md`. The spine says what the paper does; the insight type says why a reader should care, and it decides which gap the introduction must sharpen. A paper whose only honest answer is an incremental improvement on an established task should build the introduction around the exact limitation it removes rather than around a mechanism story it cannot deliver. The contribution significance gate in `manuscript-section-quality.md` checks this answer again before delivery.
+
+Do not print the spine sentence or the insight type as a label. Use them to decide what the introduction keeps, delays, or deletes. The title should expose the same technical object or action when possible; the abstract should compress the same line; the contribution statement should unfold it; the result discussion and conclusion should return to what this line promised. If a background paragraph, citation group, or contribution candidate cannot attach to the spine, it is probably context noise or a different paper.
 
 Use this cutting order:
 

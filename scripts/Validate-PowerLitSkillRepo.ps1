@@ -1,4 +1,4 @@
-param(
+﻿param(
     [switch]$SkipPowerLitSearch
 )
 
@@ -40,6 +40,22 @@ function Invoke-PowerLitPowerShell {
         throw "No powershell or pwsh executable is available"
     }
     return & $script:powerShellCommand.Source -NoProfile -ExecutionPolicy Bypass -File $File @Arguments
+}
+
+# Windows PowerShell 5.1 parses BOM-less UTF-8 .ps1 files as ANSI, which corrupts
+# non-ASCII string literals at parse time. Require a BOM on every non-ASCII .ps1.
+$psScriptFiles = Get-ChildItem -LiteralPath $repoRoot -Recurse -File -Filter "*.ps1" |
+    Where-Object { $_.FullName -notmatch '\\(\.git|__pycache__|\.pytest_cache|\.venv|venv)\\' }
+foreach ($psScriptFile in $psScriptFiles) {
+    $scriptBytes = [System.IO.File]::ReadAllBytes($psScriptFile.FullName)
+    $hasNonAscii = $false
+    foreach ($scriptByte in $scriptBytes) {
+        if ($scriptByte -gt 127) { $hasNonAscii = $true; break }
+    }
+    $hasUtf8Bom = ($scriptBytes.Length -ge 3 -and $scriptBytes[0] -eq 0xEF -and $scriptBytes[1] -eq 0xBB -and $scriptBytes[2] -eq 0xBF)
+    if ($hasNonAscii -and -not $hasUtf8Bom) {
+        Add-Failure "$($psScriptFile.FullName): .ps1 with non-ASCII content must be saved as UTF-8 with BOM so Windows PowerShell 5.1 can parse it"
+    }
 }
 
 $skillFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "skills") -Recurse -File -Filter "SKILL.md"
@@ -116,10 +132,20 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "theoretical value positioning" -or $paperSkillText -notmatch "engineering value positioning" -or $paperSkillText -notmatch "metric-level evidence") {
         Add-Failure "paper-writing skill must confirm theoretical and engineering value positioning above metric-level evidence before drafting"
     }
+    foreach ($engineeringFirstToken in @("real power-system engineering need", "complete physical and engineering intuition", "linear technical logic", "relative evidence advantage", "evidence boundary as final claim-strength calibration")) {
+        if ($paperSkillText -notmatch [regex]::Escape($engineeringFirstToken)) {
+            Add-Failure "paper-writing skill missing engineering/physics-first positioning token: $engineeringFirstToken"
+        }
+    }
+    foreach ($majorRevisionRouteToken in @("Select exactly one revision-entry route", "Existing-object Chinese major-revision route", "do not run or stop for the full", "brief by default", "Do not apply this STOP by default", "Escalation rule")) {
+        if ($paperSkillText -notmatch [regex]::Escape($majorRevisionRouteToken)) {
+            Add-Failure "paper-writing skill missing existing-object major-revision route token: $majorRevisionRouteToken"
+        }
+    }
     if ($paperSkillText -notmatch "references/review-closed-loop\.md") {
         Add-Failure "paper-writing skill must load references/review-closed-loop.md"
     }
-    foreach ($requiredRoutingReference in @("references/innovation-narrative-router.md", "references/case-design-contracts.md", "references/innovation-exemplar-doi-map.md", "references/submission-consistency-check.md", "references/revision-response.md")) {
+    foreach ($requiredRoutingReference in @("references/innovation-narrative-router.md", "references/case-design-contracts.md", "references/innovation-exemplar-doi-map.md", "references/chinese-major-revision.md", "references/submission-consistency-check.md", "references/revision-response.md")) {
         if ($paperSkillText -notmatch [regex]::Escape($requiredRoutingReference)) {
             Add-Failure "paper-writing skill missing required workflow reference: $requiredRoutingReference"
         }
@@ -187,6 +213,14 @@ if (Test-Path -LiteralPath $paperSkill) {
     if ($paperSkillText -notmatch "mandatory reader-experience pass") {
         Add-Failure "paper-writing skill must require mandatory reader-experience pass"
     }
+    foreach ($technicalGateToken in @("mechanism-honesty status pass", "model-consistency blocker", "figures-only read test", "contribution significance gate")) {
+        if ($paperSkillText -notmatch [regex]::Escape($technicalGateToken)) {
+            Add-Failure "paper-writing skill missing always-run technical gate: $technicalGateToken"
+        }
+    }
+    if ($paperSkillText -notmatch "Never trade a physical-intuition") {
+        Add-Failure "paper-writing skill must forbid trading technical gates for prose-polish gates under budget pressure"
+    }
     if ($paperSkillText -notmatch "skills/powerlit-power-systems-literature-intelligence/references/method-canon\.json") {
         Add-Failure "paper-writing skill must recognize verified method-canon citation sources"
     }
@@ -238,6 +272,14 @@ if (Test-Path -LiteralPath $preDraftingConfirmation) {
             Add-Failure "pre-drafting-confirmation.md missing theoretical/engineering value-positioning token: $requiredValuePositioningToken"
         }
     }
+    foreach ($requiredEngineeringFirstToken in @("Relative Evidence Advantage", "relative evidence advantage", "final claim-strength calibration", "do not force boundary language into every load-bearing section", 'Route directly to `chinese-major-revision.md` without the full')) {
+        if ($preDraftingConfirmationText -notmatch [regex]::Escape($requiredEngineeringFirstToken)) {
+            Add-Failure "pre-drafting-confirmation.md missing engineering-first routing token: $requiredEngineeringFirstToken"
+        }
+    }
+    if ($preDraftingConfirmationText -match [regex]::Escape("evidence boundary that must appear in abstract, introduction, result discussion, and conclusion")) {
+        Add-Failure "pre-drafting-confirmation.md must treat evidence boundaries as final calibration, not mandatory narrative content in every load-bearing section"
+    }
     if ($preDraftingConfirmationText -notmatch "binary `"supports X / does not support Y`"" -or $preDraftingConfirmationText -notmatch "the current evidence is best used as") {
         Add-Failure "pre-drafting-confirmation.md must avoid binary support language for innovation mining"
     }
@@ -270,10 +312,11 @@ $innovationAssessment = Join-Path $repoRoot "skills\powerlit-power-systems-prewr
 $innovationRouter = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\innovation-narrative-router.md"
 $caseContracts = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\case-design-contracts.md"
 $innovationDoiMap = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\innovation-exemplar-doi-map.md"
+$chineseMajorRevision = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\chinese-major-revision.md"
 $submissionConsistency = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\submission-consistency-check.md"
 $revisionResponse = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\revision-response.md"
 $handoffContract = Join-Path $repoRoot "contracts\project-template-handoff.schema.yaml"
-foreach ($requiredWorkflowFile in @($innovationAssessment, $innovationRouter, $caseContracts, $innovationDoiMap, $submissionConsistency, $revisionResponse, $handoffContract)) {
+foreach ($requiredWorkflowFile in @($innovationAssessment, $innovationRouter, $caseContracts, $innovationDoiMap, $chineseMajorRevision, $submissionConsistency, $revisionResponse, $handoffContract)) {
     if (-not (Test-Path -LiteralPath $requiredWorkflowFile -PathType Leaf)) {
         Add-Failure "Missing innovation/handoff workflow file: $requiredWorkflowFile"
     }
@@ -350,8 +393,27 @@ if (Test-Path -LiteralPath $manuscriptSectionQuality) {
             Add-Failure "manuscript-section-quality.md missing non-binary manuscript token: $requiredNonBinarySectionToken"
         }
     }
+    if ($manuscriptSectionQualityText -notmatch "Contribution Significance Gate") {
+        Add-Failure "manuscript-section-quality.md must define the contribution significance gate"
+    }
+    foreach ($significanceToken in @("Primary insight type", "Non-trivial claim", "Reader consequence", "Largest remaining defect", "story defect")) {
+        if ($manuscriptSectionQualityText -notmatch [regex]::Escape($significanceToken)) {
+            Add-Failure "manuscript-section-quality.md missing significance gate token: $significanceToken"
+        }
+    }
 } else {
     Add-Failure "Missing manuscript-section-quality.md"
+}
+
+if (Test-Path -LiteralPath $chineseMajorRevision) {
+    $chineseMajorRevisionText = Read-Utf8 -Path $chineseMajorRevision
+    foreach ($requiredMajorRevisionToken in @("Chinese Major-Revision Practice", "Build a Source-Authority Map", "Portability Boundary", "clean-room writing functions", "Lock Promises and Body Landings", "why -> what it means -> how it connects", "Separate Observation From Causal Explanation", "Colon discipline", "formula references that point forward", "malformed LaTeX")) {
+        if ($chineseMajorRevisionText -notmatch [regex]::Escape($requiredMajorRevisionToken)) {
+            Add-Failure "chinese-major-revision.md missing token: $requiredMajorRevisionToken"
+        }
+    }
+} else {
+    Add-Failure "Missing chinese-major-revision.md"
 }
 
 $proseQualityGates = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\prose-quality-gates.md"
@@ -374,6 +436,17 @@ if (Test-Path -LiteralPath $methodModelReference) {
     }
     if ($methodModelText -notmatch "quadratic power-flow kernel") {
         Add-Failure "method-model.md must include inverse PLF physical-intuition guidance"
+    }
+    if ($methodModelText -notmatch "Mechanism Honesty") {
+        Add-Failure "method-model.md must include the mechanism honesty pass"
+    }
+    if ($methodModelText -notmatch "Model Consistency Blocker") {
+        Add-Failure "method-model.md must include the model consistency blocker"
+    }
+    foreach ($mechanismToken in @("model-derivable", "consistent-with-model", "unverified interpretation")) {
+        if ($methodModelText -notmatch [regex]::Escape($mechanismToken)) {
+            Add-Failure "method-model.md missing mechanism status token: $mechanismToken"
+        }
     }
     if ($methodModelText -notmatch "Physical Story Before Mathematics") {
         Add-Failure "method-model.md must require physical story before mathematics"
@@ -419,8 +492,47 @@ if (Test-Path -LiteralPath $figuresTablesResultsReference) {
     if ($figuresTablesResultsText -notmatch "physicsReproduction" -or $figuresTablesResultsText -notmatch "sciQuestion") {
         Add-Failure "figures-tables-results.md must include template figure metadata fields"
     }
+    if ($figuresTablesResultsText -notmatch "Case-Section Figure Storyboard") {
+        Add-Failure "figures-tables-results.md must define the case-section figure storyboard"
+    }
+    if ($figuresTablesResultsText -notmatch "Figures-Only Read Test") {
+        Add-Failure "figures-tables-results.md must define the figures-only read test"
+    }
+    foreach ($storyboardToken in @("storyboardAct", "figureOnlyReadable", "Engineering scene", "Physical contradiction", "intermediate quantity")) {
+        if ($figuresTablesResultsText -notmatch [regex]::Escape($storyboardToken)) {
+            Add-Failure "figures-tables-results.md missing figure storyboard token: $storyboardToken"
+        }
+    }
 } else {
     Add-Failure "Missing figures-tables-results.md"
+}
+
+$reviewClosedLoopReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\review-closed-loop.md"
+if (Test-Path -LiteralPath $reviewClosedLoopReference) {
+    $reviewClosedLoopText = Read-Utf8 -Path $reviewClosedLoopReference
+    if ($reviewClosedLoopText -notmatch "Required review references") {
+        Add-Failure "review-closed-loop.md must name the review references it loads"
+    }
+    foreach ($closureToken in @("innovation-logic.md", "model-math.md", "evidence-case-conclusion.md", "expert-reader-experience.md", "decision-rubric.md", "本地审稿建议", "致命项清单", "专家级阅读体验")) {
+        if ($reviewClosedLoopText -notmatch [regex]::Escape($closureToken)) {
+            Add-Failure "review-closed-loop.md missing closure verdict token: $closureToken"
+        }
+    }
+} else {
+    Add-Failure "Missing review-closed-loop.md"
+}
+
+$aepsVenueReference = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\aeps.md"
+if (Test-Path -LiteralPath $aepsVenueReference) {
+    $aepsVenueText = Read-Utf8 -Path $aepsVenueReference
+    if ($aepsVenueText -notmatch "验证了") {
+        Add-Failure "aeps.md must keep the measured AEPS validation closing convention"
+    }
+    if ($aepsVenueText -notmatch "prose-quality-gates\.md") {
+        Add-Failure "aeps.md must point the validation closing sentence at its section-scope rule"
+    }
+} else {
+    Add-Failure "Missing aeps.md"
 }
 
 $corpusDrafting = Join-Path $repoRoot "skills\powerlit-power-systems-paper-writing\references\corpus-grounded-drafting.md"
@@ -608,6 +720,12 @@ if (Test-Path -LiteralPath $proseQualityGates) {
     }
     if ($proseQualityText -notmatch "Adjective replacement rule") {
         Add-Failure "prose-quality-gates.md must include adjective replacement rule"
+    }
+    if ($proseQualityText -notmatch "Scope preservation") {
+        Add-Failure "prose-quality-gates.md must forbid claim widening when defensive posture is removed"
+    }
+    if ($proseQualityText -notmatch "Venue-licensed closing summary") {
+        Add-Failure "prose-quality-gates.md must scope the venue-licensed validation closing sentence instead of banning it outright"
     }
 } else {
     Add-Failure "Missing prose-quality-gates.md"

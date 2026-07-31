@@ -88,3 +88,28 @@ rules:
       - engineering integration papers
     confidence: medium
     summary: Engineering integration is not an automatic rejection reason for Application Papers; judge system value, realistic evidence, transferability, and operational lessons.
+
+  aeps_validation_closing_sentence_stats:
+    source_type: corpus_measurement
+    source: evaluation/measure_validation_closing_stats.py
+    checked_at: 2026-07-31
+    effective_date: 2026.07 bundled-index snapshot
+    applies_to:
+      - AEPS abstract closing-sentence convention
+      - CSEE abstract closing-sentence comparison
+      - venue-licensed closing summary rule
+    confidence: high
+    summary: Measured on the bundled PowerLit index with the committed counting rule, 214 of 538 AEPS abstracts (39.8%) contain 验证了…有效性/可行性/正确性/优越性/准确性 with 198 as the closing sentence, versus 42 of 802 (5.2%) in CSEE; rerun the script and update quoting files together when the index or rule changes.
+
+  chinese_major_revision_practice:
+    source_type: heuristic
+    source: skills/powerlit-power-systems-paper-writing/references/chinese-major-revision.md
+    checked_at: 2026-07-31
+    effective_date: 2026-07-31
+    applies_to:
+      - Chinese power-systems manuscript major revision
+      - multi-version manuscript fusion
+      - author-style calibration
+      - full-paper structural and terminology cleanup
+    confidence: medium
+    summary: Field-tested revision heuristics separate technical and style authority, require promise-to-landing closure, weave physical motivation and meaning through equations, isolate causal factors in case studies, and close terminology, numbering, reference, and formula integrity after revision.
