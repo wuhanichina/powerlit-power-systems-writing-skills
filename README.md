@@ -5,7 +5,7 @@
 > **面向工程需求，讲清物理直觉与技术逻辑，确认证据优势，写能经得起审稿的电力系统论文。**
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Writing Skill Version](https://img.shields.io/badge/Writing%20Skill-2026.07.31-blueviolet)](#版本更新记录)
+[![Writing Skill Version](https://img.shields.io/badge/Writing%20Skill-2026.08.01-blueviolet)](#版本更新记录)
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](skills/)
 [![Claude Skill](https://img.shields.io/badge/Claude-Skill-8A2BE2)](skills/)
 [![Cursor Skill](https://img.shields.io/badge/Cursor-Skill-007ACC)](skills/)
@@ -27,27 +27,25 @@
 
 ## 版本更新记录
 
-当前 paper-writing 与 paper-review 版本：**2026.07.31**；prewriting-review 版本：**2026.07.12**。各技能
+当前 paper-writing 版本：**2026.08.01**；paper-review 版本：**2026.07.31**；prewriting-review 版本：**2026.07.12**。各技能
 `SKILL.md` 独立携带 `version:`，安装后可用
 `Select-String -Path skills\*\SKILL.md, ~/.cursor/skills/*/SKILL.md -Pattern '^version:'`
 对比仓库与本地副本是否一致。
 
-- **2026-07-31**：物理解释纳入 no-invention 边界（`model-derivable` / `consistent-with-model` / 交付备注中的未验证解读），新增模型不一致阻断项；算例分析新增图表分镜与「只看图」检验，要求图序列自身讲清工程场景、物理矛盾、机理中间量、匹配对比与边界；新增贡献显著性门（洞见类型、非平凡结论、读者决策变化、最大残余缺陷），中文大修路线不再豁免该门；交付门重排为五组，技术检查常开且不得与语言润色交换预算；审稿闭环改为必须加载五个审稿参考并产出本地审稿建议、致命项清单与专家级阅读体验；AEPS 验证收束句按语料实测结果按节作用域保留而非删除。
-- **2026-07-31**：写作入口调整为工程需求、物理/工程直觉、技术逻辑与证据优势优先，证据边界退回结论强度校准项；同时把两轮真实中文论文大修经验沉淀为 `chinese-major-revision.md`，新增多版本稿件 source-authority map、摘要/贡献到正文与证据的 promise-to-landing 闭环、公式 `why → meaning → connection` 物理叙事、算例因果隔离，以及公式前引/编号/术语/引用/LaTeX 乱码终检。
+只显示最近 10 个版本（时间倒序，每天的修改合并为一个版本）：
+
+- **2026-08-01**：创新范例 DOI 地图为 method 与 framework 路由新增两篇 Furong Li 全文范例，沉淀 source-backed 引言、推导、算例排布与「趋势—机理—优势」图表讨论模板；叙事路由同步新增经济决策闭环与 minimal-to-practical 验证两条论证功能，校验脚本与 pytest 同步固化。
+- **2026-07-31**：物理解释纳入 no-invention 边界（`model-derivable` / `consistent-with-model` / 交付备注中的未验证解读），新增模型不一致阻断项；算例分析新增图表分镜与「只看图」检验，要求图序列自身讲清工程场景、物理矛盾、机理中间量、匹配对比与边界；新增贡献显著性门（洞见类型、非平凡结论、读者决策变化、最大残余缺陷），中文大修路线不再豁免该门；交付门重排为五组，技术检查常开且不得与语言润色交换预算；审稿闭环改为必须加载五个审稿参考并产出本地审稿建议、致命项清单与专家级阅读体验；AEPS 验证收束句按语料实测结果按节作用域保留而非删除。同日：写作入口调整为工程需求、物理/工程直觉、技术逻辑与证据优势优先，证据边界退回结论强度校准项；把两轮真实中文论文大修经验沉淀为 `chinese-major-revision.md`，新增多版本稿件 source-authority map、摘要/贡献到正文与证据的 promise-to-landing 闭环、公式 `why → meaning → connection` 物理叙事、算例因果隔离，以及公式前引/编号/术语/引用/LaTeX 乱码终检。
 - **2026-07-12**：新增创新四轴与 0→1/1→100 叙事路由、六类算例契约、Figure-first 趋势—机理—优势解释链、证据动词阶梯、投稿一致性终检、三件套返修工作流，以及与 MATLAB 项目模板之间的版本化 handoff contract。
 - **2026-07-07**：写作前确认新增 PowerLit 支撑的理论价值与工程价值定位——先从工程需求与物理机制说明论文解决什么问题，再对照近邻文献确认理论、工程与证据优势；指标只作为从属证据，证据边界用于校准结论强度，不再主导论文故事。
 - **2026-07-06**：写作前确认新增创新层级门——正式写作前先和用户确认工程背景、真实痛点、发现/猜想验证、方法贡献和工程问题贡献，并把项目内部名称、case/run 标签、claim 编号、脚本名转换成专业电力系统问题表述；创新挖掘和正式正文写作都避免“支持/不支持”二元口径，改用主线创新、条件性贡献、现象线索、边界证据和待补证据分级。
-- **2026-07-03（2026.07.03）**：索引 year 字段修复——`derive_year` 从 DOI/正文推断年份， bundled SQLite 分片回填 14146/14148 条，检索结果现带 `year`；关键检查点加 🔴 CHECKPOINT / 🛑 STOP 视觉标记；`paper-writing` 去重瘦身；六个技能 frontmatter 增加 `version:`；README 补充 Cursor 等通用 runtime 安装与同步说明；新增半自动回归 runner（`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`）与 Letter 开篇痛点 A/B 回归用例。
-- 2026-06-30：结构完整性收口——写作侧与审稿侧 section 质量清单互相对齐以防跨技能漂移；写作闭环复审改为独立审稿人姿态（接入 `evaluation/behavior/independent-reviewer-prompt.md`）以消除自评偏置；删除未被任何流程加载的孤儿参考文件 `baseline-comparison.md`。
-- 2026-06-30：打磨写作技能可实施性——新增参考文件加载分层（常见任务不再全量加载）、把交付前的十余个 pass 收敛为四组并与 `prose-quality-gates.md` 去重、明确内部标签“计划要/正文删”规则、期刊路由改为对象优先（TPWRS 仅作兜底）、新增按期刊的 before→after 正例库与公式直觉句模板、跨章节主线一致性检查和翻译保边界规则。
-- 2026-06-30：新增预审阶段的最小研究对象门，先锁定小同行问题域，再判断痛点、创新点、文献对照和工程故事，避免把窄对象贡献扩写成宽泛行业背景。
-- 2026-06-27：新增预写作阶段的真实创新点重定位和物理故事线检查，先判断项目真正该讲什么技术故事再进入写作。
-- 2026-06-19：新增 Codex 与 Claude 双平台安装说明，并补强论文主线、证据新鲜度和开篇痛点分层规则。
-- 2026-06-18：新增文献精读 skill、readiness 迁移、跨平台检索入口和仓库验证层。
-- 2026-06-17：新增审稿意见改稿的物理叙事 gate，避免正文写成逐条回应或数学堆砌。
-- 2026-06-16：新增随仓库分发的 PowerLit SQLite 检索索引，使默认文献召回更快、更可复用。
+- **2026-07-03**：索引 year 字段修复——`derive_year` 从 DOI/正文推断年份，bundled SQLite 分片回填 14146/14148 条，检索结果现带 `year`；关键检查点加 🔴 CHECKPOINT / 🛑 STOP 视觉标记；`paper-writing` 去重瘦身；六个技能 frontmatter 增加 `version:`；README 补充 Cursor 等通用 runtime 安装与同步说明；新增半自动回归 runner（`scripts/Run-SkillRegression.py` + `evaluation/results.tsv`）与 Letter 开篇痛点 A/B 回归用例。
+- **2026-06-30**：结构完整性收口——写作侧与审稿侧 section 质量清单互相对齐以防跨技能漂移，写作闭环复审改为独立审稿人姿态以消除自评偏置，删除孤儿参考文件 `baseline-comparison.md`；打磨写作技能可实施性——新增参考文件加载分层、交付前 pass 收敛为四组并与 `prose-quality-gates.md` 去重、内部标签“计划要/正文删”规则、期刊路由改为对象优先（TPWRS 仅作兜底）、按期刊 before→after 正例库与公式直觉句模板、跨章节主线一致性检查和翻译保边界规则；新增预审最小研究对象门——先锁定小同行问题域，再判断痛点、创新点、文献对照和工程故事，避免把窄对象贡献扩写成宽泛行业背景。
+- **2026-06-27**：新增预写作阶段的真实创新点重定位和物理故事线检查，先判断项目真正该讲什么技术故事再进入写作。
+- **2026-06-19**：新增 Codex 与 Claude 双平台安装说明，并补强论文主线、证据新鲜度和开篇痛点分层规则。
+- **2026-06-18**：新增文献精读 skill、readiness 迁移、跨平台检索入口和仓库验证层。
 
-完整变更见 [CHANGELOG.md](CHANGELOG.md)。
+更早版本与完整变更见 [CHANGELOG.md](CHANGELOG.md)。
 
 ---
 

@@ -1,5 +1,18 @@
 # 版本说明
 
+## 2026-08-01 - Source-backed Furong Li exemplars for method and framework routes
+
+- Added two supplied Furong Li full-text exemplars for method and framework
+  routes, including DOI-backed introduction, derivation, case-sequencing, and
+  trend-mechanism-advantage figure-discussion patterns, consolidated as the
+  `Source-Backed Furong Li Pattern Pair` section in
+  `innovation-exemplar-doi-map.md`.
+- Extended `innovation-narrative-router.md` with two argument functions
+  distilled from the same sources: the economic-decision loop and the
+  minimal-to-practical validation route.
+- Synchronized `Validate-PowerLitSkillRepo.ps1` tokens and pytest coverage for
+  the new DOIs and pattern section.
+
 ## 2026-07-31 - Mechanism honesty, figure-led case story, and contribution significance
 
 - Extended the no-invention boundary to physical explanation. Every

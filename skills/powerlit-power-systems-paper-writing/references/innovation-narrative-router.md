@@ -58,6 +58,11 @@ Corpus and author analyses may yield reusable functions such as:
   → counterfactual or ablation → causal interpretation;
 - framework-closure route: information flow → component interface → end-to-end
   consequence → interface failure.
+- economic-decision loop: controllable signal → user/asset response → network
+  state change → investment consequence → updated signal;
+- minimal-to-practical validation: prose mechanism → numbered derivation →
+  minimal inspectable network → equilibrium/contrast case → incumbent-method
+  comparison → practical-system consequence → bounded extension.
 
 These are clean-room structural abstractions. Never expose an author's name as
 a fixed template, preserve a distinctive sentence, or imitate source phrasing.

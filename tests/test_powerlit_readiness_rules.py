@@ -357,14 +357,18 @@ def test_innovation_router_case_contracts_and_handoff_are_wired():
     assert "innovation-exemplar-doi-map.md" in writing_skill
     for doi in (
         "10.1109/TPWRS.2017.2692268",
+        "10.1109/TPWRS.2007.908469",
         "10.1109/TPWRS.2016.2641463",
         "10.1109/TPWRS.2012.2205021",
         "10.1109/TPWRS.2015.2402640",
         "10.1109/TPWRS.2023.3326137",
+        "10.1109/TPWRS.2009.2030283",
         "10.1109/TSG.2019.2935736",
     ):
         assert doi in doi_map
     assert "The DOI map is a retrieval index, not a citation list" in doi_map
+    assert "Source-Backed Furong Li Pattern Pair" in doi_map
+    assert "incoming PDF; indexed JSON not confirmed" in doi_map
     assert 'version: "2026.07.12"' in handoff
 
 
@@ -522,8 +526,8 @@ def test_writing_entrypoint_is_engineering_and_physics_first():
 
     assert "Start from engineering needs" in readme_en
     assert "Evidence boundaries calibrate conclusion strength rather than lead the story" in readme_en
-    assert "当前 paper-writing 与 paper-review 版本：**2026.07.31**" in readme
-    assert "Current paper-writing and paper-review version: **2026.07.31**" in readme_en
+    assert "当前 paper-writing 版本：**2026.08.01**" in readme
+    assert "Current paper-writing version: **2026.08.01**" in readme_en
 
     assert "real power-system engineering need" in writing_skill
     assert "complete physical and engineering intuition" in writing_skill

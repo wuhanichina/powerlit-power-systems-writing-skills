@@ -60,7 +60,19 @@ contribution wording, captions, or distinctive phrases.
 
 ## New Method
 
-1. **Adaptive Robust Optimization for the Security Constrained Unit
+1. **Long-Run Incremental Cost Pricing Based on Unused Capacity**
+   DOI: `10.1109/TPWRS.2007.908469`
+   PowerLit status: incoming PDF; indexed JSON not confirmed. Use the pattern
+   only when the full text is supplied or retrieved in the current session.
+   Structural use: policy/planning uncertainty → two functions required of
+   network charging → taxonomy of existing routes → two explicit assumptions
+   that fail → unused capacity as the new technical object → stepwise pricing
+   derivation → simple mechanism case → equilibrium case → practical benchmark
+   → security extension. Its result discussion repeatedly uses
+   trend → key contrast → investment-advance/deferral mechanism → pricing
+   meaning → advantage over ICRP.
+
+2. **Adaptive Robust Optimization for the Security Constrained Unit
    Commitment Problem**  
    DOI: `10.1109/TPWRS.2012.2205021`  
    PowerLit: `ieee_tpwrs/v28/i01/10-1109-tpwrs-2012-2205021.json`  
@@ -68,14 +80,14 @@ contribution wording, captions, or distinctive phrases.
    decomposition/solution method → large-system comparison and operational
    consequence.
 
-2. **Exploring the Modeling Capacity of Two-Stage Robust Optimization:
+3. **Exploring the Modeling Capacity of Two-Stage Robust Optimization:
    Variants of Robust Unit Commitment Model**  
    DOI: `10.1109/TPWRS.2014.2320880`  
    PowerLit: `ieee_tpwrs/v30/i01/10-1109-tpwrs-2014-2320880.json`  
    Structural use: distinguish model variants by the uncertainty/recourse object
    → compare modeling strength, economic outcomes, and algorithm behavior.
 
-3. **Chance Constrained Programming for Optimal Power Flow Under
+4. **Chance Constrained Programming for Optimal Power Flow Under
    Uncertainty**  
    DOI: `10.1109/TPWRS.2011.2154367`  
    PowerLit: `ieee_tpwrs/v26/i04/10-1109-tpwrs-2011-2154367.json`  
@@ -132,7 +144,20 @@ contribution wording, captions, or distinctive phrases.
 
 ## New Framework or Decision Loop
 
-1. **Low-Carbon Operation of Multiple Energy Systems Based on Energy-Carbon
+1. **Framework for Assessing the Economic Efficiencies of Long-Run Network
+   Pricing Models**
+   DOI: `10.1109/TPWRS.2009.2030283`
+   PowerLit status: incoming PDF; indexed JSON not confirmed. Use the pattern
+   only when the full text is supplied or retrieved in the current session.
+   Structural use: planning uncertainty → pricing as the controllable signal →
+   gap between qualitative comparison and quantified long-run value → a
+   four-stage closed loop of reference network, pricing model, user response,
+   and investment model → price snapshots → temporal price evolution →
+   cumulative investment consequence. It is a strong exemplar for proving a
+   framework through interface behavior and end-to-end decision consequences,
+   rather than by listing components.
+
+2. **Low-Carbon Operation of Multiple Energy Systems Based on Energy-Carbon
    Integrated Prices**  
    DOI: `10.1109/TSG.2019.2935736`  
    PowerLit: `ieee_tsg/v11/i02/10-1109-tsg-2019-2935736.json`  
@@ -140,7 +165,7 @@ contribution wording, captions, or distinctive phrases.
    flow and optimization interfaces → evaluate coordinated energy/carbon
    consequences.
 
-2. **Optimal Configuration Planning of Multi-Energy Systems Considering
+3. **Optimal Configuration Planning of Multi-Energy Systems Considering
    Distributed Renewable Energy**  
    DOI: `10.1109/TSG.2017.2767860`  
    PowerLit: `ieee_tsg/v10/i02/10-1109-tsg-2017-2767860.json`  
@@ -148,12 +173,65 @@ contribution wording, captions, or distinctive phrases.
    configuration model → system-level comparison, sensitivity, and planning
    value.
 
-3. **Optimal Coordination of Water Distribution Energy Flexibility With Power
+4. **Optimal Coordination of Water Distribution Energy Flexibility With Power
    Systems Operation**  
    DOI: `10.1109/TSG.2018.2824308`  
    PowerLit: `ieee_tsg/v10/i01/10-1109-tsg-2018-2824308.json`  
    Structural use: two-system interface and flexibility exchange → coordination
    model → matched isolated/coordinated cases → end-to-end operational value.
+
+## Source-Backed Furong Li Pattern Pair
+
+The two supplied full texts above support a paired clean-room pattern for
+market, planning, pricing, and engineering-decision papers. Use the pattern
+only after checking that the current innovation route has the same argument
+function.
+
+### Introduction pattern
+
+1. begin with a concrete planning or regulatory uncertainty;
+2. identify the decision lever that remains controllable;
+3. state the engineering/economic functions that a satisfactory method must
+   serve;
+4. classify existing approaches before criticizing them;
+5. identify a small number of operationally consequential assumptions or a
+   missing quantitative comparison loop;
+6. introduce the new technical object or framework and immediately state the
+   decision consequence it enables.
+
+The gap is therefore not written as a generic accuracy deficit. It is written
+as a broken chain between price/model, user or network response, investment,
+and long-term system consequence.
+
+### Method and case pattern
+
+- Explain the economic or physical mechanism in prose before equations.
+- Derive the method as numbered operational steps.
+- Start with a minimal network that makes the mechanism inspectable.
+- Add a deliberately structured equilibrium or contrast case.
+- Compare against the deployed or closest incumbent method.
+- Move from static price/output differences to dynamic user response and then
+  to cumulative network-investment consequences.
+- Add an extension or boundary case only after the main mechanism is closed.
+
+### Figure-discussion pattern
+
+For each main figure or table:
+
+1. state the observed trend or cross-model difference;
+2. identify the node, utilization range, reversal, convergence, or cumulative
+   cost feature that matters;
+3. explain it through distance, asset utilization, reactive-power use,
+   investment advancement/deferral, or user-location response;
+4. state what problem the pattern reveals;
+5. state why the proposed pricing method or assessment framework handles that
+   problem better;
+6. preserve limits such as uniform growth assumptions, omitted siting
+   constraints, or proxy elasticities.
+
+Do not label generated prose as “Furong Li style.” Convert these observations
+into the generic argument functions in `innovation-narrative-router.md`, and
+write all claims from the current project's evidence.
 
 ## Retrieval Procedure
 

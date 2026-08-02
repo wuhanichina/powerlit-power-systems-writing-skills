@@ -323,7 +323,7 @@ foreach ($requiredWorkflowFile in @($innovationAssessment, $innovationRouter, $c
 }
 if (Test-Path -LiteralPath $innovationDoiMap) {
     $doiMapText = Read-Utf8 -Path $innovationDoiMap
-    foreach ($token in @("New Research Object", "New Variable or Scenario", "New Method", "New Discovery or Observation", "New Mechanism", "New Framework or Decision Loop", "10.1109/TPWRS.2017.2692268", "10.1109/TSG.2019.2935736", "retrieval index, not a citation list")) {
+    foreach ($token in @("New Research Object", "New Variable or Scenario", "New Method", "New Discovery or Observation", "New Mechanism", "New Framework or Decision Loop", "10.1109/TPWRS.2017.2692268", "10.1109/TPWRS.2007.908469", "10.1109/TPWRS.2009.2030283", "10.1109/TSG.2019.2935736", "Source-Backed Furong Li Pattern Pair", "retrieval index, not a citation list")) {
         if ($doiMapText -notmatch [regex]::Escape($token)) { Add-Failure "innovation DOI map missing token: $token" }
     }
 }
