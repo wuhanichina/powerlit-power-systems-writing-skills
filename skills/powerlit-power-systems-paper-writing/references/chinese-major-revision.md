@@ -13,6 +13,7 @@ This file owns the revision procedure. Keep section-construction detail in the e
 ## Navigation
 
 - Portability Boundary
+- Terminology Selection Principles
 - Build a Source-Authority Map
 - Diagnose Before Rewriting
 - Lock Promises and Body Landings
@@ -21,6 +22,7 @@ This file owns the revision procedure. Keep section-construction detail in the e
 - Separate Observation From Causal Explanation
 - Run the Chinese Revision Pass
 - Close the Revision Mechanically
+- Case-Study Anonymization Pass
 
 ## Portability Boundary
 
@@ -29,6 +31,16 @@ Extract reusable decision rules from project experience; do not turn one paper's
 - Treat a project-specific replacement such as changing one control term, storage label, or matrix subscript as an entry in that manuscript's terminology ledger.
 - Promote a rule to this skill only when it applies across research objects, such as separating style authority from technical authority, requiring a body landing for an abstract promise, or isolating a causal factor in a case study.
 - Preserve a technically valid term when another paper uses it correctly. Do not blacklist a term merely because it was inaccurate in one manuscript.
+
+### Terminology Selection Principles
+
+When a Chinese manuscript term needs replacing, choose the replacement by three reusable principles rather than by personal preference. State each rejected term in the manuscript's terminology ledger; promote a term to a skill-level ban only when every paper in the venue would reject it.
+
+- Prefer the long-standing Chinese power-systems term over a literal translation of an imported concept. `代表日` (literal calque of `representative day`) gives way to `典型日`; `外样本` / `留出日` (literal of `out-of-sample` / `held-out`) gives way to `校验日`. Keep the imported English form only inside English captions, English abstracts, and source-code identifiers.
+- Prefer a name that is structurally symmetric with a paired term already in the paper. `典型日` pairs with `校验日`; `抽水蓄能` pairs with `电化学储能`; `工程权衡` pairs with `技术权衡`. Asymmetry between paired terms is itself a defect, not just a wording preference.
+- Use abbreviations (`PSH`, `BESS`, `SOC`, `AC`) only inside formulas, inside tables, and inside English titles or English captions. In Chinese figure captions and in load-bearing prose sentences, use the Chinese full form (`抽水蓄能`, `电化学储能`, `荷电状态`, `交流`). A bare `PSH` in a Chinese figure sub-caption fails; the same `PSH` in a formula or table cell is correct.
+
+These principles are selection rules, not universal bans. A different paper may keep `外样本` if it explicitly imports the machine-learning sense; the rule is that the choice must be defended against the three principles, not made by habit.
 
 ## Build a Source-Authority Map
 
@@ -166,5 +178,21 @@ At minimum:
 6. compare every headline number with one coherent result run and denominator;
 7. scan generated or converted text for malformed LaTeX, control characters, and fragments such as `rac{` that may indicate a lost backslash;
 8. confirm that abstract promises, contribution items, body sections, result evidence, and conclusion findings remain closed after the edits.
+
+### Case-Study Anonymization Pass
+
+When the manuscript is destined for double-blind or single-blind review, or when the venue requests it, scan the case-study section for identifiers and apply a fixed classification rather than rewriting ad hoc.
+
+| Identifier type | Treatment | Rationale |
+| --- | --- | --- |
+| Real city name, province, named utility or grid operator in prose or Chinese figure captions | replace with `某区域电网` / `某市级电网` / `某省级电网` and the bus count | case identity is not load-bearing for the method |
+| Specific data year (`2024年`, `2023–2024年`) in prose or captions | delete the year; if a scale is needed, replace with the equivalent count such as `全年 8 760 时刻` | the year is not load-bearing for the method |
+| Author affiliation block in the manuscript header | keep verbatim; never anonymize | venues require truthful affiliation |
+| Reference publication years | keep verbatim | the year is part of the citation, not case data |
+| Local figure path fragments inside Markdown such as `../result/luan_xxx_system/figures/` | leave unchanged | file-system directory names do not survive final typesetting |
+
+Translation check: when the Chinese caption was anonymized, the English caption must be anonymized in the same edit. `Topology of the network in Lu'an` becomes `Topology of a 78-bus regional transmission network`; `... in Lu'an in 2024` becomes `Annual operating boundary ... in a regional transmission network`. Run the same scan for English abstracts, English figure captions, and English table titles.
+
+Boundary: do not let anonymization delete a load-bearing scale. A bus count, a voltage level, an installed-capacity order, or a `8 760 时刻` count is payload; the city name and the year are not.
 
 Do not declare the manuscript clean because the revised passages read well. A major revision closes only when both the argument and the mechanical references pass.

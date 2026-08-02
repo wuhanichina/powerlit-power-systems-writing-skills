@@ -1,5 +1,22 @@
 # 版本说明
 
+## 2026-08-02 - Case-study anonymization, terminology selection principles, and case-paragraph redundancy from real revision work
+
+本次更新吸收谱协同规划论文 2026-08-01 续修轮（`paper_notes.md` §12）的四条可复用经验，全部落在 `powerlit-power-systems-paper-writing`。§1–11 中的冒号规范、翻译腔清单、why→means→connects 物理直觉、防御句分类、源权威映射与可移植性边界在前几个版本已经吸收，本轮不重复。
+
+主要变化：
+
+- `chinese-major-revision.md` 新增 `Terminology Selection Principles`：当某中文术语需要替换时，按"长期沿用的中文术语优先于直译外来概念"、"与已存在对偶术语结构对称"、"缩写只在公式/表格/英文标题内、图注与承重句用中文全称"三条原则选取替代词，并要求在稿件术语台账里说明被否决的候选；只有当本刊物所有论文都会拒绝某术语时，才提升为技能级禁用。这是把单稿替换（`代表日`→`典型日`、`外样本`→`校验日`、图注 `PSH`→`抽水蓄能`）的可复用原则抽出来，而不是把单稿术语选择变成通用禁用清单。
+- `chinese-major-revision.md` 新增 `Case-Study Anonymization Pass`：算例匿名化按固定分类处理——真实市名/省份/电网公司名改为"某区域电网"并保留母线数、具体数据年份删除（必要时用"8 760 时刻"等规模信息替代）、作者单位块如实保留、参考文献年份保留、Markdown 内本地图片路径不动；中文图注匿名化时必须同步匿名化英文图注与英文摘要。匿名化边界：母线数、电压等级、装机量级是 payload，不能随匿名化一起删掉。
+- `case-conclusion.md` 新增 `Data-Preprocessing Detail Cut`：算例设置段只保留与本文方法时间尺度目标直接相关的说明（数据规模、时间尺度目标），原始数据分辨率、聚合方法、聚合误差指标（RMSE / P95 / P99 / 最大爬坡损失）、闰年处理等数据工程细节移入可复现性附录或删除。判定标准：读者读这一句是为了理解方法，还是为了复现数据流水线——后者不属于正文算例。
+- `case-conclusion.md` 新增 `Case-Paragraph Redundancy Types`：算例正文冗余分三类分别处理。第一类评论性总结句（数据陈述后追加"这表明…"），删除；第二类方法自评句（结果陈述后追加"因此本文以…作为…"的方法定位），删除，方法定位属于引言或方法章；第三类信息重复（正文复述表格已列参数、相邻句重复机制说明），每项信息只在一处给出。三类删除后，算例章应一次通过 `prose-quality-gates.md` 的 progression gate。
+- `submission-consistency-check.md` 扩展第 12 项术语替换闭环：原表述覆盖"中文标题、英文标题"，现显式扩展到"英文标题、英文摘要、英文图表标题"，并要求用废弃别名关键词列表对每种语言表面分别扫描确认零残留；新增第 16 项 case-study anonymization closure，把算例匿名化纳入机械收尾检查。
+
+验证记录：
+
+- `scripts\Validate-PowerLitSkillRepo.ps1 -SkipPowerLitSearch` 通过，`skill_count=6`。
+- `python -m pytest` 通过。
+
 ## 2026-08-01 - Source-backed Furong Li exemplars for method and framework routes
 
 - Added two supplied Furong Li full-text exemplars for method and framework

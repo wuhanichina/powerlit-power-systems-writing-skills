@@ -423,6 +423,9 @@ def test_chinese_major_revision_practice_is_wired_across_writing_and_review():
     consistency = read_text(
         "skills/powerlit-power-systems-paper-writing/references/submission-consistency-check.md"
     )
+    case_conclusion = read_text(
+        "skills/powerlit-power-systems-paper-writing/references/case-conclusion.md"
+    )
     review_sections = read_text(
         "skills/powerlit-power-systems-paper-review/references/section-quality-review.md"
     )
@@ -446,6 +449,8 @@ def test_chinese_major_revision_practice_is_wired_across_writing_and_review():
     for token in (
         "Build a Source-Authority Map",
         "Portability Boundary",
+        "Terminology Selection Principles",
+        "structurally symmetric",
         "technical framework",
         "clean-room writing functions",
         "Lock Promises and Body Landings",
@@ -454,6 +459,8 @@ def test_chinese_major_revision_practice_is_wired_across_writing_and_review():
         "Colon discipline",
         "formula references that point forward",
         "malformed LaTeX",
+        "Case-Study Anonymization Pass",
+        "Specific data year",
     ):
         assert token in practice
 
@@ -463,6 +470,17 @@ def test_chinese_major_revision_practice_is_wired_across_writing_and_review():
     assert "Causal Attribution Discipline" in figures
     assert "citation numbering after paragraph movement" in consistency
     assert "malformed formula text" in consistency
+    assert "English figure/table captions" in consistency
+    assert "case-study anonymization closure" in consistency
+
+    assert "Data-Preprocessing Detail Cut" in case_conclusion
+    assert "Case-Paragraph Redundancy Types" in case_conclusion
+    for redundancy_token in (
+        "Commentary summary sentence",
+        "Method self-evaluation sentence",
+        "Information repetition",
+    ):
+        assert redundancy_token in case_conclusion
 
     assert "Promise-to-Landing and Spine Review" in review_sections
     assert "why before -> what it means after -> how it connects" in review_method

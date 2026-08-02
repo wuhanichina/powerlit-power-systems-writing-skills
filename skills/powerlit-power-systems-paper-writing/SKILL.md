@@ -1,6 +1,6 @@
 ---
 name: powerlit-power-systems-paper-writing
-version: 2026.08.01
+version: 2026.08.02
 description: Draft, rewrite, or revise full-length power-system research papers for 中国电机工程学报, 电力系统自动化, IEEE Transactions on Power Systems, and IEEE Transactions on Smart Grid. Use for abstracts, introductions, method/model sections, case studies, figure/table captions, result paragraphs, conclusions, terminology cleanup, reviewer-comment revision, venue adaptation, and PowerLit-grounded citation planning.
 ---
 # PowerLit Power-Systems Paper Writing

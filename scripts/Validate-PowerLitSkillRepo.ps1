@@ -321,6 +321,15 @@ foreach ($requiredWorkflowFile in @($innovationAssessment, $innovationRouter, $c
         Add-Failure "Missing innovation/handoff workflow file: $requiredWorkflowFile"
     }
 }
+if (Test-Path -LiteralPath $submissionConsistency) {
+    $submissionConsistencyText = Read-Utf8 -Path $submissionConsistency
+    if ($submissionConsistencyText -notmatch "English figure/table captions") {
+        Add-Failure "submission-consistency-check.md must extend terminology closure to English captions and English abstract"
+    }
+    if ($submissionConsistencyText -notmatch "case-study anonymization closure") {
+        Add-Failure "submission-consistency-check.md must include the case-study anonymization closure check"
+    }
+}
 if (Test-Path -LiteralPath $innovationDoiMap) {
     $doiMapText = Read-Utf8 -Path $innovationDoiMap
     foreach ($token in @("New Research Object", "New Variable or Scenario", "New Method", "New Discovery or Observation", "New Mechanism", "New Framework or Decision Loop", "10.1109/TPWRS.2017.2692268", "10.1109/TPWRS.2007.908469", "10.1109/TPWRS.2009.2030283", "10.1109/TSG.2019.2935736", "Source-Backed Furong Li Pattern Pair", "retrieval index, not a citation list")) {
@@ -407,7 +416,7 @@ if (Test-Path -LiteralPath $manuscriptSectionQuality) {
 
 if (Test-Path -LiteralPath $chineseMajorRevision) {
     $chineseMajorRevisionText = Read-Utf8 -Path $chineseMajorRevision
-    foreach ($requiredMajorRevisionToken in @("Chinese Major-Revision Practice", "Build a Source-Authority Map", "Portability Boundary", "clean-room writing functions", "Lock Promises and Body Landings", "why -> what it means -> how it connects", "Separate Observation From Causal Explanation", "Colon discipline", "formula references that point forward", "malformed LaTeX")) {
+    foreach ($requiredMajorRevisionToken in @("Chinese Major-Revision Practice", "Build a Source-Authority Map", "Portability Boundary", "Terminology Selection Principles", "structurally symmetric", "clean-room writing functions", "Lock Promises and Body Landings", "why -> what it means -> how it connects", "Separate Observation From Causal Explanation", "Colon discipline", "formula references that point forward", "malformed LaTeX", "Case-Study Anonymization Pass", "Specific data year")) {
         if ($chineseMajorRevisionText -notmatch [regex]::Escape($requiredMajorRevisionToken)) {
             Add-Failure "chinese-major-revision.md missing token: $requiredMajorRevisionToken"
         }
@@ -469,6 +478,17 @@ if (Test-Path -LiteralPath $caseConclusionReference) {
     }
     if ($caseConclusionText -notmatch "figure/table roles") {
         Add-Failure "case-conclusion.md must require figure/table role extraction"
+    }
+    if ($caseConclusionText -notmatch "Data-Preprocessing Detail Cut") {
+        Add-Failure "case-conclusion.md must include the data-preprocessing detail cut"
+    }
+    if ($caseConclusionText -notmatch "Case-Paragraph Redundancy Types") {
+        Add-Failure "case-conclusion.md must include the case-paragraph redundancy types"
+    }
+    foreach ($redundancyToken in @("Commentary summary sentence", "Method self-evaluation sentence", "Information repetition")) {
+        if ($caseConclusionText -notmatch [regex]::Escape($redundancyToken)) {
+            Add-Failure "case-conclusion.md missing redundancy-type token: $redundancyToken"
+        }
     }
 } else {
     Add-Failure "Missing case-conclusion.md"

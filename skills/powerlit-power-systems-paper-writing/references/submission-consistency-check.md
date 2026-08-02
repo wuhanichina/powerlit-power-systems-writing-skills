@@ -38,14 +38,25 @@ Check and report exact locations for:
 11. citation numbering after paragraph movement when the venue orders
     references by first appearance;
 12. terminology-replacement closure across prose, symbols, subscripts,
-    captions, legends, and Chinese-English titles, plus zero unintended residue
-    of obsolete aliases;
+    captions, legends, Chinese titles, **English titles, English abstract,
+    and English figure/table captions**, plus zero unintended residue of
+    obsolete aliases in any of these locations. A term replaced in Chinese
+    but left in the English abstract, or replaced in body prose but left in
+    a figure caption, fails this check; scan each language surface
+    independently with the obsolete-alias keyword list and confirm zero
+    residue before declaring the replacement closed;
 13. malformed formula text, control characters, broken LaTeX commands, and
     suspicious fragments such as `rac{` after conversion or replacement;
 14. promise-to-landing closure from abstract and contribution through body
     development, equation/model location, evidence, and conclusion;
 15. profile drift in innovation axis, novelty magnitude, narrative arc,
-    lifecycle stage, target venue, and evidence boundary.
+    lifecycle stage, target venue, and evidence boundary;
+16. case-study anonymization closure: when the manuscript is destined for
+    blind review, real city names, named utilities, and case-data years
+    have been replaced in prose, Chinese captions, English captions, and
+    English abstract; author affiliations and reference years remain;
+    local figure-path fragments inside Markdown are not part of this check
+    (they do not survive final typesetting).
 
 ## Verdict
 

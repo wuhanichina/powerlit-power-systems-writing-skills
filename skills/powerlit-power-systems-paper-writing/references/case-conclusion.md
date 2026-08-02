@@ -186,3 +186,46 @@ Use a short conclusion, usually 1-3 paragraphs. State what the method establishe
 - Comparison must identify the baseline and the metric direction.
 - Sensitivity analysis should explain a mechanism or boundary, not just add length.
 - Conclusion claims must already be supported by derivation or case results.
+
+## Data-Preprocessing Detail Cut
+
+The case-setup paragraph often carries data-engineering detail that belongs in a reproducibility appendix, not in the case section. The reader of the case section came to understand the method's operating condition; preprocessing implementation choices are not load-bearing for the claim unless the method itself is a preprocessing method.
+
+Apply this cut to case-setup prose:
+
+- **Delete** raw-data resolution statements (`原始分辨率为 15 min`), aggregation method statements (`按小时均值聚合`), aggregation-error metrics (`RMSE 158.27 MW`, `P95 39.20%`, `P99 47.23%`, `最大爬坡损失 66.89%`), and calendar-handling notes (`2024年为闰年，删除 2 月 29 日`). These are reproducibility facts that belong in an appendix or a methods-detail section, not in the case-setup narrative.
+- **Keep** data scale (`全年 8 760 时刻时序数据`) and any statement that ties the data directly to the method's stated time-scale target (`本文储能配置以小时尺度能量调节为目标`). Scale and time-scale target are load-bearing; the RMSE of the aggregation step is not.
+- **Decision rule**: ask whether the reader came to this sentence to understand the method or to reproduce the data pipeline. If the former, keep it; if the latter, move it to a reproducibility appendix or delete it.
+
+This rule is the case-section analogue of the parameter-and-implementation placement rule in `method-model.md`. Method constants live in the method; data-engineering constants live in the appendix or the reproducibility note.
+
+## Case-Paragraph Redundancy Types
+
+After the case-section figure storyboard passes and result prose is drafted, scan every result paragraph for three recurring redundancy patterns. Each is a separate failure mode; delete or merge by type, not by feel.
+
+### Type 1: Commentary summary sentence
+
+A sentence appended after a data statement that merely re-summarizes what the data already says. The pattern is `数据陈述 + 评论性总结句`.
+
+- Failing: `图 4 中的计算点总体分布在 y=x 参照线附近，与预期一致，表明解析传播能够复现主要空间差异。` — the comment sentence restates the visual; delete the comment.
+- Failing: `该结果支持两类储能功能互补，但不支持 BESS 在所有网络风险指标上占主导。` — the comment sentence converts a measurement into a binary support claim; delete it.
+- Rule: if the data sentence already shows the point, the comment is padding. Cut under the sentence-deletion test in `prose-quality-gates.md`.
+
+### Type 2: Method self-evaluation sentence
+
+A sentence that, after stating a result, steps back to describe what the paper's method `does` in the abstract. Method-positioning language belongs in the introduction or the method chapter, not in the case section.
+
+- Failing: `因此，本文以解析谱作为规划信号，以非线性结果限定其工程解释。` — method positioning in the result section.
+- Failing: `该运行记录反映带回溯的顺序代理块迭代在当前算例上的数值收敛行为，非凸联合模型的全局最优性和一般收敛速度仍需进一步验证。` — meta-evaluation of the algorithm; if kept, it should be in the convergence or reproducibility subsection, not appended to a result paragraph.
+- Rule: a result paragraph reports the result and its mechanism; method self-positioning is removed.
+
+### Type 3: Information repetition
+
+The same fact stated in two locations: prose vs. table, prose vs. earlier prose, or two adjacent sentences.
+
+- Failing: prose restating table parameters (`PSH 和 BESS 功率上限分别为 300 MW 和 200 MW`) when Table 1 already lists them.
+- Failing: `全部方法采用相同候选节点、容量上限、储能参数、支路限额和独立验证日复核口径` as a standalone sentence when the comparison-methods paragraph already says it.
+- Failing: a sentence at the end of `5.6.1` that repeats the mechanism already explained in the preceding two sentences.
+- Rule: each fact appears in exactly one location. Parameter values live in tables; method settings live in the comparison-methods paragraph; mechanism interpretation lives with the result that shows it.
+
+When all three types are removed, the case section should pass the progression and non-repetition gate in `prose-quality-gates.md` on the first read. If it does not, the remaining redundancy is content-level, not pattern-level, and should be diagnosed per paragraph.
