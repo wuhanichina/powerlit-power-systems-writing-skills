@@ -1,115 +1,299 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "cache_version": "2026.06",
-  "generated_at": "2026-07-03T08:39:39.770795Z",
-  "corpus_snapshot_date": "2026-06-16",
+  "generated_at": "2026-08-03T09:48:28.307846Z",
+  "corpus_snapshot_date": "2026-08-03",
   "analyzer_version": "powerlit-index-portable-v1",
   "include_analysis": false,
+  "content_head_chars": 8000,
+  "max_shard_size_bytes": 50331648,
   "venues": {
-    "applied_energy": {
-      "sqlite_file": "applied_energy.sqlite",
+    "advances_in_applied_energy": {
+      "sqlite_file": "advances_in_applied_energy.sqlite",
+      "sqlite_files": [
+        "advances_in_applied_energy.sqlite"
+      ],
       "jsonl_file": null,
-      "records": 2,
+      "jsonl_files": [],
+      "records": 29,
+      "failed_records": 0
+    },
+    "applied_energy": {
+      "sqlite_file": null,
+      "sqlite_files": [
+        "applied_energy.part001.sqlite",
+        "applied_energy.part002.sqlite",
+        "applied_energy.part003.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 8708,
+      "failed_records": 0
+    },
+    "csee_journal_of_power_and_energy_systems": {
+      "sqlite_file": "csee_journal_of_power_and_energy_systems.sqlite",
+      "sqlite_files": [
+        "csee_journal_of_power_and_energy_systems.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 0,
+      "failed_records": 0
+    },
+    "csee_jpes": {
+      "sqlite_file": "csee_jpes.sqlite",
+      "sqlite_files": [
+        "csee_jpes.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 1417,
       "failed_records": 0
     },
     "energy": {
       "sqlite_file": "energy.sqlite",
+      "sqlite_files": [
+        "energy.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
       "records": 1,
       "failed_records": 0
     },
     "ieee_tpwrd": {
       "sqlite_file": "ieee_tpwrd.sqlite",
+      "sqlite_files": [
+        "ieee_tpwrd.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
       "records": 1,
       "failed_records": 0
     },
     "ieee_tpwrs": {
-      "sqlite_file": "ieee_tpwrs.sqlite",
+      "sqlite_file": null,
+      "sqlite_files": [
+        "ieee_tpwrs.part001.sqlite",
+        "ieee_tpwrs.part002.sqlite",
+        "ieee_tpwrs.part003.sqlite"
+      ],
       "jsonl_file": null,
-      "records": 7139,
+      "jsonl_files": [],
+      "records": 7143,
       "failed_records": 0
     },
     "ieee_tsg": {
-      "sqlite_file": "ieee_tsg.sqlite",
+      "sqlite_file": null,
+      "sqlite_files": [
+        "ieee_tsg.part001.sqlite",
+        "ieee_tsg.part002.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
       "records": 5638,
       "failed_records": 0
     },
     "ijepes": {
       "sqlite_file": "ijepes.sqlite",
+      "sqlite_files": [
+        "ijepes.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
       "records": 2,
       "failed_records": 0
     },
     "mpce": {
       "sqlite_file": "mpce.sqlite",
+      "sqlite_files": [
+        "mpce.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 892,
+      "failed_records": 0
+    },
+    "renewable_energy": {
+      "sqlite_file": null,
+      "sqlite_files": [
+        "renewable_energy.part001.sqlite",
+        "renewable_energy.part002.sqlite",
+        "renewable_energy.part003.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 9201,
+      "failed_records": 0
+    },
+    "solar_energy": {
+      "sqlite_file": "solar_energy.sqlite",
+      "sqlite_files": [
+        "solar_energy.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
       "records": 1,
+      "failed_records": 0
+    },
+    "unknown_journal": {
+      "sqlite_file": "unknown_journal.sqlite",
+      "sqlite_files": [
+        "unknown_journal.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 1,
+      "failed_records": 0
+    },
+    "中国电机工程学报": {
+      "sqlite_file": "venue_cf71f77aed85.sqlite",
+      "sqlite_files": [
+        "venue_cf71f77aed85.sqlite"
+      ],
+      "jsonl_file": null,
+      "jsonl_files": [],
+      "records": 802,
       "failed_records": 0
     },
     "电力系统自动化": {
       "sqlite_file": "venue_5fa2986a16a0.sqlite",
+      "sqlite_files": [
+        "venue_5fa2986a16a0.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
       "records": 538,
       "failed_records": 0
     },
     "电网技术": {
       "sqlite_file": "venue_c62427ef1b1b.sqlite",
+      "sqlite_files": [
+        "venue_c62427ef1b1b.sqlite"
+      ],
       "jsonl_file": null,
+      "jsonl_files": [],
       "records": 24,
-      "failed_records": 0
-    },
-    "中国电机工程学报": {
-      "sqlite_file": "venue_cf71f77aed85.sqlite",
-      "jsonl_file": null,
-      "records": 802,
       "failed_records": 0
     }
   },
-  "total_records": 14148,
+  "total_records": 34398,
   "failed_records": 0,
-  "elapsed_ms": 16,
+  "elapsed_ms": 429898,
   "shards": {
-    "applied_energy.sqlite": {
-      "sha256": "f9efb018b168473f6eb459cf98b076374a861fdc6a88cdbf9d59e50509c61c5e",
-      "records": 2
+    "advances_in_applied_energy.sqlite": {
+      "sha256": "5f6e3eb92736e111e255167bd08931110145ee62ad63f4bd310114f8b5d4c004",
+      "records": 29,
+      "size_bytes": 425984
+    },
+    "applied_energy.part001.sqlite": {
+      "sha256": "2d74591298ad8e22cb20c8d77ce5fcf499ebd627086617564f0f8ce4542fa8e1",
+      "records": 3200,
+      "size_bytes": 45228032
+    },
+    "applied_energy.part002.sqlite": {
+      "sha256": "323cfce4ab05b94d0132f292d48838c7e2adbc38f8db10a920c5312bfec99d44",
+      "records": 3200,
+      "size_bytes": 45363200
+    },
+    "applied_energy.part003.sqlite": {
+      "sha256": "0f6ab62c51cbd90658d6f7aff4117c6f268c38910fe90860c178ae784added33",
+      "records": 2308,
+      "size_bytes": 33968128
+    },
+    "csee_journal_of_power_and_energy_systems.sqlite": {
+      "sha256": "ea88d63fd736570546980fb29aed77fc7ca8045908ee5c5e9b7d65e331b8822a",
+      "records": 0,
+      "size_bytes": 28672
+    },
+    "csee_jpes.sqlite": {
+      "sha256": "cca944811fea4b8013160eb4ee9a46a7269eb2937d84413cb226b2ff3c270a60",
+      "records": 1417,
+      "size_bytes": 22016000
     },
     "energy.sqlite": {
-      "sha256": "1ad7856f58979b16ec8b71de621340b2369f137c797db76529e7520f7b5efa63",
-      "records": 1
+      "sha256": "aa47fffa81e90de89d7da768e22b3b8f21ae54be7b62bc1de142eaac66845cbd",
+      "records": 1,
+      "size_bytes": 49152
     },
     "ieee_tpwrd.sqlite": {
-      "sha256": "c5a5c30e7e41a2cfbf932491f6202732b057923eb7516252ffbdf0d01035680d",
-      "records": 1
+      "sha256": "6f09d8045f68d08c1289b0652e5859ca1bfbc7f213adf8a194e159ab368ed439",
+      "records": 1,
+      "size_bytes": 49152
     },
-    "ieee_tpwrs.sqlite": {
-      "sha256": "93f451021489ca38ef932845f8fc376e848a60ea2a337365a3d089c5c8b479af",
-      "records": 7139
+    "ieee_tpwrs.part001.sqlite": {
+      "sha256": "73e7991914218edb992b8484ccfc9ea643ddccc178f99980a4cc36d09cafd0fa",
+      "records": 3200,
+      "size_bytes": 44224512
     },
-    "ieee_tsg.sqlite": {
-      "sha256": "60003091dd4f8e3f5afd184e2394c966619d7693c661d7e09a520feb117e5c1a",
-      "records": 5638
+    "ieee_tpwrs.part002.sqlite": {
+      "sha256": "0e79a8b0460187323d086e657f1187ffc640617a42a0612134c2516009405b9d",
+      "records": 3200,
+      "size_bytes": 44335104
+    },
+    "ieee_tpwrs.part003.sqlite": {
+      "sha256": "0f26e9d69ef85c25cc7f434cdc0cc5b51de92ef362d948d701083bb91825545a",
+      "records": 743,
+      "size_bytes": 12460032
+    },
+    "ieee_tsg.part001.sqlite": {
+      "sha256": "72e85754ed3416ecd2af3dad72f1db533b3affc45350f9c9fd61e1240b9600de",
+      "records": 3200,
+      "size_bytes": 44466176
+    },
+    "ieee_tsg.part002.sqlite": {
+      "sha256": "be584044fe40689b343c466115ed4f7e85bceb1ce9e55b58b69447f3f9c09f49",
+      "records": 2438,
+      "size_bytes": 34828288
     },
     "ijepes.sqlite": {
-      "sha256": "804ce169ae4d1cb01d761ff5e6633dc24a1d3411f9c9363e6f0b4d50343cd1e0",
-      "records": 2
+      "sha256": "6f4242091f174bfeff520919a1f56227c8a82a598be746d27014b729a5f7b544",
+      "records": 2,
+      "size_bytes": 65536
     },
     "mpce.sqlite": {
-      "sha256": "1bf098f85fdaa87c7f1995d75c46bcdc8d1a74b538a294736964e42c82f01e0c",
-      "records": 1
+      "sha256": "37c98d7f90feb5f192e75737704fc693c9d807f005ec9092e7ddbd060219ce14",
+      "records": 892,
+      "size_bytes": 14536704
     },
-    "venue_5fa2986a16a0.sqlite": {
-      "sha256": "4495e1a508d17e86f6ce34df032850f40a90d722df9117c9eba95d34e2786131",
-      "records": 538
+    "renewable_energy.part001.sqlite": {
+      "sha256": "ed3513451924f8072ff3a3de6c7e4a554de63103f36909bdec7855fd886a9c56",
+      "records": 3200,
+      "size_bytes": 45543424
     },
-    "venue_c62427ef1b1b.sqlite": {
-      "sha256": "83ec55d5201bd56b805077bb0182335568200333e6a497d401ecdfb3a5f35613",
-      "records": 24
+    "renewable_energy.part002.sqlite": {
+      "sha256": "bf6f746cb89a705771542817fb80971b6846c4599f47d211e974c6a8bc66b03f",
+      "records": 3200,
+      "size_bytes": 45580288
+    },
+    "renewable_energy.part003.sqlite": {
+      "sha256": "2da3a31bbe3e77fc57f4272f9024fc0ee20fcc0f1ceedfe0145d8d4aa53de795",
+      "records": 2801,
+      "size_bytes": 40378368
+    },
+    "solar_energy.sqlite": {
+      "sha256": "ce460476af782ed9d6cc4cd13d254add27270712327ca1a32093fbd6ccb80eba",
+      "records": 1,
+      "size_bytes": 28672
+    },
+    "unknown_journal.sqlite": {
+      "sha256": "1155dfc35523fcb6ce17001f9f796a61921d0466b9565b58d95d1811f7b89a6b",
+      "records": 1,
+      "size_bytes": 49152
     },
     "venue_cf71f77aed85.sqlite": {
-      "sha256": "427c0fabbab3f9f5eecaf4b3864ba19553860a14ccc932183c42a4e531d24f87",
-      "records": 802
+      "sha256": "d750b1ba8d2d1ff387f45ab6146ad4b6552a7f453444eb636780d7ce868659a9",
+      "records": 802,
+      "size_bytes": 25673728
+    },
+    "venue_5fa2986a16a0.sqlite": {
+      "sha256": "45cdeee12a7319bdf4b75d2f96518ae90891eecd3c8fcedbd123d8c36df10ffc",
+      "records": 538,
+      "size_bytes": 20295680
+    },
+    "venue_c62427ef1b1b.sqlite": {
+      "sha256": "ea6b41e4cbccddec1a297c96288a65336a56cd887bfc9fe81bc89629e2b78443",
+      "records": 24,
+      "size_bytes": 700416
     }
   }
 }

@@ -5,6 +5,7 @@ import importlib.util
 import json
 import os
 import re
+import shutil
 import sqlite3
 import subprocess
 import sys
@@ -52,12 +53,25 @@ def test_resolve_json_root_has_no_machine_default(monkeypatch):
 
 def test_manifest_and_sqlite_schema_are_portable():
     manifest = json.loads((INDEX_DIR / "manifest.json").read_text(encoding="utf-8"))
-    assert int(manifest["schema_version"]) >= 2
+    assert int(manifest["schema_version"]) >= 3
     for forbidden in ("path", "corpus_root", "index_dir", "source_root"):
         assert forbidden not in manifest
 
+    sqlite_names = [
+        name
+        for item in manifest["venues"].values()
+        for name in search_index.entry_files(item, "sqlite_files", "sqlite_file")
+    ]
+    assert sqlite_names
+    max_shard_size_bytes = int(manifest["max_shard_size_bytes"])
+    assert max_shard_size_bytes < 50 * 1024 * 1024
+    assert all((INDEX_DIR / name).stat().st_size < max_shard_size_bytes for name in sqlite_names)
     smallest_shard = min(
-        (INDEX_DIR / item["sqlite_file"] for item in manifest["venues"].values()),
+        (
+            INDEX_DIR / name
+            for name in sqlite_names
+            if int(manifest["shards"][name]["records"]) > 0
+        ),
         key=lambda path: path.stat().st_size,
     )
     shard_manifest = manifest["shards"][smallest_shard.name]
@@ -166,9 +180,11 @@ def test_build_index_and_search_smoke_use_portable_paths(tmp_path):
     assert build.returncode == 0, build.stderr or build.stdout
 
     manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
-    assert int(manifest["schema_version"]) >= 2
+    assert int(manifest["schema_version"]) >= 3
     assert "corpus_root" not in manifest
+    assert manifest["venues"]["ieee_tsg"]["sqlite_files"] == ["ieee_tsg.sqlite"]
     assert manifest["shards"]["ieee_tsg.sqlite"]["records"] == 1
+    assert manifest["shards"]["ieee_tsg.sqlite"]["size_bytes"] < manifest["max_shard_size_bytes"]
 
     code, payload = run_json(
         [
@@ -189,3 +205,278 @@ def test_build_index_and_search_smoke_use_portable_paths(tmp_path):
     assert payload["resolved_venue_folders"] == ["ieee_tsg"]
     assert payload["results"][0]["relative_path"] == "ieee_tsg/paper.json"
     assert payload["results"][0]["doi"] == "10.9999/example.voltage"
+
+
+def test_search_refuses_manifestless_or_incomplete_cache(tmp_path):
+    index_dir = tmp_path / "index"
+    index_dir.mkdir()
+    source = next(
+        INDEX_DIR / name
+        for item in json.loads((INDEX_DIR / "manifest.json").read_text(encoding="utf-8"))["venues"].values()
+        for name in search_index.entry_files(item, "sqlite_files", "sqlite_file")
+        if (INDEX_DIR / name).is_file()
+    )
+    shutil.copy2(source, index_dir / "loose.sqlite")
+
+    code, payload = run_json(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Search-PowerLitIndex.py"),
+            "--index-dir",
+            str(index_dir),
+            "--query",
+            "voltage control",
+            "--top",
+            "1",
+        ]
+    )
+    assert code == 2
+    assert payload["available"] is False
+    assert "manifest" in payload["message"].lower()
+
+
+def test_forced_multishard_build_searches_only_manifest_listed_files(tmp_path):
+    corpus = tmp_path / "corpus"
+    venue = corpus / "ieee_tsg"
+    venue.mkdir(parents=True)
+    for index in range(300):
+        paper = {
+            "title": f"Grid Resilience Study {index}",
+            "source_title": "IEEE Transactions on Smart Grid",
+            "doi": f"10.9999/grid-resilience.{index}",
+            "content": f"grid resilience record {index} " + ("abcdefghij " * 550),
+        }
+        (venue / f"paper-{index:03d}.json").write_text(json.dumps(paper), encoding="utf-8")
+
+    index_dir = tmp_path / "index"
+    build = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Build-PowerLitIndex.py"),
+            "--root",
+            str(corpus),
+            "--index-dir",
+            str(index_dir),
+            "--max-shard-size-mib",
+            "2",
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
+    assert build.returncode == 0, build.stderr or build.stdout
+
+    manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    shard_names = manifest["venues"]["ieee_tsg"]["sqlite_files"]
+    assert len(shard_names) >= 2
+    assert all((index_dir / name).stat().st_size < 2 * 1024 * 1024 for name in shard_names)
+
+    shutil.copy2(index_dir / shard_names[0], index_dir / "orphan.sqlite")
+    assert [path.name for path in search_index.sqlite_files(index_dir, manifest, [])] == shard_names
+
+    refresh = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Build-PowerLitIndex.py"),
+            "--index-dir",
+            str(index_dir),
+            "--max-shard-size-mib",
+            "2",
+            "--refresh-manifest-only",
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
+    assert refresh.returncode == 0, refresh.stderr or refresh.stdout
+    assert not (index_dir / "orphan.sqlite").exists()
+    manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+
+    code, payload = run_json(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Search-PowerLitIndex.py"),
+            "--index-dir",
+            str(index_dir),
+            "--query",
+            "grid resilience",
+            "--venue-folder",
+            "tsg",
+            "--top",
+            "5",
+        ]
+    )
+    assert code == 0
+    assert payload["available"] is True
+    assert payload["candidate_count"] == 300
+
+    (index_dir / shard_names[-1]).rename(index_dir / f"{shard_names[-1]}.missing")
+    code, payload = run_json(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Search-PowerLitIndex.py"),
+            "--index-dir",
+            str(index_dir),
+            "--query",
+            "grid resilience",
+            "--top",
+            "1",
+        ]
+    )
+    assert code == 2
+    assert payload["available"] is False
+    assert any("missing cache file" in issue for issue in payload["index_issues"])
+
+
+def test_failed_in_place_refresh_preserves_previous_manifest_and_search(tmp_path):
+    corpus = tmp_path / "corpus"
+    venue = corpus / "ieee_tsg"
+    venue.mkdir(parents=True)
+    paper_path = venue / "paper.json"
+    paper_path.write_text(
+        json.dumps(
+            {
+                "title": "Stable Baseline Voltage Control",
+                "doi": "10.9999/stable-baseline",
+                "content": "stable baseline voltage control",
+            }
+        ),
+        encoding="utf-8",
+    )
+    index_dir = tmp_path / "index"
+    initial = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Build-PowerLitIndex.py"),
+            "--root",
+            str(corpus),
+            "--index-dir",
+            str(index_dir),
+            "--max-shard-size-mib",
+            "2",
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
+    assert initial.returncode == 0, initial.stderr or initial.stdout
+    manifest_before = (index_dir / "manifest.json").read_bytes()
+    listed_before = json.loads(manifest_before)["venues"]["ieee_tsg"]["sqlite_files"]
+
+    paper_path.write_text(
+        json.dumps(
+            {
+                "title": "Oversized Replacement",
+                "doi": "10.9999/oversized-replacement",
+                "content": "oversizedtoken " * 120000,
+            }
+        ),
+        encoding="utf-8",
+    )
+    failed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Build-PowerLitIndex.py"),
+            "--root",
+            str(corpus),
+            "--index-dir",
+            str(index_dir),
+            "--venue-folder",
+            "ieee_tsg",
+            "--content-head-chars",
+            "2000000",
+            "--max-shard-size-mib",
+            "1",
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
+    assert failed.returncode != 0
+    assert (index_dir / "manifest.json").read_bytes() == manifest_before
+    assert all((index_dir / name).is_file() for name in listed_before)
+
+    code, payload = run_json(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Search-PowerLitIndex.py"),
+            "--index-dir",
+            str(index_dir),
+            "--query",
+            "stable baseline voltage control",
+            "--top",
+            "1",
+        ]
+    )
+    assert code == 0
+    assert payload["results"][0]["doi"] == "10.9999/stable-baseline"
+
+
+def test_partial_refresh_preserves_global_snapshot_date(tmp_path):
+    corpus = tmp_path / "corpus"
+    for venue_name in ("ieee_tsg", "ieee_tpwrs"):
+        venue = corpus / venue_name
+        venue.mkdir(parents=True)
+        (venue / "paper.json").write_text(
+            json.dumps(
+                {
+                    "title": f"{venue_name} voltage control",
+                    "doi": f"10.9999/{venue_name}",
+                    "content": "voltage control",
+                }
+            ),
+            encoding="utf-8",
+        )
+    index_dir = tmp_path / "index"
+    initial = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Build-PowerLitIndex.py"),
+            "--root",
+            str(corpus),
+            "--index-dir",
+            str(index_dir),
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
+    assert initial.returncode == 0, initial.stderr or initial.stdout
+
+    manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    manifest["corpus_snapshot_date"] = "2000-01-01"
+    for entry in manifest["venues"].values():
+        entry["corpus_snapshot_date"] = "2000-01-01"
+    (index_dir / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    old_tsg_files = set(manifest["venues"]["ieee_tsg"]["sqlite_files"])
+    old_tpwrs_files = set(manifest["venues"]["ieee_tpwrs"]["sqlite_files"])
+
+    partial = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT_DIR / "Build-PowerLitIndex.py"),
+            "--root",
+            str(corpus),
+            "--index-dir",
+            str(index_dir),
+            "--venue-folder",
+            "ieee_tsg",
+        ],
+        cwd=REPO_ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+    )
+    assert partial.returncode == 0, partial.stderr or partial.stdout
+
+    refreshed = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    assert refreshed["corpus_snapshot_date"] == "2000-01-01"
+    assert refreshed["venues"]["ieee_tsg"]["corpus_snapshot_date"] != "2000-01-01"
+    assert refreshed["venues"]["ieee_tpwrs"]["corpus_snapshot_date"] == "2000-01-01"
+    assert not any((index_dir / name).exists() for name in old_tsg_files)
+    assert all((index_dir / name).exists() for name in old_tpwrs_files)

@@ -12,11 +12,13 @@ import sys
 import time
 from pathlib import Path
 
-from powerlit_index_common import count_contains, get_snippet, resolve_index_dir, safe_name
+from powerlit_index_common import count_contains, get_snippet, resolve_index_dir
 from query_analyzer import analyze_query
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
 
 
 def parse_args() -> argparse.Namespace:
@@ -32,8 +34,12 @@ def parse_args() -> argparse.Namespace:
 def load_manifest(index_dir: Path) -> dict:
     manifest_path = index_dir / "manifest.json"
     if not manifest_path.is_file():
-        return {"venues": {}, "generated_at": None}
-    return json.loads(manifest_path.read_text(encoding="utf-8"))
+        return {}
+    try:
+        payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
 
 
 def skill_root() -> Path:
@@ -76,53 +82,102 @@ def resolve_venues(requested: list[str], manifest: dict) -> tuple[list[str], lis
     return resolved, errors
 
 
-def sqlite_files(index_dir: Path, manifest: dict, venues: list[str]) -> list[Path]:
+def entry_files(entry: dict, plural_key: str, singular_key: str) -> list[str]:
+    values = entry.get(plural_key) or []
+    if isinstance(values, str):
+        values = [values]
+    result = [str(value) for value in values if value]
+    singular = entry.get(singular_key)
+    if singular and str(singular) not in result:
+        result.insert(0, str(singular))
+    return result
+
+
+def selected_manifest_entries(manifest: dict, venues: list[str]) -> list[tuple[str, dict]]:
     manifest_venues = manifest.get("venues") or {}
     if venues:
-        files: list[Path] = []
-        for venue in venues:
-            entry = manifest_venues.get(venue)
-            if entry and entry.get("sqlite_file"):
-                candidate = index_dir / entry["sqlite_file"]
-            else:
-                candidate = index_dir / f"{safe_name(venue)}.sqlite"
-            if candidate.is_file():
-                files.append(candidate)
-        return files
+        return [(venue, manifest_venues[venue]) for venue in venues if venue in manifest_venues]
+    return list(manifest_venues.items())
 
-    if manifest_venues:
-        files = [
-            (index_dir / entry["sqlite_file"]).resolve()
-            for entry in manifest_venues.values()
-            if entry.get("sqlite_file") and (index_dir / entry["sqlite_file"]).is_file()
-        ]
-        known = {path.name for path in files}
-        files.extend(path.resolve() for path in sorted(index_dir.glob("*.sqlite")) if path.name not in known)
-        return files
-    return sorted(path.resolve() for path in index_dir.glob("*.sqlite"))
+
+def listed_index_files(
+    index_dir: Path,
+    manifest: dict,
+    venues: list[str],
+    plural_key: str,
+    singular_key: str,
+    *,
+    validate_sqlite_metadata: bool = False,
+) -> tuple[list[Path], list[str]]:
+    root = index_dir.resolve()
+    files: list[Path] = []
+    issues: list[str] = []
+    shard_metadata = manifest.get("shards") or {}
+    try:
+        max_bytes = int(manifest.get("max_shard_size_bytes") or 0)
+    except (TypeError, ValueError):
+        max_bytes = 0
+        issues.append("manifest has invalid max_shard_size_bytes")
+    try:
+        schema_version = int(manifest.get("schema_version") or 0)
+    except (TypeError, ValueError):
+        schema_version = 0
+        issues.append("manifest has invalid schema_version")
+    for venue_name, entry in selected_manifest_entries(manifest, venues):
+        if not isinstance(entry, dict):
+            issues.append(f"{venue_name}: invalid venue manifest entry")
+            continue
+        names = entry_files(entry, plural_key, singular_key)
+        if not names and int(entry.get("records") or 0) > 0:
+            issues.append(f"{venue_name}: no manifest-listed {plural_key}")
+            continue
+        for raw_name in names:
+            name = str(raw_name or "")
+            if not name or Path(name).name != name or name in {".", ".."}:
+                issues.append(f"{venue_name}: unsafe cache filename {raw_name!r}")
+                continue
+            candidate = (root / name).resolve()
+            if candidate.parent != root:
+                issues.append(f"{venue_name}: cache filename escapes index directory: {name}")
+                continue
+            if not candidate.is_file():
+                issues.append(f"{venue_name}: missing cache file {name}")
+                continue
+            if validate_sqlite_metadata:
+                metadata = shard_metadata.get(name)
+                if schema_version >= 3 and not isinstance(metadata, dict):
+                    issues.append(f"{venue_name}: missing shard metadata for {name}")
+                    continue
+                size_bytes = candidate.stat().st_size
+                if isinstance(metadata, dict) and metadata.get("size_bytes") is not None:
+                    if size_bytes != int(metadata["size_bytes"]):
+                        issues.append(
+                            f"{venue_name}: size mismatch for {name}: "
+                            f"manifest={metadata['size_bytes']} actual={size_bytes}"
+                        )
+                        continue
+                if max_bytes and size_bytes >= max_bytes:
+                    issues.append(f"{venue_name}: shard {name} exceeds limit {max_bytes}")
+                    continue
+            files.append(candidate)
+    return files, issues
+
+
+def sqlite_files(index_dir: Path, manifest: dict, venues: list[str]) -> list[Path]:
+    files, _ = listed_index_files(
+        index_dir,
+        manifest,
+        venues,
+        "sqlite_files",
+        "sqlite_file",
+        validate_sqlite_metadata=True,
+    )
+    return files
 
 
 def jsonl_files(index_dir: Path, manifest: dict, venues: list[str]) -> list[Path]:
-    manifest_venues = manifest.get("venues") or {}
-    if venues:
-        files: list[Path] = []
-        for venue in venues:
-            entry = manifest_venues.get(venue)
-            if entry and entry.get("jsonl_file"):
-                candidate = index_dir / entry["jsonl_file"]
-            else:
-                candidate = index_dir / f"{safe_name(venue)}.jsonl"
-            if candidate.is_file():
-                files.append(candidate)
-        return files
-
-    if manifest_venues:
-        return [
-            index_dir / entry["jsonl_file"]
-            for entry in manifest_venues.values()
-            if entry.get("jsonl_file") and (index_dir / entry["jsonl_file"]).is_file()
-        ]
-    return sorted(index_dir.glob("*.jsonl"))
+    files, _ = listed_index_files(index_dir, manifest, venues, "jsonl_files", "jsonl_file")
+    return files
 
 
 def score_record(record: dict, terms: list[str]) -> tuple[int, list[str], list[str]]:
@@ -282,6 +337,26 @@ def main() -> int:
         return 2
 
     manifest = load_manifest(index_dir)
+    try:
+        manifest_schema_version = int(manifest.get("schema_version") or 0)
+    except (TypeError, ValueError):
+        manifest_schema_version = 0
+    if manifest_schema_version < 2 or not manifest.get("venues"):
+        print(
+            json.dumps(
+                {
+                    "available": False,
+                    "message": "PowerLit index manifest is missing, invalid, or empty",
+                    "index_dir": str(index_dir),
+                    "candidate_source": "powerlit_index",
+                    "results": [],
+                    "elapsed_ms": int((time.perf_counter() - started) * 1000),
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return 2
     resolved_venues, venue_errors = resolve_venues(args.venue_folders, manifest)
     if venue_errors:
         print(
@@ -303,10 +378,57 @@ def main() -> int:
 
     query_analysis = analyze_query(args.query, args.terms)
     terms = query_analysis["terms"]
-    files = sqlite_files(index_dir, manifest, resolved_venues)
+    files, file_issues = listed_index_files(
+        index_dir,
+        manifest,
+        resolved_venues,
+        "sqlite_files",
+        "sqlite_file",
+        validate_sqlite_metadata=True,
+    )
+    if file_issues:
+        print(
+            json.dumps(
+                {
+                    "available": False,
+                    "message": "PowerLit index manifest is incomplete or inconsistent",
+                    "index_dir": str(index_dir),
+                    "index_issues": file_issues,
+                    "candidate_source": "powerlit_index",
+                    "results": [],
+                    "elapsed_ms": int((time.perf_counter() - started) * 1000),
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return 2
     candidate_source = "powerlit_index_sqlite"
     if not files:
-        files = jsonl_files(index_dir, manifest, resolved_venues)
+        files, file_issues = listed_index_files(
+            index_dir,
+            manifest,
+            resolved_venues,
+            "jsonl_files",
+            "jsonl_file",
+        )
+        if file_issues:
+            print(
+                json.dumps(
+                    {
+                        "available": False,
+                        "message": "PowerLit index manifest is incomplete or inconsistent",
+                        "index_dir": str(index_dir),
+                        "index_issues": file_issues,
+                        "candidate_source": "powerlit_index",
+                        "results": [],
+                        "elapsed_ms": int((time.perf_counter() - started) * 1000),
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            return 2
         candidate_source = "powerlit_index_jsonl"
     if not files:
         print(
